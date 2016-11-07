@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:10:30 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/07 18:12:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/07 18:22:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strstr(const char *big, const char *little);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif
