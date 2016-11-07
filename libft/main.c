@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 11:39:40 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/07 18:18:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/07 19:32:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 			ft_strlen(dst));
 	ft_pause();
 
-	printf("--- ft_strncpy ---\n123456 : %s\n\n",
+	printf("--- ft_strncpy ---\n123456 [9] : %s\n\n",
 			ft_strncpy(dst, "123456", 9));
 	ft_pause();
 
@@ -73,6 +73,14 @@ int	main(int ac, char **av)
 
 	printf("--- ft_strnstr ---\n456798 [3] > 456-123456789 : %s\n\n",
 			ft_strnstr(ft_strcat("456-", dst), "456789", 3));
+	ft_pause();
+
+	printf("--- ft_strcmp ---\n123456789 <> 123456789 : %d\n\n",
+			ft_strcmp(dst, "123456789"));
+	ft_pause();
+
+	printf("--- ft_strncmp ---\n123456789 <3> 123****** : %d\n\n",
+			ft_strncmp(dst, "123******", 3));
 	ft_pause();
 		return (0);
 }
