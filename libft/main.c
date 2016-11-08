@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 11:39:40 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/07 19:32:15 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/08 16:02:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,18 @@ int	main(int ac, char **av)
 
 	printf("--- ft_strncmp ---\n123456789 <3> 123****** : %d\n\n",
 			ft_strncmp(dst, "123******", 3));
+	ft_pause();
+
+	printf("--- ft_isalpha ---\na : %d\n\n", ft_isalpha('a'));
+	ft_pause();
+
+	printf("--- ft_isprint ---\n\\0 : %d\n\n", ft_isprint('\0'));
+	ft_pause();
+
+	printf("--- ft_isascii ---\n@ : %d\n\n", ft_isascii('@'));
+	ft_pause();
+
+	printf("--- ft_isdigit ---\na : %d\n\n", ft_isalpha('5'));
 	ft_pause();
 		return (0);
 }
