@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 16:46:44 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/07 18:12:45 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/08 16:35:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char 	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	size_t	i;
-	size_t	src_len;
+	long	i;
+	long	src_len;
 
 	src_len = ft_strlen(src);
 	i = -1;

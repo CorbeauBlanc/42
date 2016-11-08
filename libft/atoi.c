@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strlcat.c                                          :+:      :+:    :+:   */
+/*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/05 17:29:11 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/08 16:35:19 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/08 16:04:52 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/08 16:35:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *restrict dst, const char *restrict src, size_t size)
+int	ft_atoi(const char *nptr)
 {
 	long	i;
-	long	j;
-	long	len;
+	long	nb;
+	int		sign;
 
-	len = ft_strlen(dst);
-	i = len - 1;
-	j = -1;
-	while (++i < size && src[++j])
-		dst[i] = src[j];
-	dst[i] = '\0';
-	return (len + j);
+	i = 0;
+	nb = 0;
+	while (ft_isspace(nptr[i]) && nptr[i])
+		i++;
+	if (!nptr[i])
+		return (0);
+	if (nptr[i] == '+' || nptr[i] == '-')
+	{
+		sign = nptr[i] == '+' ? 1 : -1;
+		i++;
+	}
+
 }

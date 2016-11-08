@@ -6,18 +6,18 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 15:51:39 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/08 15:58:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/08 16:07:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_toupper(int c)
+int	ft_toupper(int c)
 {
 	return ((c >= 'a' && c <= 'z') ? c - 32 : c);
 }
 
-int		ft_tolower(int c)
+int	ft_tolower(int c)
 {
 	return ((c >= 'A' && c <= 'Z') ? c + 32 : c);
 }

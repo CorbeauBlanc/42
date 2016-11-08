@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 17:25:08 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/07 18:12:43 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/08 16:35:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strncat(char *restrict s1, const char *restrict s2, size_t n)
 {
-	size_t	i;
-	size_t	j;
+	long	i;
+	long	j;
 	char	*dst;
 
 	if (!(dst = (char*)malloc(ft_strlen(s1) + n + 1)))
