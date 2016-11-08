@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   memcmp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 16:04:52 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/08 16:55:01 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/08 18:20:50 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/08 18:29:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int	ft_atoi(const char *nptr)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	long	i;
-	long	nb;
-	int		sign;
+	unsigned char	c1;
+	unsigned char	c2;
 
-	i = 0;
-	nb = 0;
-	while (ft_isspace(nptr[i]) && nptr[i])
-		i++;
-	if (!nptr[i])
-		return (0);
-	if (nptr[i] == '+' || nptr[i] == '-')
-		sign = nptr[i] == '+' ? 1 : -1;
-	else
-		--i;
-	while (ft_isdigit(nptr[++i]))
-		nb = nb * 10 + (nptr[i] - '0');
-	return ((int)(sign * nb));
+	c1 = *(unsigned char*)s1;
+	c2 = *(unsigned char*)s2;
+	if (n)
+		return (c1 == c2 ? ft_strcmp(s1 + 1, s2 + 1) : (int)c1 - (int)c2);
+	return ((int)c1 - (int)c2);
 }

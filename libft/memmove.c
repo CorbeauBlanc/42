@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   atoi.c                                             :+:      :+:    :+:   */
+/*   memmove.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 16:04:52 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/08 16:55:01 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/08 18:07:53 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/08 18:10:50 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
-int	ft_atoi(const char *nptr)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	long	i;
-	long	nb;
-	int		sign;
+	unsigned char tmp;
 
-	i = 0;
-	nb = 0;
-	while (ft_isspace(nptr[i]) && nptr[i])
-		i++;
-	if (!nptr[i])
-		return (0);
-	if (nptr[i] == '+' || nptr[i] == '-')
-		sign = nptr[i] == '+' ? 1 : -1;
-	else
-		--i;
-	while (ft_isdigit(nptr[++i]))
-		nb = nb * 10 + (nptr[i] - '0');
-	return ((int)(sign * nb));
+	if (n)
+	{
+		tmp = *(unsigned char*)src;
+		ft_memcpy(dest + 1, src + 1, n - 1);
+		*(unsigned char*)dest = tmp;
+	}
+	return (dest);
 }
