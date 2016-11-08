@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 11:39:40 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/08 18:57:55 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/08 19:20:05 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	main(int ac, char **av)
 			ft_strlen(dst));
 	ft_pause();
 
-	printf("--- ft_strncpy ---\n\n	123456 [9] : %s\n\n",
+	printf("--- ft_strncpy ---\n\n	123456 [4] : %s\n\n",
 			ft_strncpy(dst, "123456", 9));
 	ft_pause();
 

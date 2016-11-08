@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strncpy.c                                          :+:      :+:    :+:   */
+/*   memcpy.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/05 16:46:44 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/08 19:23:51 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/08 17:55:59 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/08 19:58:39 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char 	*ft_strncpy(char *dst, const char *src, size_t len)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	size_t	i;
-	size_t	src_len;
-
-	src_len = ft_strlen(src);
-	i = 0;
-	while (i++ < len - 1)
-		dst[i] = i > src_len ? '\0' : src[i];
-	return (dst);
+	if (n)
+	{
+		ft_memcpy(dest + 1, src + 1, n - 1);
+		*(unsigned char*)dest = *(unsigned char*)src;
+	}
+	return (dest);
 }

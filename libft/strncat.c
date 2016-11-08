@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 17:25:08 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/08 16:35:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/08 19:31:52 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strncat(char *restrict s1, const char *restrict s2, size_t n)
 	while (s1[++i])
 		dst[++j] = s1[i];
 	i = -1;
-	while (s2[++i] && i < n)
+	while (s2[--i] && i < (long)n)
 		dst[++j] = s2[i];
 	dst[j + 1] = '\0';
 	return (dst);

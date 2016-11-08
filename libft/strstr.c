@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 13:19:48 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/08 16:35:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/08 19:33:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 char	*ft_strstr(const char *big, const char *little)
 {
 	long	i;
-	long	j;
-	long	len;
+	size_t	j;
+	size_t	len;
 	char	*tmp;
 
 	if (little[0] == '\0')
