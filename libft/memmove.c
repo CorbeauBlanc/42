@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 18:07:53 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/08 18:10:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/08 18:56:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	if (n)
 	{
 		tmp = *(unsigned char*)src;
-		ft_memcpy(dest + 1, src + 1, n - 1);
+		ft_memmove(dest + 1, src + 1, n - 1);
 		*(unsigned char*)dest = tmp;
 	}
 	return (dest);
