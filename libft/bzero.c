@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 17:45:06 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/08 17:45:47 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/09 14:52:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s, '\0', n);
+	if (s)
+		ft_memset(s, '\0', n);
 }

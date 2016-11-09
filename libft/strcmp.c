@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 18:21:16 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/07 18:25:43 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/09 14:52:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	ft_strcmp(const char *s1, const char *s2)
 {
+	if (!s1 || !s2)
+		return (-1);
 	if (*s1 && *s2)
 		return (*s1 == *s2 ? ft_strcmp(s1 + 1, s2 + 1) : (*s1 - *s2));
 	return (*s1 - *s2);
