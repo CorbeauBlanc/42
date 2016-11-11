@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:10:30 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/09 16:48:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/11 20:11:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 # include <stdlib.h>
 
 int		strccnt(const char *s, int c);
+size_t	strclen(char* s, char c);
 size_t	ft_strlen(const char *s);
+char	*strcdup(const char *s, char c);
 char	*ft_strdup(const char *s1);
 char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strncpy(char *dst, const char *src, size_t len);
@@ -57,5 +59,6 @@ char	*ft_strmap(char const *s, char (*f)(char));
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s);
+char	**ft_strsplit(char const *s, char c);
 
 #endif

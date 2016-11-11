@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strsplit.c                                         :+:      :+:    :+:   */
+/*   srtcdup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 12:07:53 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/11 20:41:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/11 20:09:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_strsplit(char const *s, char c)
+char	*strcdup(const char *s, char c)
 {
 	long	i;
-	int		nb;
-	char	**tab;
+	long	len;
+	char	*str;
 
-	i = 0;
-	nb = (s[0] != c);
-	while (s[++i])
-		if (s[i] != c && s[i - 1] == c)
-			nb++;
-	if (!(tab = (char**)malloc(nb * sizeof(char*))))
+	if (!s)
 		return (NULL);
-	i = 0;
-	tab[0] = (s[0] == c ? NULL : strcdup(s, c));
-	nb = (tab[0] != NULL);
-	while (s[++i])
-		if (s[i] != c && s[i - 1] == c)
-			tab[++nb] = strcdup(s, c);
-	return (tab);
+	len = strclen(s, c);
+	if (!(str = (char*)malloc(len + 1)))
+		return (NULL);
+	i = -1;
+	while (++i < len)
+		str[i] = s[i];
+	str[i] = '\0';
+	return (str);
 }
