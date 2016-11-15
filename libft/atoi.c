@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 16:04:52 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/09 14:42:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/15 13:54:55 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_atoi(const char *nptr)
 	int		sign;
 
 	if (!nptr)
-		return (NULL);
+		return (0);
 	i = 0;
 	nb = 0;
 	while (ft_isspace(nptr[i]) && nptr[i])

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 12:07:53 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/11 20:41:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/15 17:41:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ char	**ft_strsplit(char const *s, char c)
 		return (NULL);
 	i = 0;
 	tab[0] = (s[0] == c ? NULL : strcdup(s, c));
-	nb = (tab[0] != NULL);
+	nb = -(tab[0] == NULL);
 	while (s[++i])
 		if (s[i] != c && s[i - 1] == c)
-			tab[++nb] = strcdup(s, c);
+			tab[++nb] = strcdup(&s[i], c);
 	return (tab);
 }

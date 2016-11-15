@@ -6,15 +6,15 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/11 12:07:53 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/11 20:09:34 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/15 16:57:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	strclen(const char* s, char c)
+size_t	strclen(const char *s, char c)
 {
 	if (s && *s && *s != c)
-		return (1 + ft_strlen(s + 1));
+		return (1 + strclen(s + 1, c));
 	return (0);
 }

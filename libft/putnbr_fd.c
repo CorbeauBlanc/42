@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strtrim.c                                          :+:      :+:    :+:   */
+/*   putnbr_fd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 16:26:09 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/15 16:26:17 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/15 13:47:12 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	len;
-	size_t	src_len;
-	size_t	i;
-	long	j;
-	char	*str;
+	long	l;
 
-	src_len = ft_strlen(s);
-	len = ft_strlen(s) - strccnt(s, ' ') - strccnt(s, '\n') - strccnt(s, '\t');
-	if ((str = ft_strnew(len + 1)))
+	l = (long)n;
+	if (n < 0)
 	{
-		i = -1;
-		j = -1;
-		while (++i < src_len)
-			if (!ft_isspace(s[i]))
-				str[++j] = s[i];
+		ft_putchar_fd('-', fd);
+		n = -n;
 	}
-	return (str);
+	ft_putchar_fd('0' + (n % 10), fd);
+	if (n > 10 || n < -10)
+		ft_putnbr_fd(n / 10, fd);
 }

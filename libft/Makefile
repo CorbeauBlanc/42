@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
-TARGET=ft_target
+TARGET=libft.a
 SRC= $(wildcard *.c)
 OBJ= $(SRC:.c=.o)
 
