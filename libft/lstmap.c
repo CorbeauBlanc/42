@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memset.c                                           :+:      :+:    :+:   */
+/*   lstmap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 17:35:42 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/16 15:29:58 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/16 15:06:15 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/16 15:23:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	if (!s || !n)
+	t_list	*cell;
+
+	if (!lst || !f)
 		return (NULL);
-	ft_memset(s + 1, c, n - 1);
-	*(unsigned char*)s = (unsigned char)c;
-	return (s);
+	cell = f(lst);
+	cell->next = ft_lstmap(lst->next, f);
+	return (cell);
 }

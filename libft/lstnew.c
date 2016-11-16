@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memset.c                                           :+:      :+:    :+:   */
+/*   lstnew.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 17:35:42 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/16 15:29:58 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/16 14:12:26 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/16 15:28:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	if (!s || !n)
+	t_list	*cell;
+
+	if (!content)
 		return (NULL);
-	ft_memset(s + 1, c, n - 1);
-	*(unsigned char*)s = (unsigned char)c;
-	return (s);
+	if ((cell = (t_list*)malloc(sizeof(t_list))))
+		return (NULL);
+	cell->content = (void*)content;
+	cell->content_size = content_size;
+	cell->next = NULL;
+	return (cell);
 }
