@@ -48,13 +48,13 @@ int	main(int ac, char **av)
 	(void)ac;
 	(void)av;
 
-/*	char	*dst;
-	char	**tab;
-	void	*tmp;
+	char	*dst;
+//	char	**tab;
+//	void	*tmp;
 
 	if (!(dst = (char*)malloc(10)))
 		exit(EXIT_FAILURE);
-
+/*
 	printf("--- ft_strcpy ---\n\n	123 : %s\n\n",
 			ft_strcpy(dst, "123"));
 	ft_pause();
@@ -144,10 +144,12 @@ int	main(int ac, char **av)
 	printf("--- ft_memmove ---\n\n	456789 [6]> abc456789 : %s\n\n",
 			ft_memmove(dst, tmp, 6));
 	ft_pause();
-
+*/
+	ft_strcpy(dst, "456789789");
 	printf("--- ft_memchr ---\n\n	7 [9]> 456789789 : %s\n\n",
 			ft_memchr(dst, '7', 9));
 	ft_pause();
+/*/
 
 	printf("--- ft_memcmp ---\n\n	456789789 <[9]> 456789789 : %d\n\n",
 			ft_memcmp(dst, "456789789", 9));
@@ -225,9 +227,9 @@ int	main(int ac, char **av)
 	ft_putstr_fd("--- ft_putstr_fd ---\n\n	Check\n\n", 1);
 	ft_pause();
 
-	ft_putstr("--- ft_putnbr_fd ---\n\n	-123456789 : ");*/
+	ft_putstr("--- ft_putnbr_fd ---\n\n	-123456789 : ");
 	ft_putnbr_fd(-2147483648, 1);
-	ft_pause();/*
+	ft_pause();
 */
 	return (0);
 }

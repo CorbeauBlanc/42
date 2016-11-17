@@ -14,9 +14,5 @@
 
 int	ft_isascii(int c)
 {
-<<<<<<< HEAD
-	return ((c >= 0 && c <= 127));
-=======
 	return ((c <= 127));
->>>>>>> eeaf8a68b036729896daace1b2021e0700ec1ff8
 }

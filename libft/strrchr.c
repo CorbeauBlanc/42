@@ -16,7 +16,7 @@ char	*ft_strrchr(const char *s, int c)
 {
 	char	*tmp;
 
-	if (s && *s != '\0')
+	if (*s != '\0')
 		return (!(tmp = ft_strrchr(s + 1, c)) && *s == c ? (char*)s : tmp);
-	return (NULL);
+	return (c == '\0' ? (char*)s : NULL);
 }
