@@ -48,7 +48,7 @@ int	main(int ac, char **av)
 	(void)ac;
 	(void)av;
 
-	char	*dst;
+/*	char	*dst;
 	char	**tab;
 	void	*tmp;
 
@@ -122,6 +122,10 @@ int	main(int ac, char **av)
 
 	printf("--- ft_atoi ---\n\n	\\f\\n\\r\\t\\v -2147483648abc : %d\n\n",
 			ft_atoi("\f\n\r\t\v -2147483648abc"));
+	ft_pause();
+
+	printf("--- ft_atoi ---\n\n	-2147483648 : %d\n\n",
+			ft_atoi("-2147483648"));
 	ft_pause();
 
 	printf("--- ft_memset ---\n\n	* [9]> 123456789 : %s\n\n",
@@ -214,16 +218,16 @@ int	main(int ac, char **av)
 		tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], tab[7]);
 	ft_pause();
 
-	printf("--- ft_itoa ---\n\n	-123456789 : %s\n\n",
-			ft_itoa(-123456789));
+	printf("--- ft_itoa ---\n\n	-2147483648 : %s\n\n",
+			ft_itoa(-2147483648));
 	ft_pause();
 
 	ft_putstr_fd("--- ft_putstr_fd ---\n\n	Check\n\n", 1);
 	ft_pause();
 
-	ft_putstr("--- ft_putnbr_fd ---\n\n	-123456789 : ");
-	ft_putnbr_fd(-123456789, 1);
-	ft_pause();
-
+	ft_putstr("--- ft_putnbr_fd ---\n\n	-123456789 : ");*/
+	ft_putnbr_fd(-2147483648, 1);
+	ft_pause();/*
+*/
 	return (0);
 }
