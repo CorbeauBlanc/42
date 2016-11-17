@@ -1,6 +1,6 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
-TARGET=libft.a
+NAME=libft.a
 SRC= atoi.c bzero.c intlen.c isalnum.c isalpha.c isascii.c isdigit.c isprint.c \
 isspace.c itoa.c memalloc.c memccpy.c memchr.c memcmp.c memcpy.c memdel.c \
 memmove.c memset.c putchar.c putchar_fd.c putendl.c putendl_fd.c putnbr.c \
@@ -24,9 +24,9 @@ LLBLUE="\x1B[38;5;81m"
 
 .PHONY: all clean fclean re header it_fabulous
 
-all: $(TARGET)
+all: $(NAME)
 
-$(TARGET): $(OBJ)
+$(NAME): $(OBJ)
 	@ar qcs $@ $^
 
 $(OBJ): $(SRC)
@@ -36,7 +36,7 @@ clean:
 	@rm -rf $(OBJ)
 
 fclean: clean
-	@rm -rf $(TARGET)
+	@rm -rf $(NAME)
 
 re: fclean all
 

@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 17:00:22 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/09 15:25:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/16 18:24:07 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcat(char *restrict s1, const char *restrict s2)
+char	*ft_strcat(char *s1, const char *s2)
 {
 	long	i;
 	long	j;
