@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 11:39:40 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/16 13:19:38 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/17 18:42:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,11 @@ int	main(int ac, char **av)
 
 	printf("--- ft_isdigit ---\n\n	a : %d\n\n", ft_isalpha('5'));
 	ft_pause();
-
-	printf("--- ft_atoi ---\n\n	\\f\\n\\r\\t\\v -2147483648abc : %d\n\n",
-			ft_atoi("\f\n\r\t\v -2147483648abc"));
+*/
+	printf("--- ft_atoi ---\n\n	\\f\\n\\r\\t\\v 0001020304abc : %d\n\n",
+			ft_atoi("\f\n\r\t\v 0001020304abc"));
 	ft_pause();
-
+/*
 	printf("--- ft_atoi ---\n\n	-2147483648 : %d\n\n",
 			ft_atoi("-2147483648"));
 	ft_pause();
