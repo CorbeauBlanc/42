@@ -1,20 +1,11 @@
 CLEANING DIRECTORY
--> Cleaning directory failed when processing 'fclean' rule
 --------------------------------------------
 CHECKING RULE: all
--> Failing rule: It should not have cleaned the objects files
--> Failing rule: Processing the rule 'all' twice in a row should result in nothing to be done
 --------------------------------------------
 CHECKING RULE: clean
 --------------------------------------------
 CHECKING RULE: re
--> Failing rule: It should have built the objects files
--> Failing rule: It should have compiled again the binary named 'libft.a' (inode unchanged)
 --------------------------------------------
 CHECKING RULE: fclean
--> Failing rule: It should have cleaned the binary named 'libft.a'
--> Failing rule: It should have cleaned the libraries
 --------------------------------------------
 CHECKING RULE: $(NAME)
--> Failing rule: It should not have cleaned the objects files
--> Failing rule: Processing the rule 'all' twice in a row should result in nothing to be done
