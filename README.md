@@ -6,3 +6,6 @@ My work at 42
 
 - piscine_reloaded
   |révisions des bases apprises en piscine
+
+- libft
+  |Ensemble des fonctions importantes vue en piscine + qq ajouts
