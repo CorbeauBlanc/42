@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 19:17:39 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/17 19:17:40 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/18 18:55:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,15 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	size_t	len;
 
 	len = ft_strlen(dst);
-	i = len - 1;
+	i = len;
 	j = -1;
-	while (i++ < size - 1 && src[++j])
+	while (src[++j] && i < size)
+	{
 		dst[i] = src[j];
-	dst[i] = '\0';
-	return (len + j);
+		i++;
+	}
+	if (src[j] != '\0')
+		return (size + ft_strlen(src));
+	dst[i + 1] = '\0';
+	return (len + ft_strlen(src));
 }

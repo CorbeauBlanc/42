@@ -6,12 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 11:39:40 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/17 18:42:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/18 18:53:04 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "libft.h"
+#include "libft/libft.h"
 
 void	ft_pause(void)
 {
@@ -79,11 +79,12 @@ int	main(int ac, char **av)
 	printf("--- ft_strncat ---\n\n	123456 + 789 : %s\n\n",
 			ft_strncat(dst, "789", 3));
 	ft_pause();
-
-	printf("--- ft_strlcat ---\n\n	123456 + 789 : [%lu] %s\n\n",
-			ft_strlcat(dst, "789", 100), dst);
+*/
+	strcpy(dst, "abc");
+	printf("--- ft_strlcat ---\n\n	abc + abcdefghijklmno : [%lu] %s\n\n",
+			ft_strlcat(dst, "abcdefghijklmno", 10), dst);
 	ft_pause();
-
+/*
 	printf("--- ft_strchr ---\n\n	5 > 123456789 : %s\n\n",
 			ft_strchr(dst, '5'));
 	ft_pause();
@@ -100,8 +101,8 @@ int	main(int ac, char **av)
 			ft_strnstr(ft_strcat("456-", dst), "456789", 3));
 	ft_pause();
 
-	printf("--- ft_strcmp ---\n\n	123456789 <> 123456789 : %d\n\n",
-			ft_strcmp(dst, "123456789"));
+	printf("--- ft_strcmp ---\n\n	\\200 <> \\0 : %d\n\n",
+			strcmp("\200", ""));
 	ft_pause();
 
 	printf("--- ft_strncmp ---\n\n	123456789 <3> 123****** : %d\n\n",
@@ -119,11 +120,11 @@ int	main(int ac, char **av)
 
 	printf("--- ft_isdigit ---\n\n	a : %d\n\n", ft_isalpha('5'));
 	ft_pause();
-*/
+
 	printf("--- ft_atoi ---\n\n	\\f\\n\\r\\t\\v 0001020304abc : %d\n\n",
 			ft_atoi("\f\n\r\t\v 0001020304abc"));
 	ft_pause();
-/*
+
 	printf("--- ft_atoi ---\n\n	-2147483648 : %d\n\n",
 			ft_atoi("-2147483648"));
 	ft_pause();
@@ -145,14 +146,13 @@ int	main(int ac, char **av)
 			ft_memmove(dst, tmp, 6));
 	ft_pause();
 */
-	ft_strcpy(dst, "456789789");
-	printf("--- ft_memchr ---\n\n	7 [9]> 456789789 : %s\n\n",
-			ft_memchr(dst, '7', 9));
+	ft_strcpy(dst, "abcdef");
+	printf("--- ft_memchr ---\n\n	999 [6]> abcdef : %s\n\n",
+			ft_memchr("abcdef", 999, 9));
 	ft_pause();
-/*/
-
-	printf("--- ft_memcmp ---\n\n	456789789 <[9]> 456789789 : %d\n\n",
-			ft_memcmp(dst, "456789789", 9));
+/*
+	printf("--- ft_memcmp ---\n\n	awwaui <[0]> bpp : %d\n\n",
+			ft_memcmp("awwaui", "bpp", 6));
 	ft_pause();
 
 	printf("--- ft_memalloc ---\n\n	[%x] < 100 : %s\n\n", (unsigned int)&tmp,

@@ -1,8 +1,8 @@
 [Yellow Tests] are Hardcore
-Test [memset] : Error Line 1853, Funct uf_test_memset FAIL
+Test [memset] : OK
 Test [bzero] : OK
 Test [memcpy] : OK
-Test [memccpy] : Error Line 1748, Funct uf_test_memccpy FAIL
+Test [memccpy] : OK
 Test [memmove] : OK
 Test [memchr] : Segmentation Fault
 Test [memcmp] : Segmentation Fault
@@ -52,10 +52,10 @@ Expected ret = "0" 			   but have ret = ""
 FAIL
 Test [strtrim] : Segmentation Fault
 Test [lstnew] : Error Line 440, Funct uf_test_lstnew FAIL
-Test [lstdelone] : main(85141,0x7fff7bdd8000) malloc: *** error for object 0x7fff593e3488: pointer being freed was not allocated
+Test [lstdelone] : main(34442,0x7fff7bdd8000) malloc: *** error for object 0x7fff5212f488: pointer being freed was not allocated
 *** set a breakpoint in malloc_error_break to debug
 The processus receive the signal 6
-Test [lstdel] : main(85142,0x7fff7bdd8000) malloc: *** error for object 0x7fff593e3488: pointer being freed was not allocated
+Test [lstdel] : main(34443,0x7fff7bdd8000) malloc: *** error for object 0x7fff5212f488: pointer being freed was not allocated
 *** set a breakpoint in malloc_error_break to debug
 The processus receive the signal 6
 Test [lstadd] : OK

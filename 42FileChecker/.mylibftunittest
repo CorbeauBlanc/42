@@ -81,28 +81,20 @@ RUNING TESTS:
                       First part
 .-"-.     .-"-.     .-"-.     .-"-.     .-"-.     .-"-.
      "-.-"     "-.-"     "-.-"     "-.-"     "-.-"    
-ft_memset:     [OK] [FAILED] [OK] [OK] [OK] [OK] [OK] 
-[fail]: your memset return address is false/your memset does not work
-
+ft_memset:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_bzero:      [OK] [OK] [OK] [OK] 
 ft_memcpy:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
-ft_memccpy:    [OK] [FAILED] [FAILED] [FAILED] [OK] [FAILED] [OK] [OK] [OK] [OK] [OK] 
-[fail]: your memccpy doesn't cast the memory into unsigned char
-[fail]: your memccpy's return is false/doesn't work with basic params
-[fail]: your memccpy does not work with not found char
-[fail]: your memccpy does not work with basic params
-
+ft_memccpy:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_memmove:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [CRASH] [OK] [NO CRASH] [NO CRASH] [OK] 
 [crash]: your memmove does not work with a 128Mo data input !
 [no crash]: your memmove does not segfault when null params is sent
 [no crash]: your memmove does not segfault when null params is sent
 
-ft_memchr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
-ft_memcmp:     [OK] [OK] [FAILED] [FAILED] [FAILED] [FAILED] [OK] [OK] [OK] 
-[fail]: your memcmp does not work with basic input
-[fail]: your memcmp does not work with basic input
-[fail]: your memcmp does not cast the memory in unsigned char
-[fail]: your memcmp does not work with basic input
+ft_memchr:     [OK] [FAILED] [OK] [OK] [OK] [OK] [OK] 
+[fail]: your memchr does not cast in unsigned the memory
+
+ft_memcmp:     [OK] [OK] [OK] [OK] [OK] [OK] [CRASH] [OK] [OK] 
+[crash]: your memcmp crash cause it read too many bytes !
 
 ft_strlen:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strdup:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
@@ -110,13 +102,11 @@ ft_strcpy:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK]
 ft_strncpy:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strcat:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strncat:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
-ft_strlcat:    [OK] [FAILED] [FAILED] [OK] [OK] [FAILED] [FAILED] [OK] [FAILED] [OK] [NO CRASH] 
+ft_strlcat:    [OK] [FAILED] [FAILED] [OK] [OK] [OK] [FAILED] [CRASH] [OK] [OK] [OK] 
 [fail]: your strlcat does not work with basic input
 [fail]: your strlcat does not work with basic input
-[fail]: your strcat does not work with empty string as second parameter
 [fail]: your strlcat does not set a  to the end
-[fail]: your strlcat return value is false
-[no crash]: your strlcat does not segfault when null parameter is sent
+[crash]: your strlcat crash cause it read too many bytes or attempt to write on buff !
 
 ft_strchr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strrchr:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
@@ -124,10 +114,7 @@ ft_strstr:     [OK] [FAILED] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [
 [fail]: your strstr does not work with basic input
 
 ft_strnstr:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
-ft_strcmp:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [FAILED] [FAILED] [OK] [OK] [OK] 
-[fail]: your strcmp does not cast in unsigned the diff
-[fail]: your strcmp does not work with non ascii chars
-
+ft_strcmp:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strncmp:    [OK] [OK] [OK] [OK] [OK] [OK] [FAILED] [OK] [FAILED] [OK] [OK] [OK] 
 [fail]: your strncmp does not cast in unsigned char the diff
 [fail]: your strncmp does not work with non ascii chars
@@ -180,10 +167,11 @@ ft_strtrim:    [FAILED] [FAILED] [FAILED] [OK] [OK] [KO] [FAILED] [OK] [FAILED] 
 [fail]: your strtrim does not allocate memory
 [fail]: your strtrim does not set  to the end of the string
 
-ft_strsplit:   [OK] [OK] [CRASH] [CRASH] [CRASH] [OK] [OK] [OK] [CRASH] [ðM-^_M-^R¥ ] 
+ft_strsplit:   [OK] [OK] [CRASH] [CRASH] [CRASH] [OK] [CRASH] [OK] [CRASH] [ðM-^_M-^R¥ ] 
 [crash]: your strsplit does not work with one word
 [crash]: your strsplit does not work with one word
 [crash]: your strsplit does not work with empty string
+[crash]: your strsplit does not work with basic input
 [crash]: your strsplit does not work with basic input
 
 ft_itoa:       [FAILED] [FAILED] [FAILED] [OK] [OK] [OK] [OK] [OK] [OK] 
@@ -211,7 +199,7 @@ ft_putnbr_fd:  [OK] [OK] [OK] [OK] [OK]
 ,_/\ \/\ \/\ \__/\ \/\ \/\ \______________________/ /\/ /\/ /\__/ /\/ /\/ /\_,
 (__/\__/\__/\____/\__/\__/\________________________/\__/\__/\____/\__/\__/\__)
 
-ft_lstnew:     [OK] run_test(84861,0x7fff7bdd8000) malloc: *** error for object 0x100f1ccc7: pointer being freed was not allocated
+ft_lstnew:     [OK] run_test(34157,0x7fff7bdd8000) malloc: *** error for object 0x104d74cc7: pointer being freed was not allocated
 *** set a breakpoint in malloc_error_break to debug
 [CRASH] [OK] [OK] 
 [crash]: your lstnew does not allocate memory
