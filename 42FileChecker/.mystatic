@@ -1,0 +1,6 @@
+ft_intlen.c (line 15) : intlen() should be declared as static
+ft_srtcdup.c (line 15) : strcdup() should be declared as static
+ft_strccnt.c (line 15) : strccnt() should be declared as static
+ft_strclen.c (line 15) : strclen() should be declared as static
+ft_strrealloc.c (line 15) : strrealloc() should be declared as static
+strncat.c (line 15) : ft_strncat() should be declared as static

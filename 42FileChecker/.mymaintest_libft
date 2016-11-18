@@ -1,0 +1,63 @@
+[Yellow Tests] are Hardcore
+Test [memset] : Error Line 1853, Funct uf_test_memset FAIL
+Test [bzero] : OK
+Test [memcpy] : OK
+Test [memccpy] : Error Line 1748, Funct uf_test_memccpy FAIL
+Test [memmove] : OK
+Test [memchr] : Segmentation Fault
+Test [memcmp] : Segmentation Fault
+Test [strlen] : OK
+Test [strdup] : OK
+Test [strcpy] : OK
+Test [strncpy] : OK
+Test [strcat] : OK
+Test [strncat] : OK
+Test [strlcat] : Error Line 1391, Funct uf_test_strlcat FAIL
+Test [strchr] : OK
+Test [strrchr] : OK
+Test [strstr] : OK
+Test [strnstr] : Error Line 1296, Funct uf_test_strnstr FAIL
+Test [strcmp] : OK
+Test [strncmp] : Error Line 1226, Funct uf_test_strncmp FAIL
+Test [atoi] : OK
+Test [isalpha] : OK
+Test [isdigit] : OK
+Test [isalnum] : OK
+Test [isascii] : OK
+Test [isprint] : OK
+Test [toupper] : OK
+Test [tolower] : OK
+Test [memalloc_and_del] : OK
+Test [strnew] : OK
+Test [strdel] : OK
+Test [strclr] : OK
+Test [striter] : OK
+Test [striteri] : OK
+Test [strmap] : OK
+Test [strmapi] : OK
+Test [strequ] : Error Line 836, Funct uf_test_strequ : 
+ft_strequ("abc", "abc").
+Expected ret = "1" 			   but have ret = "0"
+FAIL
+Test [strnequ] : Error Line 791, Funct uf_test_strnequ : 
+ft_strnequ("abc", "abc", 2).
+Expected ret = "1" 			   but have ret = "0"
+FAIL
+Test [strsub] : OK
+Test [strjoin] : OK
+Test [strsplit] : Segmentation Fault
+Test [itoa] : Error Line 737, Funct uf_test_itoa : 
+ft_itoa(0).
+Expected ret = "0" 			   but have ret = ""
+FAIL
+Test [strtrim] : Segmentation Fault
+Test [lstnew] : Error Line 440, Funct uf_test_lstnew FAIL
+Test [lstdelone] : main(80603,0x7fff7a802000) malloc: *** error for object 0x7fff54c1c478: pointer being freed was not allocated
+*** set a breakpoint in malloc_error_break to debug
+The processus receive the signal 6
+Test [lstdel] : main(80604,0x7fff7a802000) malloc: *** error for object 0x7fff54c1c478: pointer being freed was not allocated
+*** set a breakpoint in malloc_error_break to debug
+The processus receive the signal 6
+Test [lstadd] : OK
+Test [lstiter] : OK
+Test [lstmap] : Error Line 332, Funct uf_test_lstmap FAIL
