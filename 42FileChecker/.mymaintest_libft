@@ -52,10 +52,10 @@ Expected ret = "0" 			   but have ret = ""
 FAIL
 Test [strtrim] : Segmentation Fault
 Test [lstnew] : Error Line 440, Funct uf_test_lstnew FAIL
-Test [lstdelone] : main(80603,0x7fff7a802000) malloc: *** error for object 0x7fff54c1c478: pointer being freed was not allocated
+Test [lstdelone] : main(79125,0x7fff7bdd8000) malloc: *** error for object 0x7fff5ba92478: pointer being freed was not allocated
 *** set a breakpoint in malloc_error_break to debug
 The processus receive the signal 6
-Test [lstdel] : main(80604,0x7fff7a802000) malloc: *** error for object 0x7fff54c1c478: pointer being freed was not allocated
+Test [lstdel] : main(79126,0x7fff7bdd8000) malloc: *** error for object 0x7fff5ba92478: pointer being freed was not allocated
 *** set a breakpoint in malloc_error_break to debug
 The processus receive the signal 6
 Test [lstadd] : OK
