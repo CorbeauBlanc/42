@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   itoa.c                                             :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 11:26:19 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/15 17:50:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/21 19:14:18 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,20 @@
 
 char	*ft_itoa(int n)
 {
-	long	l;
 	int		len;
+	long	ln;
 	char	*str;
 
-	l = (long)n;
-	len = (n < 0) + intlen(n);
-	if (!(str = ft_strnew(++len)))
+	len = intlen(n) + (n < 0);
+	if (!(str = ft_strnew(len)))
 		return (NULL);
-	if (l < 0)
-	{
+	ln = (long)n * (n < 0 ? -1 : 1);
+	if (n < 0)
 		str[0] = '-';
-		l = -l;
-	}
-	n = (l < 0 ? 1 : 0);
-	while (--len > n)
+	while (--len >= (n < 0))
 	{
-		str[len] = '0' + (l % 10);
-		l /= 10;
+		str[len] = '0' + (ln % 10);
+		ln /= 10;
 	}
 	return (str);
 }

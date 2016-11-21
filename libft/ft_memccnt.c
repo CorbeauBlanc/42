@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strccnt.c                                          :+:      :+:    :+:   */
+/*   ft_strccnt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 16:30:54 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/09 16:33:31 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/21 15:56:28 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	strccnt(const char *s, int c)
+int	memccnt(const char *s, int c, size_t n)
 {
-	if (s && *s)
-		return ((*s == c) + strccnt(s + 1, c));
+	if (n && s && *s)
+		return ((*s == c) + memccnt(s + 1, c, n - 1));
 	return (0);
 }

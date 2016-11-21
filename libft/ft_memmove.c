@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memmove.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 18:07:53 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/09 14:52:22 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/21 13:00:52 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	unsigned char tmp;
 
-	if (dest && src && n)
+	if (n)
 	{
 		tmp = *(unsigned char*)src;
 		ft_memmove(dest + 1, src + 1, n - 1);

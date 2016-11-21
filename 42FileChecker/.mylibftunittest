@@ -18,7 +18,7 @@ See also the clean logfile provided by the library at the following path:
  make -j 3 -C /Users/edescoin/Desktop/libft 
 make[1]: Nothing to be done for `all'.
  cp /Users/edescoin/Desktop/libft/libft.a assets/ 
-âM-^^¤  clang -shared -fPIC assets/tmp/ft_atoi.o assets/tmp/ft_bzero.o assets/tmp/ft_intlen.o assets/tmp/ft_isalnum.o assets/tmp/ft_isalpha.o assets/tmp/ft_isascii.o assets/tmp/ft_isdigit.o assets/tmp/ft_isprint.o assets/tmp/ft_isspace.o assets/tmp/ft_itoa.o assets/tmp/ft_lstadd.o assets/tmp/ft_lstdel.o assets/tmp/ft_lstdelone.o assets/tmp/ft_lstiter.o assets/tmp/ft_lstmap.o assets/tmp/ft_lstnew.o assets/tmp/ft_memalloc.o assets/tmp/ft_memccpy.o assets/tmp/ft_memchr.o assets/tmp/ft_memcmp.o assets/tmp/ft_memcpy.o assets/tmp/ft_memdel.o assets/tmp/ft_memmove.o assets/tmp/ft_memset.o assets/tmp/ft_putchar.o assets/tmp/ft_putchar_fd.o assets/tmp/ft_putendl.o assets/tmp/ft_putendl_fd.o assets/tmp/ft_putnbr.o assets/tmp/ft_putnbr_fd.o assets/tmp/ft_putstr.o assets/tmp/ft_putstr_fd.o assets/tmp/ft_srtcdup.o assets/tmp/ft_strcat.o assets/tmp/ft_strccnt.o assets/tmp/ft_strchr.o assets/tmp/ft_strclen.o assets/tmp/ft_strclr.o assets/tmp/ft_strcmp.o assets/tmp/ft_strcpy.o assets/tmp/ft_strdel.o assets/tmp/ft_strdup.o assets/tmp/ft_strequ.o assets/tmp/ft_striter.o assets/tmp/ft_striteri.o assets/tmp/ft_strjoin.o assets/tmp/ft_strlcat.o assets/tmp/ft_strlen.o assets/tmp/ft_strmap.o assets/tmp/ft_strmapi.o assets/tmp/ft_strncat.o assets/tmp/ft_strncmp.o assets/tmp/ft_strncpy.o assets/tmp/ft_strnequ.o assets/tmp/ft_strnew.o assets/tmp/ft_strnstr.o assets/tmp/ft_strrchr.o assets/tmp/ft_strrealloc.o assets/tmp/ft_strsplit.o assets/tmp/ft_strstr.o assets/tmp/ft_strsub.o assets/tmp/ft_strtrim.o assets/tmp/ft_tolower.o assets/tmp/ft_toupper.o -o libft.so 
+âM-^^¤  clang -shared -fPIC assets/tmp/ft_atoi.o assets/tmp/ft_bzero.o assets/tmp/ft_intlen.o assets/tmp/ft_isalnum.o assets/tmp/ft_isalpha.o assets/tmp/ft_isascii.o assets/tmp/ft_isdigit.o assets/tmp/ft_isprint.o assets/tmp/ft_isspace.o assets/tmp/ft_itoa.o assets/tmp/ft_lstadd.o assets/tmp/ft_lstdel.o assets/tmp/ft_lstdelone.o assets/tmp/ft_lstiter.o assets/tmp/ft_lstmap.o assets/tmp/ft_lstnew.o assets/tmp/ft_memalloc.o assets/tmp/ft_memccnt.o assets/tmp/ft_memccpy.o assets/tmp/ft_memchr.o assets/tmp/ft_memcmp.o assets/tmp/ft_memcpy.o assets/tmp/ft_memdel.o assets/tmp/ft_memmove.o assets/tmp/ft_memset.o assets/tmp/ft_putchar.o assets/tmp/ft_putchar_fd.o assets/tmp/ft_putendl.o assets/tmp/ft_putendl_fd.o assets/tmp/ft_putnbr.o assets/tmp/ft_putnbr_fd.o assets/tmp/ft_putstr.o assets/tmp/ft_putstr_fd.o assets/tmp/ft_srtcdup.o assets/tmp/ft_strcat.o assets/tmp/ft_strchr.o assets/tmp/ft_strclen.o assets/tmp/ft_strclr.o assets/tmp/ft_strcmp.o assets/tmp/ft_strcpy.o assets/tmp/ft_strdel.o assets/tmp/ft_strdup.o assets/tmp/ft_strequ.o assets/tmp/ft_striter.o assets/tmp/ft_striteri.o assets/tmp/ft_strjoin.o assets/tmp/ft_strlcat.o assets/tmp/ft_strlen.o assets/tmp/ft_strmap.o assets/tmp/ft_strmapi.o assets/tmp/ft_strncat.o assets/tmp/ft_strncmp.o assets/tmp/ft_strncpy.o assets/tmp/ft_strnequ.o assets/tmp/ft_strnew.o assets/tmp/ft_strnstr.o assets/tmp/ft_strrchr.o assets/tmp/ft_strrealloc.o assets/tmp/ft_strsplit.o assets/tmp/ft_strstr.o assets/tmp/ft_strsub.o assets/tmp/ft_strtrim.o assets/tmp/ft_tolower.o assets/tmp/ft_toupper.o -o libft.so 
 [  Building #0  ]
 âM-^^¤  clang -O2 -funroll-loops -Werror -Wall -Wextra -ggdb -I./include -o obj/src/main.o -c src/main.c 
 [  Building #0  ]
@@ -85,40 +85,24 @@ ft_memset:     [OK] [OK] [OK] [OK] [OK] [OK] [OK]
 ft_bzero:      [OK] [OK] [OK] [OK] 
 ft_memcpy:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_memccpy:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
-ft_memmove:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [CRASH] [OK] [NO CRASH] [NO CRASH] [OK] 
+ft_memmove:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [CRASH] [OK] [OK] [OK] [OK] 
 [crash]: your memmove does not work with a 128Mo data input !
-[no crash]: your memmove does not segfault when null params is sent
-[no crash]: your memmove does not segfault when null params is sent
 
-ft_memchr:     [OK] [FAILED] [OK] [OK] [OK] [OK] [OK] 
-[fail]: your memchr does not cast in unsigned the memory
-
-ft_memcmp:     [OK] [OK] [OK] [OK] [OK] [OK] [CRASH] [OK] [OK] 
-[crash]: your memcmp crash cause it read too many bytes !
-
+ft_memchr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
+ft_memcmp:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strlen:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strdup:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strcpy:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strncpy:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strcat:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strncat:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
-ft_strlcat:    [OK] [FAILED] [FAILED] [OK] [OK] [OK] [FAILED] [CRASH] [OK] [OK] [OK] 
-[fail]: your strlcat does not work with basic input
-[fail]: your strlcat does not work with basic input
-[fail]: your strlcat does not set a  to the end
-[crash]: your strlcat crash cause it read too many bytes or attempt to write on buff !
-
+ft_strlcat:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strchr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strrchr:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
-ft_strstr:     [OK] [FAILED] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
-[fail]: your strstr does not work with basic input
-
+ft_strstr:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strnstr:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_strcmp:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
-ft_strncmp:    [OK] [OK] [OK] [OK] [OK] [OK] [FAILED] [OK] [FAILED] [OK] [OK] [OK] 
-[fail]: your strncmp does not cast in unsigned char the diff
-[fail]: your strncmp does not work with non ascii chars
-
+ft_strncmp:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_atoi:       [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_isalpha:    [OK] 
 ft_isdigit:    [OK] 
@@ -138,53 +122,30 @@ a color code will tell you if your function is protected/not BUT stay coherent !
 
 ft_memalloc:   [OK] [OK] [OK] [OK] [OK] 
 ft_memdel:     [OK] [OK] [ðM-^_M-^[¡ ] 
-ft_strnew:     [OK] [FAILED] [OK] [OK] 
-[fail]: your strnew does not set allocated mem to 0
-
+ft_strnew:     [OK] [OK] [OK] [OK] 
 ft_strdel:     [OK] [OK] [ðM-^_M-^[¡ ] 
 ft_strclr:     [OK] [ðM-^_M-^[¡ ] 
 ft_striter:    [OK] [OK] [ðM-^_M-^[¡ ] 
 ft_striteri:   [OK] [OK] [ðM-^_M-^[¡ ] 
 ft_strmap:     [OK] [OK] [OK] [OK] [OK] [ðM-^_M-^[¡ ] 
 ft_strmapi:    [OK] [OK] [OK] [OK] [OK] [ðM-^_M-^[¡ ] 
-ft_strequ:     [FAILED] [FAILED] [FAILED] [OK] [ðM-^_M-^[¡ ] 
-[fail]: your strequ does not work basic input
-[fail]: your strequ does not work with empty string
-[fail]: your strequ does not work with empty string
-
-ft_strnequ:    [FAILED] [FAILED] [FAILED] [OK] [ðM-^_M-^[¡ ] 
-[fail]: your strnequ does not work with basic input
-[fail]: your strnequ does not work with empty string
-[fail]: your strnequ does not work with empty string
-
+ft_strequ:     [OK] [OK] [OK] [OK] [ðM-^_M-^[¡ ] 
+ft_strnequ:    [OK] [OK] [OK] [OK] [ðM-^_M-^[¡ ] 
 ft_strsub:     [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [ðM-^_M-^[¡ ] 
 ft_strjoin:    [OK] [OK] [OK] [OK] [OK] [ðM-^_M-^[¡ ] 
-ft_strtrim:    [FAILED] [FAILED] [FAILED] [OK] [OK] [KO] [FAILED] [OK] [FAILED] [ðM-^_M-^R¥ ] 
-[fail]: your strtrim does not work with basic input
-[fail]: your strtrim does not work with basic input
-[fail]: your strtrim does not work with basic input
-[KO]: your strtrim did not allocate the good size so the  test may be false
-[fail]: your strtrim does not allocate memory
-[fail]: your strtrim does not set  to the end of the string
-
-ft_strsplit:   [OK] [OK] [CRASH] [CRASH] [CRASH] [OK] [CRASH] [OK] [CRASH] [ðM-^_M-^R¥ ] 
-[crash]: your strsplit does not work with one word
-[crash]: your strsplit does not work with one word
+ft_strtrim:    [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [ðM-^_M-^R¥ ] 
+ft_strsplit:   [OK] [OK] [OK] [OK] [CRASH] [OK] [OK] [OK] [OK] [ðM-^_M-^R¥ ] 
 [crash]: your strsplit does not work with empty string
-[crash]: your strsplit does not work with basic input
-[crash]: your strsplit does not work with basic input
 
-ft_itoa:       [FAILED] [FAILED] [FAILED] [OK] [OK] [OK] [OK] [OK] [OK] 
-[fail]: your itoa does not work with basic input
-[fail]: your itoa does not work with random number
-[fail]: your itoa does not work with max int
-
+ft_itoa:       [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] [OK] 
 ft_putchar:    [OK] [OK] [KO] 
 [KO]: your putchar does not work with unicode
 
 ft_putstr:     [OK] [OK] [ðM-^_M-^[¡ ] 
 ft_putendl:    [OK] [OK] [ðM-^_M-^[¡ ] 
-ft_putnbr:     [OK] [OK] [OK] [OK] [OK] 
+ft_putnbr:     [OK] [OK] [OK] [FAILED] [OK] 
+[fail]: your putnbr does not work with random numbers
+
 ft_putchar_fd: [OK] [OK] [KO] 
 [KO]: your putchar_fd does not work with unicode
 
@@ -199,11 +160,7 @@ ft_putnbr_fd:  [OK] [OK] [OK] [OK] [OK]
 ,_/\ \/\ \/\ \__/\ \/\ \/\ \______________________/ /\/ /\/ /\__/ /\/ /\/ /\_,
 (__/\__/\__/\____/\__/\__/\________________________/\__/\__/\____/\__/\__/\__)
 
-ft_lstnew:     [OK] run_test(34157,0x7fff7bdd8000) malloc: *** error for object 0x104d74cc7: pointer being freed was not allocated
-*** set a breakpoint in malloc_error_break to debug
-[CRASH] [OK] [OK] 
-[crash]: your lstnew does not allocate memory
-
+ft_lstnew:     [OK] [OK] [OK] [OK] 
 ft_lstdelone:  [OK] 
 ft_lstdel:     [OK] [OK] [OK] 
 ft_lstadd:     [OK] [OK] [OK] 

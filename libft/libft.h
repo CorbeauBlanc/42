@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:10:30 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/17 19:16:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/21 15:59:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int					ft_isspace(int c);
 char				*ft_itoa(int n);
 void				*ft_memalloc(size_t size);
 void				*ft_memccpy(void *dest, const void *src, int c, size_t n);
+int					memccnt(const char *s, int c, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memcpy(void *dest, const void *src, size_t n);
@@ -51,7 +52,6 @@ void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
 char				*ft_strcat(char *s1, const char *s2);
-int					strccnt(const char *s, int c);
 char				*strcdup(const char *s, char c);
 char				*ft_strchr(const char *s, int c);
 size_t				strclen(const char *s, char c);

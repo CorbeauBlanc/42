@@ -12,7 +12,7 @@ Test [strcpy] : OK
 Test [strncpy] : OK
 Test [strcat] : OK
 Test [strncat] : OK
-Test [strlcat] : Error Line 1391, Funct uf_test_strlcat FAIL
+Test [strlcat] : OK
 Test [strchr] : OK
 Test [strrchr] : OK
 Test [strstr] : OK
@@ -35,29 +35,16 @@ Test [striter] : OK
 Test [striteri] : OK
 Test [strmap] : OK
 Test [strmapi] : OK
-Test [strequ] : Error Line 836, Funct uf_test_strequ : 
-ft_strequ("abc", "abc").
-Expected ret = "1" 			   but have ret = "0"
-FAIL
-Test [strnequ] : Error Line 791, Funct uf_test_strnequ : 
-ft_strnequ("abc", "abc", 2).
-Expected ret = "1" 			   but have ret = "0"
-FAIL
+Test [strequ] : OK
+Test [strnequ] : OK
 Test [strsub] : OK
 Test [strjoin] : OK
 Test [strsplit] : Segmentation Fault
-Test [itoa] : Error Line 737, Funct uf_test_itoa : 
-ft_itoa(0).
-Expected ret = "0" 			   but have ret = ""
-FAIL
+Test [itoa] : OK
 Test [strtrim] : Segmentation Fault
-Test [lstnew] : Error Line 440, Funct uf_test_lstnew FAIL
-Test [lstdelone] : main(34442,0x7fff7bdd8000) malloc: *** error for object 0x7fff5212f488: pointer being freed was not allocated
-*** set a breakpoint in malloc_error_break to debug
-The processus receive the signal 6
-Test [lstdel] : main(34443,0x7fff7bdd8000) malloc: *** error for object 0x7fff5212f488: pointer being freed was not allocated
-*** set a breakpoint in malloc_error_break to debug
-The processus receive the signal 6
+Test [lstnew] : OK
+Test [lstdelone] : OK
+Test [lstdel] : OK
 Test [lstadd] : OK
 Test [lstiter] : OK
-Test [lstmap] : Error Line 332, Funct uf_test_lstmap FAIL
+Test [lstmap] : OK

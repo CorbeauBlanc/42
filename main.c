@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 11:39:40 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/18 18:53:04 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/21 19:13:40 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,12 @@ int	main(int ac, char **av)
 	printf("--- ft_strncat ---\n\n	123456 + 789 : %s\n\n",
 			ft_strncat(dst, "789", 3));
 	ft_pause();
-*/
-	strcpy(dst, "abc");
-	printf("--- ft_strlcat ---\n\n	abc + abcdefghijklmno : [%lu] %s\n\n",
-			ft_strlcat(dst, "abcdefghijklmno", 10), dst);
+
+	strcpy(dst, "123");
+	printf("--- ft_strlcat ---\n\n	123 + 456789 : [%lu] %s\n\n",
+			ft_strlcat(dst, "456789", 10), dst);
 	ft_pause();
-/*
+
 	printf("--- ft_strchr ---\n\n	5 > 123456789 : %s\n\n",
 			ft_strchr(dst, '5'));
 	ft_pause();
@@ -93,8 +93,9 @@ int	main(int ac, char **av)
 			ft_strrchr(ft_strcat(dst, "-5***"), '5'));
 	ft_pause();
 
-	printf("--- ft_strstr ---\n\n	456 > 123456789 : %s\n\n",
-			ft_strstr(dst, "456"));
+	strcpy(dst, "MZIRIBMZIRIBMZP");
+	printf("--- ft_strstr ---\n\n	MZIRIBMZP > MZIRIBMZIRIBMZP : %s\n\n",
+			ft_strstr(dst, "MZIRIBMZP"));
 	ft_pause();
 
 	printf("--- ft_strnstr ---\n\n	456798 [3] > 456-123456789 : %s\n\n",
@@ -145,12 +146,11 @@ int	main(int ac, char **av)
 	printf("--- ft_memmove ---\n\n	456789 [6]> abc456789 : %s\n\n",
 			ft_memmove(dst, tmp, 6));
 	ft_pause();
-*/
+
 	ft_strcpy(dst, "abcdef");
 	printf("--- ft_memchr ---\n\n	999 [6]> abcdef : %s\n\n",
 			ft_memchr("abcdef", 999, 9));
-	ft_pause();
-/*
+
 	printf("--- ft_memcmp ---\n\n	awwaui <[0]> bpp : %d\n\n",
 			ft_memcmp("awwaui", "bpp", 6));
 	ft_pause();
@@ -207,23 +207,22 @@ int	main(int ac, char **av)
 
 	free(dst);
 	dst = ft_strnew(20);
-	strcpy(dst, " 1\n2\t34 \n\t56 7\n8\t9\t");
-	printf("--- ft_strtrim ---\n\n	 1\\n2\\t34 \\n\\t56 7\\n8\\t9\\t : %s\n\n",
+	strcpy(dst, " \n\n\t12\t34 \n\t56 789\t  \n\t");
+	printf("--- ft_strtrim ---\n\n	[ \\n\\n\\t12\\t34 \\n\\t56 789\\t  \\n\\t] : %s\n\n",
 			ft_strtrim(dst));
 	ft_pause();
 
 	free(dst);
 	dst = ft_strnew(20);
-	strcpy(dst, "*1*2*3*4***56*7*8*9");
+	strcpy(dst, "******123456789");
 	tab = ft_strsplit(dst, '*');
-	printf("--- ft_strsplit ---\n\n	 *1*2*3*4***56*7*8*9 : %s%s%s%s%s%s%s%s\n\n\n",
-		tab[0], tab[1], tab[2], tab[3], tab[4], tab[5], tab[6], tab[7]);
+	printf("--- ft_strsplit ---\n\n	 ******123456789 : %s\n\n\n", tab[0]);
 	ft_pause();
-
-	printf("--- ft_itoa ---\n\n	-2147483648 : %s\n\n",
-			ft_itoa(-2147483648));
+*/
+	printf("--- ft_itoa ---\n\n	-5859 : %s\n\n",
+			ft_itoa(-5859));
 	ft_pause();
-
+/*
 	ft_putstr_fd("--- ft_putstr_fd ---\n\n	Check\n\n", 1);
 	ft_pause();
 
