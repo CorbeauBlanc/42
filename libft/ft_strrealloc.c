@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strrealloc.c                                       :+:      :+:    :+:   */
+/*   ft_strrealloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 11:43:24 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/15 12:02:06 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/22 17:24:34 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	strrealloc(const char **src, size_t new_size)
+int	ft_strrealloc(const char **src, size_t new_size)
 {
 	char	*tmp;
 

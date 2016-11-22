@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 16:26:09 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/21 14:34:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/22 17:25:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long	get_trim_size(char const *s)
+static long	get_trim_size(char const *s)
 {
 	long	i;
 	long	len;
@@ -29,13 +29,15 @@ long	get_trim_size(char const *s)
 	return (len);
 }
 
-char	*ft_strtrim(char const *s)
+char		*ft_strtrim(char const *s)
 {
 	long	len;
 	long	i;
 	long	j;
 	char	*str;
 
+	if (!s)
+		return (NULL);
 	len = get_trim_size(s);
 	if (!(str = ft_strnew(len)))
 		return (NULL);

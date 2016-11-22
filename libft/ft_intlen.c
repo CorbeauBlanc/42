@@ -6,18 +6,18 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 12:05:17 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/21 19:07:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/22 17:08:50 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	intlen(int n)
+int	ft_intlen(int n)
 {
 	long	l;
 
 	l = (long)n;
 	if (l < 10 && l > -10)
 		return (1);
-	return (1 + intlen(l / 10));
+	return (1 + ft_intlen(l / 10));
 }

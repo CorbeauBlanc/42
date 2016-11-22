@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strncat.c                                          :+:      :+:    :+:   */
+/*   ft_srtcdup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/05 17:25:08 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/16 18:24:07 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/11 12:07:53 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/22 17:23:47 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncat(char *s1, const char *s2, size_t n)
+char	*ft_strcdup(const char *s, char c)
 {
 	long	i;
-	long	j;
-	char	*dst;
+	long	len;
+	char	*str;
 
-	if (!s1 || !s2)
+	if (!s)
 		return (NULL);
-	if (!(dst = (char*)malloc(ft_strlen(s1) + n + 1)))
+	len = ft_strclen(s, c);
+	if (!(str = (char*)malloc(len + 1)))
 		return (NULL);
 	i = -1;
-	j = -1;
-	while (s1[++i])
-		dst[++j] = s1[i];
-	i = -1;
-	while (s2[--i] && i < (long)n)
-		dst[++j] = s2[i];
-	dst[j + 1] = '\0';
-	return (dst);
+	while (++i < len)
+		str[i] = s[i];
+	str[i] = '\0';
+	return (str);
 }

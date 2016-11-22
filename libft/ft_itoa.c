@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 11:26:19 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/21 19:14:18 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/22 17:09:55 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_itoa(int n)
 	long	ln;
 	char	*str;
 
-	len = intlen(n) + (n < 0);
+	len = ft_intlen(n) + (n < 0);
 	if (!(str = ft_strnew(len)))
 		return (NULL);
 	ln = (long)n * (n < 0 ? -1 : 1);

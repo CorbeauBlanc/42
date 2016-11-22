@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 11:39:40 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/21 19:13:40 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/22 18:41:09 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ void	ft_pause(void)
 		exit(EXIT_FAILURE);
 }
 
-void	void_fct(char *c)
+void	void_fct(void *data, size_t i)
 {
-	*c = ft_toupper(*c);
+	(void)data;
+	(void)i;
+	printf("TEST\n");
 }
 
 void	void_fct2(unsigned int i, char *c)
@@ -48,13 +50,13 @@ int	main(int ac, char **av)
 	(void)ac;
 	(void)av;
 
-	char	*dst;
+//	char	*dst;
 //	char	**tab;
 //	void	*tmp;
-
-	if (!(dst = (char*)malloc(10)))
-		exit(EXIT_FAILURE);
 /*
+	if (!(dst = (char*)malloc(100)))
+		exit(EXIT_FAILURE);
+
 	printf("--- ft_strcpy ---\n\n	123 : %s\n\n",
 			ft_strcpy(dst, "123"));
 	ft_pause();
@@ -67,10 +69,15 @@ int	main(int ac, char **av)
 			ft_strdup(dst));
 	ft_pause();
 
-	printf("--- ft_strlen ---\n\n	123 : [%lu]\n\n",
-			ft_strlen(dst));
-	ft_pause();
+	int test_len = 10 * 1000 * 1000;
+	char *str = malloc(sizeof(char) * test_len);;
 
+	memset(str, 'a', test_len);
+	str[test_len - 1] = '\0';
+	printf("--- ft_strlen ---\n\n	10 * 1000 * 1000 : [%lu]\n\n",
+			ft_strlen(str));
+	free(str);
+	ft_pause();
 
 	printf("--- ft_strncpy ---\n\n	123456 [3] : %s\n\n",
 			ft_strncpy(dst, "123456", 3));
@@ -98,8 +105,9 @@ int	main(int ac, char **av)
 			ft_strstr(dst, "MZIRIBMZP"));
 	ft_pause();
 
-	printf("--- ft_strnstr ---\n\n	456798 [3] > 456-123456789 : %s\n\n",
-			ft_strnstr(ft_strcat("456-", dst), "456789", 3));
+	strcpy(dst, "Hello les genw");
+	printf("--- ft_strnstr ---\n\n	Hello [3] > Hello les genw : %s\n\n",
+			ft_strnstr(NULL, NULL, 3));
 	ft_pause();
 
 	printf("--- ft_strcmp ---\n\n	\\200 <> \\0 : %d\n\n",
@@ -142,17 +150,18 @@ int	main(int ac, char **av)
 			ft_memccpy(dst, "abcdefghi", 'd', 9));
 	ft_pause();
 
-	tmp = &dst[3];
-	printf("--- ft_memmove ---\n\n	456789 [6]> abc456789 : %s\n\n",
-			ft_memmove(dst, tmp, 6));
+	int size = 128 * 1024 * 1024;
+	char *dst = (char *)malloc(sizeof(char) * size);
+	char *data = ft_strnew(size);
+	printf("--- ft_memmove ---\n\n	\\0 [128Mo]> void : %s\n\n",
+			ft_memmove(dst, data, size));
 	ft_pause();
 
-	ft_strcpy(dst, "abcdef");
-	printf("--- ft_memchr ---\n\n	999 [6]> abcdef : %s\n\n",
-			ft_memchr("abcdef", 999, 9));
+	printf("--- ft_memchr ---\n\n	999 [6]> abcdef : %d\n\n",
+			ft_memchr("abcdef", 999, 6) == memchr("abcdef", 999, 6));
 
 	printf("--- ft_memcmp ---\n\n	awwaui <[0]> bpp : %d\n\n",
-			ft_memcmp("awwaui", "bpp", 6));
+			ft_memcmp(NULL, NULL, 0));
 	ft_pause();
 
 	printf("--- ft_memalloc ---\n\n	[%x] < 100 : %s\n\n", (unsigned int)&tmp,
@@ -214,21 +223,20 @@ int	main(int ac, char **av)
 
 	free(dst);
 	dst = ft_strnew(20);
-	strcpy(dst, "******123456789");
 	tab = ft_strsplit(dst, '*');
-	printf("--- ft_strsplit ---\n\n	 ******123456789 : %s\n\n\n", tab[0]);
+	printf("--- ft_strsplit ---\n\n	 \\0 : [%s]\n\n\n", tab[0]);
 	ft_pause();
-*/
+
 	printf("--- ft_itoa ---\n\n	-5859 : %s\n\n",
 			ft_itoa(-5859));
 	ft_pause();
-/*
+
 	ft_putstr_fd("--- ft_putstr_fd ---\n\n	Check\n\n", 1);
 	ft_pause();
-
-	ft_putstr("--- ft_putnbr_fd ---\n\n	-123456789 : ");
-	ft_putnbr_fd(-2147483648, 1);
-	ft_pause();
 */
+	ft_putstr("--- ft_putnbr_fd ---\n\n10203\n");
+	ft_putnbr(10203);
+	ft_pause();
+
 	return (0);
 }

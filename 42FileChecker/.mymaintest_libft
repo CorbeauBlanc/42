@@ -4,8 +4,8 @@ Test [bzero] : OK
 Test [memcpy] : OK
 Test [memccpy] : OK
 Test [memmove] : OK
-Test [memchr] : Segmentation Fault
-Test [memcmp] : Segmentation Fault
+Test [memchr] : OK
+Test [memcmp] : OK
 Test [strlen] : OK
 Test [strdup] : OK
 Test [strcpy] : OK
@@ -16,9 +16,9 @@ Test [strlcat] : OK
 Test [strchr] : OK
 Test [strrchr] : OK
 Test [strstr] : OK
-Test [strnstr] : Error Line 1296, Funct uf_test_strnstr FAIL
+Test [strnstr] : OK
 Test [strcmp] : OK
-Test [strncmp] : Error Line 1226, Funct uf_test_strncmp FAIL
+Test [strncmp] : OK
 Test [atoi] : OK
 Test [isalpha] : OK
 Test [isdigit] : OK
@@ -39,9 +39,9 @@ Test [strequ] : OK
 Test [strnequ] : OK
 Test [strsub] : OK
 Test [strjoin] : OK
-Test [strsplit] : Segmentation Fault
+Test [strsplit] : OK
 Test [itoa] : OK
-Test [strtrim] : Segmentation Fault
+Test [strtrim] : OK
 Test [lstnew] : OK
 Test [lstdelone] : OK
 Test [lstdel] : OK

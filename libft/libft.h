@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:10:30 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/21 15:59:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/22 17:24:44 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct		s_list
 
 int					ft_atoi(const char *nptr);
 void				ft_bzero(void *s, size_t n);
-int					intlen(int	n);
+int					ft_intlen(int n);
 int					ft_isalnum(int c);
 int					ft_isalpha(int c);
 int					ft_isascii(int c);
@@ -36,7 +36,7 @@ int					ft_isspace(int c);
 char				*ft_itoa(int n);
 void				*ft_memalloc(size_t size);
 void				*ft_memccpy(void *dest, const void *src, int c, size_t n);
-int					memccnt(const char *s, int c, size_t n);
+int					ft_memccnt(const char *s, int c, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memcpy(void *dest, const void *src, size_t n);
@@ -52,9 +52,9 @@ void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
 char				*ft_strcat(char *s1, const char *s2);
-char				*strcdup(const char *s, char c);
+char				*ft_strcdup(const char *s, char c);
 char				*ft_strchr(const char *s, int c);
-size_t				strclen(const char *s, char c);
+size_t				ft_strclen(const char *s, char c);
 void				ft_strclr(char *s);
 int					ft_strcmp(const char *s1, const char *s2);
 char				*ft_strcpy(char *dst, const char *src);
@@ -76,7 +76,7 @@ char				*ft_strnew(size_t size);
 char				*ft_strnstr(const char *big, const char *little,
 								size_t len);
 char				*ft_strrchr(const char *s, int c);
-int					strrealloc(const char **src, size_t new_size);
+int					ft_strrealloc(const char **src, size_t new_size);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strstr(const char *big, const char *little);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
@@ -87,7 +87,7 @@ int					ft_toupper(int c);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
-void				ft_lstadd(t_list **alst, t_list *new);
+void				ft_lstadd(t_list **alst, t_list *cell);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 

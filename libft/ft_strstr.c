@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 13:19:48 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/21 17:50:52 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/22 15:41:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*fd_str(const char *s1, const char *s2)
+static char	*fd_str(const char *s1, const char *s2)
 {
 	if (*s1 == *s2)
 	{
@@ -23,7 +23,7 @@ char	*fd_str(const char *s1, const char *s2)
 	return (NULL);
 }
 
-char	*ft_strstr(const char *big, const char *little)
+char		*ft_strstr(const char *big, const char *little)
 {
 	if (!(*little))
 		return ((char*)big);

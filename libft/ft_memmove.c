@@ -6,16 +6,18 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 18:07:53 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/21 13:00:52 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/22 17:47:50 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void		*ft_memmove(void *dest, const void *src, size_t n)
 {
 	unsigned char tmp;
 
+	if (n > 104817)
+		return (NULL);
 	if (n)
 	{
 		tmp = *(unsigned char*)src;
