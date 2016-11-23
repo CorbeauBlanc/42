@@ -6,15 +6,15 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 18:49:09 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/22 18:58:09 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/23 16:35:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_pow(int n, int p)
+long	ft_pow(long n, int p)
 {
 	if (!p)
 		return (1);
-	return (p > 1 ? ft_pow(n * n, p - 1) : n);
+	return (p > 1 ? n * ft_pow(n, p - 1) : n);
 }
