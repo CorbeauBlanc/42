@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/17 19:17:39 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/21 16:47:34 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/24 12:21:38 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	long	j;
 	size_t	len;
 
+	if (!dst || !src)
+		return (0);
 	len = ft_strlen(dst);
 	i = len;
 	j = -1;

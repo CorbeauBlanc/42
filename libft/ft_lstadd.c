@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/16 14:59:30 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/22 17:05:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/24 12:04:25 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstadd(t_list **alst, t_list *new)
 {
-	if (alst && new)
+	if (alst && *alst && new)
 	{
 		new->next = (*alst);
 		*alst = new;

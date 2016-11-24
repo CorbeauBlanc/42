@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 12:36:05 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/17 18:30:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/24 12:17:31 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	if (*s != c && *s != '\0')
+	if (s && *s != c && *s != '\0')
 		return (ft_strchr(s + 1, c));
 	return (s && *s == c ? (char*)s : NULL);
 }

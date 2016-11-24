@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 13:19:48 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/22 17:29:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/24 12:26:34 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*fd_str(const char *s1, const char *s2)
 
 char		*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	if (big && little && ft_strlen(little) > len)
+	if ((big && little && ft_strlen(little) > len) || !big || !little)
 		return (NULL);
 	if (!(*little))
 		return ((char*)big);

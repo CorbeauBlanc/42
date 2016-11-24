@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 18:20:50 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/22 16:28:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/24 12:12:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	unsigned char	c1;
 	unsigned char	c2;
 
-	if (!n)
+	if (!n || !s1 || !s2)
 		return (0);
 	c1 = *(unsigned char*)s1;
 	c2 = *(unsigned char*)s2;

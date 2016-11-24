@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 16:31:49 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/17 18:19:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/24 12:20:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*ft_strdup(const char *s1)
 	long	len;
 	char	*str;
 
+	if (!s1)
+		return (NULL);
 	len = ft_strlen(s1);
 	if (!(str = (char*)malloc(len + 1)))
 		return (NULL);

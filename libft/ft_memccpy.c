@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/08 19:57:20 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/18 15:04:54 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/24 12:11:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
+	if (!dest || !src)
+		return (NULL);
 	if (n)
 	{
 		*(unsigned char*)dest = *(unsigned char*)src;

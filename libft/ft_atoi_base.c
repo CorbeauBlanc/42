@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 12:55:37 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/23 17:22:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/24 12:00:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int			ft_atoi_base(const char *nptr, int base)
 	int		j;
 	int		sign;
 
+	if (!nptr || !base)
+		return (0);
 	i = 0;
 	nb = 0;
 	sign = 1;
