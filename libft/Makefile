@@ -1,4 +1,4 @@
-5CC=gcc
+CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 NAME=libft.a
 SRC= ft_atoi_base.c ft_atoi.c ft_bzero.c ft_intlen.c ft_isalnum.c ft_isalpha.c \
