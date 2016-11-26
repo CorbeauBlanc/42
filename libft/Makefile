@@ -25,6 +25,7 @@ BLUE="\x1B[38;5;21m"
 LBLUE="\x1B[38;5;27m"
 LLBLUE="\x1B[38;5;81m"
 
+
 .PHONY: all clean fclean re header it_fabulous
 
 all: $(NAME)
@@ -44,6 +45,7 @@ fclean: clean
 re: fclean all
 
 header:
+	clear
 	@for i in {1..26} ; do echo $(DGREEN)'<>'$(DBLUE)'-' | tr -d "\n"; done
 	@echo $(DGREEN)'<>'
 	@echo $(GREEN)'*                                                                            '$(WHITE)'|'$(GREEN)' *'
@@ -62,12 +64,39 @@ header:
 	@echo $(DGREEN)'<>'
 	@echo
 
-it_fabulous: header all
-	@echo $(LGREEN)'<'$(BLANK)'==================================='$(LGREEN)'-'$(GREEN)' DONE '$(LGREEN)'-'$(BLANK)\
-	'==================================='$(LGREEN)'>'$(BLANK)
+it_fabulous: header all clean
+	@echo $(WHITE)'<' | tr -d '\n'
+	@for i in {17..21} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {27..22} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {28..33} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {39..34} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {40..45} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {51..46} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@echo $(WHITE)'['$(GREEN)' DONE '$(WHITE)']' | tr -d '\n'
+	@for i in {46..51} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {45..40} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {34..39} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {33..28} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {22..27} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {21..17} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@echo $(WHITE)'>'
 	@echo
 	@echo '    List of files added to the library :'
-	@echo '    ------------------------------------'
+	@echo $(LLGREEN)'    ------------------------------------'$(BLANK)
 	@echo
 	@echo $(SRC) | tr ' ' '\n' | sed 's/^/    - /'
-	@echo $(LGREEN)'<'$(BLANK)'=============================================================================='$(LGREEN)'>'
+	@echo $(WHITE)'<' | tr -d '\n'
+	@for i in {17..21} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {27..22} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {28..33} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {39..34} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {40..45} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {51..46} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {1..8} ; do echo = | tr -d '\n'; done
+	@for i in {46..51} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {45..40} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {34..39} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {33..28} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {22..27} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@for i in {21..17} ; do echo "\x1B[38;5;"$$i"m"= | tr -d '\n'; done
+	@echo $(WHITE)'>'
