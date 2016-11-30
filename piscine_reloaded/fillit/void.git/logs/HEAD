@@ -1,0 +1,29 @@
+0000000000000000000000000000000000000000 8c81188c67b855029e9d5c7b7c24114360e89625 Emeric <edescoin@42.student.fr> 1480082297 +0100	commit (initial): Initialisation du dossier git
+8c81188c67b855029e9d5c7b7c24114360e89625 b492a2f827e8609838e20ffd9aac59230890de4c Emeric <edescoin@42.student.fr> 1480082321 +0100	commit: suppression de auteur
+b492a2f827e8609838e20ffd9aac59230890de4c d39ab3318a4b17754fccc568da0bfe28994ba0e7 Emeric <edescoin@42.student.fr> 1480082445 +0100	commit: ajout du main de base
+d39ab3318a4b17754fccc568da0bfe28994ba0e7 4a85e79680a15fda88fc708a1d689d8ab1b9bd9d Emeric <edescoin@42.student.fr> 1480083530 +0100	commit: ajout du main de la lib
+4a85e79680a15fda88fc708a1d689d8ab1b9bd9d 337f4fec4b745b5c6b3c2302956328aca90acaa2 Emeric <edescoin@42.student.fr> 1480086198 +0100	pull: Fast-forward
+337f4fec4b745b5c6b3c2302956328aca90acaa2 34528d2154b5575c7badb3d0ad74fed4cf2c15d9 Emeric <edescoin@42.student.fr> 1480091361 +0100	commit: modif de la lib
+34528d2154b5575c7badb3d0ad74fed4cf2c15d9 7282b181ef9d8b3e0b0f6e64afe96e450c3acd21 Emeric <edescoin@42.student.fr> 1480174139 +0100	commit: création de get_next_line
+7282b181ef9d8b3e0b0f6e64afe96e450c3acd21 7282b181ef9d8b3e0b0f6e64afe96e450c3acd21 Emeric <edescoin@42.student.fr> 1480174360 +0100	checkout: moving from master to file_managment
+7282b181ef9d8b3e0b0f6e64afe96e450c3acd21 baa7df4d82fa340e0dd5ccd3335666207cc0cb36 Emeric <edescoin@42.student.fr> 1480174410 +0100	commit: switch sur fillit
+baa7df4d82fa340e0dd5ccd3335666207cc0cb36 3214a58bee0b0df1095985ea7c0b0ecba9ab7989 Emeric <edescoin@42.student.fr> 1480175732 +0100	commit: ajout de get_next_piece sans détection d'erreurs
+3214a58bee0b0df1095985ea7c0b0ecba9ab7989 2793aa60397b6db7e6b99f23c22bf6cc161cdde5 Emeric <edescoin@42.student.fr> 1480179022 +0100	commit: ajout de la détection de ligne non valide dans get_next_piece
+2793aa60397b6db7e6b99f23c22bf6cc161cdde5 c559f9d049e1d961422582753ba7321d1381b2ed Emeric <edescoin@42.student.fr> 1480180256 +0100	commit: modif detection d'erreur de ligne
+c559f9d049e1d961422582753ba7321d1381b2ed 8e6502fcbd4fe043c850be94956b2e0b746bf1ad Emeric <edescoin@42.student.fr> 1480180293 +0100	commit: normalisation du main.c
+8e6502fcbd4fe043c850be94956b2e0b746bf1ad 7282b181ef9d8b3e0b0f6e64afe96e450c3acd21 Emeric <edescoin@42.student.fr> 1480180308 +0100	checkout: moving from file_managment to master
+7282b181ef9d8b3e0b0f6e64afe96e450c3acd21 8e6502fcbd4fe043c850be94956b2e0b746bf1ad Emeric <edescoin@42.student.fr> 1480180318 +0100	merge file_managment: Fast-forward
+8e6502fcbd4fe043c850be94956b2e0b746bf1ad 8e6502fcbd4fe043c850be94956b2e0b746bf1ad Emeric <edescoin@42.student.fr> 1480180327 +0100	checkout: moving from master to file_managment
+8e6502fcbd4fe043c850be94956b2e0b746bf1ad 8e6502fcbd4fe043c850be94956b2e0b746bf1ad Emeric <edescoin@42.student.fr> 1480180334 +0100	checkout: moving from file_managment to master
+8e6502fcbd4fe043c850be94956b2e0b746bf1ad 7b3868c8cf49ae1da0e1d2f39cf781dc4a7f4529 Emeric <edescoin@42.student.fr> 1480186182 +0100	commit: ajout du makefile
+7b3868c8cf49ae1da0e1d2f39cf781dc4a7f4529 442cd6e37b72fed3fa1a3c2f6cdd2ca822ad265f Emeric <edescoin@42.student.fr> 1480330008 +0100	commit: modif du makefile
+442cd6e37b72fed3fa1a3c2f6cdd2ca822ad265f 0676c33cb939c8880b0cd06a0b45ddbe360515a4 Emeric <edescoin@42.student.fr> 1480346214 +0100	commit: ajout des fonctions pour faire les listes
+0676c33cb939c8880b0cd06a0b45ddbe360515a4 967eafdd56d49655932c8dd17713ba322b018e57 Emeric <edescoin@42.student.fr> 1480346294 +0100	commit: modif de fillit.h
+967eafdd56d49655932c8dd17713ba322b018e57 b44a4043c5e67175f0d3e5dcb6fc72d2af1cf82f Emeric <edescoin@42.student.fr> 1480346623 +0100	commit: corrections dans list.c et Makefile
+b44a4043c5e67175f0d3e5dcb6fc72d2af1cf82f 8e6502fcbd4fe043c850be94956b2e0b746bf1ad Emeric <edescoin@42.student.fr> 1480346689 +0100	checkout: moving from master to file_managment
+8e6502fcbd4fe043c850be94956b2e0b746bf1ad b44a4043c5e67175f0d3e5dcb6fc72d2af1cf82f Emeric <edescoin@42.student.fr> 1480346709 +0100	merge master: Fast-forward
+b44a4043c5e67175f0d3e5dcb6fc72d2af1cf82f 1b4993471803d9aae1040dcf5feb0093ea95d345 Emeric <edescoin@42.student.fr> 1480348691 +0100	commit: corrections dans list.c et Makefile
+1b4993471803d9aae1040dcf5feb0093ea95d345 afde5bc5e8ad0c6bd5cc1c0826030b3dfca876c7 Emeric <edescoin@42.student.fr> 1480348738 +0100	commit: Ajout de la fonction de création de liste de pièces
+afde5bc5e8ad0c6bd5cc1c0826030b3dfca876c7 c6d8cac9d5f3b27afb4a1a8d19755a97badb73b4 Emeric <edescoin@42.student.fr> 1480504876 +0100	commit: modif du main
+c6d8cac9d5f3b27afb4a1a8d19755a97badb73b4 b44a4043c5e67175f0d3e5dcb6fc72d2af1cf82f Emeric <edescoin@42.student.fr> 1480504887 +0100	checkout: moving from file_managment to master
+b44a4043c5e67175f0d3e5dcb6fc72d2af1cf82f c6d8cac9d5f3b27afb4a1a8d19755a97badb73b4 Emeric <edescoin@42.student.fr> 1480504896 +0100	checkout: moving from master to file_managment

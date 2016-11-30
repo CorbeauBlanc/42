@@ -1,0 +1,10 @@
+0000000000000000000000000000000000000000 7282b181ef9d8b3e0b0f6e64afe96e450c3acd21 Emeric <edescoin@42.student.fr> 1480174360 +0100	branch: Created from HEAD
+7282b181ef9d8b3e0b0f6e64afe96e450c3acd21 baa7df4d82fa340e0dd5ccd3335666207cc0cb36 Emeric <edescoin@42.student.fr> 1480174410 +0100	commit: switch sur fillit
+baa7df4d82fa340e0dd5ccd3335666207cc0cb36 3214a58bee0b0df1095985ea7c0b0ecba9ab7989 Emeric <edescoin@42.student.fr> 1480175732 +0100	commit: ajout de get_next_piece sans détection d'erreurs
+3214a58bee0b0df1095985ea7c0b0ecba9ab7989 2793aa60397b6db7e6b99f23c22bf6cc161cdde5 Emeric <edescoin@42.student.fr> 1480179022 +0100	commit: ajout de la détection de ligne non valide dans get_next_piece
+2793aa60397b6db7e6b99f23c22bf6cc161cdde5 c559f9d049e1d961422582753ba7321d1381b2ed Emeric <edescoin@42.student.fr> 1480180256 +0100	commit: modif detection d'erreur de ligne
+c559f9d049e1d961422582753ba7321d1381b2ed 8e6502fcbd4fe043c850be94956b2e0b746bf1ad Emeric <edescoin@42.student.fr> 1480180293 +0100	commit: normalisation du main.c
+8e6502fcbd4fe043c850be94956b2e0b746bf1ad b44a4043c5e67175f0d3e5dcb6fc72d2af1cf82f Emeric <edescoin@42.student.fr> 1480346709 +0100	merge master: Fast-forward
+b44a4043c5e67175f0d3e5dcb6fc72d2af1cf82f 1b4993471803d9aae1040dcf5feb0093ea95d345 Emeric <edescoin@42.student.fr> 1480348691 +0100	commit: corrections dans list.c et Makefile
+1b4993471803d9aae1040dcf5feb0093ea95d345 afde5bc5e8ad0c6bd5cc1c0826030b3dfca876c7 Emeric <edescoin@42.student.fr> 1480348738 +0100	commit: Ajout de la fonction de création de liste de pièces
+afde5bc5e8ad0c6bd5cc1c0826030b3dfca876c7 c6d8cac9d5f3b27afb4a1a8d19755a97badb73b4 Emeric <edescoin@42.student.fr> 1480504876 +0100	commit: modif du main
