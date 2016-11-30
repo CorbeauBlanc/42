@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/30 12:37:28 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/30 12:51:23 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/11/30 12:56:37 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_strrev(char *s)
 	if (!(rev = ft_strnew(i + 1)))
 		return (NULL);
 	j = -1;
-	while (--i)
+	while ((--i) >= 0)
 		rev[++j] = s[i];
 	return (rev);
 }
