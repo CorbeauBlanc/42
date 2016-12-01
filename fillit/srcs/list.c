@@ -6,20 +6,19 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 11:53:30 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/28 16:39:38 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/01 15:52:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_piece	*new_piece(int nb, char c)
+t_piece	*new_piece(char **tab)
 {
 	t_piece	*cell;
 
 	if (!(cell = (t_piece*)malloc(sizeof(t_piece))))
 		return (NULL);
-	cell->c = c;
-	cell->nb = nb;
+	cell->tab = tab;
 	cell->next = NULL;
 	cell->prev = NULL;
 	return (cell);
@@ -41,6 +40,16 @@ t_piece	*insert_piece(t_piece **head, t_piece *cell)
 	return (cell);
 }
 
+void	free_tab(char ***tab)
+{
+	int	i;
+
+	i = -1;
+	while (*tab[++i])
+		free(*tab[i]);
+	free(*tab);
+}
+
 void	delete_piece(t_piece **cell)
 {
 	if (cell && *cell)
@@ -49,7 +58,8 @@ void	delete_piece(t_piece **cell)
 			(*cell)->prev->next = (*cell)->next;
 		if ((*cell)->next)
 			(*cell)->next->prev = (*cell)->prev;
-		free(*cell);
+		free_tab(&(*cell)->tab);
+		ft_memdel((void*)(*cell));
 		*cell = NULL;
 	}
 }

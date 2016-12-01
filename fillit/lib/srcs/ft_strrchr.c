@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 15:22:26 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/30 14:56:40 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/07 12:36:05 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/24 12:27:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strrchr(const char *s, int c)
 {
-	long	i;
-	long	j;
-	char	*dst;
+	char	*tmp;
 
-	if (!s1)
-		return ((char*)s2);
-	if (!s2 || !(dst = (char*)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
-		return (NULL);
-	i = -1;
-	j = -1;
-	while (s1[++i])
-		dst[++j] = s1[i];
-	i = -1;
-	while (s2[++i])
-		dst[++j] = s2[i];
-	dst[j + 1] = '\0';
-	return (dst);
+	if (s && *s != '\0')
+		return (!(tmp = ft_strrchr(s + 1, c)) && *s == c ? (char*)s : tmp);
+	return (s && c == '\0' ? (char*)s : NULL);
 }

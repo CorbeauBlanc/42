@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 15:22:26 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/30 14:56:40 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/07 13:19:48 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/24 13:02:38 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char		*ft_strstr(const char *big, const char *little)
 {
-	long	i;
-	long	j;
-	char	*dst;
-
-	if (!s1)
-		return ((char*)s2);
-	if (!s2 || !(dst = (char*)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
-		return (NULL);
-	i = -1;
-	j = -1;
-	while (s1[++i])
-		dst[++j] = s1[i];
-	i = -1;
-	while (s2[++i])
-		dst[++j] = s2[i];
-	dst[j + 1] = '\0';
-	return (dst);
+	if (little && !(*little))
+		return ((char*)big);
+	if (big && *big)
+	{
+		if (!ft_strncmp(big, little, ft_strlen(little)))
+			return ((char*)big);
+		else
+			return (ft_strstr(big + 1, little));
+	}
+	return (NULL);
 }

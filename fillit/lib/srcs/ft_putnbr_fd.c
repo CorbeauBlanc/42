@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/09 15:22:26 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/30 14:56:40 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/22 18:44:21 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	ft_putnbr_fd(int n, int fd)
 {
-	long	i;
-	long	j;
-	char	*dst;
+	long	l;
 
-	if (!s1)
-		return ((char*)s2);
-	if (!s2 || !(dst = (char*)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
-		return (NULL);
-	i = -1;
-	j = -1;
-	while (s1[++i])
-		dst[++j] = s1[i];
-	i = -1;
-	while (s2[++i])
-		dst[++j] = s2[i];
-	dst[j + 1] = '\0';
-	return (dst);
+	l = (long)n;
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		l = -l;
+	}
+	if (n > 9 || n < -9)
+		ft_putnbr_fd((int)(l / 10), fd);
+	ft_putchar_fd('0' + (l % 10), fd);
 }

@@ -6,43 +6,50 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 16:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/28 16:51:57 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/01 15:35:50 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		is_valid_line(char *line)
+int			is_valid_line(char *line)
 {
 	int	i;
 
 	if (ft_strlen(line) != 5)
 		return (0);
-	if (line[4] == '\n')
+
+	if (line[4] != '\n')
 		return (0);
 	i = -1;
 	while (++i < 4)
-		if (line[i] != '.' || line[i] == '#')
+		if (line[i] != '.' && line[i] != '#')
 			return (0);
 	return (1);
 }
 
-char	*get_next_piece(int fd)
+char		**get_next_piece(int fd)
 {
-	char	*piece;
+	char	**piece;
 	char	*line;
 	int		nb;
 	int		i;
 
-	piece = ft_strnew(16);
+	if (!(piece = (char**)malloc(sizeof(char*) * 5)))
+		return (NULL);
 	i = -1;
 	nb = -1;
 	while (++nb < 4 && (line = get_next_line(fd)))
 	{
 		if (!is_valid_line(line))
-			return (NULL);
+		{
+			piece[++i] = NULL;
+			free_tab(&piece);
+			return (NULL_free(line));
+		}
 		if (!ft_strequ(line, "....\n"))
-			ft_strlcat(piece, line, 17);
+			piece[++i] = line;
 	}
+	piece[i + 1] = NULL;
 	return (line ? piece : NULL);
 }
