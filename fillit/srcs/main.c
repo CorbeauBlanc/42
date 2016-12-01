@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 14:59:38 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 16:43:22 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/01 18:30:49 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 int				main(int ac, char **av)
 {
-	if (ac != 2)
-		exit_error();
+	(void)ac;
 	(void)av;
-
-	get_file_content("pieces.c");
 	return (0);
 }

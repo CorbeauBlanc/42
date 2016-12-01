@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 16:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 17:02:56 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/01 18:31:12 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int			is_valid_line(char *line)
 
 	if (ft_strlen(line) != 5)
 		return (0);
-
 	if (line[4] != '\n')
 		return (0);
 	i = -1;
@@ -45,7 +44,7 @@ char		**get_next_piece(int fd)
 		{
 			piece[++i] = NULL;
 			free_tab(&piece);
-			return (NULL_free(line));
+			return (error_free(line));
 		}
 		if (!ft_strequ(line, "....\n"))
 			piece[++i] = line;
