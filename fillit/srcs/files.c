@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 15:01:27 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 18:55:54 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/01 19:49:40 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ t_piece			*create_pieces_list(char *file_path)
 	t_piece		*head;
 	t_piece		**tmp;
 
+	if(check_file(get_file_content(file_path)) == FALSE)
+		return (NULL);
 	if ((fd = open(file_path, O_RDONLY)) < 0)
 		return (NULL);
 	piece = NULL;
@@ -72,7 +74,7 @@ t_piece			*create_pieces_list(char *file_path)
 		if (!(head = insert_piece(&head, new_piece(piece))))
 			return (free_list(tmp));
 		free_tab(&piece);
-		stop = (*(get_next_line(fd)) != '\n');
+		stop = (get_next_line(fd) == NULL);
 	}
 	return (*tmp);
 }

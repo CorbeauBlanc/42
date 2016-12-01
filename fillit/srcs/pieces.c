@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 16:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 18:54:47 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/01 19:41:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,10 @@ char		**get_next_piece(int fd)
 		return (NULL);
 	i = -1;
 	nb = -1;
-	while (++nb < 4 && (line = get_next_line(fd)) && *line)
+	while (++nb < 4 && (line = get_next_line(fd)))
 	{
-		if (!is_valid_line(line))
+		if (!is_valid_line(line) && !(piece[i + 1] = NULL))
 		{
-			piece[++i] = NULL;
 			free_tab(&piece);
 			return (error_free(line));
 		}
@@ -52,5 +51,7 @@ char		**get_next_piece(int fd)
 	if (line && !*line)
 		free(line);
 	piece[i + 1] = NULL;
-	return (check_tetriminos(piece) == TRUE ? piece : error_free_tab(piece));
+	if (check_tetriminos(piece) == FALSE)
+		free_tab(&piece);
+	return (piece);
 }
