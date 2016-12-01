@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 14:59:50 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 15:57:21 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/01 18:26:49 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void				*NULL_free_list(t_piece **head);
 void				check_file(char *str);
 void				check_tetriminos(char **tab);
 char				*get_next_line(int fd);
+char				*get_file_content(char *path);
 int					is_valid_line(char *line);
 char				**get_next_piece(int fd);
 t_piece				*new_piece(char **tab);

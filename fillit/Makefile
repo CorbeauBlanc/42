@@ -24,7 +24,7 @@ $(OBJ): $(SRC)
 
 libft:
 	@echo "Compiling libft..."
-	@$(MAKE) -C lib
+	@$(MAKE) re -C lib
 	@echo "Done."
 
 clean:
