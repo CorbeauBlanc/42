@@ -6,11 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 15:01:27 by edescoin          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2016/12/01 18:26:51 by edescoin         ###   ########.fr       */
-=======
-/*   Updated: 2016/12/01 16:43:47 by kda-silv         ###   ########.fr       */
->>>>>>> master
+/*   Updated: 2016/12/01 18:55:54 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +24,11 @@ char			*get_next_line(int fd)
 		return (NULL);
 	while ((nb = read(fd, &c, 1)) > 0 && c != '\n')
 	{
-<<<<<<< HEAD
 		if (!(str = ft_strrealloc(str, (++len) + 1)))
-			return (NULL_free(str));
+			return (error_free(str));
 		str[len - 1] = c;
 	}
-	return (nb ? str : NULL_free(str));
+	return (nb ? str : error_free(str));
 }
 
 char			*get_file_content(char *path)
@@ -44,26 +39,17 @@ char			*get_file_content(char *path)
 	int		len;
 
 	if ((fd = open(path, O_RDONLY)) < 0)
-		exit_error();
+		return (NULL);
 	str = NULL;
 	len = 0;
 	while ((line = get_next_line(fd)))
 	{
 		if (!(str = ft_strrealloc(str, (len += ft_strlen(line)) + 2)))
-			return (NULL_free(str));
+			return (error_free(str));
 		ft_strlcat(str, line, len + 1);
 		str[len] = '\n';
 	}
-=======
-		if (!(ft_strrealloc((const char**)&str, (++len) + 1)))
-			return (error_free(str));
-		str[len - 1] = c;
-	}
-	if (!(ft_strrealloc((const char**)&str, (++len) + 1)))
-		return (error_free(str));
-	str[len - 1] = c;
 	return (str);
->>>>>>> master
 }
 
 t_piece			*create_pieces_list(char *file_path)
@@ -82,12 +68,11 @@ t_piece			*create_pieces_list(char *file_path)
 	while (!stop)
 	{
 		if (!(piece = get_next_piece(fd)))
-			return (error_free_list(tmp));
+			return (free_list(tmp));
 		if (!(head = insert_piece(&head, new_piece(piece))))
-			return (error_free_list(tmp));
+			return (free_list(tmp));
 		free_tab(&piece);
 		stop = (*(get_next_line(fd)) != '\n');
 	}
-
 	return (*tmp);
 }

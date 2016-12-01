@@ -6,7 +6,7 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 12:17:16 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/01 17:13:36 by kda-silv         ###   ########.fr       */
+/*   Updated: 2016/12/01 18:43:36 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int			error_free_int(char *str)
 	return (FALSE);
 }
 
-void		*error_free_tab(char **tab)
+int			error_free_tab(char **tab)
 {
 	int		count;
 
@@ -44,11 +44,12 @@ void		*error_free_tab(char **tab)
 				free(tab[count]);
 		free(tab);
 	}
-	return (NULL);
+	return (FALSE);
 }
 
-void		*error_free_list(t_piece **piece)
+void		exit_error_free_list(t_piece **piece)
 {
 	free_list(piece);
-	return (NULL);
+	ft_putendl("error");
+	exit(EXIT_FAILURE);
 }

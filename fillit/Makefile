@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 NAME=fillit
-SRC=main.c pieces.c files.c list.c exit.c take_error.c
+SRC=main.c pieces.c files.c list.c exit.c take_error.c search_smaller.c
 OBJ= $(SRC:.c=.o)
 MAKE=/usr/bin/make
 

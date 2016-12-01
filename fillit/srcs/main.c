@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 14:59:38 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 18:30:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/01 18:33:25 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int				main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;

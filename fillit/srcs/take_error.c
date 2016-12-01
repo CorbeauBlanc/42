@@ -6,7 +6,7 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 15:03:02 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/01 17:08:48 by kda-silv         ###   ########.fr       */
+/*   Updated: 2016/12/01 18:54:15 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int		check_cubes(char **tab, int count_line, int count)
 	return (TRUE);
 }
 
-void			*check_tetriminos(char **tab)
+int				check_tetriminos(char **tab)
 {
 	int			count_line;
 	int			count;
@@ -46,9 +46,9 @@ void			*check_tetriminos(char **tab)
 		while (tab[count_line][++count] != '\0')
 			if (tab[count_line][count] == '#')
 				if (check_cubes(tab, count_line, count) == FALSE)
-					return (error_free_tab(tab));
+					return (FALSE);
 	}
-	return (tab[0]);
+	return (TRUE);
 }
 
 static int		check_size_tetrimino(char *str, int count)

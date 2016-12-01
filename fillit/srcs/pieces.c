@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 16:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 18:31:12 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/01 18:54:47 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,5 @@ char		**get_next_piece(int fd)
 	if (line && !*line)
 		free(line);
 	piece[i + 1] = NULL;
-	return (NULL);
-	//return (check_tetriminos(tab) ? piece : NULL);
+	return (check_tetriminos(piece) == TRUE ? piece : error_free_tab(piece));
 }

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 11:53:30 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 15:52:16 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/01 18:34:51 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ void	delete_piece(t_piece **cell)
 	}
 }
 
-void	free_list(t_piece **head)
+void	*free_list(t_piece **head)
 {
 	if (head && *head)
 		free_list(&(*head)->next);
 	delete_piece(head);
+	return (NULL);
 }

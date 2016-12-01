@@ -6,7 +6,7 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 15:00:37 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/01 16:20:58 by kda-silv         ###   ########.fr       */
+/*   Updated: 2016/12/01 18:52:28 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static char		**prepare_tab(int size_square, t_piece *piece)
 	count = -1;
 	while (++count < size_square)
 	{
-		count2 = -1;
 		if ((tab = malloc((size_square + 1) * sizeof(char))) == NULL)
 		{
 			free_list(&piece);
