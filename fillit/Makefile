@@ -39,6 +39,9 @@ clean:
 cln_target:
 	@echo "removing $(NAME)"
 	@rm -rf $(NAME)
+	@echo "removing libft"
+	@$(MAKE) fclean -C lib
+	@echo "Done."
 
 fclean: cln_target clean
 

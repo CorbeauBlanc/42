@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 16:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 19:41:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/02 17:25:57 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ int			is_valid_line(char *line)
 {
 	int	i;
 
-	if (ft_strlen(line) != 5)
-		return (0);
-	if (line[4] != '\n')
+	if (ft_strlen(line) != 4)
 		return (0);
 	i = -1;
 	while (++i < 4)

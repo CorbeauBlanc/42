@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 11:53:30 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 18:34:51 by kda-silv         ###   ########.fr       */
+/*   Updated: 2016/12/02 19:25:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,28 @@ t_piece	*new_piece(char **tab)
 	cell->tab = tab;
 	cell->next = NULL;
 	cell->prev = NULL;
+	cell->head = cell;
 	return (cell);
 }
 
-t_piece	*insert_piece(t_piece **head, t_piece *cell)
+void	insert_piece(t_piece **head, t_piece *cell)
 {
-	if (head)
-		return (NULL);
+	if (!head || !cell)
+	{
+		delete_piece(&cell);
+		exit_error_free_list(head);
+	}
 	if (!*head)
 		*head = cell;
 	else
 	{
-		(*head)->next->prev = cell;
+		if ((*head)->next)
+			(*head)->next->prev = cell;
 		cell->next = (*head)->next;
 		cell->prev = *head;
 		(*head)->next = cell;
+		cell->head = (*head)->head;
 	}
-	return (cell);
 }
 
 void	free_tab(char ***tab)
@@ -45,9 +50,12 @@ void	free_tab(char ***tab)
 	int	i;
 
 	i = -1;
-	while (*tab[++i])
-		free(*tab[i]);
-	free(*tab);
+	if (tab)
+	{
+		while ((*tab)[++i])
+			free((*tab)[i]);
+		free(*tab);
+	}
 }
 
 void	delete_piece(t_piece **cell)

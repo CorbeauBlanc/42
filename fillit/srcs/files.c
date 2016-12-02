@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 15:01:27 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 20:00:50 by kda-silv         ###   ########.fr       */
+/*   Updated: 2016/12/02 19:26:40 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ char			*get_file_content(char *path)
 	len = 0;
 	while ((line = get_next_line(fd)))
 	{
-		if (!(str = ft_strrealloc(str, (len += ft_strlen(line)) + 2)))
+		if (!(str = ft_strrealloc(str, (len += ft_strlen(line) + 1) + 2)))
 			return (error_free(str));
 		ft_strlcat(str, line, len + 1);
-		str[len] = '\n';
+		str[len - 1] = '\n';
 	}
 	return (str);
 }
@@ -57,24 +57,24 @@ t_piece			*create_pieces_list(char *file_path)
 	int			fd;
 	int			stop;
 	char		**piece;
-	t_piece		*head;
-	t_piece		**tmp;
+	t_piece		*tmp;
 
 	if (check_file(get_file_content(file_path)) == FALSE)
 		return (NULL);
 	if ((fd = open(file_path, O_RDONLY)) < 0)
 		return (NULL);
 	piece = NULL;
+	tmp = NULL;
 	stop = 0;
-	tmp = &head;
 	while (!stop)
 	{
 		if (!(piece = get_next_piece(fd)))
-			return (free_list(tmp));
-		if (!(head = insert_piece(&head, new_piece(piece))))
-			return (free_list(tmp));
+			return (free_list(&tmp->head));
+		insert_piece(&tmp, new_piece(piece));
+		if (tmp && tmp->next)
+			tmp = tmp->next;
 		free_tab(&piece);
 		stop = (get_next_line(fd) == NULL);
 	}
-	return (*tmp);
+	return (tmp->head);
 }

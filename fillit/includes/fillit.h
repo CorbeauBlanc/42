@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 18:29:46 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/02 15:16:26 by kda-silv         ###   ########.fr       */
+/*   Updated: 2016/12/02 19:23:13 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_piece
 	char			**tab;
 	struct s_piece	*next;
 	struct s_piece	*prev;
+	struct s_piece	*head;
 }					t_piece;
 
 void				exit_error();
@@ -41,7 +42,7 @@ char				*get_file_content(char *path);
 int					is_valid_line(char *line);
 char				**get_next_piece(int fd);
 t_piece				*new_piece(char **tab);
-t_piece				*insert_piece(t_piece **head, t_piece *cell);
+void				insert_piece(t_piece **head, t_piece *cell);
 void				delete_piece(t_piece **cell);
 t_piece				*create_pieces_list(char *file_path);
 void				*free_list(t_piece **head);

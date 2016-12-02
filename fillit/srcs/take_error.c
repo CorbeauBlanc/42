@@ -6,7 +6,7 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 15:03:02 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/01 18:54:15 by kda-silv         ###   ########.fr       */
+/*   Updated: 2016/12/02 17:21:20 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int				check_file(char *str)
 	count = 0;
 	while (str[count] != '\0')
 	{
-		if ((count = check_size_tetrimino(str, count) + 1) == FALSE)
+		if ((count = check_size_tetrimino(str, count) + 1) == (FALSE + 1))
 			return (FALSE);
 		if (str[count] != '.' && str[count] != '#' && str[count] != '\0')
 			return (error_free_int(str));
