@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 18:29:46 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 19:53:01 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/02 15:16:26 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void				*free_list(t_piece **head);
 void				free_tab(char ***tab);
 void				search_smaller(t_piece *piece);
 int					ft_lst_size(t_piece *piece);
-int					ft_sqrt_sup(int x);
+int					ft_sqrt(int nb);
 
 #endif

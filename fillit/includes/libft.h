@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:10:30 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/01 18:30:04 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/02 16:09:09 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void				ft_putnbr(int n);
 void				ft_putnbr_fd(int n, int fd);
 void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
+int					ft_sqrt(int nb);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strcdup(const char *s, char c);
 char				*ft_strchr(const char *s, int c);

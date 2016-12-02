@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt_sup.c                                      :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/01 19:04:40 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/01 19:41:10 by kda-silv         ###   ########.fr       */
+/*   Created: 2016/11/03 14:26:37 by edescoin          #+#    #+#             */
+/*   Updated: 2016/12/02 16:04:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <stdio.h>
 
-int			ft_sqrt_sup(int x)
+int	ft_sqrt(int nb)
 {
-	return (x);
+	int	odd;
+	int	i;
+	int	sum;
+
+	i = 1;
+	sum = 0;
+	odd = -1;
+	while ((sum += (odd += 2)) < nb)
+		i++;
+	return (i);
 }

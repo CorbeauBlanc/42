@@ -6,7 +6,7 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 15:00:37 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/01 19:42:30 by kda-silv         ###   ########.fr       */
+/*   Updated: 2016/12/02 15:10:07 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void			search_smaller(t_piece *piece)
 	int			size_square;
 
 	tab = NULL;
-	size_square = ft_sqrt_sup(4 * ft_lst_size(piece));
+	size_square = ft_sqrt(4 * ft_lst_size(piece));
 	while (tab == NULL)
 	{
 		tab = prepare_tab(size_square, piece);
