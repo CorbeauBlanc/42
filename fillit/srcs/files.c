@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 15:01:27 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/02 19:26:40 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/03 15:31:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ t_piece			*create_pieces_list(char *file_path)
 		insert_piece(&tmp, new_piece(piece));
 		if (tmp && tmp->next)
 			tmp = tmp->next;
-		free_tab(&piece);
 		stop = (get_next_line(fd) == NULL);
 	}
 	return (tmp->head);
