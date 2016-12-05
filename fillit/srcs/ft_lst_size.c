@@ -6,7 +6,7 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 19:01:07 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/01 19:04:05 by kda-silv         ###   ########.fr       */
+/*   Updated: 2016/12/05 13:48:39 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,9 @@ int			ft_lst_size(t_piece *piece)
 		piece = piece->next;
 	}
 	return (count);
+}
+
+int			ft_better_lst_size(t_piece *piece)
+{
+	return (piece ? 1 + ft_better_lst_size(piece->next) : 0);
 }

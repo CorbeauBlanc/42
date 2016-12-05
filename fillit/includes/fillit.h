@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 18:29:46 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/02 19:23:13 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/05 13:49:28 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void				*free_list(t_piece **head);
 void				free_tab(char ***tab);
 void				search_smaller(t_piece *piece);
 int					ft_lst_size(t_piece *piece);
-int					ft_sqrt(int nb);
+
+int					ft_better_lst_size(t_piece *piece);
 
 #endif

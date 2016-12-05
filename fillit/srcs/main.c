@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 14:59:38 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/03 15:30:39 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/05 13:47:09 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 
 	(void)ac;
 	list = create_pieces_list(av[1]);
-	printf("%s\n", *(list->tab));
+	printf("TEST - %d\n", ft_better_lst_size(list));
 
 	(void)list;
 
