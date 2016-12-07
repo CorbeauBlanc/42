@@ -6,7 +6,7 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 15:03:02 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/02 17:21:20 by kda-silv         ###   ########.fr       */
+/*   Updated: 2016/12/07 14:30:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int				check_file(char *str)
 {
 	int			count;
 
+	if (!str)
+		return (FALSE);
 	count = -1;
 	while (str[++count] != '\0')
 		if (str[count] != '#' && str[count] != '.' && str[count] != '\n')

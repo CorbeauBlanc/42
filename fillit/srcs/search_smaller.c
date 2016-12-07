@@ -6,7 +6,7 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 15:00:37 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/05 16:45:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/07 14:17:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,27 @@
 
 static char		**test_square(char **tab, t_piece *piece)
 {
-	int	x;
-	int	y;
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	x = -1;
-	while (tab[++x])
-	{
-		y = -1;
-		while (tab[x][++y])
-		{
-			
-		}
-	}
+	(void)tab;
+	(void)piece;
+	/*
+** int	x;
+** 	int	y;
+** 	int	i;
+** 	int	j;
+**.
+** 	i = 0;
+** 	j = 0;
+** 	x = -1;
+** 	while (tab[++x])
+** 	{
+** 		y = -1;
+** 		while (tab[x][++y])
+** 		{
+**
+** 		}
+** 	}
+*/
+return (NULL);
 }
 
 static char		**fill_tab(char **tab, int size_square, t_piece *piece)

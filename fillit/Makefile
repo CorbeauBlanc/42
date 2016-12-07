@@ -10,7 +10,7 @@ vpath %.c srcs
 
 .PHONY: all clean fclean re
 
-all: libft $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Compiling..."
@@ -25,7 +25,7 @@ $(OBJ): $(SRC)
 
 libft:
 	@echo "Compiling libft..."
-	@$(MAKE) re -C lib
+	@$(MAKE) -C lib
 	@echo "Done."
 
 clean:
