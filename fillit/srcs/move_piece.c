@@ -6,7 +6,7 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/02 15:57:46 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/07 12:04:43 by kda-silv         ###   ########.fr       */
+/*   Updated: 2016/12/07 16:19:27 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ static void		fill_left(t_piece **piece)
 			count2 = -1;
 			while ((*piece)->tab[count][++count2] != '\0')
 				if ((*piece)->tab[count][count2] == '#')
-					{
-						(*piece)->tab[count][count2 - 1] = '#';
-						(*piece)->tab[count][count2] = '.';
-					}
+				{
+					(*piece)->tab[count][count2 - 1] = '#';
+					(*piece)->tab[count][count2] = '.';
+				}
 		}
 	}
 }
@@ -70,10 +70,10 @@ static void		fill_top(t_piece **piece)
 			count2 = -1;
 			while ((*piece)->tab[count][++count2] != '\0')
 				if ((*piece)->tab[count][count2] == '#')
-					{
-						(*piece)->tab[count - 1][count2] = '#';
-						(*piece)->tab[count][count2] = '.';
-					}
+				{
+					(*piece)->tab[count - 1][count2] = '#';
+					(*piece)->tab[count][count2] = '.';
+				}
 		}
 	}
 }

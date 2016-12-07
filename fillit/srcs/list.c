@@ -6,19 +6,20 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 11:53:30 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/02 19:25:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/07 15:58:37 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_piece	*new_piece(char **tab)
+t_piece	*new_piece(char **tab, char c)
 {
 	t_piece	*cell;
 
 	if (!(cell = (t_piece*)malloc(sizeof(t_piece))))
 		return (NULL);
 	cell->tab = tab;
+	cell->c = c;
 	cell->next = NULL;
 	cell->prev = NULL;
 	cell->head = cell;

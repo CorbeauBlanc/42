@@ -2,7 +2,7 @@ CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 NAME=fillit
 SRC=main.c pieces.c files.c list.c exit.c take_error.c search_smaller.c \
-ft_lst_size.c move_piece.c ft_puttab.c
+ft_lst_size.c check_possibility.c move_piece.c ft_puttab.c
 OBJ= $(SRC:.c=.o)
 MAKE=/usr/bin/make
 
@@ -31,14 +31,18 @@ libft:
 clean:
 	@echo "removing $(OBJ)"
 	@rm -rf $(OBJ)
+	@echo "cleaning libft"
+	@$(MAKE) clean -C lib
 	@echo "Done."
 	@echo
 
 cln_target:
 	@echo "removing $(NAME)"
 	@rm -rf $(NAME)
+	@echo "removing libft"
+	@$(MAKE) fclean -C lib
 	@echo "Done."
 
 fclean: cln_target clean
 
-re: fclean all
+re: fclean libft all
