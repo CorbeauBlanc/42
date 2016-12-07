@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_puttab.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/25 14:59:38 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/07 12:30:54 by kda-silv         ###   ########.fr       */
+/*   Created: 2016/12/07 12:18:11 by kda-silv          #+#    #+#             */
+/*   Updated: 2016/12/07 12:23:55 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	main(int ac, char **av)
+void		ft_puttab(char **tab)
 {
-	t_piece	*list;
+	int		count;
 
-	if (ac != 2)
-		{
-			ft_putendl("usage: ./fillit file");
-			return (FALSE);
-		}
-	if ((list = create_pieces_list(av[1])) == NULL)
-		exit_error();
-	list = move_piece(list);
-	return (TRUE);
+	count = -1;
+	while (tab[++count] != NULL)
+		ft_putendl(tab[count]);
 }
