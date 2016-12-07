@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 11:53:30 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/07 15:58:37 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/07 18:36:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,15 @@ void	free_tab(char ***tab)
 
 void	delete_piece(t_piece **cell)
 {
-	if (cell && *cell)
+	t_piece	*tmp;
+
+	if (cell && (tmp = *cell))
 	{
-		if ((*cell)->prev)
-			(*cell)->prev->next = (*cell)->next;
-		if ((*cell)->next)
-			(*cell)->next->prev = (*cell)->prev;
-		free_tab(&(*cell)->tab);
+		if (tmp->prev)
+			tmp->prev->next = tmp->next;
+		if (tmp->next)
+			tmp->next->prev = tmp->prev;
+		free_tab(&tmp->tab);
 		ft_memdel((void*)(*cell));
 		*cell = NULL;
 	}

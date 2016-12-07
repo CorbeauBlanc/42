@@ -6,7 +6,7 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 15:00:37 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/07 15:15:24 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/07 18:08:54 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char		**prepare_tab(int size_square, t_piece *piece)
 	if ((tab = malloc((size_square + 1) * sizeof(char *))) == NULL)
 		exit_error_free_list(&piece);
 	tab = fill_tab(tab, size_square, piece);
-	if ((tab = test_square(tab, piece)) == NULL)
+	if (!(get_square(tab, piece)))
 	{
 		error_free_tab(tab);
 		return (NULL);
@@ -72,5 +72,4 @@ void			search_smaller(t_piece *piece)
 		free(tab[count]);
 	}
 	free(tab);
-	free_list(&piece);
 }

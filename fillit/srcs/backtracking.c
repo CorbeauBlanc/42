@@ -6,40 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/07 15:15:42 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/07 17:36:20 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/07 18:06:11 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			get_square(char **tab, t_piece *piece)
-{
-	int	x;
-	int	y;
-
-	x = -1;
-	y = -1;
-	if (!piece)
-		return (1);
-	while (tab[++x])
-	{
-		y = -1;
-		while (tab[x][++y])
-		{
-			if (check_posibility(tab, piece, x, y) == TRUE);
-			{
-				put_piece(tab, x, y, piece);
-				if (!(get_square(tab, piece->next)))
-					delete_piece_tab(tab, piece);
-				else
-					return (0);
-			}
-		}
-	}
-	return (tab[x] != NULL);
-}
-
-static int	check_posibility(char **tab, t_piece *piece, int pos_x, int pos_y)
+static int	check_possibility(char **tab, t_piece *piece, int pos_x, int pos_y)
 {
 	int		count1;
 	int		count2;
@@ -93,4 +66,31 @@ static void	delete_piece_tab(char **tab, t_piece *piece)
 			if (tab[count1][count2] == piece->c)
 				tab[count1][count2] = '.';
 	}
+}
+
+int			get_square(char **tab, t_piece *piece)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	y = -1;
+	if (!piece)
+		return (1);
+	while (tab[++x])
+	{
+		y = -1;
+		while (tab[x][++y])
+		{
+			if (check_possibility(tab, piece, x, y) == TRUE)
+			{
+				put_piece(tab, x, y, piece);
+				if (!(get_square(tab, piece->next)))
+					delete_piece_tab(tab, piece);
+				else
+					return (1);
+			}
+		}
+	}
+	return (tab[x] != NULL);
 }
