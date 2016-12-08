@@ -29,16 +29,20 @@ libft:
 	@echo "Done."
 
 clean:
-	@echo "removing $(OBJ)"
+	@echo "Removing $(OBJ)"
 	@rm -rf $(OBJ)
 	@echo "Done."
 	@echo
 
 cln_target:
-	@echo "removing $(NAME)"
+	@echo "Removing $(NAME)"
 	@rm -rf $(NAME)
 	@echo "Done."
 
 fclean: cln_target clean
+	@echo "Cleaning libft"
+	@$(MAKE) clean -C lib
+	@echo "Done."
+	@echo
 
-re: fclean libft all
+re: fclean all
