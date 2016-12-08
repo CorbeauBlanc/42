@@ -6,7 +6,7 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 12:17:16 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/02 17:12:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/08 13:42:47 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			error_free_tab(char **tab)
 
 void		exit_error_free_list(t_piece **piece)
 {
-	free_list(piece);
+	free_list(*piece);
 	ft_putendl("error");
 	exit(EXIT_FAILURE);
 }

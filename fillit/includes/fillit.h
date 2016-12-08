@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 18:29:46 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/07 18:01:47 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/08 13:41:12 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ typedef struct		s_piece
 
 int					check_file(char *str);
 int					check_tetriminos(char **tab);
-t_piece				*create_pieces_list(char *file_path);
+t_piece				*create_pieces_list(int fd);
 void				delete_piece(t_piece **cell);
 void				*error_free(char *str);
 int					error_free_int(char *str);
 int					error_free_tab(char **tab);
 void				exit_error();
 void				exit_error_free_list(t_piece **piece);
-void				*free_list(t_piece **head);
+void				*free_list(t_piece *head);
 void				free_tab(char ***tab);
 int					ft_lst_size(t_piece *piece);
 void				ft_puttab(char **tab);
@@ -53,7 +53,5 @@ int					is_valid_line(char *line);
 void				move_piece(t_piece *piece);
 t_piece				*new_piece(char **tab, char c);
 void				search_smaller(t_piece *piece);
-
-int					ft_better_lst_size(t_piece *piece);
 
 #endif

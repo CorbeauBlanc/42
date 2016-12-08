@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 11:53:30 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/07 18:36:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/08 13:49:25 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	free_tab(char ***tab)
 		while ((*tab)[++i])
 			free((*tab)[i]);
 		free(*tab);
+		*tab = NULL;
 	}
 }
 
@@ -75,10 +76,15 @@ void	delete_piece(t_piece **cell)
 	}
 }
 
-void	*free_list(t_piece **head)
+void	*free_list(t_piece *head)
 {
-	if (head && *head)
-		free_list(&(*head)->next);
-	delete_piece(head);
+	t_piece		*tmp;
+
+	while (head != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		delete_piece(&tmp);
+	}
 	return (NULL);
 }

@@ -13,6 +13,7 @@ vpath %.c srcs
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	@$(MAKE) libft
 	@echo "Compiling..."
 	@$(CC) $(CFLAGS) $^ -o $@ -Llib -lft
 	@echo "Done."
@@ -29,19 +30,22 @@ libft:
 	@echo "Done."
 
 clean:
+	@echo "Cleaning libft"
+	@$(MAKE) clean -C lib
+	@echo "Done."
+	@echo
 	@echo "Removing $(OBJ)"
 	@rm -rf $(OBJ)
 	@echo "Done."
 	@echo
 
-cln_target:
+fclean: clean
 	@echo "Removing $(NAME)"
 	@rm -rf $(NAME)
 	@echo "Done."
-
-fclean: cln_target clean
-	@echo "Cleaning libft"
-	@$(MAKE) clean -C lib
+	@echo
+	@echo "Removing libft"
+	@rm -rf lib/libft.a
 	@echo "Done."
 	@echo
 

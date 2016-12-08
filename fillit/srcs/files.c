@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 15:01:27 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/07 15:59:44 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/08 13:49:02 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,18 @@ char			*get_file_content(char *path)
 		ft_strlcat(str, line, len + 1);
 		str[len - 1] = '\n';
 	}
+	close(fd);
 	return (str);
 }
 
-t_piece			*create_pieces_list(char *file_path)
+t_piece			*create_pieces_list(int fd)
 {
-	int		fd;
 	int		stop;
 	char	**piece;
 	char	c;
 	t_piece	*tmp;
 
-	if (check_file(get_file_content(file_path)) == FALSE)
-		return (NULL);
-	if ((fd = open(file_path, O_RDONLY)) < 0)
+	if (fd == -1)
 		return (NULL);
 	piece = NULL;
 	tmp = NULL;
@@ -71,7 +69,11 @@ t_piece			*create_pieces_list(char *file_path)
 	while (!stop)
 	{
 		if (!(piece = get_next_piece(fd)))
-			return (free_list(&tmp->head));
+		{
+			if (tmp == NULL)
+				return (NULL);
+			return (free_list(tmp->head));
+		}
 		insert_piece(&tmp, new_piece(piece, ++c));
 		if (tmp && tmp->next)
 			tmp = tmp->next;

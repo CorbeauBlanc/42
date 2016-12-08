@@ -6,7 +6,7 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 15:03:02 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/07 18:39:44 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/08 13:52:57 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,23 @@ int				check_tetriminos(char **tab)
 	return (TRUE);
 }
 
+static int		check_hashtag(char *str, int count)
+{
+	int			tmp;
+	int			flag;
+
+	flag = 0;
+	tmp = count;
+	while (++tmp != count + 19)
+	{
+		if (str[tmp] == '#')
+			++flag;
+	}
+	if (flag != 4)
+		return (FALSE);
+	return (TRUE);
+}
+
 static int		check_size_tetrimino(char *str, int count)
 {
 	int			count_width;
@@ -59,6 +76,8 @@ static int		check_size_tetrimino(char *str, int count)
 	count_height = 0;
 	if (count == 0)
 		count -= 1;
+	if (check_hashtag(str, count) == FALSE)
+		return (error_free_int(str));
 	while (str[count] != '\n'
 		&& (str[count + 1] != '\n' || str[count + 1] != '\0'))
 	{
