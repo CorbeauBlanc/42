@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 14:59:38 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/08 13:56:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/08 14:10:55 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 	}
 	if (check_file(get_file_content(av[1])) == FALSE)
 		exit_error();
-	fd = open(av[1], O_RDONLY)
+	fd = open(av[1], O_RDONLY);
 	if (!(list = create_pieces_list(fd)))
 	{
 		close(fd);

@@ -6,13 +6,13 @@
 /*   By: kda-silv <kda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/25 15:03:02 by kda-silv          #+#    #+#             */
-/*   Updated: 2016/12/08 13:52:57 by kda-silv         ###   ########.fr       */
+/*   Updated: 2016/12/08 13:56:56 by kda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int		check_cubes(char **tab, int count_line, int count)
+static int		check_cubes(char **tab, int count_line, int count, int hash)
 {
 	int			flag;
 
@@ -29,7 +29,7 @@ static int		check_cubes(char **tab, int count_line, int count)
 	if (count_line < 3)
 		if (tab[count_line + 1][count] == '#')
 			++flag;
-	if (flag == 0)
+	if (flag == 0 || (hash == 2 && flag == 1) || (hash == 3 && flag == 1))
 		return (FALSE);
 	return (TRUE);
 }
@@ -38,15 +38,20 @@ int				check_tetriminos(char **tab)
 {
 	int			count_line;
 	int			count;
+	int			flag;
 
 	count_line = -1;
+	flag = 0;
 	while (tab[++count_line] != NULL)
 	{
 		count = -1;
 		while (tab[count_line][++count] != '\0')
 			if (tab[count_line][count] == '#')
-				if (check_cubes(tab, count_line, count) == FALSE)
+			{
+				++flag;
+				if (check_cubes(tab, count_line, count, flag) == FALSE)
 					return (FALSE);
+			}
 	}
 	return (TRUE);
 }
