@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 11:51:12 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/24 12:10:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/15 17:47:31 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	*ft_memalloc(size_t size)
 {
 	void	*tmp;
+
 	if (!size)
 		return (NULL);
 	if ((tmp = (void*)malloc(size)))

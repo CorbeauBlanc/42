@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 11:26:19 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/03 17:23:40 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/15 17:46:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*create_string(char *str, long l, int base)
 	return (str + 1);
 }
 
-char	*ft_itoa_base(int n, int base)
+char		*ft_itoa_base(int n, int base)
 {
 	long	ln;
 	char	*str;

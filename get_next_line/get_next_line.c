@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:45:33 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/15 17:32:59 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/15 19:49:40 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,16 @@ int	get_buff_line(char *buff, char **tmp, char **line)
 		**tmp = '0';
 		return (1);
 	}
-	else if (nb == 1) {
-		*tmp = ft_strdup(ft_strchr(buff, '\n') + 1); }
+	else if (nb == 1)
+	{
+		*tmp = ft_strdup(ft_strchr(buff, '\n') + 1);
+		if (ft_strlen(buff) < BUFF_SIZE && **tmp)
+		{
+			ft_memset(buff, '\0', BUFF_SIZE);
+			*line = *tmp;
+			return (1);
+		}
+	}
 	else
 		*tmp = ft_strnew(0);
 	return (0);
@@ -42,7 +50,7 @@ int	get_next_line(const int fd, char **line)
 	if (get_buff_line(buffer, &tmp1, line))
 		return (1);
 	ft_memset(buffer, '\0', BUFF_SIZE);
-	while ((nb = read(fd, buffer, BUFF_SIZE)) > 0 &&
+	while ((nb = read(fd, buffer, BUFF_SIZE)) == BUFF_SIZE &&
 			ft_memccnt(buffer, '\n', BUFF_SIZE) == 0)
 	{
 		tmp2 = tmp1;
