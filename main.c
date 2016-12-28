@@ -6,12 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 11:39:40 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/23 17:19:05 by edescoin         ###   ########.fr       */
+/*   Updated: 2016/12/28 15:46:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "libft/libft.h"
+#include <fcntl.h>
+#include "get_next_line/get_next_line.h"
+#include "get_next_line/libft/libft.h"
 
 void	ft_pause(void)
 {
@@ -26,11 +28,9 @@ int	main(int ac, char **av)
 	(void)ac;
 	(void)av;
 
-//	char	*dst = ft_strnew(100);
-//	char	**tab;
-//	char	*tmp = ft_strnew(100);
-
-	printf("--- ft_strstr ---\n\n%d\n", ft_atoi_base("\t  \n -A  \t ", 16));
-
+	int fd = open("test", O_RDONLY);
+	char *line = "";
+	while (get_next_line(fd, &line) > 0)
+		printf("[%s]\n", line);
 	return (0);
 }
