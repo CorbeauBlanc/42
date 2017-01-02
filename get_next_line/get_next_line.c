@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:45:33 by edescoin          #+#    #+#             */
-/*   Updated: 2016/12/28 17:46:58 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/02 16:52:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static int	get_buff_line(char *buff, char **tmp, char **line)
 		{
 			ft_memset(buff, '\0', BUFF_SIZE);
 			*line = *tmp;
+			free(*tmp);
 			return (1);
 		}
 	}
@@ -38,17 +39,39 @@ static int	get_buff_line(char *buff, char **tmp, char **line)
 	return (0);
 }
 
-static char	*ft_strjoin2(char *s1, const char *s2, size_t nbytes)
+static void	ft_strjoin2(char **dest, char *s1, const char *s2, size_t nbytes)
 {
-	char	*str;
 	char	*s3;
 
 	s3 = ft_strnew(nbytes);
 	ft_strncpy(s3, s2, nbytes);
-	str = ft_strjoin(s1, s3);
+	if (*dest)
+		free(*dest);
+	*dest = NULL;
+	*dest = ft_strjoin(s1, s3);
 	free(s1);
 	free(s3);
-	return (str);
+}
+
+static char	*ft_strjoin3(char *s, char *buffer, int nb)
+{
+	char	*tmp;
+	char	*ret;
+
+	if (nb)
+	{
+		tmp = ft_strcdup(buffer, '\n');
+		ret = ft_strjoin(s, tmp);
+		free(tmp);
+		free(s);
+		return (ret);
+	}
+	else
+	{
+		ret = ft_strdup(s);
+		free(s);
+		return (ret);
+	}
 }
 
 int			get_next_line(const int fd, char **line)
@@ -62,14 +85,13 @@ int			get_next_line(const int fd, char **line)
 	if (get_buff_line(buffer, &tmp, line))
 		return (1);
 	ft_memset(buffer, '\0', BUFF_SIZE);
-	while ((nb = read(fd, buffer, BUFF_SIZE)) &&
+	while ((nb = read(fd, buffer, BUFF_SIZE)) > 0 &&
 			ft_memccnt(buffer, '\n', BUFF_SIZE) == 0)
 	{
-		tmp = ft_strjoin2(tmp, buffer, nb);
+		ft_strjoin2(&tmp, ft_strdup(tmp), buffer, nb);
 	}
 	if (nb < 0)
 		return (-1);
-	*line = ft_strjoin(tmp, (nb ? ft_strcdup(buffer, '\n') : NULL));
-	free(tmp);
+	*line = ft_strjoin3(tmp, buffer, nb);
 	return (*buffer != '\0');
 }
