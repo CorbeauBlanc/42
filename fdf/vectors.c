@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   vectors.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/03 18:10:30 by edescoin         ###   ########.fr       */
+/*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
+/*   Updated: 2017/01/03 18:12:04 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-#define FDF_H
+#include "fdf.h"
 
-#include <stdlib.h>
-#include "structures.h"
+t_vector	*create_vector(int x, int y, int z)
+{
+	t_vector	*vect;
 
-#endif
+	if (!(vect = malloc(sizeof(t_vector))))
+		return (NULL);
+	vect->x = x;
+	vect->y = y;
+	vect->z = z;
+	return (vect);
+}
