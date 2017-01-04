@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:45:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/02 16:52:10 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/04 18:27:52 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,40 @@ static char	*ft_strjoin3(char *s, char *buffer, int nb)
 	}
 }
 
+int			init_buffer(t_buffer **buff, int fd)
+{
+	if (!(*buff))
+	{
+		if (!(*buff = (t_buffer*)malloc(sizeof(t_buffer))))
+			return (0);
+		if (!((*buff)->str = ft_strnew(BUFF_SIZE)))
+			return (0);
+		(*buff)->fd = fd;
+	}
+	else if (fd != (*buff)->fd)
+	{
+		ft_memset((*buff)->str, '\0', BUFF_SIZE);
+		(*buff)->fd = fd;
+	}
+	return (1);
+}
+
 int			get_next_line(const int fd, char **line)
 {
-	static char	*buffer = NULL;
-	char		*tmp;
-	int			nb;
+	static t_buffer	*buff = NULL;
+	char			*tmp;
+	int				nb;
 
-	if (!buffer)
-		buffer = ft_strnew(BUFF_SIZE);
-	if (get_buff_line(buffer, &tmp, line))
+	if (!init_buffer(&buff, fd))
+		return (-1);
+	if (get_buff_line(buff->str, &tmp, line))
 		return (1);
-	ft_memset(buffer, '\0', BUFF_SIZE);
-	while ((nb = read(fd, buffer, BUFF_SIZE)) > 0 &&
-			ft_memccnt(buffer, '\n', BUFF_SIZE) == 0)
-	{
-		ft_strjoin2(&tmp, ft_strdup(tmp), buffer, nb);
-	}
+	ft_memset(buff->str, '\0', BUFF_SIZE);
+	while ((nb = read(fd, buff->str, BUFF_SIZE)) > 0 &&
+			ft_memccnt(buff->str, '\n', BUFF_SIZE) == 0)
+		ft_strjoin2(&tmp, ft_strdup(tmp), buff->str, nb);
 	if (nb < 0)
 		return (-1);
-	*line = ft_strjoin3(tmp, buffer, nb);
-	return (*buffer != '\0');
+	*line = ft_strjoin3(tmp, buff->str, nb);
+	return (*buff->str != '\0');
 }
