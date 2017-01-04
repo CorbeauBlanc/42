@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/03 19:22:26 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/04 19:41:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct	s_matrix
 
 typedef struct	s_mlx_core
 {
-	void		*connection;
-	void		*window;
+	void		*co;
+	void		*win;
 }				t_mlx_core;
 
 #endif
