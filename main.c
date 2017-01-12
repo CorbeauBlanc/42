@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 11:39:40 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/04 18:26:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/12 18:46:45 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,31 +36,20 @@ void	test1()
 
 	fd = 1;
 	dup2(p[1], fd);
-	write(fd, "oiuytrew\n", 9);
+	write(fd, "1234567812345678\n", 17);
 	close(p[1]);
 	dup2(out, fd);
-	get_next_line(p[0], &line);
-	printf("[%s]\n", line);
+	printf("%d - [%s]\n", get_next_line(p[0], &line), line);
+	printf("%d - [%s]\n", get_next_line(p[0], &line), line);
 }
 
-void	test2()
+void	test2(char *path)
 {
-	char 	*line;
-	int		out;
-	int		p[2];
-	int		fd;
+	int fd = open(path, O_RDONLY);
+	char	*line;
 
-	out = dup(1);
-	pipe(p);
-
-	fd = 1;
-	dup2(p[1], fd);
-	write(fd, "abcdefgh\n", 9);
-	write(fd, "ijklmnop\n", 9);
-	close(p[1]);
-	dup2(out, fd);
-	get_next_line(p[0], &line);
-	printf("[%s]\n", line);
+	printf("%d - [%s]\n", get_next_line(fd, &line), line);
+	printf("%d - [%s]\n", get_next_line(fd, &line), line);
 }
 
 int	main(int ac, char **av)
@@ -69,6 +58,5 @@ int	main(int ac, char **av)
 	(void)av;
 
 	test1();
-	test2();
 	return (0);
 }

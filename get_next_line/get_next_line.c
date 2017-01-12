@@ -6,29 +6,29 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:45:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/04 18:27:52 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/12 18:45:46 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int	get_buff_line(char *buff, char **tmp, char **line)
+static int	get_buff_line(t_buffer *buff, char **tmp, char **line)
 {
 	int nb;
 
-	if ((nb = ft_memccnt(buff, '\n', BUFF_SIZE)) > 1)
+	if ((nb = ft_memccnt(buff->str, '\n', BUFF_SIZE)) > 1)
 	{
-		*tmp = ft_strchr(buff, '\n');
+		*tmp = ft_strchr(buff->str, '\n');
 		*line = ft_strcdup((*tmp) + 1, '\n');
 		**tmp = '0';
 		return (1);
 	}
 	else if (nb == 1)
 	{
-		*tmp = ft_strdup(ft_strchr(buff, '\n') + 1);
-		if (ft_strlen(buff) < BUFF_SIZE && **tmp)
+		*tmp = ft_strdup(ft_strchr(buff->str, '\n') + 1);
+		if (buff->eof && **tmp)
 		{
-			ft_memset(buff, '\0', BUFF_SIZE);
+			ft_memset(buff->str, '\0', BUFF_SIZE);
 			*line = *tmp;
 			free(*tmp);
 			return (1);
@@ -53,14 +53,14 @@ static void	ft_strjoin2(char **dest, char *s1, const char *s2, size_t nbytes)
 	free(s3);
 }
 
-static char	*ft_strjoin3(char *s, char *buffer, int nb)
+static char	*ft_strjoin3(char *s, t_buffer *buff)
 {
 	char	*tmp;
 	char	*ret;
 
-	if (nb)
+	if (!buff->eof)
 	{
-		tmp = ft_strcdup(buffer, '\n');
+		tmp = ft_strcdup(buff->str, '\n');
 		ret = ft_strjoin(s, tmp);
 		free(tmp);
 		free(s);
@@ -83,11 +83,13 @@ int			init_buffer(t_buffer **buff, int fd)
 		if (!((*buff)->str = ft_strnew(BUFF_SIZE)))
 			return (0);
 		(*buff)->fd = fd;
+		(*buff)->eof = 0;
 	}
 	else if (fd != (*buff)->fd)
 	{
 		ft_memset((*buff)->str, '\0', BUFF_SIZE);
 		(*buff)->fd = fd;
+		(*buff)->eof = 0;
 	}
 	return (1);
 }
@@ -100,14 +102,18 @@ int			get_next_line(const int fd, char **line)
 
 	if (!init_buffer(&buff, fd))
 		return (-1);
-	if (get_buff_line(buff->str, &tmp, line))
+	if (get_buff_line(buff, &tmp, line))
 		return (1);
 	ft_memset(buff->str, '\0', BUFF_SIZE);
 	while ((nb = read(fd, buff->str, BUFF_SIZE)) > 0 &&
 			ft_memccnt(buff->str, '\n', BUFF_SIZE) == 0)
+	{
 		ft_strjoin2(&tmp, ft_strdup(tmp), buff->str, nb);
+		ft_memset(buff->str, '\0', BUFF_SIZE);
+	}
 	if (nb < 0)
 		return (-1);
-	*line = ft_strjoin3(tmp, buff->str, nb);
-	return (*buff->str != '\0');
+	buff->eof = (nb == 0);
+	*line = ft_strjoin3(tmp, buff);
+	return (**line != '\0' || nb);
 }

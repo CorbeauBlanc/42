@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:41:03 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/09 15:30:28 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/12 18:48:21 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct	s_buffer
 {
 	char		*str;
 	int			fd;
+	int			eof;
 }				t_buffer;
 
 int				get_next_line(const int fd, char **line);

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/09 20:32:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/12 14:00:32 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct	s_vector
 typedef struct	s_matrix
 {
 	int			**mat;
-	int			m;
-	int			n;
+	int			r;
+	int			c;
 }				t_matrix;
 
 typedef struct	s_mlx_core
