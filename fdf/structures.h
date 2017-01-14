@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/14 16:47:18 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/14 16:58:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,13 @@ typedef struct		s_map
 	struct s_map	*up;
 	struct s_map	*down;
 }					t_map;
+
+typedef struct		s_file_crds
+{
+	int				x;
+	int				y;
+	int				len;
+	int				fd;
+}					t_file_crds;
 
 #endif
