@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
 void	*return_free(void *ret, void *ptr)
 {
 	free(ptr);

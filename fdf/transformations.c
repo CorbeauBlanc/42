@@ -6,11 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:19:18 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/13 22:02:45 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/14 11:48:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include <math.h>
 
 t_matrix	*translation(double x, double y, double z)
 {

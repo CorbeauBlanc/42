@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/13 22:08:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/14 13:01:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WIDTH 500
 
 # include <stdlib.h>
-# include <math.h>
+# include <stdio.h>
 # include "libft/libft.h"
 # include "structures.h"
 
@@ -34,6 +34,8 @@ t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2);
 void		mult_vector(t_vector *dest, t_matrix *mtx, t_vector *vec);
 
 t_vector	*create_vector(double x, double y, double z);
+void		insert_cell(t_map **head, t_map *cell);
+t_map		*new_cell(t_vector *vect);
 
 t_matrix	*translation(double x, double y, double z);
 t_matrix	*x_rotation(double theta);

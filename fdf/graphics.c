@@ -6,13 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:52:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/12 13:40:57 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/14 11:48:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <mlx.h>
-#include <stdio.h>
 
 t_mlx_core	*get_mlx_core(void)
 {

@@ -6,12 +6,11 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/13 21:05:52 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/14 11:48:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <stdio.h>
 #include <mlx.h>
 
 double	dabs(double f)
