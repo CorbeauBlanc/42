@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:52:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/14 11:48:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/16 20:29:17 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	dl_x_loop(t_vector *pt1, t_vector *pt2, t_mlx_core *core)
 	tmp.x = pt1->x;
 	tmp.y = pt1->y;
 	mlx_pixel_put(core->co, core->win, tmp.x, tmp.y, 0x00FFFFFF);
-	while ((tmp.x += inc.x) != pt2->x)
+	while ((tmp.x += inc.x) < pt2->x && tmp.x < WIDTH && tmp.y < HEIGHT)
 	{
 		e += dy;
 		mlx_pixel_put(core->co, core->win, tmp.x, tmp.y, 0x00FFFFFF);
@@ -54,7 +54,6 @@ static void	dl_x_loop(t_vector *pt1, t_vector *pt2, t_mlx_core *core)
 			tmp.y += inc.y;
 		}
 	}
-	mlx_pixel_put(core->co, core->win, tmp.x, tmp.y, 0x00FFFFFF);
 }
 
 static void	dl_y_loop(t_vector *pt1, t_vector *pt2, t_mlx_core *core)
@@ -73,7 +72,7 @@ static void	dl_y_loop(t_vector *pt1, t_vector *pt2, t_mlx_core *core)
 	tmp.x = pt1->x;
 	tmp.y = pt1->y;
 	mlx_pixel_put(core->co, core->win, tmp.x, tmp.y, 0x00FFFFFF);
-	while ((tmp.y += inc.y) != pt2->y)
+	while ((tmp.y += inc.y) < pt2->y && tmp.x < WIDTH && tmp.y < HEIGHT)
 	{
 		e += dx;
 		mlx_pixel_put(core->co, core->win, tmp.x, tmp.y, 0x00FFFFFF);
@@ -83,7 +82,6 @@ static void	dl_y_loop(t_vector *pt1, t_vector *pt2, t_mlx_core *core)
 			tmp.x += inc.x;
 		}
 	}
-	mlx_pixel_put(core->co, core->win, tmp.x, tmp.y, 0x00FFFFFF);
 }
 
 void		mlx_draw_line(t_vector *pt1, t_vector *pt2)
@@ -96,9 +94,19 @@ void		mlx_draw_line(t_vector *pt1, t_vector *pt2)
 	dx = dabs((double)(pt2->x - pt1->x));
 	dy = dabs((double)(pt2->y - pt1->y));
 	if (dx > dy)
-		dl_x_loop(pt1, pt2, core);
+	{
+		if (pt1->x < pt2->x)
+			dl_x_loop(pt1, pt2, core);
+		else
+			dl_x_loop(pt2, pt1, core);
+	}
 	else
-		dl_y_loop(pt1, pt2, core);
+	{
+		if (pt1->y < pt2->y)
+			dl_y_loop(pt1, pt2, core);
+		else
+			dl_y_loop(pt2, pt1, core);
+	}
 }
 
 void		mlx_draw_quadrangle(t_vector *pt1, t_vector *pt2,

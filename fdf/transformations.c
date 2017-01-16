@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:19:18 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/14 11:48:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/16 20:52:54 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_matrix	*x_rotation(double theta)
 {
 	t_matrix	*mtx;
 
-	theta = M_PI * (theta / 180);
+	theta = to_rad(theta);
 	mtx = create_identity(4);
 	mtx->mat[1][1] = cos(theta);
 	mtx->mat[1][2] = -sin(theta);
@@ -52,7 +52,7 @@ t_matrix	*y_rotation(double theta)
 {
 	t_matrix	*mtx;
 
-	theta = M_PI * (theta / 180);
+	theta = to_rad(theta);
 	mtx = create_identity(4);
 	mtx->mat[0][0] = cos(theta);
 	mtx->mat[0][2] = sin(theta);
@@ -65,7 +65,7 @@ t_matrix	*z_rotation(double theta)
 {
 	t_matrix	*mtx;
 
-	theta = M_PI * (theta / 180);
+	theta = to_rad(theta);
 	mtx = create_identity(4);
 	mtx->mat[0][0] = cos(theta);
 	mtx->mat[0][1] = -sin(theta);

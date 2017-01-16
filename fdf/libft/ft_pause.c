@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   return_free.c                                      :+:      :+:    :+:   */
+/*   ft_pause.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/13 20:04:59 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 13:54:32 by edescoin         ###   ########.fr       */
+/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
+/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*return_free(void *ret, void *ptr)
+void	ft_pause(void)
 {
-	free(ptr);
-	return (ret);
+	read(1, NULL, 1);
 }
