@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 20:12:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/17 14:05:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ t_vector	*create_vector(double x, double y, double z)
 
 void		transform_vector(t_vector *dest, t_vector *vect, double d)
 {
-	dest->x = (vect->x * d) / (vect->z ? vect->z : 1);
-	dest->y = (vect->y * d) / (vect->z ? vect->z : 1);
-	dest->z = vect->z;
+	dest->x = (vect->x * d) / vect->z;
+	dest->y = (vect->y * d) / vect->z;
+	dest->z = d;
 }
 
 t_map		*new_cell(t_vector *vect)

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 11:43:59 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 20:53:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/17 13:43:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_map	*add_new_cell(t_map *last, t_file_crds *crd, char *nb, t_map **r_head)
 
 	tmp = insert_cell(last, new_cell(create_vector((++crd->x), crd->y,
 													ft_atoi(nb))));
+	if (!tmp->vect->z)
+		tmp->vect->z = 1;
 	if (!last || (last && last->right != tmp))
 		*r_head = tmp;
 	if (nb[(int)crd->len] == '\n')

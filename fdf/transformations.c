@@ -6,70 +6,90 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:19:18 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 20:52:54 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/17 12:11:43 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
 
-t_matrix	*translation(double x, double y, double z)
+void		translation(t_matrix **mtx, double x, double y, double z)
 {
-	t_matrix	*mtx;
+	t_matrix	*tmp;
+	t_matrix	*res;
 
-	mtx = create_identity(4);
-	mtx->mat[0][3] = x;
-	mtx->mat[1][3] = y;
-	mtx->mat[2][3] = z;
-	return (mtx);
+	tmp = create_identity(4);
+	tmp->mat[0][3] = x;
+	tmp->mat[1][3] = y;
+	tmp->mat[2][3] = z;
+	res = mult_matrix(tmp, *mtx);
+	delete_matrix(mtx);
+	delete_matrix(&tmp);
+	*mtx = res;
 }
 
-t_matrix	*scale(double x, double y, double z)
+void	scale(t_matrix **mtx, double x, double y, double z)
 {
-	t_matrix	*mtx;
+	t_matrix	*tmp;
+	t_matrix	*res;
 
-	mtx = create_identity(4);
-	mtx->mat[0][0] = x;
-	mtx->mat[1][1] = y;
-	mtx->mat[2][2] = z;
-	return (mtx);
+	tmp = create_identity(4);
+	tmp->mat[0][0] = x;
+	tmp->mat[1][1] = y;
+	tmp->mat[2][2] = z;
+	res = mult_matrix(tmp, *mtx);
+	delete_matrix(mtx);
+	delete_matrix(&tmp);
+	*mtx = res;
 }
 
-t_matrix	*x_rotation(double theta)
+void	x_rotation(t_matrix **mtx, double theta)
 {
-	t_matrix	*mtx;
+	t_matrix	*tmp;
+	t_matrix	*res;
 
+	tmp = create_identity(4);
 	theta = to_rad(theta);
-	mtx = create_identity(4);
-	mtx->mat[1][1] = cos(theta);
-	mtx->mat[1][2] = -sin(theta);
-	mtx->mat[2][1] = sin(theta);
-	mtx->mat[2][1] = cos(theta);
-	return (mtx);
+	tmp->mat[1][1] = cos(theta);
+	tmp->mat[1][2] = -sin(theta);
+	tmp->mat[2][1] = sin(theta);
+	tmp->mat[2][2] = cos(theta);
+	res = mult_matrix(tmp, *mtx);
+	delete_matrix(mtx);
+	delete_matrix(&tmp);
+	*mtx = res;
 }
 
-t_matrix	*y_rotation(double theta)
+void	y_rotation(t_matrix **mtx, double theta)
 {
-	t_matrix	*mtx;
+	t_matrix	*tmp;
+	t_matrix	*res;
 
+	tmp = create_identity(4);
 	theta = to_rad(theta);
-	mtx = create_identity(4);
-	mtx->mat[0][0] = cos(theta);
-	mtx->mat[0][2] = sin(theta);
-	mtx->mat[2][0] = -sin(theta);
-	mtx->mat[2][2] = cos(theta);
-	return (mtx);
+	tmp->mat[0][0] = cos(theta);
+	tmp->mat[0][2] = sin(theta);
+	tmp->mat[2][0] = -sin(theta);
+	tmp->mat[2][2] = cos(theta);
+	res = mult_matrix(tmp, *mtx);
+	delete_matrix(mtx);
+	delete_matrix(&tmp);
+	*mtx = res;
 }
 
-t_matrix	*z_rotation(double theta)
+void	z_rotation(t_matrix **mtx, double theta)
 {
-	t_matrix	*mtx;
+	t_matrix	*tmp;
+	t_matrix	*res;
 
+	tmp = create_identity(4);
 	theta = to_rad(theta);
-	mtx = create_identity(4);
-	mtx->mat[0][0] = cos(theta);
-	mtx->mat[0][1] = -sin(theta);
-	mtx->mat[1][0] = sin(theta);
-	mtx->mat[1][1] = cos(theta);
-	return (mtx);
+	tmp->mat[0][0] = cos(theta);
+	tmp->mat[0][1] = -sin(theta);
+	tmp->mat[1][0] = sin(theta);
+	tmp->mat[1][1] = cos(theta);
+	res = mult_matrix(tmp, *mtx);
+	delete_matrix(mtx);
+	delete_matrix(&tmp);
+	*mtx = res;
 }

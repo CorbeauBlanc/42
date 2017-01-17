@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 20:48:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/17 14:05:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void		mlx_draw_quadrangle(t_vector *pt1, t_vector *pt2,
 ** main.c
 */
 double		dabs(double f);
-double		to_deg(double rad);
 double		to_rad(int deg);
 
 /*
@@ -61,11 +60,11 @@ int			is_in_window(t_vector *vect);
 /*
 ** transformations.c
 */
-t_matrix	*translation(double x, double y, double z);
-t_matrix	*x_rotation(double theta);
-t_matrix	*y_rotation(double theta);
-t_matrix	*z_rotation(double theta);
-t_matrix	*scale(double x, double y, double z);
+void	translation(t_matrix **mtx, double x, double y, double z);
+void	x_rotation(t_matrix **mtx, double theta);
+void	y_rotation(t_matrix **mtx, double theta);
+void	z_rotation(t_matrix **mtx, double theta);
+void	scale(t_matrix **mtx, double x, double y, double z);
 
 /*
 ** vectors.c

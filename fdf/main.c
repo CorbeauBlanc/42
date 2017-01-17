@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 20:58:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/17 14:24:07 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ double		to_rad(int deg)
 	return (deg * (M_PI / 180.0));
 }
 
-double		to_deg(double rad)
-{
-	return (rad * (180.0 / M_PI));
-}
-
 int	main(int ac, char **av)
 {
 	t_map		*map;
@@ -39,8 +34,14 @@ int	main(int ac, char **av)
 
 	if (ac != 2 || !(map = read_file(av[1])))
 		return (1);
-	transform_map(map, (tmp = scale(50, 50, 1)));
-	free(tmp);
+	tmp = create_identity(4);
+	scale(&tmp, 10, 10, 1);
+	transform_map(map, tmp);
+	translation(&tmp, 200, 200, 1);
+	transform_map(map, tmp);
+	y_rotation(&tmp, 1);
+	transform_map(map, tmp);
+	delete_matrix(&tmp);
 	core = get_mlx_core();
 	cam = new_camera(90);
 
