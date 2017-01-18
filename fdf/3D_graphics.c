@@ -6,30 +6,44 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:02:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/17 14:05:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/18 21:01:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
 
-t_camera	*new_camera(int fov)
+t_camera	*new_camera(int fov, double h_ang, double v_ang, double d)
 {
 	t_camera	*cam;
+	t_matrix	*tmp1;
+	t_matrix	*tmp2;
 
 	if (!(cam = malloc(sizeof(t_camera))))
 		return (NULL);
 	cam->fov = fov;
-	cam->theta = 90;
-	cam->phi = 90;
-	cam->r = 1 / tan(to_rad(fov) / 2.0);
+	cam->theta = v_ang;
+	cam->phi = h_ang;
+	cam->r = d;
+	cam->f = HEIGHT / (2 *tan(to_rad(fov) / 2.0f));
+	tmp1 = create_identity(4);
+	translation(&tmp1, -d * cos(v_ang) * cos(h_ang),
+				-d * sin(v_ang) * cos(h_ang),
+				-d * sin(h_ang));
+	z_rotation(&tmp1, v_ang - 90);
+	x_rotation(&tmp1, 90 + h_ang);
+	tmp2 = create_identity(4);
+	tmp2->mat[1][1] = -1;
+	cam->proj = mult_matrix(tmp1, tmp2);
+	delete_matrix(&tmp1);
+	delete_matrix(&tmp2);
 	return (cam);
 }
 
 void		set_camera_fov(t_camera	*cam, int fov)
 {
 	cam->fov = fov;
-	cam->r = 1 / tan(to_rad(fov) / 2.0);
+	cam->f = 1 / tan(to_rad(fov) / 2.0f);
 }
 
 void		transform_map(t_map *map, t_matrix *mat)
@@ -60,10 +74,14 @@ void		projection(t_camera *cam, t_map *map)
 	flag = 1;
 	while (flag)
 	{
-		transform_vector(&p1, map->vect, cam->r);
-		transform_vector(&p2, map->right->vect, cam->r);
-		transform_vector(&p3, map->right->down->vect, cam->r);
-		transform_vector(&p4, map->down->vect, cam->r);
+		transform_vector(&p1, map->vect, cam);
+		transform_vector(&p2, map->right->vect, cam);
+		transform_vector(&p3, map->right->down->vect, cam);
+		transform_vector(&p4, map->down->vect, cam);
+		printf("(%f, %f)", p1.x, p1.y);
+		printf("(%f, %f)\n", p2.x, p2.y);
+		printf("(%f, %f)", p4.x, p4.y);
+		printf("(%f, %f)\n\n", p3.x, p3.y);
 		if (!(map->left))
 			r_head = map;
 		if (is_in_window(&p1) || is_in_window(&p2) || is_in_window(&p3) ||

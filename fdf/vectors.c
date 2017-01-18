@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/17 14:05:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/18 19:50:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ t_vector	*create_vector(double x, double y, double z)
 	return (vect);
 }
 
-void		transform_vector(t_vector *dest, t_vector *vect, double d)
+void		transform_vector(t_vector *dest, t_vector *vect, t_camera *cam)
 {
-	dest->x = (vect->x * d) / vect->z;
-	dest->y = (vect->y * d) / vect->z;
-	dest->z = d;
+	mult_vector(dest, cam->proj, vect);
+	dest->x = 250 + (cam->f * dest->x) / dest->z;
+	dest->y = 250 + (cam->f * dest->y) / dest->z;
+	dest->z = 0;
 }
 
 t_map		*new_cell(t_vector *vect)
@@ -71,4 +72,24 @@ t_map		*insert_cell(t_map *head, t_map *cell)
 		cell->head = head->head;
 	}
 	return (cell);
+}
+
+void		mult_vector(t_vector *dest, t_matrix *mtx, t_vector *vec)
+{
+	int	x;
+	int	y;
+	int	z;
+
+	if (mtx->r >= 3 || mtx->c >= 4)
+	{
+		x = mtx->mat[0][0] * vec->x + mtx->mat[0][1] * vec->y +
+				mtx->mat[0][2] * vec->z + mtx->mat[0][3];
+		y = mtx->mat[1][0] * vec->x + mtx->mat[1][1] * vec->y +
+				mtx->mat[1][2] * vec->z + mtx->mat[1][3];
+		z = mtx->mat[2][0] * vec->x + mtx->mat[2][1] * vec->y +
+				mtx->mat[2][2] * vec->z + mtx->mat[2][3];
+		dest->x = x;
+		dest->y = y;
+		dest->z = z;
+	}
 }

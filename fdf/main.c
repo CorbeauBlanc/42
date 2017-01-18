@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/17 14:24:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/18 21:05:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ double	dabs(double f)
 
 double		to_rad(int deg)
 {
-	return (deg * (M_PI / 180.0));
+	return (deg * (M_PI / 180.0f));
 }
 
 int	main(int ac, char **av)
@@ -35,16 +35,14 @@ int	main(int ac, char **av)
 	if (ac != 2 || !(map = read_file(av[1])))
 		return (1);
 	tmp = create_identity(4);
-	scale(&tmp, 10, 10, 1);
-	transform_map(map, tmp);
-	translation(&tmp, 200, 200, 1);
-	transform_map(map, tmp);
-	y_rotation(&tmp, 1);
+	scale(&tmp, 20, 20, 20);
+	translation(&tmp, -160, -340, 0);
 	transform_map(map, tmp);
 	delete_matrix(&tmp);
-	core = get_mlx_core();
-	cam = new_camera(90);
 
+	cam = new_camera(90, 70, 90, 300);
+
+	core = get_mlx_core();
 	projection(cam, map);
 	mlx_loop(core->co);
 	return (0);

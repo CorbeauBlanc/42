@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:19:18 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/17 12:11:43 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/17 17:30:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ void	y_rotation(t_matrix **mtx, double theta)
 	delete_matrix(mtx);
 	delete_matrix(&tmp);
 	*mtx = res;
+	int i, j;
+	for (i = 0; i < 4; ++i)
+	{
+		for (j = 0; j < 4; ++j)
+			printf(" %f ", res->mat[i][j]);
+		printf("\n");
+	}
 }
 
 void	z_rotation(t_matrix **mtx, double theta)

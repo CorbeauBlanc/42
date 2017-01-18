@@ -6,11 +6,25 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 17:14:48 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 17:17:21 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/18 12:20:43 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void		clear_matrix(t_matrix *mat)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < mat->r)
+	{
+		j = -1;
+		while (++j < mat->c)
+			mat->mat[i][j] = 0;
+	}
+}
 
 t_matrix	*create_matrix(double **mat, int r, int c)
 {
@@ -87,24 +101,4 @@ t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2)
 		}
 	}
 	return (mult);
-}
-
-void		mult_vector(t_vector *dest, t_matrix *mtx, t_vector *vec)
-{
-	int	x;
-	int	y;
-	int	z;
-
-	if (mtx->r >= 3 || mtx->c >= 4)
-	{
-		x = mtx->mat[0][0] * vec->x + mtx->mat[0][1] * vec->y +
-				mtx->mat[0][2] * vec->z + mtx->mat[0][3];
-		y = mtx->mat[1][0] * vec->x + mtx->mat[1][1] * vec->y +
-				mtx->mat[1][2] * vec->z + mtx->mat[1][3];
-		z = mtx->mat[2][0] * vec->x + mtx->mat[2][1] * vec->y +
-				mtx->mat[2][2] * vec->z + mtx->mat[2][3];
-		dest->x = x;
-		dest->y = y;
-		dest->z = z;
-	}
 }

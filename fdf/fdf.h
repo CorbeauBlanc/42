@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/17 14:05:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/18 14:22:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 /*
 ** 3D_graphics.c
 */
-t_camera	*new_camera(int fov);
+t_camera	*new_camera(int fov, double h_angle, double v_angle, double dist);
 void		projection(t_camera *cam, t_map *map);
 void		set_camera_fov(t_camera	*cam, int fov);
 void		transform_map(t_map *map, t_matrix *mat);
@@ -45,11 +45,11 @@ double		to_rad(int deg);
 /*
 ** matrix.c
 */
+void		clear_matrix(t_matrix *mat);
 t_matrix	*create_matrix(double **mat, int r, int c);
 t_matrix	*create_identity(int i);
 void		delete_matrix(t_matrix **matrix);
 t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2);
-void		mult_vector(t_vector *dest, t_matrix *mtx, t_vector *vec);
 
 /*
 ** tools.c
@@ -71,7 +71,8 @@ void	scale(t_matrix **mtx, double x, double y, double z);
 */
 t_vector	*create_vector(double x, double y, double z);
 t_map		*insert_cell(t_map *head, t_map *cell);
+void		mult_vector(t_vector *dest, t_matrix *mtx, t_vector *vec);
 t_map		*new_cell(t_vector *vect);
-void		transform_vector(t_vector *dest, t_vector *vect, double d);
+void		transform_vector(t_vector *dest, t_vector *vect, t_camera *cam);
 
 #endif

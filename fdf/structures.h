@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/17 14:05:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/18 14:18:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ typedef struct		s_file_crds
 typedef struct		s_camera
 {
 	int				fov;
+	double			f;
 	double			theta;
 	double			phi;
 	double			r;
+	t_matrix		*proj;
 }					t_camera;
 
 #endif
