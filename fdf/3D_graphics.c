@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:02:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/18 21:01:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/18 21:49:47 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_camera	*new_camera(int fov, double h_ang, double v_ang, double d)
 	translation(&tmp1, -d * cos(v_ang) * cos(h_ang),
 				-d * sin(v_ang) * cos(h_ang),
 				-d * sin(h_ang));
-	z_rotation(&tmp1, v_ang - 90);
 	x_rotation(&tmp1, 90 + h_ang);
+	z_rotation(&tmp1, v_ang - 90);
 	tmp2 = create_identity(4);
 	tmp2->mat[1][1] = -1;
 	cam->proj = mult_matrix(tmp1, tmp2);
