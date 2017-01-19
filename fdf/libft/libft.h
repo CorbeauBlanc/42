@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:10:30 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:19:44 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/19 14:12:06 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ char				*ft_strnstr(const char *big, const char *little, size_t l);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strrealloc(char *src, size_t new_size);
 char				*ft_strrev(char *s);
+char				*ft_strspc(char *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strstr(const char *big, const char *little);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);

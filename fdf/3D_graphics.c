@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:02:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/18 21:49:47 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/19 13:40:04 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,13 @@ void		set_camera_fov(t_camera	*cam, int fov)
 
 void		transform_map(t_map *map, t_matrix *mat)
 {
-	t_map	*r_head;
-
 	while (map)
 	{
-		if (!map->left)
-			r_head = map;
 		mult_vector(map->vect, mat, map->vect);
 		if (map->right)
 			map = map->right;
 		else
-			map = r_head->down;
+			map = map->r_head->down;
 	}
 }
 
@@ -68,7 +64,6 @@ void		projection(t_camera *cam, t_map *map)
 	t_vector	p2;
 	t_vector	p3;
 	t_vector	p4;
-	t_map		*r_head;
 	int			flag;
 
 	flag = 1;
@@ -82,15 +77,13 @@ void		projection(t_camera *cam, t_map *map)
 		printf("(%f, %f)\n", p2.x, p2.y);
 		printf("(%f, %f)", p4.x, p4.y);
 		printf("(%f, %f)\n\n", p3.x, p3.y);
-		if (!(map->left))
-			r_head = map;
 		if (is_in_window(&p1) || is_in_window(&p2) || is_in_window(&p3) ||
 			is_in_window(&p4))
 			mlx_draw_quadrangle(&p1, &p2, &p3, &p4);
 		if (map->right->right)
 			map = map->right;
-		else if (r_head->down->down)
-			map = r_head->down;
+		else if (map->r_head->down->down)
+			map = map->r_head->down;
 		else
 			flag = 0;
 	}

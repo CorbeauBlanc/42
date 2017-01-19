@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 11:43:59 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/18 19:29:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/19 14:24:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,57 @@
 #include <unistd.h>
 #include "fdf.h"
 
-t_map	*add_new_cell(t_map *last, t_file_crds *crd, char *nb, t_map **r_head)
+char	*add_new_cells(t_map **last, t_vector *crd, char *nbs)
 {
-	t_map	*tmp;
+	char	*tmp;
 
-	tmp = insert_cell(last, new_cell(create_vector((++crd->x), crd->y,
-													ft_atoi(nb))));
-	if (!tmp->vect->z)
-		tmp->vect->z = 1;
-	if (!last || (last && last->right != tmp))
-		*r_head = tmp;
-	if (nb[(int)crd->len] == '\n')
+	while (nbs && nbs + 1)
 	{
-		tmp = (*r_head);
-		crd->x = -1;
-		++crd->y;
+		while (nbs && ft_isspace(*nbs))
+			++nbs;
+		if ((tmp = ft_strspc(nbs)))
+		{
+			*last = insert_cell(*last, new_cell(create_vector((++crd->x), crd->y,
+															ft_atoi(nbs))));
+			nbs = tmp;
+			if (*nbs == '\n')
+			{
+				*last = (*last)->r_head;
+				++crd->y;
+				crd->x = -1;
+			}
+		}
+		else
+			return (nbs);
 	}
-	crd->len = 0;
-	ft_memset(nb, '*', ft_strlen(nb));
-	return (tmp);
+	return (NULL);
 }
 
 t_map	*read_file(char *path)
 {
-	t_file_crds	coords;
-	char		*nb;
-	t_map		*r_head;
+	t_vector	crds;
+	char		*nbs;
+	char		*tmp;
+	int			len;
+	int			fd;
 	t_map		*last;
 
-	if (!(coords.fd = open(path, O_RDONLY)))
+	if (!(fd = open(path, O_RDONLY)))
 		return (NULL);
-	coords.len = 0;
-	nb = ft_strnew(1);
-	r_head = NULL;
+	nbs = ft_strnew(BUFF_SIZE);
 	last = NULL;
-	coords.x = -1;
-	coords.y = 0;
-	while (read(coords.fd, &nb[coords.len], 1) > 0)
+	crds.x = -1;
+	crds.y = 0;
+	len = 0;
+	while (read(fd, nbs + len, BUFF_SIZE - len) > 0)
 	{
-		if (ft_isspace(nb[coords.len]) && coords.len &&
-			ft_isdigit(nb[coords.len - 1]))
-			last = add_new_cell(last, &coords, nb, &r_head);
-		else if (!nb[coords.len + 1])
-			nb = ft_strrealloc(nb, ++coords.len + 1);
-		else
-			++coords.len;
+		tmp = add_new_cells(&last, &crds, nbs);
+		len = ft_strlen(tmp);
+		ft_strncpy(nbs, tmp, len);
+		ft_memset(nbs + len, '\0', BUFF_SIZE - len);
 	}
-	return (last->head);
+	free(nbs);
+	return (last->r_head->c_head);
 }
 
 int		is_in_window(t_vector *vect)

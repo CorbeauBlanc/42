@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/18 14:18:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/19 13:11:11 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,13 @@ typedef struct		s_mlx_core
 typedef struct		s_map
 {
 	t_vector		*vect;
-	struct s_map	*head;
+	struct s_map	*r_head;
+	struct s_map	*c_head;
 	struct s_map	*left;
 	struct s_map	*right;
 	struct s_map	*up;
 	struct s_map	*down;
 }					t_map;
-
-typedef struct		s_file_crds
-{
-	int				x;
-	int				y;
-	int				len;
-	int				fd;
-}					t_file_crds;
 
 typedef struct		s_camera
 {

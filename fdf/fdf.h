@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/18 14:22:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/19 11:21:08 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FDF_H
 # define HEIGHT 1000
 # define WIDTH 1000
+# define BUFF_SIZE 1024
 
 # include <stdlib.h>
 # include <stdio.h>

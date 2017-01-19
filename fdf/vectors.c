@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/18 19:50:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/19 13:44:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,33 +44,31 @@ t_map		*new_cell(t_vector *vect)
 	cell->left = NULL;
 	cell->right = NULL;
 	cell->up = NULL;
-	cell->head = NULL;
+	cell->r_head = NULL;
+	cell->c_head = NULL;
 	return (cell);
 }
 
 t_map		*insert_cell(t_map *head, t_map *cell)
 {
-	if (!head)
-		cell->head = cell;
-	else
+
+	if (head && !(head->right))
 	{
-		if (!(head->right))
+		head->right = cell;
+		cell->left = head;
+		if (head->up && head->up->right)
 		{
-			head->right = cell;
-			cell->left = head;
-			if (head->up && head->up->right)
-			{
-				cell->up = head->up->right;
-				head->up->right->down = cell;
-			}
+			cell->up = head->up->right;
+			head->up->right->down = cell;
 		}
-		else
-		{
-			head->down = cell;
-			cell->up = head;
-		}
-		cell->head = head->head;
 	}
+	else if (head)
+	{
+		cell->up = head;
+		head->down = cell;
+	}
+	cell->c_head = cell->up ? cell->up->c_head : cell;
+	cell->r_head = cell->left ? cell->left->r_head : cell;
 	return (cell);
 }
 
