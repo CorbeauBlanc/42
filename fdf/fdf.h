@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/19 11:21:08 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/19 23:26:34 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,17 @@ void		transform_map(t_map *map, t_matrix *mat);
 /*
 ** graphics.c
 */
-t_mlx_core	*get_mlx_core(void);
+t_mlx_core	*mlx_get_core(void);
 void		mlx_draw_line(t_vector *pt1, t_vector *pt2);
 void		mlx_draw_quadrangle(t_vector *pt1, t_vector *pt2,
 								t_vector *pt3, t_vector *pt4);
+/*
+** images.c
+*/
+t_image		*create_image(int width, int height, int depth);
+void		delete_image(t_image **img);
+void		display_img(t_image *img, int x, int y);
+void		mlx_pixel_put_img(t_image *img, int x, int y, unsigned int color);
 
 /*
 ** main.c

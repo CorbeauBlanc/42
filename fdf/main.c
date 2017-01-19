@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/19 14:23:39 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/19 23:37:20 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ double		to_rad(int deg)
 
 int	main(int ac, char **av)
 {
-	t_map		*map;
-	t_camera	*cam;
+	(void)ac;
+	(void)av;
+/*	t_map		*map;
+	t_camera	*cam;*/
 	t_mlx_core	*core;
-	t_matrix	*tmp;
+/*	t_matrix	*tmp;
 
 	if (ac != 2 || !(map = read_file(av[1])))
 		return (1);
@@ -41,9 +43,15 @@ int	main(int ac, char **av)
 	delete_matrix(&tmp);
 
 	cam = new_camera(90, 70, 90, 300);
-
-	core = get_mlx_core();
-	projection(cam, map);
+*/
+	core = mlx_get_core();
+	t_image *test = create_image(300, 300, 32);
+	int i, j;
+	for (i = 0; i < 150; ++i)
+		for (j = 0; j < 150; ++j)
+			mlx_pixel_put_img(test, i, j, 0xFF);
+	display_img(test, 50, 50);
+//	projection(cam, map);
 	mlx_loop(core->co);
 	return (0);
 }
