@@ -6,26 +6,22 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/19 23:37:20 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/20 15:04:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
 #include <mlx.h>
 #include <fcntl.h>
-#include <math.h>
+#include "fdf.h"
 
-double	dabs(double f)
+void	exit_main()
 {
-	return (f < 0 ? -f : f);
+	mlx_destroy_window(mlx_get_core()->co, mlx_get_core()->win);
+	garbage_collector(CLEAR, NULL, NULL);
+	exit(0);
 }
 
-double		to_rad(int deg)
-{
-	return (deg * (M_PI / 180.0f));
-}
-
-int	main(int ac, char **av)
+int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
@@ -46,12 +42,16 @@ int	main(int ac, char **av)
 */
 	core = mlx_get_core();
 	t_image *test = create_image(300, 300, 32);
+	garbage_collector(ADD, test, &delete_image);
 	int i, j;
 	for (i = 0; i < 150; ++i)
 		for (j = 0; j < 150; ++j)
 			mlx_pixel_put_img(test, i, j, 0xFF);
 	display_img(test, 50, 50);
 //	projection(cam, map);
+	t_key_evt *echap = init_key_evts(65307, &exit_main, NULL, NULL);
+	mlx_key_hook(core->win, &key_hook, echap);
 	mlx_loop(core->co);
+	exit_main();
 	return (0);
 }

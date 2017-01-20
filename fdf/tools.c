@@ -6,12 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 11:43:59 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/19 14:24:02 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/20 14:00:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
+#include <math.h>
 #include "fdf.h"
 
 char	*add_new_cells(t_map **last, t_vector *crd, char *nbs)
@@ -70,4 +71,14 @@ t_map	*read_file(char *path)
 int		is_in_window(t_vector *vect)
 {
 	return (vect->x > 0 && vect->x < WIDTH && vect->y > 0 && vect->y < HEIGHT);
+}
+
+double	dabs(double f)
+{
+	return (f < 0 ? -f : f);
+}
+
+double		to_rad(int deg)
+{
+	return (deg * (M_PI / 180.0f));
 }

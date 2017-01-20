@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:43:43 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/19 23:26:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/20 15:00:25 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ t_image	*create_image(int width, int height, int depth)
 	return (img);
 }
 
-void	delete_image(t_image **img)
+void	delete_image(t_image *img)
 {
-	mlx_destroy_image(mlx_get_core()->co, (*img)->ptr);
-	free(*img);
+	mlx_destroy_image(mlx_get_core()->co, img->ptr);
+	free(img);
 }
 
 void	mlx_pixel_put_img(t_image *img, int x, int y, unsigned int color)
