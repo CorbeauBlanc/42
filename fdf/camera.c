@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/21 13:19:40 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/21 19:18:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ t_camera	*new_camera(int fov, double h_ang, double v_ang, double d)
 	cam->r = d;
 	cam->f = HEIGHT / (2 *tan(to_rad(fov) / 2.0f));
 	tmp1 = create_identity(4);
-	translation(&tmp1, -d * cos(v_ang) * cos(h_ang),
-				-d * sin(v_ang) * cos(h_ang),
-				-d * sin(h_ang));
-	x_rotation(&tmp1, 90 + h_ang);
+	translation(&tmp1, -d * cos(to_rad(v_ang)) * cos(to_rad(h_ang)),
+				-d * sin(to_rad(v_ang)) * cos(to_rad(h_ang)),
+				-d * sin(to_rad(h_ang)));
 	z_rotation(&tmp1, v_ang - 90);
+	//y_rotation(&tmp1, v_ang - 90);
+	x_rotation(&tmp1, 90 + h_ang);
 	tmp2 = create_identity(4);
-	tmp2->mat[1][1] = -1;
-	cam->proj = mult_matrix(tmp1, tmp2);
+	tmp2->mat[0][0] = -1;
+	tmp2->mat[2][2] = -1;
+	cam->view = mult_matrix(tmp1, tmp2);
 	delete_matrix(tmp1);
 	delete_matrix(tmp2);
 	return (cam);
@@ -43,7 +45,7 @@ t_camera	*new_camera(int fov, double h_ang, double v_ang, double d)
 
 void		delete_camera(t_camera *cam)
 {
-	delete_matrix(cam->proj);
+	delete_matrix(cam->view);
 	free(cam);
 }
 
@@ -70,7 +72,7 @@ void		set_camera_crd(t_camera *cam, double h_ang, double v_ang, double d)
 	z_rotation(&tmp1, v_ang - 90);
 	tmp2 = create_identity(4);
 	tmp2->mat[1][1] = -1;
-	cam->proj = mult_matrix(tmp1, tmp2);
+	cam->view = mult_matrix(tmp1, tmp2);
 	delete_matrix(tmp1);
 	delete_matrix(tmp2);
 }

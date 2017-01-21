@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:02:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/21 14:44:23 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/21 19:00:04 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static void	draw_map_tile(t_image *img, t_tile *tile, t_map *map, t_camera *cam)
 	transform_vector(&tile->p2, map->right->vect, cam);
 	transform_vector(&tile->p3, map->right->down->vect, cam);
 	transform_vector(&tile->p4, map->down->vect, cam);
-	printf("(%.2f, %.2f)", tile->p1.x, tile->p1.y);
-	printf("(%.2f, %.2f)\n", tile->p2.x, tile->p2.y);
-	printf("(%.2f, %.2f)", tile->p4.x, tile->p4.y);
-	printf("(%.2f, %.2f)\n\n", tile->p3.x, tile->p3.y);
+	printf("(%.2f, %.2f, %.2f)", tile->p1.x, tile->p1.y, tile->p1.z);
+	printf("(%.2f, %.2f, %.2f)\n", tile->p2.x, tile->p2.y, tile->p2.z);
+	printf("(%.2f, %.2f, %.2f)", tile->p4.x, tile->p4.y, tile->p4.z);
+	printf("(%.2f, %.2f, %.2f)\n\n", tile->p3.x, tile->p3.y, tile->p3.z);
 	if (is_in_window(&tile->p1) || is_in_window(&tile->p2) ||
 		is_in_window(&tile->p3) || is_in_window(&tile->p4))
 	{

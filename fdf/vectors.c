@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/21 14:57:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/21 18:36:37 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_vector	*create_vector(double x, double y, double z)
 
 void		transform_vector(t_vector *dest, t_vector *vect, t_camera *cam)
 {
-	mult_vector(dest, cam->proj, vect);
+	mult_vector(dest, cam->view, vect);
 	dest->x = (WIDTH / 4) + (cam->f * dest->x) / dest->z;
 	dest->y = (HEIGHT / 4) + (cam->f * dest->y) / dest->z;
 	dest->z = 0;
