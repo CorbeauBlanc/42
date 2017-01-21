@@ -6,45 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:02:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/19 13:40:04 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/21 14:44:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
-
-t_camera	*new_camera(int fov, double h_ang, double v_ang, double d)
-{
-	t_camera	*cam;
-	t_matrix	*tmp1;
-	t_matrix	*tmp2;
-
-	if (!(cam = malloc(sizeof(t_camera))))
-		return (NULL);
-	cam->fov = fov;
-	cam->theta = v_ang;
-	cam->phi = h_ang;
-	cam->r = d;
-	cam->f = HEIGHT / (2 *tan(to_rad(fov) / 2.0f));
-	tmp1 = create_identity(4);
-	translation(&tmp1, -d * cos(v_ang) * cos(h_ang),
-				-d * sin(v_ang) * cos(h_ang),
-				-d * sin(h_ang));
-	x_rotation(&tmp1, 90 + h_ang);
-	z_rotation(&tmp1, v_ang - 90);
-	tmp2 = create_identity(4);
-	tmp2->mat[1][1] = -1;
-	cam->proj = mult_matrix(tmp1, tmp2);
-	delete_matrix(&tmp1);
-	delete_matrix(&tmp2);
-	return (cam);
-}
-
-void		set_camera_fov(t_camera	*cam, int fov)
-{
-	cam->fov = fov;
-	cam->f = 1 / tan(to_rad(fov) / 2.0f);
-}
 
 void		transform_map(t_map *map, t_matrix *mat)
 {
@@ -58,28 +25,36 @@ void		transform_map(t_map *map, t_matrix *mat)
 	}
 }
 
-void		projection(t_camera *cam, t_map *map)
+static void	draw_map_tile(t_image *img, t_tile *tile, t_map *map, t_camera *cam)
 {
-	t_vector	p1;
-	t_vector	p2;
-	t_vector	p3;
-	t_vector	p4;
+	transform_vector(&tile->p1, map->vect, cam);
+	transform_vector(&tile->p2, map->right->vect, cam);
+	transform_vector(&tile->p3, map->right->down->vect, cam);
+	transform_vector(&tile->p4, map->down->vect, cam);
+	printf("(%.2f, %.2f)", tile->p1.x, tile->p1.y);
+	printf("(%.2f, %.2f)\n", tile->p2.x, tile->p2.y);
+	printf("(%.2f, %.2f)", tile->p4.x, tile->p4.y);
+	printf("(%.2f, %.2f)\n\n", tile->p3.x, tile->p3.y);
+	if (is_in_window(&tile->p1) || is_in_window(&tile->p2) ||
+		is_in_window(&tile->p3) || is_in_window(&tile->p4))
+	{
+		mlx_draw_line_img(img, &tile->p1, &tile->p2);
+		mlx_draw_line_img(img, &tile->p2, &tile->p3);
+		mlx_draw_line_img(img, &tile->p3, &tile->p4);
+		mlx_draw_line_img(img, &tile->p4, &tile->p1);
+	}
+}
+
+void		projection(t_image *img, t_map *map, t_camera *cam)
+{
+	t_tile		tile;
 	int			flag;
 
 	flag = 1;
+	clear_image(img);
 	while (flag)
 	{
-		transform_vector(&p1, map->vect, cam);
-		transform_vector(&p2, map->right->vect, cam);
-		transform_vector(&p3, map->right->down->vect, cam);
-		transform_vector(&p4, map->down->vect, cam);
-		printf("(%f, %f)", p1.x, p1.y);
-		printf("(%f, %f)\n", p2.x, p2.y);
-		printf("(%f, %f)", p4.x, p4.y);
-		printf("(%f, %f)\n\n", p3.x, p3.y);
-		if (is_in_window(&p1) || is_in_window(&p2) || is_in_window(&p3) ||
-			is_in_window(&p4))
-			mlx_draw_quadrangle(&p1, &p2, &p3, &p4);
+		draw_map_tile(img, &tile, map, cam);
 		if (map->right->right)
 			map = map->right;
 		else if (map->r_head->down->down)
@@ -87,4 +62,5 @@ void		projection(t_camera *cam, t_map *map)
 		else
 			flag = 0;
 	}
+	display_image(img, 0, 0);
 }

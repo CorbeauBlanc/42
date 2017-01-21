@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 17:14:48 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/18 12:20:43 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/21 12:37:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,15 @@ t_matrix	*create_identity(int i)
 	return (mtx);
 }
 
-void		delete_matrix(t_matrix **matrix)
+void		delete_matrix(t_matrix *matrix)
 {
 	int	r;
 
 	r = -1;
-	while (++r < (*matrix)->r)
-		free((*matrix)->mat[r]);
-	free((*matrix)->mat);
-	free(*matrix);
-	*matrix = NULL;
+	while (++r < matrix->r)
+		free(matrix->mat[r]);
+	free(matrix->mat);
+	free(matrix);
 }
 
 t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2)

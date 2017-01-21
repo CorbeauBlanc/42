@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:19:18 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/17 17:30:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/21 12:41:38 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void		translation(t_matrix **mtx, double x, double y, double z)
 	tmp->mat[1][3] = y;
 	tmp->mat[2][3] = z;
 	res = mult_matrix(tmp, *mtx);
-	delete_matrix(mtx);
-	delete_matrix(&tmp);
+	delete_matrix(*mtx);
+	delete_matrix(tmp);
 	*mtx = res;
 }
 
@@ -38,8 +38,8 @@ void	scale(t_matrix **mtx, double x, double y, double z)
 	tmp->mat[1][1] = y;
 	tmp->mat[2][2] = z;
 	res = mult_matrix(tmp, *mtx);
-	delete_matrix(mtx);
-	delete_matrix(&tmp);
+	delete_matrix(*mtx);
+	delete_matrix(tmp);
 	*mtx = res;
 }
 
@@ -55,8 +55,8 @@ void	x_rotation(t_matrix **mtx, double theta)
 	tmp->mat[2][1] = sin(theta);
 	tmp->mat[2][2] = cos(theta);
 	res = mult_matrix(tmp, *mtx);
-	delete_matrix(mtx);
-	delete_matrix(&tmp);
+	delete_matrix(*mtx);
+	delete_matrix(tmp);
 	*mtx = res;
 }
 
@@ -72,8 +72,8 @@ void	y_rotation(t_matrix **mtx, double theta)
 	tmp->mat[2][0] = -sin(theta);
 	tmp->mat[2][2] = cos(theta);
 	res = mult_matrix(tmp, *mtx);
-	delete_matrix(mtx);
-	delete_matrix(&tmp);
+	delete_matrix(*mtx);
+	delete_matrix(tmp);
 	*mtx = res;
 	int i, j;
 	for (i = 0; i < 4; ++i)
@@ -96,7 +96,7 @@ void	z_rotation(t_matrix **mtx, double theta)
 	tmp->mat[1][0] = sin(theta);
 	tmp->mat[1][1] = cos(theta);
 	res = mult_matrix(tmp, *mtx);
-	delete_matrix(mtx);
-	delete_matrix(&tmp);
+	delete_matrix(*mtx);
+	delete_matrix(tmp);
 	*mtx = res;
 }

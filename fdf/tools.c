@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 11:43:59 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/20 14:00:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/21 14:50:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_map	*read_file(char *path)
 	int			fd;
 	t_map		*last;
 
-	if (!(fd = open(path, O_RDONLY)))
+	if ((fd = open(path, O_RDONLY)) < 0)
 		return (NULL);
 	nbs = ft_strnew(BUFF_SIZE);
 	last = NULL;

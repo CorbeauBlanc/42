@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/20 15:00:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/21 14:35:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,16 @@
 /*
 ** 3D_graphics.c
 */
-t_camera	*new_camera(int fov, double h_angle, double v_angle, double dist);
-void		projection(t_camera *cam, t_map *map);
-void		set_camera_fov(t_camera	*cam, int fov);
+void		projection(t_image *img, t_map *map, t_camera *cam);
 void		transform_map(t_map *map, t_matrix *mat);
+
+/*
+** camera.c
+*/
+void		delete_camera(t_camera *cam);
+t_camera	*new_camera(int fov, double h_angle, double v_angle, double dist);
+void		set_camera_crd(t_camera *cam, double h_ang, double v_ang, double d);
+void		set_camera_fov(t_camera	*cam, int fov);
 
 /*
 ** key_events.c
@@ -53,10 +59,16 @@ void		mlx_draw_quadrangle(t_vector *pt1, t_vector *pt2,
 /*
 ** images.c
 */
+void		clear_image(t_image *img);
 t_image		*create_image(int width, int height, int depth);
 void		delete_image(t_image *img);
-void		display_img(t_image *img, int x, int y);
-void		mlx_pixel_put_img(t_image *img, int x, int y, unsigned int color);
+void		display_image(t_image *img, int x, int y);
+
+/*
+** img_graphics.c
+*/
+void		mlx_draw_line_img(t_image *img, t_vector *pt1, t_vector *pt2);
+void		mlx_pixel_put_img(t_image *img, int x, int y, int color);
 
 /*
 ** main.c
@@ -71,7 +83,7 @@ double		to_rad(int deg);
 void		clear_matrix(t_matrix *mat);
 t_matrix	*create_matrix(double **mat, int r, int c);
 t_matrix	*create_identity(int i);
-void		delete_matrix(t_matrix **matrix);
+void		delete_matrix(t_matrix *matrix);
 t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2);
 
 /*

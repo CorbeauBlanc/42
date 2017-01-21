@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/20 15:04:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/21 14:49:08 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-/*	t_map		*map;
-	t_camera	*cam;*/
+	t_map		*map;
+	t_camera	*cam;
 	t_mlx_core	*core;
-/*	t_matrix	*tmp;
+	t_matrix	*tmp;
 
 	if (ac != 2 || !(map = read_file(av[1])))
 		return (1);
@@ -36,19 +36,16 @@ int		main(int ac, char **av)
 	scale(&tmp, 20, 20, 20);
 	translation(&tmp, -160, -340, 0);
 	transform_map(map, tmp);
-	delete_matrix(&tmp);
+	delete_matrix(tmp);
 
 	cam = new_camera(90, 70, 90, 300);
-*/
+	garbage_collector(ADD, cam, &delete_camera);
+
 	core = mlx_get_core();
-	t_image *test = create_image(300, 300, 32);
+
+	t_image *test = create_image(1000, 1000, 32);
 	garbage_collector(ADD, test, &delete_image);
-	int i, j;
-	for (i = 0; i < 150; ++i)
-		for (j = 0; j < 150; ++j)
-			mlx_pixel_put_img(test, i, j, 0xFF);
-	display_img(test, 50, 50);
-//	projection(cam, map);
+	projection(test, map, cam);
 	t_key_evt *echap = init_key_evts(65307, &exit_main, NULL, NULL);
 	mlx_key_hook(core->win, &key_hook, echap);
 	mlx_loop(core->co);

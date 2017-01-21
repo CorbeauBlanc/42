@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/20 14:33:33 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/21 13:55:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@ typedef struct			s_vector
 	double				z;
 	double				w;
 }						t_vector;
+
+typedef struct			s_tile
+{
+	t_vector			p1;
+	t_vector			p2;
+	t_vector			p3;
+	t_vector			p4;
+}						t_tile;
 
 typedef struct			s_matrix
 {

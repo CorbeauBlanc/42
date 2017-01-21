@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:43:43 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/20 15:00:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/21 14:41:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,23 @@ void	delete_image(t_image *img)
 	free(img);
 }
 
-void	mlx_pixel_put_img(t_image *img, int x, int y, unsigned int color)
+void	clear_image(t_image *img)
 {
+	int x;
+	int y;
 	int bytes;
 
-	if (x < img->width && y < img->height && x >= 0 && y >= 0)
+	bytes = img->depth / 8;
+	y = -1;
+	while (++y < img->height)
 	{
-		bytes = img->depth / 8;
-		*(img->data + y * img->size_line + x * bytes) = color;
+		x = -1;
+		while (++x < img->width)
+			*((int*)(img->data + y * img->size_line + x * bytes)) = 0x000000;
 	}
 }
 
-void	display_img(t_image *img, int x, int y)
+void	display_image(t_image *img, int x, int y)
 {
 	t_mlx_core	*core;
 
