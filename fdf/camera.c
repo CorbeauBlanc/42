@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/21 19:18:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/23 17:36:38 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,27 @@ t_camera	*new_camera(int fov, double h_ang, double v_ang, double d)
 	translation(&tmp1, -d * cos(to_rad(v_ang)) * cos(to_rad(h_ang)),
 				-d * sin(to_rad(v_ang)) * cos(to_rad(h_ang)),
 				-d * sin(to_rad(h_ang)));
-	z_rotation(&tmp1, v_ang - 90);
-	//y_rotation(&tmp1, v_ang - 90);
+//	z_rotation(&tmp1, h_ang);
 	x_rotation(&tmp1, 90 + h_ang);
+	y_rotation(&tmp1, 90);
+
+/*	tmp1->mat[0][0] = 0;
+	tmp1->mat[0][1] = 0;
+	tmp1->mat[0][2] = 0;
+	tmp1->mat[0][3] = 0;
+	tmp1->mat[1][0] = 0;
+	tmp1->mat[1][1] = 0;
+	tmp1->mat[1][2] = 0;
+	tmp1->mat[1][3] = 0;
+	tmp1->mat[2][0] = 0;
+	tmp1->mat[2][1] = 0;
+	tmp1->mat[2][2] = 0;
+	tmp1->mat[2][3] = 0;
+	tmp1->mat[3][0] = 0;
+	tmp1->mat[3][1] = 0;
+	tmp1->mat[3][2] = 0;
+	tmp1->mat[3][3] = 0;*/
+
 	tmp2 = create_identity(4);
 	tmp2->mat[0][0] = -1;
 	tmp2->mat[2][2] = -1;

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/21 19:18:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/23 17:36:09 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int		main(int ac, char **av)
 		return (1);
 	tmp = create_identity(4);
 	scale(&tmp, 20, 20, 20);
-	translation(&tmp, 3, -13, 0);
+	translation(&tmp, -27, -3, 0);
 	transform_map(map, tmp);
 	delete_matrix(tmp);
 
-	cam = new_camera(90, 45, 90, 100);
+	cam = new_camera(90, 20, 0, 500);
 	garbage_collector(ADD, cam, &delete_camera);
 
 	core = mlx_get_core();
