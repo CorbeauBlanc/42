@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/21 14:35:00 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/25 13:49:17 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ void		mlx_pixel_put_img(t_image *img, int x, int y, int color);
 ** main.c
 */
 void		exit_main();
-double		dabs(double f);
-double		to_rad(int deg);
 
 /*
 ** matrix.c
@@ -89,8 +87,10 @@ t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2);
 /*
 ** tools.c
 */
-t_map		*read_file(char *path);
+double		dabs(double f);
 int			is_in_window(t_vector *vect);
+t_map		*read_file(char *path);
+double		to_rad(double deg);
 
 /*
 ** transformations.c

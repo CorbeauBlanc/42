@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 11:43:59 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/21 14:50:15 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/25 13:49:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ double	dabs(double f)
 	return (f < 0 ? -f : f);
 }
 
-double		to_rad(int deg)
+double		to_rad(double deg)
 {
 	return (deg * (M_PI / 180.0f));
 }
