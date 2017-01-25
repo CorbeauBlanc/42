@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:52:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/19 23:04:18 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/25 21:18:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_mlx_core	*mlx_get_core(void)
 			return (NULL);
 		if (!(core->co = mlx_init()))
 			return (NULL);
-		core->win = mlx_new_window(core->co, 500, 500, "TEST");
+		core->win = mlx_new_window(core->co, WIDTH, HEIGHT, "TEST");
 	}
 	return (core);
 }

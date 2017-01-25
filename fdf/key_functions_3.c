@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   key_functions_3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/14 11:43:59 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/25 14:28:40 by edescoin         ###   ########.fr       */
+/*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
+/*   Updated: 2017/01/25 21:11:54 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "fdf.h"
 
-int		is_in_window(t_vector *vect)
+void	zoom_in(t_camera *cam, t_map *map)
 {
-	return (vect->x > 0 && vect->x < WIDTH && vect->y > 0 && vect->y < HEIGHT);
+	(void)map;
+	set_camera_crd(cam, cam->phi, cam->theta, cam->r - SCALE_Z);
 }
 
-double	dabs(double f)
+void	zoom_out(t_camera *cam, t_map *map)
 {
-	return (f < 0 ? -f : f);
-}
-
-double		to_rad(double deg)
-{
-	return (deg * (M_PI / 180.0f));
+	(void)map;
+	set_camera_crd(cam, cam->phi, cam->theta, cam->r + SCALE_Z);
 }

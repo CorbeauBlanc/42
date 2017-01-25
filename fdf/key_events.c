@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:21:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/21 12:40:21 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/25 20:36:17 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ int		key_hook(int key, void *param)
 	while (key_evts && key_evts->key != key)
 		key_evts = key_evts->next;
 	if (key_evts)
+	{
 		key_evts->fct(key_evts->cam, key_evts->map);
+		projection(key_evts->map, key_evts->cam);
+	}
 	else
 		return (0);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/25 14:10:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/25 15:02:46 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,14 @@ t_camera	*new_camera(int fov, double h_ang, double v_ang, double d)
 	cam->r = d;
 	cam->f = HEIGHT / (2 *tan(to_rad(fov) / 2.0f));
 	cam->view = set_view_mtx(v_ang, h_ang, d);
+	cam->screen = create_image(WIDTH, HEIGHT, 32);
 	return (cam);
 }
 
 void		delete_camera(t_camera *cam)
 {
 	delete_matrix(cam->view);
+	delete_image(cam->screen);
 	free(cam);
 }
 
@@ -69,22 +71,9 @@ void		set_camera_fov(t_camera	*cam, int fov)
 
 void		set_camera_crd(t_camera *cam, double h_ang, double v_ang, double d)
 {
-	t_matrix	*tmp1;
-	t_matrix	*tmp2;
-
 	cam->theta = v_ang;
 	cam->phi = h_ang;
 	cam->r = d;
 	cam->f = HEIGHT / (2 *tan(to_rad(cam->fov) / 2.0f));
-	tmp1 = create_identity(4);
-	translation(&tmp1, -d * cos(v_ang) * cos(h_ang),
-				-d * sin(v_ang) * cos(h_ang),
-				-d * sin(h_ang));
-	x_rotation(&tmp1, 90 + h_ang);
-	z_rotation(&tmp1, v_ang - 90);
-	tmp2 = create_identity(4);
-	tmp2->mat[1][1] = -1;
-	cam->view = mult_matrix(tmp1, tmp2);
-	delete_matrix(tmp1);
-	delete_matrix(tmp2);
+	cam->view = set_view_mtx(v_ang, h_ang, d);
 }

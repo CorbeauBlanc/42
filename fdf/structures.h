@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/21 15:06:56 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/25 20:29:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,6 @@ typedef struct			s_map
 	struct s_map		*down;
 }						t_map;
 
-typedef struct			s_camera
-{
-	int					fov;
-	double				f;
-	double				theta;
-	double				phi;
-	double				r;
-	t_matrix			*view;
-}						t_camera;
-
 typedef struct			s_image
 {
 	int					width;
@@ -80,6 +70,17 @@ typedef struct			s_image
 	int					size_line;
 	int					endian;
 }						t_image;
+
+typedef struct			s_camera
+{
+	int					fov;
+	double				f;
+	double				theta;
+	double				phi;
+	double				r;
+	t_matrix			*view;
+	t_image				*screen;
+}						t_camera;
 
 typedef struct			s_key_evt
 {

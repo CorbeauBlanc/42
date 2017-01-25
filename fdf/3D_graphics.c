@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:02:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/21 19:00:04 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/25 20:42:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	draw_map_tile(t_image *img, t_tile *tile, t_map *map, t_camera *cam)
 	transform_vector(&tile->p2, map->right->vect, cam);
 	transform_vector(&tile->p3, map->right->down->vect, cam);
 	transform_vector(&tile->p4, map->down->vect, cam);
+	/* penser à enlever les printf ! */
 	printf("(%.2f, %.2f, %.2f)", tile->p1.x, tile->p1.y, tile->p1.z);
 	printf("(%.2f, %.2f, %.2f)\n", tile->p2.x, tile->p2.y, tile->p2.z);
 	printf("(%.2f, %.2f, %.2f)", tile->p4.x, tile->p4.y, tile->p4.z);
@@ -45,16 +46,16 @@ static void	draw_map_tile(t_image *img, t_tile *tile, t_map *map, t_camera *cam)
 	}
 }
 
-void		projection(t_image *img, t_map *map, t_camera *cam)
+void		projection(t_map *map, t_camera *cam)
 {
 	t_tile		tile;
 	int			flag;
 
 	flag = 1;
-	clear_image(img);
+	clear_image(cam->screen);
 	while (flag)
 	{
-		draw_map_tile(img, &tile, map, cam);
+		draw_map_tile(cam->screen, &tile, map, cam);
 		if (map->right->right)
 			map = map->right;
 		else if (map->r_head->down->down)
@@ -62,5 +63,5 @@ void		projection(t_image *img, t_map *map, t_camera *cam)
 		else
 			flag = 0;
 	}
-	display_image(img, 0, 0);
+	display_image(cam->screen, 0, 0);
 }

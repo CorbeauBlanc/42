@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/25 13:49:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/25 21:18:31 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 # define HEIGHT 1000
 # define WIDTH 1000
 # define BUFF_SIZE 1024
+# define SCALE_XY 20
+# define SCALE_Z 2
+
+# define K_Z 233
+# define K_Q 97
+# define K_S 117
+# define K_D 105
+# define K_I 100
+# define K_O 108
+# define K_UP 65362
+# define K_LEFT 65361
+# define K_DOWN 65364
+# define K_RIGHT 65363
+# define K_ECHAP 65307
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -24,7 +38,7 @@
 /*
 ** 3D_graphics.c
 */
-void		projection(t_image *img, t_map *map, t_camera *cam);
+void		projection(t_map *map, t_camera *cam);
 void		transform_map(t_map *map, t_matrix *mat);
 
 /*
@@ -43,6 +57,20 @@ void		clear_key_evts(t_key_evt **head);
 void		delete_key_evt(t_key_evt **head);
 int			key_hook(int key, void *param);
 void		new_key_evt(t_key_evt **head, int key, void (*fct)());
+
+/*
+** key_functions_*.c
+*/
+void		rotate_down(t_camera *cam, t_map *map);
+void		rotate_left(t_camera *cam, t_map *map);
+void		rotate_right(t_camera *cam, t_map *map);
+void		rotate_up(t_camera *cam, t_map *map);
+void		translate_down(t_camera *cam, t_map *map);
+void		translate_left(t_camera *cam, t_map *map);
+void		translate_right(t_camera *cam, t_map *map);
+void		translate_up(t_camera *cam, t_map *map);
+void		zoom_in(t_camera *cam, t_map *map);
+void		zoom_out(t_camera *cam, t_map *map);
 
 /*
 ** gb_collection.c
@@ -76,6 +104,12 @@ void		mlx_pixel_put_img(t_image *img, int x, int y, int color);
 void		exit_main();
 
 /*
+** map.c
+*/
+void		delete_map(t_map *map);
+t_map		*read_file(char *path);
+
+/*
 ** matrix.c
 */
 void		clear_matrix(t_matrix *mat);
@@ -89,7 +123,6 @@ t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2);
 */
 double		dabs(double f);
 int			is_in_window(t_vector *vect);
-t_map		*read_file(char *path);
 double		to_rad(double deg);
 
 /*
