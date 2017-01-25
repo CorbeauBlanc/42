@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/25 14:34:21 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/25 22:00:46 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,24 @@ char	*add_new_cells(t_map **last, t_vector *crd, char *nbs)
 {
 	char	*tmp;
 
-	while (nbs && nbs + 1)
+	while (*nbs && *(nbs + 1))
 	{
-		while (nbs && ft_isspace(*nbs))
+		while (*nbs && *nbs != '\n' && ft_isspace(*nbs))
 			++nbs;
+		if (*nbs == '\n')
+		{
+			*last = (*last)->r_head;
+			++crd->y;
+			crd->x = -1;
+			++nbs;
+		}
 		if ((tmp = ft_strspc(nbs)))
 		{
 			*last = insert_cell(*last, new_cell(create_vector((++crd->x), crd->y,
 															ft_atoi(nbs))));
 			nbs = tmp;
-			if (*nbs == '\n')
-			{
-				*last = (*last)->r_head;
-				++crd->y;
-				crd->x = -1;
-			}
 		}
-		else
+		else if (*nbs)
 			return (nbs);
 	}
 	return (NULL);

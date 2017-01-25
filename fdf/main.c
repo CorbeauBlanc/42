@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/25 21:32:45 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/25 21:43:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int		main(int ac, char **av)
 
 	events = init_key_evts(K_ECHAP, &exit_main, cam, map);
 	create_events(&events, core);
-	printf("TEST\n");
 	projection(map, cam);
 	mlx_loop(core->co);
 	exit_main();
