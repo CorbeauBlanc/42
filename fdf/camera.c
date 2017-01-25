@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/24 21:06:52 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/25 12:08:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_camera	*new_camera(int fov, double h_ang, double v_ang, double d)
 				-d * sin(to_rad(v_ang)) * cos(to_rad(h_ang)),
 				-d * sin(to_rad(h_ang)));
 	x_rotation(&tmp1, 90 + h_ang);
-	y_rotation(&tmp1, -v_ang);
+	z_rotation(&tmp1, v_ang);
 
 /*	tmp1->mat[0][0] = 0;
 	tmp1->mat[0][1] = 0;
