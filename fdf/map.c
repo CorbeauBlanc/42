@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/26 14:56:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 18:40:56 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ char	*add_new_cells(t_map **last, t_vector *crd, char *nbs)
 		}
 		if ((tmp = ft_strspc(nbs)))
 		{
-			*last = insert_cell(*last, new_cell(create_vector((++crd->x), crd->y,
+			*last = insert_cell(*last, new_cell(create_vector((++crd->x),
+															crd->y,
 															ft_atoi(nbs))));
 			nbs = tmp;
 		}
@@ -41,16 +42,15 @@ char	*add_new_cells(t_map **last, t_vector *crd, char *nbs)
 	return (NULL);
 }
 
-t_map	*read_file(char *path)
+t_map	*read_file(int fd)
 {
 	t_vector	crds;
 	char		*nbs;
 	char		*tmp;
 	int			len;
-	int			fd;
 	t_map		*last;
 
-	if ((fd = open(path, O_RDONLY)) < 0)
+	if (fd < 0)
 		return (NULL);
 	nbs = ft_strnew(BUFF_SIZE);
 	last = NULL;

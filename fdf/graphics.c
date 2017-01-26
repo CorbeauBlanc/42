@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:52:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/25 21:18:26 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 18:29:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ static void	dl_y_loop(t_vector *pt1, t_vector *pt2, t_mlx_core *core)
 
 void		mlx_draw_line(t_vector *pt1, t_vector *pt2)
 {
-	double dx;
-	double dy;
+	double		dx;
+	double		dy;
 	t_mlx_core	*core;
 
 	core = mlx_get_core();

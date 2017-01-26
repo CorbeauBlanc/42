@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:21:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/26 15:09:16 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 18:39:32 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <mlx.h>
 
-void	new_key_evt(t_key_evt **head, int key, void (*fct)())
+void		new_key_evt(t_key_evt **head, int key, void (*fct)())
 {
 	t_key_evt	*evt;
 
@@ -28,15 +28,16 @@ void	new_key_evt(t_key_evt **head, int key, void (*fct)())
 	}
 }
 
-void	delete_key_evt(t_key_evt **head)
+void		delete_key_evt(t_key_evt **head)
 {
 	t_key_evt	*tmp;
+
 	tmp = *head;
 	*head = (*head)->next;
 	free(tmp);
 }
 
-void	clear_key_evts(t_key_evt **head)
+void		clear_key_evts(t_key_evt **head)
 {
 	while (*head)
 		delete_key_evt(head);
@@ -45,6 +46,7 @@ void	clear_key_evts(t_key_evt **head)
 t_key_evt	*init_key_evts(int key, void (*fct)(), t_camera *cam, t_map *map)
 {
 	t_key_evt	*evt;
+
 	if (!(evt = malloc(sizeof(t_key_evt))))
 		return (NULL);
 	evt->key = key;
@@ -55,7 +57,7 @@ t_key_evt	*init_key_evts(int key, void (*fct)(), t_camera *cam, t_map *map)
 	return (evt);
 }
 
-int		key_hook(int key, void *param)
+int			key_hook(int key, void *param)
 {
 	t_key_evt *key_evts;
 

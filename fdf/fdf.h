@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/26 16:42:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 18:42:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 #  define K_RIGHT 65363
 #  define K_ECHAP 65307
 # else
-#  define K_Z 13 	// <=> W
-#  define K_Q 0		// <=> A
+#  define K_Z 13
+#  define K_Q 0
 #  define K_S 1
 #  define K_D 2
 #  define K_I 34
@@ -50,41 +50,12 @@
 # include "structures.h"
 
 /*
-** 3D_graphics.c
-*/
-void		projection(t_map *map, t_camera *cam);
-void		transform_map(t_map *map, t_matrix *mat);
-
-/*
 ** camera.c
 */
 void		delete_camera(t_camera *cam);
 t_camera	*new_camera(int fov, double h_angle, double v_angle, double dist);
 void		set_camera_crd(t_camera *cam, double h_ang, double v_ang, double d);
 void		set_camera_fov(t_camera	*cam, int fov);
-
-/*
-** key_events.c
-*/
-t_key_evt	*init_key_evts(int key, void (*fct)(), t_camera *cam, t_map *map);
-void		clear_key_evts(t_key_evt **head);
-void		delete_key_evt(t_key_evt **head);
-int			key_hook(int key, void *param);
-void		new_key_evt(t_key_evt **head, int key, void (*fct)());
-
-/*
-** key_functions_*.c
-*/
-void		rotate_down(t_camera *cam, t_map *map);
-void		rotate_left(t_camera *cam, t_map *map);
-void		rotate_right(t_camera *cam, t_map *map);
-void		rotate_up(t_camera *cam, t_map *map);
-void		translate_down(t_camera *cam, t_map *map);
-void		translate_left(t_camera *cam, t_map *map);
-void		translate_right(t_camera *cam, t_map *map);
-void		translate_up(t_camera *cam, t_map *map);
-void		zoom_in(t_camera *cam, t_map *map);
-void		zoom_out(t_camera *cam, t_map *map);
 
 /*
 ** gb_collection.c
@@ -113,6 +84,29 @@ void		mlx_draw_line_img(t_image *img, t_vector *pt1, t_vector *pt2);
 void		mlx_pixel_put_img(t_image *img, int x, int y, int color);
 
 /*
+** key_events.c
+*/
+t_key_evt	*init_key_evts(int key, void (*fct)(), t_camera *cam, t_map *map);
+void		clear_key_evts(t_key_evt **head);
+void		delete_key_evt(t_key_evt **head);
+int			key_hook(int key, void *param);
+void		new_key_evt(t_key_evt **head, int key, void (*fct)());
+
+/*
+** key_functions_*.c
+*/
+void		rotate_down(t_camera *cam, t_map *map);
+void		rotate_left(t_camera *cam, t_map *map);
+void		rotate_right(t_camera *cam, t_map *map);
+void		rotate_up(t_camera *cam, t_map *map);
+void		translate_down(t_camera *cam, t_map *map);
+void		translate_left(t_camera *cam, t_map *map);
+void		translate_right(t_camera *cam, t_map *map);
+void		translate_up(t_camera *cam, t_map *map);
+void		zoom_in(t_camera *cam, t_map *map);
+void		zoom_out(t_camera *cam, t_map *map);
+
+/*
 ** main.c
 */
 void		exit_main();
@@ -121,7 +115,13 @@ void		exit_main();
 ** map.c
 */
 void		delete_map(t_map *map);
-t_map		*read_file(char *path);
+t_map		*read_file(int fd);
+
+/*
+** map_projection.c
+*/
+void		projection(t_map *map, t_camera *cam);
+void		transform_map(t_map *map, t_matrix *mat);
 
 /*
 ** matrix.c
@@ -142,11 +142,11 @@ double		to_rad(double deg);
 /*
 ** transformations.c
 */
-void	translation(t_matrix **mtx, double x, double y, double z);
-void	x_rotation(t_matrix **mtx, double theta);
-void	y_rotation(t_matrix **mtx, double theta);
-void	z_rotation(t_matrix **mtx, double theta);
-void	scale(t_matrix **mtx, double x, double y, double z);
+void		translation(t_matrix **mtx, double x, double y, double z);
+void		x_rotation(t_matrix **mtx, double theta);
+void		y_rotation(t_matrix **mtx, double theta);
+void		z_rotation(t_matrix **mtx, double theta);
+void		scale(t_matrix **mtx, double x, double y, double z);
 
 /*
 ** vectors.c

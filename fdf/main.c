@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/26 16:42:57 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 18:43:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include "fdf.h"
 
-void	exit_main()
+void	exit_main(void)
 {
 	mlx_destroy_window(mlx_get_core()->co, mlx_get_core()->win);
 	garbage_collector(CLEAR, NULL, NULL);
@@ -40,8 +40,8 @@ void	create_events(t_key_evt **head, t_mlx_core *core)
 
 void	init_map(t_map *map, int ac, char **av)
 {
-	int	s_xy;
-	int	s_z;
+	int			s_xy;
+	int			s_z;
 	t_matrix	*tmp;
 
 	s_xy = ac > 2 ? ft_atoi(av[2]) : SCALE_XY;
@@ -53,7 +53,6 @@ void	init_map(t_map *map, int ac, char **av)
 	delete_matrix(tmp);
 }
 
-
 int		main(int ac, char **av)
 {
 	t_map		*map;
@@ -61,7 +60,7 @@ int		main(int ac, char **av)
 	t_mlx_core	*core;
 	t_key_evt	*events;
 
-	if (ac < 2 || !(map = read_file(av[1])))
+	if (ac < 2 || !(map = read_file(open(av[1], O_RDONLY))))
 		return (1);
 	garbage_collector(ADD, map, &delete_map);
 	init_map(map, ac, av);

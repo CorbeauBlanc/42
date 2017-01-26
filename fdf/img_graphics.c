@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:26:44 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/26 18:23:31 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 18:33:13 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <mlx.h>
 
-void	mlx_pixel_put_img(t_image *img, int x, int y, int color)
+void		mlx_pixel_put_img(t_image *img, int x, int y, int color)
 {
 	int bytes;
 

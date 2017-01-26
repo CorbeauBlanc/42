@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/25 20:29:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 18:36:55 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 typedef enum			e_gbc_action
 {
-						ADD,
-						REMOVE,
-						CLEAR
+	ADD,
+	REMOVE,
+	CLEAR
 }						t_gbc_action;
 
 typedef struct			s_vector

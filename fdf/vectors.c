@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/26 16:42:20 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 18:38:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void		transform_vector(t_vector *dest, t_vector *vect, t_camera *cam)
 t_map		*new_cell(t_vector *vect)
 {
 	t_map	*cell;
+
 	if (!(cell = malloc(sizeof(t_map))))
 		return (NULL);
 	cell->vect = vect;
@@ -50,7 +51,6 @@ t_map		*new_cell(t_vector *vect)
 
 t_map		*insert_cell(t_map *head, t_map *cell)
 {
-
 	if (head && !(head->right))
 	{
 		head->right = cell;

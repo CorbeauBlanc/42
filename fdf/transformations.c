@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 21:19:18 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/21 18:15:21 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 18:37:53 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
 
-void		translation(t_matrix **mtx, double x, double y, double z)
+void	translation(t_matrix **mtx, double x, double y, double z)
 {
 	t_matrix	*tmp;
 	t_matrix	*res;
