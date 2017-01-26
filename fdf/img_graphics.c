@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:26:44 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/26 16:42:05 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 18:23:31 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,9 @@ void		mlx_draw_line_img(t_image *img, t_vector *pt1, t_vector *pt2)
 
 	dx = dabs((double)(pt2->x - pt1->x));
 	dy = dabs((double)(pt2->y - pt1->y));
-	if (dx > dy)
+	if (!dx && !dy)
+		mlx_pixel_put_img(img, pt1->x, pt1->y, 0xFFFFFF);
+	else if (dx > dy)
 	{
 		if (pt1->x < pt2->x)
 			dl_x_loop(img, pt1, pt2);
