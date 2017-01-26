@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/25 21:18:31 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 16:42:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,31 @@
 # define SCALE_XY 20
 # define SCALE_Z 2
 
-# define K_Z 233
-# define K_Q 97
-# define K_S 117
-# define K_D 105
-# define K_I 100
-# define K_O 108
-# define K_UP 65362
-# define K_LEFT 65361
-# define K_DOWN 65364
-# define K_RIGHT 65363
-# define K_ECHAP 65307
+# ifndef __APPLE__
+#  define K_Z 233
+#  define K_Q 97
+#  define K_S 117
+#  define K_D 105
+#  define K_I 100
+#  define K_O 108
+#  define K_UP 65362
+#  define K_LEFT 65361
+#  define K_DOWN 65364
+#  define K_RIGHT 65363
+#  define K_ECHAP 65307
+# else
+#  define K_Z 13 	// <=> W
+#  define K_Q 0		// <=> A
+#  define K_S 1
+#  define K_D 2
+#  define K_I 34
+#  define K_O 31
+#  define K_UP 126
+#  define K_LEFT 123
+#  define K_DOWN 125
+#  define K_RIGHT 124
+#  define K_ECHAP 53
+# endif
 
 # include <stdlib.h>
 # include <stdio.h>

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/25 21:43:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 16:42:57 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,7 @@ int		main(int ac, char **av)
 	init_map(map, ac, av);
 	cam = new_camera(90, 35, 0, 300);
 	garbage_collector(ADD, cam, &delete_camera);
-
 	core = mlx_get_core();
-
 	events = init_key_evts(K_ECHAP, &exit_main, cam, map);
 	create_events(&events, core);
 	projection(map, cam);

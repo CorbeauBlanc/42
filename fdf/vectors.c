@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/25 21:19:33 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 16:42:20 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void		transform_vector(t_vector *dest, t_vector *vect, t_camera *cam)
 	mult_vector(dest, cam->view, vect);
 	dest->x = (WIDTH / 2) + (cam->f * dest->x) / dest->z;
 	dest->y = (HEIGHT / 2) + (cam->f * dest->y) / dest->z;
-	dest->z = 0;
 }
 
 t_map		*new_cell(t_vector *vect)
