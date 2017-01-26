@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   3D_graphics.c                                      :+:      :+:    :+:   */
+/*   map_projection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:02:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/26 18:24:20 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/26 19:13:46 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ static void	draw_map_tile(t_image *img, t_tile *tile, t_map *map, t_camera *cam)
 	transform_vector(&tile->p2, map->right->vect, cam);
 	transform_vector(&tile->p3, map->right->down->vect, cam);
 	transform_vector(&tile->p4, map->down->vect, cam);
-	if (is_in_window(&tile->p1) || is_in_window(&tile->p2) ||
-		is_in_window(&tile->p3) || is_in_window(&tile->p4))
-	{
+	if (is_in_window(&tile->p1) && is_in_window(&tile->p2))
 		mlx_draw_line_img(img, &tile->p1, &tile->p2);
+	if (is_in_window(&tile->p2) && is_in_window(&tile->p3))
 		mlx_draw_line_img(img, &tile->p2, &tile->p3);
+	if (is_in_window(&tile->p3) && is_in_window(&tile->p4))
 		mlx_draw_line_img(img, &tile->p3, &tile->p4);
+	if (is_in_window(&tile->p4) && is_in_window(&tile->p1))
 		mlx_draw_line_img(img, &tile->p4, &tile->p1);
-	}
 }
 
 void		projection(t_map *map, t_camera *cam)
