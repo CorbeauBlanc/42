@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/26 18:42:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/30 19:23:43 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WIDTH 1000
 # define BUFF_SIZE 1024
 # define SCALE_XY 20
-# define SCALE_Z 2
+# define SCALE_Z 10
 
 # ifndef __APPLE__
 #  define K_Z 233
@@ -80,7 +80,8 @@ void		display_image(t_image *img, int x, int y);
 /*
 ** img_graphics.c
 */
-void		mlx_draw_line_img(t_image *img, t_vector *pt1, t_vector *pt2);
+void		mlx_draw_line_img(t_image *img, t_vector *pt1, t_vector *pt2,
+							double delta);
 void		mlx_pixel_put_img(t_image *img, int x, int y, int color);
 
 /*
@@ -137,6 +138,8 @@ t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2);
 */
 double		dabs(double f);
 int			is_in_window(t_vector *vect);
+double		max(double d1, double d2);
+double		min(double d1, double d2);
 double		to_rad(double deg);
 
 /*

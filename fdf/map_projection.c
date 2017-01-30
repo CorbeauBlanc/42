@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:02:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/26 19:13:46 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/30 19:51:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,30 @@ void		transform_map(t_map *map, t_matrix *mat)
 
 static void	draw_map_tile(t_image *img, t_tile *tile, t_map *map, t_camera *cam)
 {
+	double delta;
+
+	delta = dabs(map->highest) + dabs(map->lowest);
 	transform_vector(&tile->p1, map->vect, cam);
-	transform_vector(&tile->p2, map->right->vect, cam);
-	transform_vector(&tile->p3, map->right->down->vect, cam);
-	transform_vector(&tile->p4, map->down->vect, cam);
+	if (map->right)
+		transform_vector(&tile->p2, map->right->vect, cam);
+	else
+		tile->p2.z = 0;
+	if (map->right && map->right->down)
+		transform_vector(&tile->p3, map->right->down->vect, cam);
+	else
+		tile->p3.z = 0;
+	if (map->down)
+		transform_vector(&tile->p4, map->down->vect, cam);
+	else
+		tile->p4.z = 0;
 	if (is_in_window(&tile->p1) && is_in_window(&tile->p2))
-		mlx_draw_line_img(img, &tile->p1, &tile->p2);
+		mlx_draw_line_img(img, &tile->p1, &tile->p2, delta);
 	if (is_in_window(&tile->p2) && is_in_window(&tile->p3))
-		mlx_draw_line_img(img, &tile->p2, &tile->p3);
+		mlx_draw_line_img(img, &tile->p2, &tile->p3, delta);
 	if (is_in_window(&tile->p3) && is_in_window(&tile->p4))
-		mlx_draw_line_img(img, &tile->p3, &tile->p4);
+		mlx_draw_line_img(img, &tile->p3, &tile->p4, delta);
 	if (is_in_window(&tile->p4) && is_in_window(&tile->p1))
-		mlx_draw_line_img(img, &tile->p4, &tile->p1);
+		mlx_draw_line_img(img, &tile->p4, &tile->p1, delta);
 }
 
 void		projection(t_map *map, t_camera *cam)
@@ -51,7 +63,7 @@ void		projection(t_map *map, t_camera *cam)
 	while (flag)
 	{
 		draw_map_tile(cam->screen, &tile, map, cam);
-		if (map->right->right)
+		if (map->right && map->right->right)
 			map = map->right;
 		else if (map->r_head->down->down)
 			map = map->r_head->down;

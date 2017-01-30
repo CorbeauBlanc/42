@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/25 21:11:54 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/30 16:37:50 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	zoom_in(t_camera *cam, t_map *map)
 {
 	(void)map;
-	set_camera_crd(cam, cam->phi, cam->theta, cam->r - SCALE_Z);
+	set_camera_crd(cam, cam->phi, cam->theta, cam->r - SCALE_XY);
 }
 
 void	zoom_out(t_camera *cam, t_map *map)
 {
 	(void)map;
-	set_camera_crd(cam, cam->phi, cam->theta, cam->r + SCALE_Z);
+	set_camera_crd(cam, cam->phi, cam->theta, cam->r + SCALE_XY);
 }

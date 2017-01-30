@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/26 18:36:55 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/30 18:53:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct			s_mlx_core
 typedef struct			s_map
 {
 	t_vector			*vect;
+	double				highest;
+	double				lowest;
 	struct s_map		*r_head;
 	struct s_map		*c_head;
 	struct s_map		*left;
