@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/01 16:31:22 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/01 18:05:58 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ t_matrix	*set_view_mtx(double theta, double phi, double d)
 	m->mat[0][0] = -cos(to_rad(theta));
 	m->mat[0][1] = sin(to_rad(theta));
 	m->mat[0][2] = 0;
-	m->mat[0][3] = (d * (cos(to_rad(theta - phi)) + cos(to_rad(theta + phi))))
+	m->mat[0][3] = (d * cos(to_rad(theta - phi)) * cos(to_rad(theta + phi)))
 					/ 2;
 	m->mat[1][0] = (cos(to_rad(theta - phi)) - cos(to_rad(theta + phi))) / -2;
 	m->mat[1][1] = (sin(to_rad(phi + theta)) + sin(to_rad(phi - theta))) / -2;
 	m->mat[1][2] = cos(to_rad(phi));
-	m->mat[1][3] = (d * (sin(to_rad(theta + phi)) + sin(to_rad(theta - phi))))
+	m->mat[1][3] = (d * sin(to_rad(theta + phi)) * sin(to_rad(theta - phi)))
 					/ 2;
 	m->mat[2][0] = (sin(to_rad(theta + phi)) + sin(to_rad(theta - phi))) / 2;
 	m->mat[2][1] = (cos(to_rad(theta - phi)) + cos(to_rad(theta + phi))) / 2;
@@ -37,7 +37,6 @@ t_matrix	*set_view_mtx(double theta, double phi, double d)
 	m->mat[3][1] = 0;
 	m->mat[3][2] = 0;
 	m->mat[3][3] = 1;
-
 	return (m);
 }
 
