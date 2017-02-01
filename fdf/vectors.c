@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/30 19:50:56 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/01 23:59:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ t_vector	*create_vector(double x, double y, double z)
 
 void		transform_vector(t_vector *dest, t_vector *vect, t_camera *cam)
 {
-		dest->w = vect->z;
-		mult_vector(dest, cam->view, vect);
-		dest->x = (WIDTH / 2) + (cam->f * dest->x) / dest->z;
-		dest->y = (HEIGHT / 2) + (cam->f * dest->y) / dest->z;
+	double	tmp;
+
+	tmp = vect->z;
+	mult_vector(dest, cam->view, vect);
+	dest->x = (WIDTH / 2) + (cam->f * dest->x) / dest->z;
+	dest->y = (HEIGHT / 2) + (cam->f * dest->y) / dest->z;
+	dest->w = tmp;
 }
 
 t_map		*new_cell(t_vector *vect)
@@ -71,10 +74,8 @@ t_map		*insert_cell(t_map *head, t_map *cell)
 			cell->up = head;
 			head->down = cell;
 		}
-		head->highest = max(head->highest, cell->highest);
-		cell->highest = head->highest;
-		head->lowest = min(head->lowest, cell->lowest);
-		cell->lowest = head->lowest;
+		cell->highest = max(head->highest, cell->highest);
+		cell->lowest = min(head->lowest, cell->lowest);
 	}
 	cell->c_head = cell->up ? cell->up->c_head : cell;
 	cell->r_head = cell->left ? cell->left->r_head : cell;

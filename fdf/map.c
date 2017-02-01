@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/30 18:02:24 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/02 00:00:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ char	*add_new_cells(t_map **last, t_vector *crd, char *nbs)
 	return (NULL);
 }
 
+void	set_min_max(t_map *map, double min, double max)
+{
+	while (map)
+	{
+		map->highest = max;
+		map->lowest = min;
+		if (map->right)
+			map = map->right;
+		else
+			map = map->r_head->down;
+	}
+}
+
 t_map	*read_file(int fd)
 {
 	t_vector	crds;
@@ -65,6 +78,7 @@ t_map	*read_file(int fd)
 		ft_memset(nbs + len, '\0', BUFF_SIZE - len);
 	}
 	free(nbs);
+	set_min_max(last->r_head->c_head, last->lowest, last->highest);
 	return (last->r_head->c_head);
 }
 

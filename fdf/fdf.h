@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/01 15:15:43 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/01 23:28:17 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void		display_image(t_image *img, int x, int y);
 ** img_graphics.c
 */
 void		mlx_draw_line_img(t_image *img, t_vector *pt1, t_vector *pt2,
-							double delta);
+							t_map *map);
 void		mlx_pixel_put_img(t_image *img, int x, int y, int color);
 
 /*

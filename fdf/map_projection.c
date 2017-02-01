@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:02:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/01 22:21:20 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/01 23:29:25 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ void		transform_map(t_map *map, t_matrix *mat)
 
 static void	draw_map_tile(t_image *img, t_tile *tile, t_map *map, t_camera *cam)
 {
-	double delta;
-
-	delta = dabs(map->highest) + dabs(map->lowest);
 	transform_vector(&tile->p1, map->vect, cam);
 	if (map->right)
 		transform_vector(&tile->p2, map->right->vect, cam);
@@ -44,13 +41,13 @@ static void	draw_map_tile(t_image *img, t_tile *tile, t_map *map, t_camera *cam)
 	else
 		tile->p4.z = 0;
 	if (is_in_window(&tile->p1) && is_in_window(&tile->p2))
-		mlx_draw_line_img(img, &tile->p1, &tile->p2, delta);
+		mlx_draw_line_img(img, &tile->p1, &tile->p2, map);
 	if (is_in_window(&tile->p2) && is_in_window(&tile->p3))
-		mlx_draw_line_img(img, &tile->p2, &tile->p3, delta);
+		mlx_draw_line_img(img, &tile->p2, &tile->p3, map);
 	if (is_in_window(&tile->p3) && is_in_window(&tile->p4))
-		mlx_draw_line_img(img, &tile->p3, &tile->p4, delta);
+		mlx_draw_line_img(img, &tile->p3, &tile->p4, map);
 	if (is_in_window(&tile->p4) && is_in_window(&tile->p1))
-		mlx_draw_line_img(img, &tile->p4, &tile->p1, delta);
+		mlx_draw_line_img(img, &tile->p4, &tile->p1, map);
 }
 
 void		projection(t_map *map, t_camera *cam)

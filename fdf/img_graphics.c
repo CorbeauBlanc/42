@@ -6,40 +6,31 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:26:44 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/30 19:25:12 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/02 00:16:37 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <mlx.h>
 
-int			get_color(t_vector *pt1, t_vector *pt2, double delta)
+int			get_color(double z, t_map *map)
 {
-	double	z;
+	double	delta;
 
-	z = pt1->w / SCALE_Z;
-	if (pt1->w < pt2->w)
-		pt1->w += SCALE_Z;
-	else if (pt1->w > pt2->w)
-		pt1->w -= SCALE_Z;
-	if (z < 0)
-	{
-		if (z > -delta / 3)
-			return (0x006600);
-		else if (z > -2 * delta / 3)
-			return (0x663300);
-		else
-			return (0x333333);
-	}
+	z = dabs(z - map->lowest);
+	delta = dabs(map->highest - map->lowest);
+	if (z < delta / 6)
+		return (0x333333);
+	else if (z < 2 * delta / 6)
+		return (0x663300);
+	else if (z < 3 * delta / 6)
+		return (0x006600);
+	else if (z < 4 * delta / 6)
+		return (0x339900);
+	else if (z < 5 * delta / 6)
+		return (0x33BB00);
 	else
-	{
-		if (z < delta / 3)
-			return (0x339900);
-		else if (z < 2 * delta / 3)
-			return (0x33BB00);
-		else
-			return (0xDDDDDD);
-	}
+		return (0xDDDDDD);
 }
 
 void		mlx_pixel_put_img(t_image *img, int x, int y, int color)
@@ -53,7 +44,7 @@ void		mlx_pixel_put_img(t_image *img, int x, int y, int color)
 	}
 }
 
-static void	dl_x_loop(t_image *img, t_vector *pt1, t_vector *pt2, double delta)
+static void	dl_x_loop(t_image *img, t_vector *pt1, t_vector *pt2, double color)
 {
 	double		e;
 	double		dx;
@@ -69,11 +60,11 @@ static void	dl_x_loop(t_image *img, t_vector *pt1, t_vector *pt2, double delta)
 	tmp.x = pt1->x;
 	tmp.y = pt1->y;
 	tmp.w = pt1->w;
-	mlx_pixel_put_img(img, tmp.x, tmp.y, get_color(&tmp, pt2, delta));
+	mlx_pixel_put_img(img, tmp.x, tmp.y, color);
 	while ((tmp.x += inc.x) < pt2->x && tmp.x < WIDTH && tmp.y < HEIGHT)
 	{
 		e += dy;
-		mlx_pixel_put_img(img, tmp.x, tmp.y, get_color(&tmp, pt2, delta));
+		mlx_pixel_put_img(img, tmp.x, tmp.y, color);
 		if (e >= dx)
 		{
 			e -= dx;
@@ -82,7 +73,7 @@ static void	dl_x_loop(t_image *img, t_vector *pt1, t_vector *pt2, double delta)
 	}
 }
 
-static void	dl_y_loop(t_image *img, t_vector *pt1, t_vector *pt2, double delta)
+static void	dl_y_loop(t_image *img, t_vector *pt1, t_vector *pt2, double color)
 {
 	double		e;
 	double		dx;
@@ -98,11 +89,11 @@ static void	dl_y_loop(t_image *img, t_vector *pt1, t_vector *pt2, double delta)
 	tmp.x = pt1->x;
 	tmp.y = pt1->y;
 	tmp.w = pt1->w;
-	mlx_pixel_put_img(img, tmp.x, tmp.y, get_color(&tmp, pt2, delta));
+	mlx_pixel_put_img(img, tmp.x, tmp.y, color);
 	while ((tmp.y += inc.y) < pt2->y && tmp.x < WIDTH && tmp.y < HEIGHT)
 	{
 		e += dx;
-		mlx_pixel_put_img(img, tmp.x, tmp.y, get_color(&tmp, pt2, delta));
+		mlx_pixel_put_img(img, tmp.x, tmp.y, color);
 		if (e >= dy)
 		{
 			e -= dy;
@@ -112,27 +103,29 @@ static void	dl_y_loop(t_image *img, t_vector *pt1, t_vector *pt2, double delta)
 }
 
 void		mlx_draw_line_img(t_image *img, t_vector *pt1, t_vector *pt2,
-							double delta)
+							t_map *map)
 {
-	double dx;
-	double dy;
+	double	dx;
+	double	dy;
+	int		color;
 
 	dx = dabs(pt2->x - pt1->x);
 	dy = dabs(pt2->y - pt1->y);
+	color = get_color(max(pt1->w, pt2->w) / SCALE_Z, map);
 	if (!dx && !dy)
-		mlx_pixel_put_img(img, pt1->x, pt1->y, get_color(pt1, pt2, delta));
+		mlx_pixel_put_img(img, pt1->x, pt1->y, color);
 	else if (dx > dy)
 	{
 		if (pt1->x < pt2->x)
-			dl_x_loop(img, pt1, pt2, delta);
+			dl_x_loop(img, pt1, pt2, color);
 		else
-			dl_x_loop(img, pt2, pt1, delta);
+			dl_x_loop(img, pt2, pt1, color);
 	}
 	else
 	{
 		if (pt1->y < pt2->y)
-			dl_y_loop(img, pt1, pt2, delta);
+			dl_y_loop(img, pt1, pt2, color);
 		else
-			dl_y_loop(img, pt2, pt1, delta);
+			dl_y_loop(img, pt2, pt1, color);
 	}
 }
