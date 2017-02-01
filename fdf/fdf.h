@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/30 19:23:43 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/01 15:15:43 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WIDTH 1000
 # define BUFF_SIZE 1024
 # define SCALE_XY 20
-# define SCALE_Z 10
+# define SCALE_Z 3
 
 # ifndef __APPLE__
 #  define K_Z 233

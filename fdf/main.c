@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/30 19:34:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/01 15:33:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	init_map(t_map *map, int ac, char **av)
 	s_z = ac > 3 ? ft_atoi(av[3]) : SCALE_Z;
 	tmp = create_identity(4);
 	scale(&tmp, s_xy, s_xy, s_z);
-	translation(&tmp, -23, -20, 0);
+	translation(&tmp, -10, -10, 0);
 	transform_map(map, tmp);
 	delete_matrix(tmp);
 }
@@ -64,7 +64,7 @@ int		main(int ac, char **av)
 		return (1);
 	garbage_collector(ADD, map, &delete_map);
 	init_map(map, ac, av);
-	cam = new_camera(90, 35, 0, 300);
+	cam = new_camera(90, 90, 0, 300);
 	garbage_collector(ADD, cam, &delete_camera);
 	core = mlx_get_core();
 	events = init_key_evts(K_ECHAP, &exit_main, cam, map);
