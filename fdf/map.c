@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/02 00:00:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/02 00:22:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_map	*read_file(int fd)
 	}
 	free(nbs);
 	set_min_max(last->r_head->c_head, last->lowest, last->highest);
-	return (last->r_head->c_head);
+	return (last);
 }
 
 void	delete_map(t_map *map)
