@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:02:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/01 23:29:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/02 01:02:58 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,9 @@ void		projection(t_map *map, t_camera *cam)
 			flag = 0;
 	}
 	display_image(cam->screen, 0, 0);
+	put_string(20, 20, "Vertical rotations : Up/Down arrows");
+	put_string(20, 35, "Horizontal rotations : Left/Right arrows");
+	put_string(20, 50, "Translations : Z/Q/S/D");
+	put_string(20, 65, "Zoom in : I");
+	put_string(20, 80, "Zoom out : O");
 }

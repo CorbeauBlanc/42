@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/01 23:28:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/02 00:49:25 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ void		garbage_collector(t_gbc_action action, void *ptr, void (*fct)());
 */
 t_mlx_core	*mlx_get_core(void);
 void		mlx_draw_line(t_vector *pt1, t_vector *pt2);
-void		mlx_draw_quadrangle(t_vector *pt1, t_vector *pt2,
-								t_vector *pt3, t_vector *pt4);
+void		put_string(int x, int y, char *str);
 /*
 ** images.c
 */

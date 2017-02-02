@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:52:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/26 18:29:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/02 00:49:28 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,10 @@ void		mlx_draw_line(t_vector *pt1, t_vector *pt2)
 	}
 }
 
-void		mlx_draw_quadrangle(t_vector *pt1, t_vector *pt2,
-								t_vector *pt3, t_vector *pt4)
+void		put_string(int x, int y, char *str)
 {
-	mlx_draw_line(pt1, pt2);
-	mlx_draw_line(pt2, pt3);
-	mlx_draw_line(pt3, pt4);
-	mlx_draw_line(pt4, pt1);
+	t_mlx_core *core;
+
+	core = mlx_get_core();
+	mlx_string_put(core->co, core->win, x, y, 0xFFFFFF, str);
 }
