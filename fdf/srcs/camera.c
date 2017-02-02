@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/02 01:23:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/02 16:33:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 t_matrix	*set_view_mtx(double theta, double phi, double d)
 {
 	t_matrix	*m;
-	(void)d;
 
 	m = create_identity(4);
 	m->mat[0][0] = -cos(to_rad(theta));

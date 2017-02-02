@@ -6,13 +6,24 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/02 13:41:22 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/02 19:06:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
 #include <fcntl.h>
-#include "fdf.h"
+#include "../includes/fdf.h"
+
+void	exit_error(char *s)
+{
+	if (!s)
+	{
+		perror("fdf");
+		exit(1);
+	}
+	ft_putstr_fd(s, 2);
+	exit(1);
+}
 
 void	exit_main(void)
 {
@@ -38,12 +49,21 @@ void	create_events(t_key_evt **head, t_mlx_core *core)
 	mlx_key_hook(core->win, &key_hook, *head);
 }
 
-void	init_map(t_map *map, int ac, char **av)
+t_map	*init_map(int ac, char **av)
 {
 	int			s_xy;
 	int			s_z;
+	int			fd;
 	t_matrix	*tmp;
+	t_map		*map;
 
+	if (ac < 2 || ac > 4)
+		exit_error("usage: fdf [file] [scale xy] [scale z]\n");
+	if (!(fd = open(av[1], O_RDONLY)))
+		exit_error(NULL);
+	if (!(map = read_file(fd)))
+		exit_error(NULL);
+	close(fd);
 	s_xy = ac > 2 ? ft_atoi(av[2]) : SCALE_XY;
 	s_z = ac > 3 ? ft_atoi(av[3]) : SCALE_Z;
 	tmp = create_identity(4);
@@ -51,6 +71,7 @@ void	init_map(t_map *map, int ac, char **av)
 	translation(&tmp, -(map->vect->x / 2), -(map->vect->y / 2), 0);
 	transform_map(map->r_head->c_head, tmp);
 	delete_matrix(tmp);
+	return (map->r_head->c_head);
 }
 
 int		main(int ac, char **av)
@@ -60,10 +81,7 @@ int		main(int ac, char **av)
 	t_mlx_core	*core;
 	t_key_evt	*events;
 
-	if (ac < 2 || !(map = read_file(open(av[1], O_RDONLY))))
-		return (1);
-	init_map(map, ac, av);
-	map = map->r_head->c_head;
+	map = init_map(ac, av);
 	garbage_collector(ADD, map, &delete_map);
 	cam = new_camera(90, 90, 0, 300);
 	garbage_collector(ADD, cam, &delete_camera);

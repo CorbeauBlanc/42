@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:02:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/02 13:13:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/02 16:32:33 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,5 @@ void		projection(t_map *map, t_camera *cam)
 	put_string(20, 50, "Translations : Z/Q/S/D");
 	put_string(20, 65, "Zoom in : I");
 	put_string(20, 80, "Zoom out : O");
+	put_string(20, 95, "Exit: Esc");
 }
