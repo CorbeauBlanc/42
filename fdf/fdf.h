@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/02 01:28:29 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/02 13:22:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define WIDTH 1000
 # define BUFF_SIZE 1024
 # define SCALE_XY 20
-# define SCALE_Z 3
+# define SCALE_Z 5
 
 # ifndef __APPLE__
 #  define K_Z 233
@@ -68,6 +68,7 @@ void		garbage_collector(t_gbc_action action, void *ptr, void (*fct)());
 t_mlx_core	*mlx_get_core(void);
 void		mlx_draw_line(t_vector *pt1, t_vector *pt2);
 void		put_string(int x, int y, char *str);
+
 /*
 ** images.c
 */

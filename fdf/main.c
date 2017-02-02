@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/02 00:56:05 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/02 13:16:58 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	init_map(t_map *map, int ac, char **av)
 	tmp = create_identity(4);
 	scale(&tmp, s_xy, s_xy, s_z);
 	translation(&tmp, -(map->vect->x / 2), -(map->vect->y / 2), 0);
-	transform_map(map->c_head->r_head, tmp);
+	transform_map(map->r_head->c_head, tmp);
 	delete_matrix(tmp);
 }
 
