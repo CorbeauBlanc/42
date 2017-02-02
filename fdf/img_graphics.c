@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:26:44 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/02 00:16:37 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/02 14:06:37 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			get_color(double z, t_map *map)
 	else if (z < 5 * delta / 6)
 		return (0x33BB00);
 	else
-		return (0xDDDDDD);
+		return (0xCCCCCC);
 }
 
 void		mlx_pixel_put_img(t_image *img, int x, int y, int color)
