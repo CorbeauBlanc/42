@@ -1,1 +1,1 @@
-minilibx/mlx.h
+../minilibx/mlx.h

@@ -23,58 +23,89 @@ LIBS=-lft -lm -lmlx -framework OpenGL -framework AppKit
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "Objects generation done."
-	$(MAKE) libft
-	$(MAKE) minilibx
-	@echo "Compiling..."
-	@$(CC) $(CFLAGS) $^ -o $@ -L$(LIB_DIR) $(LIBS)
-	@echo "Done."
+	@echo "=================================================="
 	@echo
+	@echo "Objects generation : ""\x1B[38;5;40m""Done.""\x1B[0m"
+	@echo
+	@$(MAKE) libft
+	@$(MAKE) minilibx
+	@echo "                 Building $@..."
+	@echo "--------------------------------------------------"
+	$(CC) $(CFLAGS) $^ -o $@ -L$(LIB_DIR) $(LIBS)
+	@echo
+	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
+	@echo
+	@echo "=================================================="
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) $^ -o $@ -c -I$(INCLUDE_DIR)
 
 libft:
-	@echo "Compiling libft..."
-	@$(MAKE) -C $(FT_PATH)
-	@echo "Creating symlink..."
-	@ln -fs $(FT_PATH)/libft.a $(LIB_DIR)
-	@echo "Done."
+	@echo "                Compiling libft..."
+	@echo "--------------------------------------------------"
+	$(MAKE) -C $(FT_PATH)
+	@echo
+	@echo "                Creating symlink..."
+	@echo "--------------------------------------------------"
+	cd $(LIB_DIR) && ln -fs ../$(FT_PATH)/libft.a
+	@echo
+	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
+	@echo
 
 minilibx:
-	@echo "Compiling minilibx..."
-	@$(MAKE) -C $(MLX_PATH)
-	@echo "Creating symlink..."
-	@ln -fs $(MLX_PATH)/libmlx.a $(LIB_DIR)
-	@echo "Done."
+	@echo " Compiling minilibx... (warnings in $(MLX_PATH)/logs)"
+	@echo "--------------------------------------------------"
+	$(MAKE) -C $(MLX_PATH) 2> $(MLX_PATH)/logs
+	@echo
+	@echo "               Creating symlink..."
+	@echo "--------------------------------------------------"
+	cd $(LIB_DIR) && ln -fs ../$(MLX_PATH)/libmlx.a
+	@echo
+	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
+	@echo
 
 clean:
-	@echo "Cleaning libft"
-	@$(MAKE) clean -C $(FT_PATH)
-	@echo "Done."
-	@echo "Cleaning minilibx"
-	@$(MAKE) clean -C $(MLX_PATH)
-	@echo "Done."
+	@echo "                Cleaning libft..."
+	@echo "--------------------------------------------------"
+	$(MAKE) clean -C $(FT_PATH)
 	@echo
-	@echo "Removing objects"
-	@rm -f $(OBJS)
-	@echo "Done."
+	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
+	@echo
+	@echo "                Cleaning minilibx..."
+	@echo "--------------------------------------------------"
+	$(MAKE) clean -C $(MLX_PATH)
+	@echo
+	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
+	@echo
+	@echo "                Removing objects..."
+	@echo "--------------------------------------------------"
+	rm -f $(OBJS)
+	@echo
+	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
 	@echo
 
 fclean: clean
-	@echo "Removing $(NAME)"
-	@rm -f $(NAME)
-	@echo "Done."
+	@echo "                 Removing $(NAME)..."
+	@echo "--------------------------------------------------"
+	rm -f $(NAME)
 	@echo
-	@echo "Removing libft"
-	@rm -f $(FT_PATH)/libft.a
-	@echo "Done."
-	@echo "Removing minilibx"
-	@rm -f $(MLX_PATH)/minilibx.a
-	@echo "Done."
-	@echo "Removing symlinks"
-	@rm -f $(LIB_DIR)/*
-	@echo "Done."
+	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
+	@echo
+	@echo "                Removing libft..."
+	@echo "--------------------------------------------------"
+	rm -f $(FT_PATH)/libft.a
+	@echo
+	@echo "                Removing minilibx"
+	@echo "--------------------------------------------------"
+	rm -f $(MLX_PATH)/minilibx.a
+	@echo
+	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
+	@echo
+	@echo "                Removing symlinks"
+	@echo "--------------------------------------------------"
+	rm -f $(LIB_DIR)/*
+	@echo
+	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
 	@echo
 
 re: fclean all
