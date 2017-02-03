@@ -6,12 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/03 16:38:55 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/03 19:23:07 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "mlx.h"
+#include <mlx.h>
 #include <math.h>
 
 t_matrix	*set_view_mtx(double theta, double phi, double d)

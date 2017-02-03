@@ -6,12 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:43:43 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/03 16:38:55 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/03 19:23:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "mlx.h"
+#include <mlx.h>
 
 t_image	*create_image(int width, int height, int depth)
 {

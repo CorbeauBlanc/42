@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/03 16:38:55 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/03 19:28:25 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
+#include "fdf.h"
+#include <mlx.h>
 #include <fcntl.h>
-#include "../includes/fdf.h"
 
 void	exit_error(char *s)
 {
@@ -46,7 +46,7 @@ void	create_events(t_key_evt **head, t_mlx_core *core)
 	new_key_evt(head, K_DOWN, &rotate_down);
 	new_key_evt(head, K_RIGHT, &rotate_right);
 	garbage_collector(ADD, head, &clear_key_evts);
-	mlx_key_hook(core->win, &key_hook, *head);
+	mlx_hook(core->win, KeyPress, KeyPressMask, &key_hook, *head);
 }
 
 t_map	*init_map(int ac, char **av)

@@ -6,12 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:26:44 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/03 16:38:55 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/03 19:23:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "mlx.h"
+#include <mlx.h>
 
 int			get_color(double z, t_map *map)
 {

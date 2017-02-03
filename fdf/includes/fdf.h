@@ -6,43 +6,45 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/02 17:37:52 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/03 19:20:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define HEIGHT 1000
-# define WIDTH 1000
-# define BUFF_SIZE 1024
-# define SCALE_XY 50
-# define SCALE_Z 1
+# define HEIGHT 		1000
+# define WIDTH 			1000
+# define BUFF_SIZE		1024
+# define SCALE_XY		50
+# define SCALE_Z		1
 
 # ifndef __APPLE__
-#  define K_Z 233
-#  define K_Q 97
-#  define K_S 117
-#  define K_D 105
-#  define K_I 100
-#  define K_O 108
-#  define K_UP 65362
-#  define K_LEFT 65361
-#  define K_DOWN 65364
-#  define K_RIGHT 65363
-#  define K_ECHAP 65307
+#  define K_Z			233
+#  define K_Q			97
+#  define K_S			117
+#  define K_D			105
+#  define K_I			100
+#  define K_O			108
+#  define K_UP			65362
+#  define K_LEFT		65361
+#  define K_DOWN		65364
+#  define K_RIGHT		65363
+#  define K_ECHAP		65307
 # else
-#  define K_Z 13
-#  define K_Q 0
-#  define K_S 1
-#  define K_D 2
-#  define K_I 34
-#  define K_O 31
-#  define K_UP 126
-#  define K_LEFT 123
-#  define K_DOWN 125
-#  define K_RIGHT 124
-#  define K_ECHAP 53
+#  define K_Z			13
+#  define K_Q			0
+#  define K_S			1
+#  define K_D			2
+#  define K_I			34
+#  define K_O			31
+#  define K_UP			126
+#  define K_LEFT		123
+#  define K_DOWN		125
+#  define K_RIGHT		124
+#  define K_ECHAP		53
 # endif
+# define KeyPressMask	(1L<<0)
+# define KeyPress		2
 
 # include <stdlib.h>
 # include <stdio.h>
