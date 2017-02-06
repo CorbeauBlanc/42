@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 14:09:03 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/20 14:59:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/06 13:12:32 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	add_shit(t_garbage **pile, void *ptr, void (*fct)())
 	if ((tmp = malloc(sizeof(t_garbage))))
 	{
 		tmp->ptr = ptr;
-		tmp->delete = fct;
+		tmp->delete_ = fct;
 		tmp->next = *pile;
 		tmp->prev = NULL;
 		if (*pile)
@@ -60,7 +60,7 @@ static void	clear_all(t_garbage **pile)
 	while (*pile)
 	{
 		tmp = *pile;
-		tmp->delete(tmp->ptr);
+		tmp->delete_(tmp->ptr);
 		*pile = (*pile)->next;
 		free(tmp);
 	}

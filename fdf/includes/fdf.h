@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/03 19:20:26 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/06 13:10:06 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@
 #  define K_RIGHT		124
 #  define K_ECHAP		53
 # endif
-# define KeyPressMask	(1L<<0)
-# define KeyPress		2
+# define K_PRESS_MASK	(1L<<0)
+# define K_PRESS_EVT	2
 
 # include <stdlib.h>
 # include <stdio.h>
@@ -68,7 +68,6 @@ void		garbage_collector(t_gbc_action action, void *ptr, void (*fct)());
 ** graphics.c
 */
 t_mlx_core	*mlx_get_core(void);
-void		mlx_draw_line(t_vector *pt1, t_vector *pt2);
 void		put_string(int x, int y, char *str);
 
 /*
@@ -89,9 +88,9 @@ void		mlx_pixel_put_img(t_image *img, int x, int y, int color);
 /*
 ** key_events.c
 */
-t_key_evt	*init_key_evts(int key, void (*fct)(), t_camera *cam, t_map *map);
 void		clear_key_evts(t_key_evt **head);
 void		delete_key_evt(t_key_evt **head);
+t_key_evt	*init_key_evts(int key, void (*fct)(), t_camera *cam, t_map *map);
 int			key_hook(int key, void *param);
 void		new_key_evt(t_key_evt **head, int key, void (*fct)());
 
@@ -130,8 +129,8 @@ void		transform_map(t_map *map, t_matrix *mat);
 ** matrix.c
 */
 void		clear_matrix(t_matrix *mat);
-t_matrix	*create_matrix(double **mat, int r, int c);
 t_matrix	*create_identity(int i);
+t_matrix	*create_matrix(double **mat, int r, int c);
 void		delete_matrix(t_matrix *matrix);
 t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2);
 

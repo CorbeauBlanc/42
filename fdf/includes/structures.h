@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/30 18:53:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/06 13:11:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,30 @@ typedef enum			e_gbc_action
 	CLEAR
 }						t_gbc_action;
 
-typedef struct			s_vector
+typedef struct			s_mlx_core
 {
-	double				x;
-	double				y;
-	double				z;
-	double				w;
-}						t_vector;
+	void				*co;
+	void				*win;
+}						t_mlx_core;
 
-typedef struct			s_tile
+typedef struct			s_garbage
 {
-	t_vector			p1;
-	t_vector			p2;
-	t_vector			p3;
-	t_vector			p4;
-}						t_tile;
+	void				*ptr;
+	void				(*delete_)();
+	struct s_garbage	*next;
+	struct s_garbage	*prev;
+}						t_garbage;
+
+typedef struct			s_image
+{
+	int					width;
+	int					height;
+	void				*ptr;
+	char				*data;
+	int					depth;
+	int					size_line;
+	int					endian;
+}						t_image;
 
 typedef struct			s_matrix
 {
@@ -43,11 +52,24 @@ typedef struct			s_matrix
 	int					c;
 }						t_matrix;
 
-typedef struct			s_mlx_core
+typedef struct			s_camera
 {
-	void				*co;
-	void				*win;
-}						t_mlx_core;
+	int					fov;
+	double				f;
+	double				theta;
+	double				phi;
+	double				r;
+	t_matrix			*view;
+	t_image				*screen;
+}						t_camera;
+
+typedef struct			s_vector
+{
+	double				x;
+	double				y;
+	double				z;
+	double				w;
+}						t_vector;
 
 typedef struct			s_map
 {
@@ -62,28 +84,6 @@ typedef struct			s_map
 	struct s_map		*down;
 }						t_map;
 
-typedef struct			s_image
-{
-	int					width;
-	int					height;
-	void				*ptr;
-	char				*data;
-	int					depth;
-	int					size_line;
-	int					endian;
-}						t_image;
-
-typedef struct			s_camera
-{
-	int					fov;
-	double				f;
-	double				theta;
-	double				phi;
-	double				r;
-	t_matrix			*view;
-	t_image				*screen;
-}						t_camera;
-
 typedef struct			s_key_evt
 {
 	int					key;
@@ -93,12 +93,12 @@ typedef struct			s_key_evt
 	struct s_key_evt	*next;
 }						t_key_evt;
 
-typedef struct			s_garbage
+typedef struct			s_tile
 {
-	void				*ptr;
-	void				(*delete)();
-	struct s_garbage	*next;
-	struct s_garbage	*prev;
-}						t_garbage;
+	t_vector			p1;
+	t_vector			p2;
+	t_vector			p3;
+	t_vector			p4;
+}						t_tile;
 
 #endif
