@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/17 19:17:25 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/17 19:17:28 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_pause(void)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	read(1, NULL, 1);
+	char	*str;
+
+	if (!s)
+		return (NULL);
+	if ((str = (char*)malloc(len + 1)))
+	{
+		str = ft_strncpy(str, &s[start], len);
+		str[len] = '\0';
+	}
+	return (str);
 }

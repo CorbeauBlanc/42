@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   key_functions_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
+/*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
+/*   Updated: 2017/02/07 17:34:17 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-void	ft_pause(void)
+void	translate_left()
 {
-	read(1, NULL, 1);
+
+}
+
+void	translate_right()
+{
+
+}
+
+void	translate_up()
+{
+
+}
+
+void	translate_down()
+{
+
 }

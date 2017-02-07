@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/05 14:17:45 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/24 12:22:21 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_pause(void)
+size_t	ft_strlen(const char *s)
 {
-	read(1, NULL, 1);
+	size_t	len;
+	long	i;
+
+	len = 0;
+	i = -1;
+	while (s && s[++i])
+		++len;
+	return (len);
 }

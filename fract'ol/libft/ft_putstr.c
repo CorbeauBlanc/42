@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/15 12:47:09 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/25 17:25:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_pause(void)
+void	ft_putstr(char const *s)
 {
-	read(1, NULL, 1);
+	if (s && *s)
+		write(1, s, ft_strlen(s));
 }

@@ -1,18 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/30 12:37:28 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/30 12:56:37 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_pause(void)
+char	*ft_strrev(char *s)
 {
-	read(1, NULL, 1);
+	long	i;
+	long	j;
+	char	*rev;
+
+	if (!s)
+		return (NULL);
+	i = 0;
+	while (s[i])
+		++i;
+	if (!(rev = ft_strnew(i + 1)))
+		return (NULL);
+	j = -1;
+	while ((--i) >= 0)
+		rev[++j] = s[i];
+	return (rev);
 }

@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   ft_memccnt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/09 16:30:54 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/22 17:13:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_pause(void)
+int	ft_memccnt(const char *s, int c, size_t n)
 {
-	read(1, NULL, 1);
+	if (n && s && *s)
+		return ((*s == c) + ft_memccnt(s + 1, c, n - 1));
+	return (0);
 }

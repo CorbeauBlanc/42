@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/05 16:46:44 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/24 12:24:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_pause(void)
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	read(1, NULL, 1);
+	size_t	i;
+	size_t	src_len;
+
+	if (!dst)
+		return (NULL);
+	if (src)
+	{
+		src_len = ft_strlen(src);
+		i = -1;
+		while (++i < len)
+			dst[i] = (i >= src_len) ? '\0' : src[i];
+	}
+	return (dst);
 }

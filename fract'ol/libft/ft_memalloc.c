@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/09 11:51:12 by edescoin          #+#    #+#             */
+/*   Updated: 2016/12/15 17:47:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_pause(void)
+void	*ft_memalloc(size_t size)
 {
-	read(1, NULL, 1);
+	void	*tmp;
+
+	if (!size)
+		return (NULL);
+	if ((tmp = (void*)malloc(size)))
+		ft_bzero(tmp, size);
+	return (tmp);
 }

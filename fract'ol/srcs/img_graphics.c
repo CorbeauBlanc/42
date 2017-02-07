@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   img_graphics.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
+/*   Created: 2017/01/21 13:26:44 by edescoin          #+#    #+#             */
+/*   Updated: 2017/02/07 17:32:55 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
+#include <mlx.h>
 
-void	ft_pause(void)
+int			get_color(void)
 {
-	read(1, NULL, 1);
+	return (0);
+}
+
+void		mlx_pixel_put_img(t_image *img, int x, int y, int color)
+{
+	int bytes;
+
+	if (x < img->width && y < img->height && x >= 0 && y >= 0)
+	{
+		bytes = img->depth / 8;
+		*((int*)(img->data + y * img->size_line + x * bytes)) = color;
+	}
 }

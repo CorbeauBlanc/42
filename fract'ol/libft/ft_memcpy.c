@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/08 17:55:59 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/24 12:12:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_pause(void)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	read(1, NULL, 1);
+	if (!dest || !src)
+		return (NULL);
+	if (n)
+	{
+		ft_memcpy(dest + 1, src + 1, n - 1);
+		*(unsigned char*)dest = *(unsigned char*)src;
+	}
+	return (dest);
 }

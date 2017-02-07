@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/15 11:26:19 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/24 12:03:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_pause(void)
+char	*ft_itoa(int n)
 {
-	read(1, NULL, 1);
+	int		len;
+	long	ln;
+	char	*str;
+
+	len = ft_intlen(n) + (n < 0);
+	if (!(str = ft_strnew(len)))
+		return (NULL);
+	ln = (long)n * (n < 0 ? -1 : 1);
+	if (n < 0)
+		str[0] = '-';
+	while (--len >= (n < 0))
+	{
+		str[len] = '0' + (ln % 10);
+		ln /= 10;
+	}
+	return (str);
 }

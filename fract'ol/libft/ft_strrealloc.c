@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pause.c                                         :+:      :+:    :+:   */
+/*   ft_strrealloc.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 19:16:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:20:10 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/15 11:43:24 by edescoin          #+#    #+#             */
+/*   Updated: 2016/12/01 17:41:56 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_pause(void)
+char	*ft_strrealloc(char *src, size_t new_size)
 {
-	read(1, NULL, 1);
+	char	*tmp;
+
+	if (!(tmp = ft_strnew(new_size)))
+		return (NULL);
+	tmp = ft_strncpy(tmp, src, ft_strlen(src));
+	free(src);
+	return (tmp);
 }
