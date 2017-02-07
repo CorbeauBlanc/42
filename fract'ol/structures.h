@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/07 18:34:21 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/07 20:02:07 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,11 @@ typedef struct			s_image
 	int					endian;
 }						t_image;
 
-typedef struct			s_vector
+typedef struct			s_complex
 {
-	double				x;
-	double				y;
-	double				z;
-	double				w;
-}						t_vector;
+	double				img_part;
+	double				real_part;
+}						t_complex;
 
 typedef struct			s_key_evt
 {
