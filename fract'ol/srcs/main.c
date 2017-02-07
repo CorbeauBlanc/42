@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/07 17:31:20 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:34:31 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ void	create_events(t_key_evt **head, t_mlx_core *core)
 	new_key_evt(head, K_Q, &translate_left);
 	new_key_evt(head, K_S, &translate_down);
 	new_key_evt(head, K_D, &translate_right);
-	new_key_evt(head, K_I, &zoom_in);
-	new_key_evt(head, K_O, &zoom_out);
-	new_key_evt(head, K_UP, &rotate_up);
-	new_key_evt(head, K_LEFT, &rotate_left);
-	new_key_evt(head, K_DOWN, &rotate_down);
-	new_key_evt(head, K_RIGHT, &rotate_right);
 	garbage_collector(ADD, head, &clear_key_evts);
 	mlx_hook(core->win, K_PRESS_EVT, K_PRESS_MASK, &key_hook, *head);
 }

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/02 13:09:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/07 18:53:21 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ t_map	*read_file(int fd)
 		ft_memset(nbs + len, '\0', BUFF_SIZE - len);
 	}
 	free(nbs);
-	set_min_max(last->r_head->c_head, last->lowest, last->highest);
+	if (last)
+		set_min_max(last->r_head->c_head, last->lowest, last->highest);
 	return (last);
 }
 

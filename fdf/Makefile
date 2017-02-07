@@ -20,7 +20,7 @@ LIBS=-lft -lm -lmlx -framework OpenGL -framework AppKit
 .PHONY: all clean fclean re libft minilibx
 
 
-all: $(NAME)
+all: $(OBJ_DIR) $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "=================================================="
@@ -37,10 +37,16 @@ $(NAME): $(OBJS)
 	@echo
 	@echo "=================================================="
 
+$(OBJ_DIR):
+	@mkdir $@
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) $^ -o $@ -c -I$(INCLUDE_DIR)
 
-libft:
+$(LIB_DIR):
+	@mkdir $@
+
+libft: $(LIB_DIR)
 	@echo "                Compiling libft..."
 	@echo "--------------------------------------------------"
 	$(MAKE) -C $(FT_PATH)
@@ -52,7 +58,7 @@ libft:
 	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
 	@echo
 
-minilibx:
+minilibx: $(LIB_DIR)
 	@echo " Compiling minilibx... (warnings in $(MLX_PATH)/logs)"
 	@echo "--------------------------------------------------"
 	$(MAKE) -C $(MLX_PATH) 2> $(MLX_PATH)/logs
