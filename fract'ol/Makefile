@@ -1,7 +1,7 @@
 CC=gcc
 CFLAGS=-Wall -Wextra -Werror
 MAKE=/usr/bin/make
-NAME=fdf
+NAME=fractol
 
 OBJ_DIR=objs
 SRC_DIR=srcs
@@ -11,16 +11,14 @@ INCLUDE_DIR=includes
 FT_PATH=libft
 MLX_PATH=minilibx
 
-SRCS=camera.c gb_collection.c graphics.c images.c img_graphics.c key_events.c \
-key_functions_1.c key_functions_2.c key_functions_3.c main.c map.c \
-map_projection.c matrix.c tools.c transformations.c vectors.c
+SRCS=
 OBJS=$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIBS=-lft -lm -lmlx -framework OpenGL -framework AppKit
 
 .PHONY: all clean fclean re libft minilibx
 
 
-all: $(NAME)
+all: $(OBJ_DIR) $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "=================================================="
@@ -37,10 +35,16 @@ $(NAME): $(OBJS)
 	@echo
 	@echo "=================================================="
 
+$(OBJ_DIR):
+	@mkdir $@
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) $^ -o $@ -c -I$(INCLUDE_DIR)
 
-libft:
+$(LIB_DIR):
+	@mkdir $@
+
+libft: $(LIB_DIR)
 	@echo "                Compiling libft..."
 	@echo "--------------------------------------------------"
 	$(MAKE) -C $(FT_PATH)
@@ -52,7 +56,7 @@ libft:
 	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
 	@echo
 
-minilibx:
+minilibx: $(LIB_DIR)
 	@echo " Compiling minilibx... (warnings in $(MLX_PATH)/logs)"
 	@echo "--------------------------------------------------"
 	$(MAKE) -C $(MLX_PATH) 2> $(MLX_PATH)/logs
