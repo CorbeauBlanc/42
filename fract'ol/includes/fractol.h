@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/07 17:29:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/07 19:05:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define FDF_H
 # define HEIGHT 		1000
 # define WIDTH 			1000
-# define BUFF_SIZE		1024
-# define SCALE_XY		50
-# define SCALE_Z		1
 
 # ifndef __APPLE__
 #  define K_Z			233
@@ -50,11 +47,6 @@
 # include <stdio.h>
 # include "libft.h"
 # include "structures.h"
-
-/*
-** gb_collection.c
-*/
-void		garbage_collector(t_gbc_action action, void *ptr, void (*fct)());
 
 /*
 ** graphics.c
@@ -106,21 +98,8 @@ void		zoom_out(t_camera *cam, t_map *map);
 void		exit_main();
 
 /*
-** tools.c
-*/
-double		dabs(double f);
-int			is_in_window(t_vector *vect);
-double		max(double d1, double d2);
-double		min(double d1, double d2);
-double		to_rad(double deg);
-
-/*
 ** vectors.c
 */
 t_vector	*create_vector(double x, double y, double z);
-t_map		*insert_cell(t_map *head, t_map *cell);
-void		mult_vector(t_vector *dest, t_matrix *mtx, t_vector *vec);
-t_map		*new_cell(t_vector *vect);
-void		transform_vector(t_vector *dest, t_vector *vect, t_camera *cam);
 
 #endif
