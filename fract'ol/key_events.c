@@ -6,11 +6,11 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:21:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/07 17:33:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/08 16:26:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fractol.h"
 #include <mlx.h>
 
 void		new_key_evt(t_key_evt **head, int key, void (*fct)())

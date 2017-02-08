@@ -6,11 +6,11 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:43:43 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/03 19:23:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/08 21:28:57 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fractol.h"
 #include <mlx.h>
 
 t_image	*create_image(int width, int height, int depth)
@@ -24,7 +24,7 @@ t_image	*create_image(int width, int height, int depth)
 	img->depth = depth;
 	img->size_line = (depth / 8) * width;
 	img->endian = 1;
-	img->ptr = mlx_new_image(mlx_get_core()->co, width, height);
+	img->ptr = mlx_new_image(mlx_get_core(0,0)->co, width, height);
 	img->data = mlx_get_data_addr(img->ptr, &img->depth,
 								&img->size_line, &img->endian);
 	return (img);
@@ -32,7 +32,7 @@ t_image	*create_image(int width, int height, int depth)
 
 void	delete_image(t_image *img)
 {
-	mlx_destroy_image(mlx_get_core()->co, img->ptr);
+	mlx_destroy_image(mlx_get_core(0,0)->co, img->ptr);
 	free(img);
 }
 
@@ -56,6 +56,6 @@ void	display_image(t_image *img, int x, int y)
 {
 	t_mlx_core	*core;
 
-	core = mlx_get_core();
+	core = mlx_get_core(0,0);
 	mlx_put_image_to_window(core->co, core->win, img->ptr, x, y);
 }

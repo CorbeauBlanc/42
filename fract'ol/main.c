@@ -6,15 +6,16 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/07 18:34:31 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/08 19:30:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "fractol.h"
 #include <mlx.h>
 #include <fcntl.h>
+#include <math.h>
 
-void	exit_error(char *s)
+/*void	exit_error(char *s)
 {
 	if (!s)
 	{
@@ -41,17 +42,19 @@ void	create_events(t_key_evt **head, t_mlx_core *core)
 	new_key_evt(head, K_D, &translate_right);
 	garbage_collector(ADD, head, &clear_key_evts);
 	mlx_hook(core->win, K_PRESS_EVT, K_PRESS_MASK, &key_hook, *head);
-}
+}*/
 
 int		main(int ac, char **av)
 {
-	t_mlx_core	*core;
+	(void)ac;
+	(void)av;
+	/*t_mlx_core	*core;
 	t_key_evt	*events;
 
 	core = mlx_get_core();
 	events = init_key_evts(K_ECHAP, &exit_main, cam, map);
 	create_events(&events, core);
 	mlx_loop(core->co);
-	exit_main();
+	exit_main();*/
 	return (0);
 }

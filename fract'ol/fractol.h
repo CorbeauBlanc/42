@@ -6,14 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/07 20:12:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/08 21:22:04 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define HEIGHT 		1000
-# define WIDTH 			1000
+# define PRECISION		50
 
 # ifndef __APPLE__
 #  define K_Z			233
@@ -49,9 +48,29 @@
 # include "structures.h"
 
 /*
+** cpx_numbers.c
+*/
+t_complex	*new_cpx(double r, double i);
+void		set_nbr(t_complex *nb, double r, double i);
+
+/*
+** cpx_operations.c
+*/
+t_complex	*cpx_add(t_complex *res, t_complex *nb1, t_complex *nb2);
+t_complex	*cpx_div(t_complex *res, t_complex *nb1, t_complex *nb2);
+double		cpx_mod(t_complex *nb);
+t_complex	*cpx_mult(t_complex *res, t_complex *nb1, t_complex *nb2);
+t_complex	*cpx_sub(t_complex *res, t_complex *nb1, t_complex *nb2);
+
+/*
+** fractals.c
+*/
+t_fractal	*new_fractal(char *name, int (*fct)(), double zoom);
+
+/*
 ** graphics.c
 */
-t_mlx_core	*mlx_get_core(void);
+t_mlx_core	*mlx_get_core(int width, int height);
 void		put_string(int x, int y, char *str);
 
 /*
@@ -90,10 +109,5 @@ void		zoom_out();
 ** main.c
 */
 void		exit_main();
-
-/*
-** vectors.c
-*/
-t_vector	*create_vector(double x, double y, double z);
 
 #endif

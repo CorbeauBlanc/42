@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/07 20:02:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/08 21:20:05 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@ typedef struct			s_complex
 	double				img_part;
 	double				real_part;
 }						t_complex;
+
+typedef struct			s_fractal
+{
+	char				*name;
+	int					(*is_in_fract)();
+	double				x_min;
+	double				x_max;
+	double				y_min;
+	double				y_max;
+	double				zoom;
+}						t_fractal;
 
 typedef struct			s_key_evt
 {

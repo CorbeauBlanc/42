@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectors.c                                          :+:      :+:    :+:   */
+/*   fractals.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/07 17:36:10 by edescoin         ###   ########.fr       */
+/*   Created: 2017/02/08 19:55:57 by edescoin          #+#    #+#             */
+/*   Updated: 2017/02/08 20:40:21 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-#include <math.h>
+#include "fractol.h"
 
-t_vector	*create_vector(double x, double y, double z)
+t_fractal	*new_fractal(char *name, int (*fct)(), double zoom)
 {
-	t_vector	*vect;
-
-	if (!(vect = malloc(sizeof(t_vector))))
+	t_fractal	*ftl;
+	if (!(ftl = malloc(sizeof(t_fractal))))
 		return (NULL);
-	vect->x = x;
-	vect->y = y;
-	vect->z = z;
-	vect->w = 1;
-	return (vect);
+	ftl->name = name;
+	ftl->is_in_fract = fct;
+	ftl->zoom = zoom;
+	return (ftl);
+}
+
+t_fractal	*get_fractal(char *name, t_fractal *ftl_tab)
+{
+	while (ftl_tab && !ft_strequ(ftl_tab->name, name))
+			++ftl_tab;
+	return (ftl_tab);
 }
