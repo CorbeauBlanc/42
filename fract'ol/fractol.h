@@ -6,13 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 18:44:29 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/10 19:41:06 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # define PRECISION		50
+# define NB_FTLS		1
 
 # ifndef __APPLE__
 #  define K_Z			233
@@ -65,6 +66,9 @@ t_complex	*cpx_sub(t_complex *res, t_complex *nb1, t_complex *nb2);
 /*
 ** fractals.c
 */
+void		draw_fractal(t_image *img, t_fractal *ftl);
+t_fractal	**init_ftl_tab();
+t_fractal	*get_fractal(char *name, t_fractal *ftl_tab);
 t_fractal	*new_fractal(char *name, int (*fct)(), double zoom);
 
 /*
@@ -84,7 +88,7 @@ void		display_image(t_image *img, int x, int y);
 /*
 ** img_graphics.c
 */
-void		draw_fractal(t_image *img, t_fractal *ftl);
+int			is_in_img(int x, int y, t_image *img);
 void		mlx_pixel_put_img(t_image *img, int x, int y, int color);
 
 /*
