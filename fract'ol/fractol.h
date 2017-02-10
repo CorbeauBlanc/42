@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/08 21:22:04 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/10 18:44:29 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void		display_image(t_image *img, int x, int y);
 /*
 ** img_graphics.c
 */
+void		draw_fractal(t_image *img, t_fractal *ftl);
 void		mlx_pixel_put_img(t_image *img, int x, int y, int color);
 
 /*
@@ -109,5 +110,11 @@ void		zoom_out();
 ** main.c
 */
 void		exit_main();
+
+/*
+** mandelbrot
+*/
+int			is_in_mandelbrot(double x, double y);
+t_fractal	*create_mandelbrot();
 
 #endif

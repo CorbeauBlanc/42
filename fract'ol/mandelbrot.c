@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 19:57:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/08 20:30:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/10 19:15:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int			is_in_mandelbrot(double x, double y)
 t_fractal	*create_mandelbrot()
 {
 	t_fractal	*ftl;
-	if ((ftl = new_fractal("mandelbrot", &is_in_mandelbrot, 100)))
+	if ((ftl = new_fractal("mandelbrot", &is_in_mandelbrot, 250)))
 	{
 		ftl->x_min = -2.1;
 		ftl->x_max = 0.6;
 		ftl->y_min = -1.2;
-		ftl->y_min = 1.2;
+		ftl->y_max = 1.2;
 	}
 	return (ftl);
 }

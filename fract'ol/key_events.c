@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:21:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/08 16:26:23 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/10 18:40:28 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		clear_key_evts(t_key_evt **head)
 		delete_key_evt(head);
 }
 
-t_key_evt	*init_key_evts(int key, void (*fct)(), t_camera *cam, t_map *map)
+t_key_evt	*init_key_evts(int key, void (*fct)())
 {
 	t_key_evt	*evt;
 
@@ -61,10 +61,7 @@ int			key_hook(int key, void *param)
 	while (key_evts && key_evts->key != key)
 		key_evts = key_evts->next;
 	if (key_evts)
-	{
-		key_evts->fct(/*key_evts->cam, key_evts->map*/);
-		projection(/*key_evts->map, key_evts->cam*/);
-	}
+		key_evts->fct(NULL);
 	else
 		return (0);
 	return (1);

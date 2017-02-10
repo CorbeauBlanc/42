@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
-/*   Updated: 2016/11/22 18:44:21 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/10 18:49:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 void	ft_putnbr_fd(int n, int fd)
 {
 	long	l;
+	char	c;
 
 	l = (long)n;
 	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
+		write(fd, "-", 1);
 		l = -l;
 	}
 	if (n > 9 || n < -9)
 		ft_putnbr_fd((int)(l / 10), fd);
-	ft_putchar_fd('0' + (l % 10), fd);
+	c = '0' + (l % 10);
+	write(fd, &c, 1);
 }
