@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 19:55:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 19:51:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/11 19:14:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,19 @@ t_fractal	**init_ftl_tab()
 	return (tab);
 }
 
+void		delete_ftl_tab(t_fractal **tab)
+{
+	t_fractal	**tmp;
+
+	tmp = tab;
+	while (*tmp)
+	{
+		free(*tmp);
+		++tmp;
+	}
+	free(tab);
+}
+
 void		draw_fractal(t_image *img, t_fractal *ftl)
 {
 	int	x;
@@ -52,7 +65,7 @@ void		draw_fractal(t_image *img, t_fractal *ftl)
 		y = -1;
 		while (++y < img->height)
 			if (ftl->is_in_fract((x / ftl->zoom) + ftl->x_min,
-								(y / ftl->zoom) + ftl->y_min))
+								(y / ftl->zoom) + ftl->y_min, ftl->precision))
 				mlx_pixel_put_img(img, x, y, 0x00FFFFFF);
 	}
 	display_image(img, 0, 0);

@@ -6,13 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 19:41:06 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/11 19:14:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define PRECISION		50
 # define NB_FTLS		1
 
 # ifndef __APPLE__
@@ -27,6 +26,8 @@
 #  define K_DOWN		65364
 #  define K_RIGHT		65363
 #  define K_ECHAP		65307
+#  define M_L_CLICK		1
+#  define M_R_CLICK		3
 # else
 #  define K_Z			13
 #  define K_Q			0
@@ -66,6 +67,7 @@ t_complex	*cpx_sub(t_complex *res, t_complex *nb1, t_complex *nb2);
 /*
 ** fractals.c
 */
+void		delete_ftl_tab(t_fractal **tab);
 void		draw_fractal(t_image *img, t_fractal *ftl);
 t_fractal	**init_ftl_tab();
 t_fractal	*get_fractal(char *name, t_fractal *ftl_tab);
@@ -118,7 +120,12 @@ void		exit_main();
 /*
 ** mandelbrot
 */
-int			is_in_mandelbrot(double x, double y);
+int			is_in_mandelbrot(double x, double y, int precision);
 t_fractal	*create_mandelbrot();
+
+/*
+** mouse_events.c
+*/
+int	mouse_hook(int button, int x, int y, void *param);
 
 #endif

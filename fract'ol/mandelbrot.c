@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/07 19:57:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 19:15:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/11 17:36:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int			is_in_mandelbrot(double x, double y)
+int			is_in_mandelbrot(double x, double y, int precision)
 {
 	t_complex	c;
 	t_complex	z;
@@ -21,9 +21,9 @@ int			is_in_mandelbrot(double x, double y)
 	i = -1;
 	set_nbr(&c, x, y);
 	set_nbr(&z, 0, 0);
-	while (++i < PRECISION && cpx_mod(&z) < 2)
+	while (++i < precision && cpx_mod(&z) < 2)
 		cpx_add(&z, cpx_mult(&z, &z, &z), &c);
-	return (i == PRECISION);
+	return (i == precision);
 }
 
 t_fractal	*create_mandelbrot()
@@ -35,6 +35,7 @@ t_fractal	*create_mandelbrot()
 		ftl->x_max = 0.6;
 		ftl->y_min = -1.2;
 		ftl->y_max = 1.2;
+		ftl->precision = 50;
 	}
 	return (ftl);
 }

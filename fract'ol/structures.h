@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/08 21:20:05 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/11 19:05:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,14 @@ typedef struct			s_fractal
 	double				y_min;
 	double				y_max;
 	double				zoom;
+	int					precision;
 }						t_fractal;
+
+typedef struct			s_mouse_evt
+{
+	t_fractal			*ftl;
+	t_image				*img;
+}						t_mouse_evt;
 
 typedef struct			s_key_evt
 {
