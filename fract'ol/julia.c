@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/07 19:57:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/15 18:30:24 by edescoin         ###   ########.fr       */
+/*   Created: 2017/02/15 20:57:46 by edescoin          #+#    #+#             */
+/*   Updated: 2017/02/15 21:02:13 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int			is_in_mandelbrot(double x, double y, int precision)
+int			is_in_julia(double x, double y, int precision, t_complex *init)
 {
 	t_complex	c;
 	t_complex	z;
 	int			i;
 
 	i = -1;
-	set_nbr(&c, x, y);
-	set_nbr(&z, 0, 0);
+	set_nbr(&c, init->real_part, init->img_part);
+	set_nbr(&z, x, y);
 	while (++i < precision && cpx_mod(&z) < 2)
 		cpx_add(&z, cpx_mult(&z, &z, &z), &c);
 	return (i);
 }
 
-t_fractal	*create_mandelbrot()
+t_fractal	*create_julia()
 {
 	t_fractal	*ftl;
-	if ((ftl = new_fractal("mandelbrot", &is_in_mandelbrot, 250)))
+	if ((ftl = new_fractal("julia", &is_in_julia, 250)))
 	{
 		ftl->x_min = -2.1;
 		ftl->x_max = 0.6;

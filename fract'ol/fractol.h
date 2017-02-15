@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/11 19:14:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/15 21:04:13 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@
 #  define K_DOWN		125
 #  define K_RIGHT		124
 #  define K_ECHAP		53
+#  define M_L_CLICK		1
+#  define M_R_CLICK		2
+#  define M_SCROLL_UP	4
+#  define M_SCROLL_DOWN	5
 # endif
 # define K_PRESS_MASK	(1L<<0)
 # define K_PRESS_EVT	2
@@ -92,6 +96,12 @@ void		display_image(t_image *img, int x, int y);
 */
 int			is_in_img(int x, int y, t_image *img);
 void		mlx_pixel_put_img(t_image *img, int x, int y, int color);
+
+/*
+** julia.c
+*/
+int			is_in_julia(double x, double y, int precision, t_complex *init);
+t_fractal	*create_julia();
 
 /*
 ** key_events.c
