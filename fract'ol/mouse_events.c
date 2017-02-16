@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/11 17:51:23 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/15 20:54:12 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/16 20:07:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	mouse_hook(int button, int x, int y, void *param)
 	int			sign;
 
 	arg = (t_mouse_evt*)param;
-	if (button == M_SCROLL_UP || button == M_L_CLICK)
+	if ((button == M_SCROLL_UP || button == M_L_CLICK) && y > 0)
 		sign = 1;
-	else if ((button == M_SCROLL_DOWN || button == M_R_CLICK) &&
+	else if ((button == M_SCROLL_DOWN || button == M_R_CLICK) && y > 0 &&
 			arg->ftl->precision - 10 > 0)
 		sign = -1;
 	else
@@ -34,5 +34,19 @@ int	mouse_hook(int button, int x, int y, void *param)
 	arg->ftl->y_min += (sign * (y - (arg->img->height / 2)) / arg->ftl->zoom);
 	clear_image(arg->img);
 	draw_fractal(arg->img, arg->ftl);
+	return (1);
+}
+
+int	move_hook(int x, int y, void *param)
+{
+	t_mouse_evt	*arg;
+
+	arg = (t_mouse_evt*)param;
+	if (ft_strequ("julia", arg->ftl->name))
+	{
+		arg->ftl->init.real_part = (double)x / (double)arg->img->width;
+		arg->ftl->init.img_part = (double)y / (double)arg->img->height;
+		draw_fractal(arg->img, arg->ftl);
+	}
 	return (1);
 }

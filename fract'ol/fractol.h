@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/15 21:04:13 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/16 19:53:25 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define NB_FTLS		1
+# define NB_FTLS		2
 
 # ifndef __APPLE__
 #  define K_Z			233
@@ -47,11 +47,18 @@
 # endif
 # define K_PRESS_MASK	(1L<<0)
 # define K_PRESS_EVT	2
+# define M_MOTION_MASK	(1L<<6)
+# define M_MOTION_EVT	6
 
 # include <stdlib.h>
 # include <stdio.h>
 # include "libft.h"
 # include "structures.h"
+
+/*
+** colors.c
+*/
+int			(*get_color_fct(int i))();
 
 /*
 ** cpx_numbers.c
@@ -74,7 +81,7 @@ t_complex	*cpx_sub(t_complex *res, t_complex *nb1, t_complex *nb2);
 void		delete_ftl_tab(t_fractal **tab);
 void		draw_fractal(t_image *img, t_fractal *ftl);
 t_fractal	**init_ftl_tab();
-t_fractal	*get_fractal(char *name, t_fractal *ftl_tab);
+t_fractal	*get_fractal(char *name, t_fractal **ftl_tab);
 t_fractal	*new_fractal(char *name, int (*fct)(), double zoom);
 
 /*
@@ -137,5 +144,6 @@ t_fractal	*create_mandelbrot();
 ** mouse_events.c
 */
 int	mouse_hook(int button, int x, int y, void *param);
+int	move_hook(int x, int y, void *param);
 
 #endif

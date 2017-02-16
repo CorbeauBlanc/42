@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 19:55:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/15 21:07:10 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/16 18:28:54 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ t_fractal	*new_fractal(char *name, int (*fct)(), double zoom)
 	return (ftl);
 }
 
-t_fractal	*get_fractal(char *name, t_fractal *ftl_tab)
+t_fractal	*get_fractal(char *name, t_fractal **ftl_tab)
 {
-	while (ftl_tab && !ft_strequ(ftl_tab->name, name))
+	while (*ftl_tab && !ft_strequ((*ftl_tab)->name, name))
 			++ftl_tab;
-	return (ftl_tab);
+	return (*ftl_tab);
 }
 
 t_fractal	**init_ftl_tab()
@@ -36,7 +36,9 @@ t_fractal	**init_ftl_tab()
 
 	if (!(tab = malloc(NB_FTLS * sizeof(t_fractal*) + 1)))
 		return (NULL);
-	tab[0] = create_julia();
+	tab[0] = create_mandelbrot();
+	tab[1] = create_julia();
+
 	tab[NB_FTLS] = NULL;
 	return (tab);
 }
@@ -59,10 +61,7 @@ void		draw_fractal(t_image *img, t_fractal *ftl)
 	int	x;
 	int	y;
 	int	i;
-	t_complex	test;
 
-	test.img_part = 0.01;
-	test.real_part = 0.285;
 	x = -1;
 	while (++x < img->width)
 	{
@@ -70,8 +69,8 @@ void		draw_fractal(t_image *img, t_fractal *ftl)
 		while (++y < img->height)
 			if ((i = ftl->is_in_fract((x / ftl->zoom) + ftl->x_min,
 									(y / ftl->zoom) + ftl->y_min,
-									ftl->precision, &test)))
-				mlx_pixel_put_img(img, x, y, (/*ftl->precision /*/ i) * 0x00000011);
+									ftl->precision, &ftl->init)))
+				mlx_pixel_put_img(img, x, y, ftl->get_color(i, ftl->precision));
 	}
 	display_image(img, 0, 0);
 }
