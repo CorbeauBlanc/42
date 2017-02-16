@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 20:57:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/16 20:14:05 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/16 20:16:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_fractal	*create_julia()
 		ftl->x_max = 1.2;
 		ftl->y_min = -1.2;
 		ftl->y_max = 1.2;
-		ftl->precision = 20;
+		ftl->precision = 50;
 		ftl->init.img_part = 0.01;
 		ftl->init.real_part = 0.285;
 	}
