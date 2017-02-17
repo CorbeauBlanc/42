@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/16 19:53:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/17 21:46:33 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define NB_FTLS		2
+# define NB_FTLS		4
 
 # ifndef __APPLE__
 #  define K_Z			233
@@ -28,6 +28,8 @@
 #  define K_ECHAP		65307
 #  define M_L_CLICK		1
 #  define M_R_CLICK		3
+#  define M_SCROLL_UP	4
+#  define M_SCROLL_DOWN	5
 # else
 #  define K_Z			13
 #  define K_Q			0
@@ -56,6 +58,12 @@
 # include "structures.h"
 
 /*
+** burning_ship.c
+*/
+int			is_in_burning_ship(double x, double y, int precision);
+t_fractal	*create_burning_ship();
+
+/*
 ** colors.c
 */
 int			(*get_color_fct(int i))();
@@ -74,6 +82,12 @@ t_complex	*cpx_div(t_complex *res, t_complex *nb1, t_complex *nb2);
 double		cpx_mod(t_complex *nb);
 t_complex	*cpx_mult(t_complex *res, t_complex *nb1, t_complex *nb2);
 t_complex	*cpx_sub(t_complex *res, t_complex *nb1, t_complex *nb2);
+
+/*
+** cpx_operations.c
+*/
+t_complex	*cpx_real_div(t_complex *res, t_complex *nb1, double nb2);
+t_complex	*cpx_real_mult(t_complex *res, t_complex *nb1, double nb2);
 
 /*
 ** fractals.c
@@ -143,7 +157,13 @@ t_fractal	*create_mandelbrot();
 /*
 ** mouse_events.c
 */
-int	mouse_hook(int button, int x, int y, void *param);
-int	move_hook(int x, int y, void *param);
+int			mouse_hook(int button, int x, int y, void *param);
+int			move_hook(int x, int y, void *param);
+
+/*
+** newton.c
+*/
+int			is_in_newton(double x, double y, int precision);
+t_fractal	*create_newton();
 
 #endif

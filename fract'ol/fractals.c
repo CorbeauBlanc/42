@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/08 19:55:57 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/16 18:28:54 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/17 21:46:52 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ t_fractal	**init_ftl_tab()
 		return (NULL);
 	tab[0] = create_mandelbrot();
 	tab[1] = create_julia();
+	tab[2] = create_burning_ship();
+	tab[3] = create_newton();
 
 	tab[NB_FTLS] = NULL;
 	return (tab);

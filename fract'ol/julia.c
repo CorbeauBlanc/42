@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 20:57:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/16 20:16:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/17 21:44:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int			is_in_julia(double x, double y, int precision, t_complex *init)
 	set_nbr(&z, x, y);
 	while (++i < precision && cpx_mod(&z) < 2)
 		cpx_add(&z, cpx_mult(&z, &z, &z), &c);
-	return (i);
+	return (i == precision ? i : -i);
 }
 
 t_fractal	*create_julia()
