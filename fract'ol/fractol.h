@@ -6,13 +6,17 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/17 21:46:33 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/17 22:54:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # define NB_FTLS		4
+
+# define  PRIMARY		0x00000033
+# define  SECONDARY		0x00000000
+# define  TERTIARY		0x00110000
 
 # ifndef __APPLE__
 #  define K_Z			233
