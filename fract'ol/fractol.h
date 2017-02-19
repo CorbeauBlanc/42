@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/17 22:54:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/19 19:02:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,9 +133,9 @@ t_fractal	*create_julia();
 */
 void		clear_key_evts(t_key_evt **head);
 void		delete_key_evt(t_key_evt **head);
-t_key_evt	*init_key_evts(int key, void (*fct)());
+t_key_evt	*init_key_evts(int key, void *param, void (*fct)());
 int			key_hook(int key, void *param);
-void		new_key_evt(t_key_evt **head, int key, void (*fct)());
+void		new_key_evt(t_key_evt **head, void *param, int key, void (*fct)());
 
 /*
 ** key_functions_*.c
@@ -144,8 +144,6 @@ void		translate_down();
 void		translate_left();
 void		translate_right();
 void		translate_up();
-void		zoom_in();
-void		zoom_out();
 
 /*
 ** main.c
