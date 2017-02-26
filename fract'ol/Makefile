@@ -11,7 +11,10 @@ INCLUDE_DIR=includes
 FT_PATH=libft
 MLX_PATH=minilibx
 
-SRCS=
+SRCS=burning_ship.c colors.c cpx_numbers.c cpx_operations.c cpx_operations_2.c \
+cpx_operations_3.c fractals.c graphics.c images.c img_graphics.c julia.c \
+key_events.c key_functions.c main.c mandelbrot.c mouse_events.c newton.c \
+newton_2.c
 OBJS=$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIBS=-lft -lm -lmlx -framework OpenGL -framework AppKit
 

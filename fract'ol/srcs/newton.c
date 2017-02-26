@@ -6,12 +6,15 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 18:11:41 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/17 21:54:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/26 17:25:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+/*
+** P = z³ - 1
+*/
 int			is_in_newton(double x, double y, int precision)
 {
 	t_complex	z;
