@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/26 19:39:54 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/26 20:07:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define NB_FTLS		5
+# define NB_FTLS		4
 
 # define  PRIMARY		0x00000033
 # define  SECONDARY		0x00000000
@@ -95,13 +95,6 @@ t_complex	*cpx_real_div(t_complex *res, t_complex *nb1, double nb2);
 t_complex	*cpx_real_mult(t_complex *res, t_complex *nb1, double nb2);
 
 /*
-** cpx_operations_3.c
-*/
-t_complex	*cpx_cos(t_complex *res, t_complex *nb);
-t_complex	*cpx_cosh(t_complex *res, t_complex *nb);
-t_complex	*cpx_sinh(t_complex *res, t_complex *nb);
-
-/*
 ** fractals.c
 */
 void		delete_ftl_tab(t_fractal **tab);
@@ -175,11 +168,5 @@ int			move_hook(int x, int y, void *param);
 */
 int			is_in_newton(double x, double y, int precision);
 t_fractal	*create_newton();
-
-/*
-** newton_2.c
-*/
-int			is_in_newton_2(double x, double y, int precision);
-t_fractal	*create_newton_2();
 
 #endif
