@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/27 21:47:52 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/28 18:54:04 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,34 @@ void	exit_error(char *s)
 
 void	exit_main()
 {
-	SDL_DestroyWindow(SDL_GetMainWindow());
+	SDL_DestroyWindow(SDL_GetCore()->window);
+	SDL_DestroyRenderer(SDL_GetCore()->renderer);
 	SDL_Quit();
 	garbage_collector(CLEAR, NULL, NULL);
 	exit(0);
+}
+
+int		exit_loop()
+{
+	return (0);
+}
+
+void	init_list_evts(t_event **head)
+{
+	new_event(head, SDL_QUIT, &exit_loop);
 }
 
 int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	SDL_GetMainWindow();
-	SDL_Event e;
-int quit = 0;
-while (!quit){
-    while (SDL_PollEvent(&e)){
-        if (e.type == SDL_QUIT){
-            quit = 1;
-        }
-        if (e.type == SDL_KEYDOWN){
-            quit = 1;
-        }
-        if (e.type == SDL_MOUSEBUTTONDOWN){
-            quit = 1;
-        }
-    }
-}
+	t_event	*list_evts;
+
+	list_evts = NULL;
+	init_list_evts(&list_evts);
+	SDL_GetCore();
+	wait_events(list_evts);
+	clear_events(&list_evts);
 	exit_main();
 	return (0);
 }

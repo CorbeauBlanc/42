@@ -12,11 +12,11 @@ INCLUDE_SYS=$$HOME/include/SDL2
 FT_PATH=libft
 SDL_PATH=SDL2
 
-SRCS=
+SRCS=main.c
 OBJS=$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIBS=-lft -lm -lSDL2
 
-.PHONY: all clean fclean re libft sdl
+.PHONY: all clean fclean re libft sdl debug-linux debug-mac
 
 
 all: $(OBJ_DIR) $(NAME)
@@ -115,3 +115,9 @@ fclean: clean
 	@echo
 
 re: fclean all
+
+debug-linux: $(SRCS)
+	$(CC) $(CFLAGS) $^ -L. $(LIBS)
+
+debug-mac:
+	echo

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/27 17:19:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/28 18:23:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,6 @@ typedef struct			s_image
 	int					size_line;
 	int					endian;
 }						t_image;
-
-typedef struct			s_key_evt
-{
-	int					key;
-	void				(*fct)();
-	struct s_key_evt	*next;
-}						t_key_evt;
 
 typedef struct			s_vector
 {
