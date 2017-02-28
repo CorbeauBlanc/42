@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/28 18:54:04 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/28 20:38:39 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int		exit_loop()
 
 void	init_list_evts(t_event **head)
 {
-	new_event(head, SDL_QUIT, &exit_loop);
+	new_event(head, SDL_QUIT, NULL, &exit_loop);
+	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_ESCAPE, &exit_loop), &key_hook);
 }
 
 int		main(int ac, char **av)

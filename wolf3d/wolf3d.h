@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/28 18:53:57 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/28 20:17:28 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,25 @@ void				mlx_pixel_put_img(t_image *img, int x, int y, int color);
 typedef struct		s_event
 {
 	SDL_EventType	type;
+	void			*data;
 	int				(*fct)();
 	struct s_event	*next;
 }					t_event;
 void				clear_events(t_event **head);
 void				delete_event(t_event **head);
-void				new_event(t_event **head, SDL_EventType type, int (*fct)());
+void				new_event(t_event **head, SDL_EventType type, void *data, int (*fct)());
 void				wait_events(t_event *list_evts);
+
+/*
+** key_events.c
+*/
+typedef struct		s_key_data
+{
+	SDL_Keycode		key;
+	int				(*fct)();
+}					t_key_data;
+t_key_data			*new_key_data(SDL_Keycode key, int (*fct)());
+int					key_hook(SDL_Event evt, t_event *list_evts);
 
 /*
 ** key_functions_*.c
