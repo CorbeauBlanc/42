@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/28 20:17:28 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/01 17:07:55 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define TITLE			"Wolf3D"
 # define HEIGHT 		700
 # define WIDTH 			700
+# define WALL_SIZE		16
 # define BUFF_SIZE		1024
 
 # include <SDL2/SDL.h>
@@ -30,6 +31,14 @@
 # include <stdio.h>
 # include "libft.h"
 # include "structures.h"
+
+/*
+** camera.c
+*/
+void		delete_camera(t_camera *cam);
+t_camera	*new_camera(int fov);
+void		set_camera_crd(t_camera *cam, double h_ang, double v_ang, double d);
+void		set_camera_fov(t_camera	*cam, int fov);
 
 /*
 ** graphics.c
@@ -101,6 +110,12 @@ void				exit_error(char *s);
 void				exit_main();
 
 /*
+** map.c
+*/
+void		delete_map(t_map *map);
+t_map		*read_file(int fd);
+
+/*
 ** transformations.c
 */
 void				translation();
@@ -110,5 +125,7 @@ void				rotation();
 ** vectors.c
 */
 t_vector	*create_vector(double x, double y, double z);
+t_map		*insert_cell(t_map *head, t_map *cell);
+t_map		*new_cell(t_vector *vect, t_tile type);
 
 #endif
