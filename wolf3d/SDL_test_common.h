@@ -1,1 +1,1 @@
-/Users/edescoin/include/SDL2/SDL_test_common.h
+SDL2/SDL2/build/include/SDL2/SDL_test_common.h

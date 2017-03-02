@@ -1,1 +1,1 @@
-/Users/edescoin/include/SDL2/SDL_opengles2_khrplatform.h
+SDL2/SDL2/build/include/SDL2/SDL_opengles2_khrplatform.h

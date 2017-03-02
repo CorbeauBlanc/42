@@ -6,12 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/26 20:07:15 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/27 20:06:11 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FRACTOL_H
+# define FRACTOL_H
 # define NB_FTLS		4
 
 # define  PRIMARY		0x00000033

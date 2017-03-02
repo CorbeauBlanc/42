@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/01 17:07:55 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/02 15:01:57 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@
 # define WALL_SIZE		16
 # define BUFF_SIZE		1024
 
-# include <SDL2/SDL.h>
-//# include "SDL.h"
-
 # ifndef __APPLE__
+#  include <SDL2/SDL.h>
 #  define SDL_VIDEO		SDL_VIDEO_DRIVER_X11
 # else
+#  include "SDL.h"
 #  define SDL_VIDEO		SDL_VIDEO_DRIVER_COCOA
 # endif
 
