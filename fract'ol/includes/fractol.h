@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/27 20:06:11 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/03 22:14:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,15 @@
 #  define K_D			2
 #  define K_I			34
 #  define K_O			31
+#  define K_J			38
 #  define K_UP			126
 #  define K_LEFT		123
 #  define K_DOWN		125
 #  define K_RIGHT		124
 #  define K_ECHAP		53
+#  define K_SPACE		49
+#  define K_PLUS		69
+#  define K_MINUS		78
 #  define M_L_CLICK		1
 #  define M_R_CLICK		2
 #  define M_SCROLL_UP	4
@@ -106,6 +110,7 @@ t_fractal	*new_fractal(char *name, int (*fct)(), double zoom);
 /*
 ** graphics.c
 */
+void		draw_cross(t_image *img);
 t_mlx_core	*mlx_get_core(int width, int height);
 void		put_string(int x, int y, char *str);
 
@@ -141,10 +146,14 @@ void		new_key_evt(t_key_evt **head, void *param, int key, void (*fct)());
 /*
 ** key_functions_*.c
 */
-void		translate_down();
-void		translate_left();
-void		translate_right();
-void		translate_up();
+void		decrease_precision(t_mouse_evt *arg);
+void		increase_precision(t_mouse_evt *arg);
+void		translate_down(t_mouse_evt *arg);
+void		translate_left(t_mouse_evt *arg);
+void		translate_right(t_mouse_evt *arg);
+void		translate_up(t_mouse_evt *arg);
+void		toggle_cross(t_mouse_evt *arg);
+void		toggle_julia(t_mouse_evt *arg);
 
 /*
 ** main.c

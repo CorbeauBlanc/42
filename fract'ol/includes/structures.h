@@ -6,18 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/19 18:54:13 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/03 22:09:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
-
-typedef struct			s_mlx_core
-{
-	void				*co;
-	void				*win;
-}						t_mlx_core;
 
 typedef struct			s_image
 {
@@ -28,7 +22,16 @@ typedef struct			s_image
 	int					depth;
 	int					size_line;
 	int					endian;
+	int					o_x;
+	int					o_y;
+	int					disp_cross;
 }						t_image;
+
+typedef struct			s_mlx_core
+{
+	void				*co;
+	void				*win;
+}						t_mlx_core;
 
 typedef struct			s_complex
 {
@@ -46,6 +49,7 @@ typedef struct			s_fractal
 	double				y_max;
 	double				zoom;
 	t_complex			init;
+	int					move;
 	int					precision;
 	int					(*get_color)();
 }						t_fractal;

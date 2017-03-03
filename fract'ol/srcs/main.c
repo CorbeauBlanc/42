@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/19 19:04:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/03 22:15:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void		create_events(t_mlx_core *core, t_fractal *ftl, t_image *img)
 	new_key_evt(head, mse_args, K_LEFT, &translate_left);
 	new_key_evt(head, mse_args, K_DOWN, &translate_down);
 	new_key_evt(head, mse_args, K_RIGHT, &translate_right);
+	new_key_evt(head, mse_args, K_SPACE, &toggle_cross);
+	new_key_evt(head, mse_args, K_PLUS, &increase_precision);
+	new_key_evt(head, mse_args, K_MINUS, &decrease_precision);
+	new_key_evt(head, mse_args, K_J, &toggle_julia);
 	garbage_collector(ADD, head, &clear_key_evts);
 	mlx_hook(core->win, K_PRESS_EVT, K_PRESS_MASK, &key_hook, *head);
 	mlx_mouse_hook(core->win, &mouse_hook, mse_args);

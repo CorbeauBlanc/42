@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror -Ofast
 MAKE=/usr/bin/make
 NAME=fractol
 
@@ -13,7 +13,7 @@ MLX_PATH=minilibx
 
 SRCS=burning_ship.c colors.c cpx_numbers.c cpx_operations.c cpx_operations_2.c \
 fractals.c graphics.c images.c img_graphics.c julia.c key_events.c \
-key_functions.c main.c mandelbrot.c mouse_events.c newton.c
+key_functions.c main.c mandelbrot.c mouse_events.c newton.c key_functions_2.c
 OBJS=$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIBS=-lft -lm -lmlx -framework OpenGL -framework AppKit
 

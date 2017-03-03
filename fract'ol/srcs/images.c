@@ -6,11 +6,11 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/19 14:43:43 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 19:07:54 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/03 22:09:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../includes/fractol.h"
 #include <mlx.h>
 
 t_image	*create_image(int width, int height, int depth)
@@ -21,12 +21,15 @@ t_image	*create_image(int width, int height, int depth)
 		return (NULL);
 	img->width = width;
 	img->height = height;
+	img->o_x = width / 2;
+	img->o_y = height / 2;
 	img->depth = depth;
 	img->size_line = (depth / 8) * width;
 	img->endian = 1;
 	img->ptr = mlx_new_image(mlx_get_core(0,0)->co, width, height);
 	img->data = mlx_get_data_addr(img->ptr, &img->depth,
 								&img->size_line, &img->endian);
+	img->disp_cross = 1;
 	return (img);
 }
 
@@ -48,7 +51,7 @@ void	clear_image(t_image *img)
 	{
 		x = -1;
 		while (++x < img->width)
-			*((int*)(img->data + y * img->size_line + x * bytes)) = 0x000000;
+			*((int*)(img->data + y * img->size_line + x * bytes)) = 0;
 	}
 }
 
