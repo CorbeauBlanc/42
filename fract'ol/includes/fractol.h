@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/03 22:14:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/03 22:21:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define FRACTOL_H
 # define NB_FTLS		4
 
-# define  PRIMARY		0x00000033
-# define  SECONDARY		0x00000000
-# define  TERTIARY		0x00110000
+# define PRIMARY		0x00000033
+# define SECONDARY		0x00000000
+# define TERTIARY		0x00110000
 
 # ifndef __APPLE__
 #  define K_Z			233

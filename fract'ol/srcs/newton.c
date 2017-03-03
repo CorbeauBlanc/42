@@ -6,15 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 18:11:41 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/03 21:42:20 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/03 22:19:57 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-/*
-** P = z³ - 1
-*/
 int			is_in_newton(double x, double y, int precision)
 {
 	t_complex	z;
@@ -36,10 +33,9 @@ int			is_in_newton(double x, double y, int precision)
 	return (i == precision ? i : -i);
 }
 
-t_fractal	*create_newton()
+t_fractal	*create_newton(void)
 {
 	t_fractal	*ftl;
-
 
 	if ((ftl = new_fractal("newton", &is_in_newton, 220)))
 	{

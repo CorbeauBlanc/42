@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:52:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/03 22:12:12 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/03 22:18:37 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		put_string(int x, int y, char *str)
 {
 	t_mlx_core *core;
 
-	core = mlx_get_core(0,0);
+	core = mlx_get_core(0, 0);
 	mlx_string_put(core->co, core->win, x, y, 0xFFFFFF, str);
 }
 

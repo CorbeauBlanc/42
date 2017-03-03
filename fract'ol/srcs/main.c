@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/03 22:15:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/03 22:20:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		exit_error(char *s)
 
 void		exit_main(void)
 {
-	mlx_destroy_window(mlx_get_core(0,0)->co, mlx_get_core(0,0)->win);
+	mlx_destroy_window(mlx_get_core(0, 0)->co, mlx_get_core(0, 0)->win);
 	garbage_collector(CLEAR, NULL, NULL);
 	exit(0);
 }

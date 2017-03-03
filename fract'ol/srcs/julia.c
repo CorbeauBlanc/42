@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/15 20:57:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/03 22:09:22 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/03 22:18:52 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ int			is_in_julia(double x, double y, int precision, t_complex *init)
 	return (i == precision ? i : -i);
 }
 
-t_fractal	*create_julia()
+t_fractal	*create_julia(void)
 {
 	t_fractal	*ftl;
-
 
 	if ((ftl = new_fractal("julia", &is_in_julia, 250)))
 	{

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/17 17:35:09 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/17 22:00:18 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/03 22:18:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int			is_in_burning_ship(double x, double y, int precision)
 	return (i == precision ? i : -i);
 }
 
-t_fractal	*create_burning_ship()
+t_fractal	*create_burning_ship(void)
 {
 	t_fractal	*ftl;
 
