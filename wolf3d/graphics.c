@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:52:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/02 15:02:06 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/07 20:59:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,12 @@ t_SDL_Core	*SDL_GetCore(void)
 		fprintf(stderr, "Erreur SDL2 : %s\n", SDL_GetError());
 		return (NULL);
 	}
+	core->width = WIDTH;
+	core->height = HEIGHT;
 	return (core);
+}
+
+void		refresh_win()
+{
+	SDL_RenderPresent(SDL_GetCore()->renderer);
 }

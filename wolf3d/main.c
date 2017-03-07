@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/01 17:49:00 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/07 21:00:12 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ int		main(int ac, char **av)
 	list_evts = NULL;
 	init_list_evts(&list_evts);
 	SDL_GetCore();
+
+	t_camera	*cam = create_camera(90, 0);
+	refresh_cam(cam);
+
 	wait_events(list_evts);
 	clear_events(&list_evts);
 	exit_main();

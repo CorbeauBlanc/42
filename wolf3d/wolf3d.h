@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/02 15:01:57 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/07 21:00:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,16 @@
 /*
 ** camera.c
 */
-void		delete_camera(t_camera *cam);
-t_camera	*new_camera(int fov);
-void		set_camera_crd(t_camera *cam, double h_ang, double v_ang, double d);
-void		set_camera_fov(t_camera	*cam, int fov);
+t_camera			*create_camera(int fov, int angle);
+void				delete_camera(t_camera *cam);
+void				refresh_cam(t_camera *cam);
+void				set_camera_fov(t_camera	*cam, int fov);
 
 /*
 ** graphics.c
 */
-typedef struct		s_SDL_Core
-{
-	SDL_Window		*window;
-	SDL_Renderer	*renderer;
-}					t_SDL_Core;
 t_SDL_Core			*SDL_GetCore();
-void				put_string(int x, int y, char *str);
+void				refresh_win();
 
 /*
 ** images.c
@@ -67,13 +62,6 @@ void				mlx_pixel_put_img(t_image *img, int x, int y, int color);
 /*
 ** events.c
 */
-typedef struct		s_event
-{
-	SDL_EventType	type;
-	void			*data;
-	int				(*fct)();
-	struct s_event	*next;
-}					t_event;
 void				clear_events(t_event **head);
 void				delete_event(t_event **head);
 void				new_event(t_event **head, SDL_EventType type, void *data, int (*fct)());
@@ -82,11 +70,6 @@ void				wait_events(t_event *list_evts);
 /*
 ** key_events.c
 */
-typedef struct		s_key_data
-{
-	SDL_Keycode		key;
-	int				(*fct)();
-}					t_key_data;
 t_key_data			*new_key_data(SDL_Keycode key, int (*fct)());
 int					key_hook(SDL_Event evt, t_event *list_evts);
 
@@ -111,8 +94,14 @@ void				exit_main();
 /*
 ** map.c
 */
-void		delete_map(t_map *map);
-t_map		*read_file(int fd);
+void				delete_map(t_map *map);
+t_map				*read_file(int fd);
+
+/*
+** screen.c
+*/
+t_screen			*create_screen(int width, int height);
+void				delete_screen(t_screen *scr);
 
 /*
 ** transformations.c

@@ -6,95 +6,100 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/03 15:09:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/07 19:32:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-
-static void	dl_x_loop(t_image *img, t_vector *pt1, t_vector *pt2, double color)
+static t_map	*goto_tile(t_vector *x, t_map *tile)
 {
-	double		e;
-	double		dx;
-	double		dy;
-	t_vector	tmp;
-	t_vector	inc;
-
-	dx = dabs(pt2->x - pt1->x);
-	dy = dabs(pt2->y - pt1->y);
-	e = dx / 2;
-	inc.x = (pt1->x < pt2->x) ? 1 : -1;
-	inc.y = (pt1->y < pt2->y) ? 1 : -1;
-	tmp.x = pt1->x;
-	tmp.y = pt1->y;
-	tmp.w = pt1->w;
-	mlx_pixel_put_img(img, tmp.x, tmp.y, color);
-	while ((tmp.x += inc.x) < pt2->x && tmp.x < WIDTH && tmp.y < HEIGHT)
+	while (tile && (x->x > tile->max.x || x->x < tile->min.x) &&
+			(x->y > tile->max.y || x->y < tile->min.y))
 	{
-		e += dy;
-		mlx_pixel_put_img(img, tmp.x, tmp.y, color);
-		if (e >= dx)
-		{
-			e -= dx;
-			tmp.y += inc.y;
-		}
+		tile = x->x > tile->max.x ? tile->right : tile->left;
+		if (tile)
+			tile = x->y > tile->max.y ? tile->down : tile->up;
 	}
+	return (tile);
 }
 
-static void	dl_y_loop(t_image *img, t_vector *pt1, t_vector *pt2, double color)
+static t_vector	horiz_intersec(int angle, t_player *player)
 {
-	double		e;
-	double		dx;
-	double		dy;
-	t_vector	tmp;
-	t_vector	inc;
+	//angle = cam->angle + cam->half_fov - i
+	t_vector	h_i;
+	double		xi;
+	t_map		*tile;
 
-	dx = dabs(pt2->x - pt1->x);
-	dy = dabs(pt2->y - pt1->y);
-	e = dx / 2;
-	inc.x = (pt1->x < pt2->x) ? 1 : -1;
-	inc.y = (pt1->y < pt2->y) ? 1 : -1;
-	tmp.x = pt1->x;
-	tmp.y = pt1->y;
-	tmp.w = pt1->w;
-	mlx_pixel_put_img(img, tmp.x, tmp.y, color);
-	while ((tmp.y += inc.y) < pt2->y && tmp.x < WIDTH && tmp.y < HEIGHT)
+	h_i.y = angle < 180 ? player->tile->min.y : player->tile->max.y;
+	h_i.x = (angle == 90 || angle == 270) ? player->position.x :
+			(fabs(player->position.y - h_i.y)) / tan(angle);
+	xi = (angle == 90 || angle == 270) ? 0 : fabs(WALL_SIZE / tan(angle));
+	while ((h_i.w = fabs((player->position.y - h_i.y) / sin(angle))) <
+			player->cam->f)
 	{
-		e += dx;
-		mlx_pixel_put_img(img, tmp.x, tmp.y, color);
-		if (e >= dy)
-		{
-			e -= dy;
-			tmp.x += inc.x;
-		}
+		if (!(tile = goto_tile(&h_i, player->tile)))
+			return (h_i);
+		if (angle < 180 && (!tile->up || (tile->up && tile->up->type == WALL)))
+			return (h_i);
+		else if (angle > 180 &&
+				(!tile->down || (tile->down && tile->down->type == WALL)))
+			return (h_i);
+		h_i.x += (angle < 90 || angle > 270) ? xi : -xi;
+		h_i.y += angle < 180 ? -WALL_SIZE : WALL_SIZE;
 	}
+	return (h_i);
 }
 
-void		mlx_draw_line_img(t_image *img, t_vector *pt1, t_vector *pt2,
-							t_map *map)
+static t_vector	vert_intersec(int angle, t_player *player)
 {
-	double	dx;
-	double	dy;
-	int		color;
+	//angle = cam->angle + cam->half_fov - i
+	t_vector	v_i;
+	double		yi;
+	t_map		*tile;
 
-	dx = dabs(pt2->x - pt1->x);
-	dy = dabs(pt2->y - pt1->y);
-	color = get_color(max(pt1->w, pt2->w) / SCALE_Z, map);
-	if (!dx && !dy)
-		mlx_pixel_put_img(img, pt1->x, pt1->y, color);
-	else if (dx > dy)
+	v_i.x = (angle < 90 || angle > 270) ? player->tile->max.x :
+			player->tile->min.x;
+	v_i.y = (angle == 0 || angle == 180) ? player->position.y :
+			(fabs(player->position.x - v_i.x)) * tan(angle);
+	yi = (angle == 0 || angle == 180) ? 0 : fabs(WALL_SIZE * tan(angle));
+	while ((v_i.w = (fabs(player->position.x - v_i.x) / cos(angle))) <
+			player->cam->f)
 	{
-		if (pt1->x < pt2->x)
-			dl_x_loop(img, pt1, pt2, color);
-		else
-			dl_x_loop(img, pt2, pt1, color);
+		if (!(tile = goto_tile(&v_i, player->tile)))
+			return (v_i);
+		if ((angle < 90 || angle > 270) &&
+			(!tile->right || (tile->right && tile->right->type == WALL)))
+			return (v_i);
+		else if ((angle > 90 || angle < 270) &&
+				(!tile->left || (tile->left && tile->left->type == WALL)))
+			return (v_i);
+		v_i.x += (angle < 90 || angle > 270) ? WALL_SIZE : -WALL_SIZE;
+		v_i.y += angle < 180 ? -yi : yi;
 	}
-	else
+	return (v_i);
+}
+
+void	scan_environment(t_player *player)
+{
+	int	angle;
+	int	i;
+	t_vector h_i;
+	t_vector v_i;
+
+	angle = player->cam->angle + player->cam->half_fov;
+	i = -1;
+	h_i.w = -1;
+	v_i.w = -1;
+	while (++i < player->cam->fov)
 	{
-		if (pt1->y < pt2->y)
-			dl_y_loop(img, pt1, pt2, color);
-		else
-			dl_y_loop(img, pt2, pt1, color);
+		if ((angle - i) && (angle - i) != 180)
+			h_i = horiz_intersec(angle - i, player);
+		if ((angle - i) != 90 && (angle - i) != 270)
+			v_i = vert_intersec(angle - i, player);
+		if (h_i.w > -1 && h_i.w > v_i.w)
+			/* Dessiner mur de hauteur (WALL_SIZE / h_i.w) * player->cam->f */
+		else if (v_i.w > -1)
+			/* Dessiner mur de hauteur (WALL_SIZE / v_i.w) * player->cam->f */
 	}
 }
