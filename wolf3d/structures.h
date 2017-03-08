@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/07 20:50:28 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/08 17:47:59 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct		s_screen
 	Uint32			*pxl_tab;
 	int				width;
 	int				height;
+	int				pitch;
 }					t_screen;
 
 typedef struct		s_camera

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/07 21:00:02 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/08 17:40:05 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ void				set_camera_fov(t_camera	*cam, int fov);
 /*
 ** graphics.c
 */
-t_SDL_Core			*SDL_GetCore();
+Uint32				get_color(int r, int g, int b);
 void				refresh_win();
+t_SDL_Core			*SDL_GetCore();
 
 /*
 ** images.c
@@ -98,10 +99,23 @@ void				delete_map(t_map *map);
 t_map				*read_file(int fd);
 
 /*
+** player.c
+*/
+t_player			*create_player(t_camera *cam, int x, int y, t_map *map);
+void				delete_player(t_player *player);
+
+/*
+** raycasting.c
+*/
+t_map				*goto_tile(t_vector *x, t_map *tile);
+void				scan_environment(t_player *player);
+
+/*
 ** screen.c
 */
 t_screen			*create_screen(int width, int height);
 void				delete_screen(t_screen *scr);
+void				put_pxl_screen(t_screen *scr, int x, int y, Uint32 color);
 
 /*
 ** transformations.c

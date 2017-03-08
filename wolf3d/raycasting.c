@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/07 19:32:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/08 17:58:49 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static t_map	*goto_tile(t_vector *x, t_map *tile)
+t_map		*goto_tile(t_vector *x, t_map *tile)
 {
 	while (tile && (x->x > tile->max.x || x->x < tile->min.x) &&
 			(x->y > tile->max.y || x->y < tile->min.y))
@@ -23,7 +23,7 @@ static t_map	*goto_tile(t_vector *x, t_map *tile)
 	}
 	return (tile);
 }
-
+/*
 static t_vector	horiz_intersec(int angle, t_player *player)
 {
 	//angle = cam->angle + cam->half_fov - i
@@ -79,10 +79,25 @@ static t_vector	vert_intersec(int angle, t_player *player)
 	}
 	return (v_i);
 }
-
-void	scan_environment(t_player *player)
+*/
+static void		draw_vert_line(t_screen *scr, int x, double h, Uint32 color)
 {
-	int	angle;
+	int	y;
+
+	if (h < SDL_GetCore()->height)
+	{
+		y = (SDL_GetCore()->height - h) / 2 - 1;
+		h += y;
+		while (++y < h)
+			put_pxl_screen(scr, x, y, color);
+	}
+}
+
+void			scan_environment(t_player *player)
+{
+	draw_vert_line(player->cam->screen, 350, 200, get_color(255, 0, 0));
+	refresh_cam(player->cam);
+/*	int	angle;
 	int	i;
 	t_vector h_i;
 	t_vector v_i;
@@ -97,9 +112,9 @@ void	scan_environment(t_player *player)
 			h_i = horiz_intersec(angle - i, player);
 		if ((angle - i) != 90 && (angle - i) != 270)
 			v_i = vert_intersec(angle - i, player);
-		if (h_i.w > -1 && h_i.w > v_i.w)
+		if (h_i.w > -1 && h_i.w > v_i.w)*/
 			/* Dessiner mur de hauteur (WALL_SIZE / h_i.w) * player->cam->f */
-		else if (v_i.w > -1)
+		//else if (v_i.w > -1)
 			/* Dessiner mur de hauteur (WALL_SIZE / v_i.w) * player->cam->f */
-	}
+	//}
 }

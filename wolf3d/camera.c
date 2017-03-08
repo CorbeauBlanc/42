@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/07 21:00:02 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/08 17:48:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void		set_camera_fov(t_camera *cam, int fov)
 
 void		refresh_cam(t_camera *cam)
 {
+	SDL_UpdateTexture(cam->screen->texture, NULL, cam->screen->pxl_tab,
+					cam->screen->pitch);
 	SDL_RenderCopy(SDL_GetCore()->renderer, cam->screen->texture, NULL, NULL);
 	refresh_win();
 }

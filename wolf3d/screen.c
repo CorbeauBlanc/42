@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 20:13:40 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/07 21:09:01 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/08 17:57:49 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,20 @@ t_screen	*create_screen(int width, int height)
 								SDL_GetWindowPixelFormat(SDL_GetCore()->window),
 								SDL_TEXTUREACCESS_STREAMING, width, height);
 	ft_memset(scr->pxl_tab, 0, sizeof(Uint32) * width * height);
-	SDL_UpdateTexture(scr->texture, NULL, scr->pxl_tab, width * sizeof(Uint32));
+	scr->pitch = width * sizeof(Uint32);
+	SDL_UpdateTexture(scr->texture, NULL, scr->pxl_tab, scr->pitch);
 	return (scr);
 }
 
-void	delete_screen(t_screen *scr)
+void		delete_screen(t_screen *scr)
 {
 	free(scr->pxl_tab);
 	SDL_DestroyTexture(scr->texture);
 	free(scr);
+}
+
+void		put_pxl_screen(t_screen *scr, int x, int y, Uint32 color)
+{
+	if (x < scr->width && y < scr->height && x >= 0 && y >= 0)
+		scr->pxl_tab[y * scr->width + x] = color;
 }
