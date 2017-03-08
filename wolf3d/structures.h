@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/08 17:47:59 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/08 18:42:53 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct		s_screen
 typedef struct		s_camera
 {
 	int				fov;
-	double			half_fov;
+	double			half_scr;
 	double			f;
 	int				angle;
 	t_screen		*screen;

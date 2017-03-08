@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 17:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/08 17:41:09 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/08 18:05:06 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ t_player	*create_player(t_camera *cam, int x, int y, t_map *map)
 	player->cam = cam;
 	player->position.x = x;
 	player->position.y = y;
-	(void)map;
-/*	if (!(player->tile = goto_tile(&player->position, map)))
+	if (!(player->tile = goto_tile(&player->position, map)))
 	{
 		free(player);
 		return (NULL);
-	}*/
+	}
 	return (player);
 }
 

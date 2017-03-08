@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/08 17:41:44 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/08 19:27:09 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,16 @@ int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
-	t_event	*list_evts;
+	t_event		*list_evts;
+	t_player	*player;
+	t_map		*map;
 
 	list_evts = NULL;
 	init_list_evts(&list_evts);
 	SDL_GetCore();
 
-	t_player *player = create_player(create_camera(90, 0), 50, 50, NULL);
+	map = read_file(open("test", O_RDONLY));
+	player = create_player(create_camera(90, 0), 40, 10, map);
 	scan_environment(player);
 
 	wait_events(list_evts);

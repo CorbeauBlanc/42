@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/08 17:48:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/08 18:44:49 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ t_camera	*create_camera(int fov, int angle)
 	if (!(cam = malloc(sizeof(t_camera))))
 		return (NULL);
 	cam->fov = fov;
-	cam->half_fov = fov / 2;
-	cam->f = HEIGHT / (2 * tan(ft_to_rad(fov) / 2.0f));
+	cam->f = SDL_GetCore()->width / (2 * tan(ft_to_rad(fov) / 2.0f));
 	cam->screen = create_screen(SDL_GetCore()->width, SDL_GetCore()->height);
+	if (!(cam->screen))
+		return (NULL);
+	cam->half_scr = cam->screen->width / 2;
 	cam->angle = angle;
 	return (cam);
 }
@@ -34,8 +36,7 @@ void		delete_camera(t_camera *cam)
 void		set_camera_fov(t_camera *cam, int fov)
 {
 	cam->fov = fov;
-	cam->f = HEIGHT / (2 * tan(ft_to_rad(cam->fov) / 2.0f));
-	cam->half_fov = fov / 2;
+	cam->f = SDL_GetCore()->width / (2 * tan(ft_to_rad(cam->fov) / 2.0f));
 }
 
 void		refresh_cam(t_camera *cam)
