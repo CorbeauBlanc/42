@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/08 19:27:09 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/11 17:13:06 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		main(int ac, char **av)
 	SDL_GetCore();
 
 	map = read_file(open("test", O_RDONLY));
-	player = create_player(create_camera(90, 0), 40, 10, map);
+	player = create_player(create_camera(70, 0), 20, 40, map);
 	scan_environment(player);
 
 	wait_events(list_evts);

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/08 17:40:05 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/11 16:27:06 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ void				exit_main();
 ** map.c
 */
 void				delete_map(t_map *map);
+t_map				*goto_tile(t_vector *crd, t_map *tile);
 t_map				*read_file(int fd);
 
 /*
@@ -107,7 +108,6 @@ void				delete_player(t_player *player);
 /*
 ** raycasting.c
 */
-t_map				*goto_tile(t_vector *x, t_map *tile);
 void				scan_environment(t_player *player);
 
 /*
@@ -126,8 +126,8 @@ void				rotation();
 /*
 ** vectors.c
 */
-t_vector	*create_vector(double x, double y, double z);
-t_map		*insert_cell(t_map *head, t_map *cell);
-t_map		*new_cell(t_vector *vect, t_tile type);
+t_vector			*create_vector(double x, double y, double z);
+t_map				*insert_cell(t_map *head, t_map *cell);
+t_map				*new_cell(t_vector *vect, t_tile type);
 
 #endif

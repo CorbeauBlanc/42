@@ -6,11 +6,23 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/01 17:45:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/11 16:35:39 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+t_map		*goto_tile(t_vector *crd, t_map *tile)
+{
+	while (tile && (crd->x > tile->max.x || crd->x < tile->min.x) &&
+			(crd->y > tile->max.y || crd->y < tile->min.y))
+	{
+		tile = crd->x > tile->max.x ? tile->right : tile->left;
+		if (tile)
+			tile = crd->y > tile->max.y ? tile->down : tile->up;
+	}
+	return (tile);
+}
 
 t_tile	get_type(int i)
 {
@@ -31,13 +43,14 @@ void	add_new_cells(t_map **last, t_vector *crd, char *nbs)
 			{
 				*last = (*last)->r_head;
 				crd->y += WALL_SIZE;
-				crd->x = -WALL_SIZE;
+				crd->x = 0;
 			}
 			++nbs;
 		}
 		if (*nbs)
 		{
 			*last = insert_cell(*last, new_cell(crd, get_type(*nbs - '0')));
+			crd->x += WALL_SIZE;
 			++nbs;
 		}
 	}
@@ -53,7 +66,7 @@ t_map	*read_file(int fd)
 		return (NULL);
 	nbs = ft_strnew(BUFF_SIZE);
 	last = NULL;
-	crds.x = -WALL_SIZE;
+	crds.x = 0;
 	crds.y = 0;
 	while (read(fd, nbs, BUFF_SIZE) > 0)
 	{
