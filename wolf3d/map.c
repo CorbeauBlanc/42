@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/11 16:35:39 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/13 19:05:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,17 @@
 
 t_map		*goto_tile(t_vector *crd, t_map *tile)
 {
-	while (tile && (crd->x > tile->max.x || crd->x < tile->min.x) &&
-			(crd->y > tile->max.y || crd->y < tile->min.y))
+	while (tile && (crd->x > tile->max.x || crd->x < tile->min.x ||
+			crd->y > tile->max.y || crd->y < tile->min.y))
 	{
-		tile = crd->x > tile->max.x ? tile->right : tile->left;
-		if (tile)
-			tile = crd->y > tile->max.y ? tile->down : tile->up;
+		if (crd->x > tile->max.x)
+			tile = tile->right;
+		else if ((crd->x < tile->min.x))
+			tile = tile->left;
+		if (tile && crd->y > tile->max.y)
+			tile = tile->down;
+		else if (tile && crd->y < tile->min.y)
+			tile = tile->up;
 	}
 	return (tile);
 }

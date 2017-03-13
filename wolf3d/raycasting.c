@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/11 17:27:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/13 19:52:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ static t_vector	horiz_intersec(double angle, t_player *player)
 			player->cam->f)
 	{
 		if (!(tile = goto_tile(&h_i, player->tile)))
+		{
 			return (h_i);
+		}
 		if (angle < M_PI && angle > 0 && (!tile->up || (tile->up && tile->up->type == WALL)))
 		{
 			return (h_i);
@@ -52,14 +54,17 @@ static t_vector	vert_intersec(double angle, t_player *player)
 	v_i.y = player->position.y + (!angle || angle == M_PI ? 0 :
 			fabs((player->position.x - v_i.x) * tan(angle)));
 	yi = (!angle || angle == M_PI) ? 0 : fabs(WALL_SIZE * tan(angle));
-	while ((v_i.w = fabs((player->position.x - v_i.x) / cos(angle))) <
+	while ((v_i.w = fabs((v_i.x - player->position.x) / cos(angle))) <
 			player->cam->f)
 	{
 		if (!(tile = goto_tile(&v_i, player->tile)))
+		{
 			return (v_i);
+		}
 		if (fabs(angle) < M_PI_2 &&
 			(!tile->right || (tile->right && tile->right->type == WALL)))
 		{
+			//printf("%d - %d\n", (int)tile->min.x, (int)tile->max.x);
 			return (v_i);
 		}
 		else if (fabs(angle) > M_PI_2 &&
@@ -88,32 +93,48 @@ static void		draw_vert_line(t_screen *scr, int x, double h, Uint32 color)
 
 void			scan_environment(t_player *player)
 {
-	double		angle;
+	double		angle, angle2;
 	int			i;
-	t_vector	h_i;
-	t_vector	v_i;
+	t_vector	h_i, h_i2;
+	t_vector	v_i, v_i2;
 
 	i = -1;
-	h_i.w = -1;
-	v_i.w = -1;
-	while (++i <= player->cam->screen->width)
+	h_i.w = player->cam->f;
+	v_i.w = player->cam->f;
+	h_i2.w = player->cam->f;
+	v_i2.w = player->cam->f;
+	while (++i <= player->cam->half_scr)
 	{
-		angle = atan((player->cam->half_scr - i) / player->cam->f) +
-				ft_to_rad(player->cam->angle);
+		angle = atan((player->cam->half_scr - i) / player->cam->f);
+		angle2 = ft_to_rad(player->cam->angle) - angle;
+		angle += ft_to_rad(player->cam->angle);
 		if (angle && angle != M_PI)
+		{
 			h_i = horiz_intersec(angle, player);
+			h_i2 = horiz_intersec(angle2, player);
+		}
 		if (fabs(angle) != M_PI_2)
+		{
 			v_i = vert_intersec(angle, player);
+			v_i2 = vert_intersec(angle2, player);
+		}
 		angle -= ft_to_rad(player->cam->angle);
-		printf("%.2f - %.2f\n", h_i.w, v_i.w);
-		if (h_i.w > -1 && h_i.w < v_i.w)
-			draw_vert_line(player->cam->screen, i, (WALL_SIZE * player->cam->f) / (h_i.w * cos(angle)),
-												get_color(255, 0, 0));
+		angle2 -= ft_to_rad(player->cam->angle);
+		if (h_i.w < player->cam->f && h_i.w < v_i.w){ //printf(" horiz\n");
+			draw_vert_line(player->cam->screen, i, ( 2 * WALL_SIZE * player->cam->f) / (h_i.w * cos(angle)),
+												get_color(255, 0, 0));}
 			/* Dessiner mur de hauteur (WALL_SIZE / h_i.w) * player->cam->f */
-		else if (v_i.w > -1)
-			draw_vert_line(player->cam->screen, i, (WALL_SIZE * player->cam->f) / (v_i.w * cos(angle)),
-													get_color(0, 255, 0));
+		else if (v_i.w < player->cam->f){ //printf(" vert\n");
+			draw_vert_line(player->cam->screen, i, (2 * WALL_SIZE * player->cam->f) / (v_i.w * cos(angle)),
+													get_color(0, 255, 0));}
 			/* Dessiner mur de hauteur (WALL_SIZE / v_i.w) * player->cam->f */
+
+		if (h_i2.w < player->cam->f && h_i2.w < v_i2.w)
+			draw_vert_line(player->cam->screen, player->cam->screen->width - i, ( 2 * WALL_SIZE * player->cam->f) / (h_i.w * cos(angle2)),
+												get_color(255, 0, 0));
+		else if (v_i2.w < player->cam->f)
+			draw_vert_line(player->cam->screen, player->cam->screen->width - i, (2 * WALL_SIZE * player->cam->f) / (v_i.w * cos(angle2)),
+													get_color(0, 255, 0));
 	}
 	refresh_cam(player->cam);
 }
