@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/08 18:42:53 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/14 17:27:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,17 @@ typedef struct		s_map
 typedef struct		s_player
 {
 	t_camera		*cam;
-	t_vector		position;
+	t_vector		pos;
 	t_map			*tile;
 }					t_player;
+
+typedef struct	s_ray
+{
+	t_map		*wall;
+	double		a;
+	double		h;
+	t_vector	h_i;
+	t_vector	v_i;
+}				t_ray;
 
 #endif
