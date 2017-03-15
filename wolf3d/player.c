@@ -6,11 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 17:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/14 17:28:29 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/15 16:18:53 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "raycasting.h"
+#include "floorcasting.h"
 #include "wolf3d.h"
 
 t_player	*create_player(t_camera *cam, int x, int y, t_map *map)
@@ -55,13 +56,15 @@ void			scan_environment(t_player *player)
 		ray.a -= ft_to_rad(player->cam->angle);
 		if (ray.h_i.w < player->cam->f && ray.h_i.w < ray.v_i.w)
 		{
-			ray.h = (2 * WALL_SIZE * player->cam->f) / (ray.h_i.w * cos(ray.a));
+			ray.h = (WALL_SIZE * player->cam->f) / (ray.h_i.w * cos(ray.a));
 			draw_vert_line(player->cam->screen, i, ray.h, get_color(255, 0, 0));
+			cast_floor(&ray, player, i);
 		}
 		else if (ray.v_i.w < player->cam->f)
 		{
-			ray.h = (2 * WALL_SIZE * player->cam->f) / (ray.v_i.w * cos(ray.a));
+			ray.h = (WALL_SIZE * player->cam->f) / (ray.v_i.w * cos(ray.a));
 			draw_vert_line(player->cam->screen, i, ray.h, get_color(0, 255, 0));
+			cast_floor(&ray, player, i);
 		}
 	}
 	refresh_cam(player->cam);
