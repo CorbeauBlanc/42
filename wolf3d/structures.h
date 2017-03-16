@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/14 17:27:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/16 13:28:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ typedef enum		e_tile
 					FLOOR,
 					WALL
 }					t_tile;
-
-typedef struct		s_key_data
-{
-	SDL_Keycode		key;
-	int				(*fct)();
-}					t_key_data;
 
 typedef struct		s_vector
 {
@@ -111,5 +105,12 @@ typedef struct	s_ray
 	t_vector	h_i;
 	t_vector	v_i;
 }				t_ray;
+
+typedef struct		s_key_data
+{
+	SDL_Keycode		key;
+	t_player		*player;
+	int				(*fct)();
+}					t_key_data;
 
 #endif

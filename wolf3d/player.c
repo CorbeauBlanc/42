@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 17:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/15 16:18:53 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/16 22:35:32 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,27 @@ void			scan_environment(t_player *player)
 	i = -1;
 	ray.h_i.w = player->cam->f;
 	ray.v_i.w = player->cam->f;
+	clear_screen(player->cam->screen);
 	while (++i <= player->cam->screen->width)
 	{
 		ray.a = atan((player->cam->half_scr - i) / player->cam->f) +
 				ft_to_rad(player->cam->angle);
-		if (ray.a && ray.a != M_PI)
+		if (ray.a && fabs(ray.a) != M_PI)
 			horiz_intersec(&ray, player);
-		if (fabs(ray.a) != M_PI_2)
+		if (fabs(ray.a) != M_PI_2 && fabs(ray.a) != (M_PI + M_PI_2))
 			vert_intersec(&ray, player);
 		ray.a -= ft_to_rad(player->cam->angle);
 		if (ray.h_i.w < player->cam->f && ray.h_i.w < ray.v_i.w)
 		{
 			ray.h = (WALL_SIZE * player->cam->f) / (ray.h_i.w * cos(ray.a));
 			draw_vert_line(player->cam->screen, i, ray.h, get_color(255, 0, 0));
-			cast_floor(&ray, player, i);
+			//cast_floor(&ray, player, i);
 		}
 		else if (ray.v_i.w < player->cam->f)
 		{
 			ray.h = (WALL_SIZE * player->cam->f) / (ray.v_i.w * cos(ray.a));
 			draw_vert_line(player->cam->screen, i, ray.h, get_color(0, 255, 0));
-			cast_floor(&ray, player, i);
+			//cast_floor(&ray, player, i);
 		}
 	}
 	refresh_cam(player->cam);

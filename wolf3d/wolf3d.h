@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/14 13:46:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/16 20:42:08 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,14 @@
 # include <stdio.h>
 # include "libft.h"
 # include "structures.h"
+
+/*
+** angles.c
+*/
+int					is_east(double angle);
+int					is_north(double angle);
+int					is_south(double angle);
+int					is_west(double angle);
 
 /*
 ** camera.c
@@ -71,7 +79,7 @@ void				wait_events(t_event *list_evts);
 /*
 ** key_events.c
 */
-t_key_data			*new_key_data(SDL_Keycode key, int (*fct)());
+t_key_data			*new_key_data(SDL_Keycode key, int (*fct)(), t_player *player);
 int					key_hook(SDL_Event evt, t_event *list_evts);
 
 /*
@@ -108,6 +116,7 @@ void				scan_environment(t_player *player);
 /*
 ** screen.c
 */
+void				clear_screen(t_screen *scr);
 t_screen			*create_screen(int width, int height);
 void				delete_screen(t_screen *scr);
 void				put_pxl_screen(t_screen *scr, int x, int y, Uint32 color);

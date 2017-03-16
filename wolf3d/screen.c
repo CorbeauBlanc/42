@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 20:13:40 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/08 17:57:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/16 16:30:49 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,9 @@ void		put_pxl_screen(t_screen *scr, int x, int y, Uint32 color)
 {
 	if (x < scr->width && y < scr->height && x >= 0 && y >= 0)
 		scr->pxl_tab[y * scr->width + x] = color;
+}
+
+void		clear_screen(t_screen *scr)
+{
+	ft_memset(scr->pxl_tab, 0, sizeof(Uint32) * scr->width * scr->height);
 }

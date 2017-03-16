@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/28 19:40:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/28 20:41:57 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/16 13:28:05 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-t_key_data	*new_key_data(SDL_Keycode key, int (*fct)())
+t_key_data	*new_key_data(SDL_Keycode key, int (*fct)(), t_player *player)
 {
 	t_key_data	*data;
 
@@ -20,6 +20,7 @@ t_key_data	*new_key_data(SDL_Keycode key, int (*fct)())
 		exit_error(NULL);
 	data->key = key;
 	data->fct = fct;
+	data->player = player;
 	return (data);
 }
 
@@ -35,7 +36,7 @@ int			key_hook(SDL_Event evt, t_event *list_evts)
 			evt_data = (t_key_data*)list_evts->data;
 	}
 	if (list_evts)
-		return (evt_data->fct());
+		return (evt_data->fct(evt_data->player));
 	else
 		return (1);
 }

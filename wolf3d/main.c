@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/15 20:31:12 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/16 22:30:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,29 @@ int		exit_loop()
 	return (0);
 }
 
-void	init_list_evts(t_event **head)
+int		r_left(t_player *player)
+{
+	player->cam->angle++;
+	if (player->cam->angle > 360)
+		player->cam->angle = 0;
+	scan_environment(player);
+	return (1);
+}
+int		r_right(t_player *player)
+{
+	player->cam->angle--;
+	if (player->cam->angle < -360)
+		player->cam->angle = 0;
+	scan_environment(player);
+	return (1);
+}
+
+void	init_list_evts(t_event **head, t_player *player)
 {
 	new_event(head, SDL_QUIT, NULL, &exit_loop);
-	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_ESCAPE, &exit_loop), &key_hook);
+	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_ESCAPE, &exit_loop, NULL), &key_hook);
+	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_LEFT, &r_left, player), &key_hook);
+	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_RIGHT, &r_right, player), &key_hook);
 }
 
 int		main(int ac, char **av)
@@ -52,12 +71,14 @@ int		main(int ac, char **av)
 	t_player	*player;
 	t_map		*map;
 
-	list_evts = NULL;
-	init_list_evts(&list_evts);
 	SDL_GetCore();
 
 	map = read_file(open("test", O_RDONLY));
-	player = create_player(create_camera(70, 0), 24, 40, map);
+	player = create_player(create_camera(70, 120), 40, 40, map);
+
+	list_evts = NULL;
+	init_list_evts(&list_evts, player);
+
 	scan_environment(player);
 
 	wait_events(list_evts);

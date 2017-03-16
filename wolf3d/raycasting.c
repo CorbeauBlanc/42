@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/14 14:01:38 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/16 22:48:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,34 @@ static t_ray	*set_wall(t_ray *ray, t_map *wall)
 	return (ray);
 }
 
+int	bidon()
+{
+	printf("TEST\n");
+	return (1);
+}
+
 t_ray			*horiz_intersec(t_ray *ray, t_player *player)
 {
 	double		xi;
 
-	ray->h_i.y = ray->a < M_PI && ray->a > 0 ? player->tile->min.y :
-												player->tile->max.y;
-	ray->h_i.x = player->pos.x + (fabs(ray->a) == M_PI_2 ? 0 :
-			fabs((player->pos.y - ray->h_i.y) / tan(ray->a)));
-	xi = (fabs(ray->a) == M_PI_2) ? 0 : fabs(WALL_SIZE / tan(ray->a));
+	ray->h_i.y = is_north(ray->a) ? player->tile->min.y : player->tile->max.y;
+	ray->h_i.x = player->pos.x;
+	if (fabs(ray->a) != M_PI_2 && fabs(ray->a) != (M_PI + M_PI_2))
+	{
+		ray->h_i.x += fabs((player->pos.y - ray->h_i.y) / tan(ray->a));
+		xi = fabs(WALL_SIZE / tan(ray->a));
+	}
 	while ((ray->h_i.w = fabs((player->pos.y - ray->h_i.y) / sin(ray->a))) <
 			player->cam->f)
 	{
 		if (!(ray->wall = goto_tile(&ray->h_i, player->tile)))
 			return (ray);
-		if (ray->a < M_PI && ray->a > 0 && !is_empty(ray->wall->up))
+		if (is_north(ray->a) && !is_empty(ray->wall->up))
 			return (set_wall(ray, ray->wall->up));
-		else if (ray->a < 0 && !is_empty(ray->wall->down))
+		else if (is_south(ray->a) && !is_empty(ray->wall->down))
 			return (set_wall(ray, ray->wall->down));
-		ray->h_i.x += (fabs(ray->a) < M_PI_2) ? xi : -xi;
-		ray->h_i.y += (ray->a < M_PI && ray->a > 0) ? -WALL_SIZE : WALL_SIZE;
+		ray->h_i.x += is_east(ray->a) ? xi : -xi;
+		ray->h_i.y += is_north(ray->a) ? -WALL_SIZE : WALL_SIZE;
 	}
 	return (set_wall(ray, NULL));
 }
@@ -46,23 +54,24 @@ t_ray			*vert_intersec(t_ray *ray, t_player *player)
 {
 	double		yi;
 
-	ray->v_i.x = (fabs(ray->a) < M_PI_2) ? player->tile->max.x :
-											player->tile->min.x;
-	ray->v_i.y = player->pos.y + (!ray->a || ray->a == M_PI ? 0 :
-					fabs((player->pos.x - ray->v_i.x) * tan(ray->a)));
-	yi = (!ray->a || ray->a == M_PI) ? 0 :
-				fabs(WALL_SIZE * tan(ray->a));
+	ray->v_i.x = is_east(ray->a) ? player->tile->max.x : player->tile->min.x;
+	ray->v_i.y = player->pos.y;
+	if (ray->a && fabs(ray->a) != M_PI)
+	{
+		ray->v_i.y += fabs((player->pos.x - ray->v_i.x) * tan(ray->a));
+		yi = fabs(WALL_SIZE * tan(ray->a));
+	}
 	while ((ray->v_i.w = fabs((ray->v_i.x - player->pos.x) / cos(ray->a))) <
 			player->cam->f)
 	{
 		if (!(ray->wall = goto_tile(&ray->v_i, player->tile)))
 			return (ray);
-		if (fabs(ray->a) < M_PI_2 && !is_empty(ray->wall->right))
+		if (is_east(ray->a) && !is_empty(ray->wall->right))
 			return (set_wall(ray, ray->wall->right));
-		else if (fabs(ray->a) > M_PI_2 && !is_empty(ray->wall->left))
-			return (set_wall(ray, ray->wall->right));
-		ray->v_i.x += (fabs(ray->a) < M_PI_2) ? WALL_SIZE : -WALL_SIZE;
-		ray->v_i.y += (ray->a < M_PI && ray->a > 0) ? -yi : yi;
+		else if (is_west(ray->a) && !is_empty(ray->wall->left))
+			return (set_wall(ray, ray->wall->left));
+		ray->v_i.x += is_east(ray->a) ? WALL_SIZE : -WALL_SIZE;
+		ray->v_i.y += is_north(ray->a) ? -yi : yi;
 	}
 	return (set_wall(ray, NULL));
 }
