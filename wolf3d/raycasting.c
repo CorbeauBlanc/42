@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/16 22:48:02 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/17 17:17:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,10 @@ t_ray			*horiz_intersec(t_ray *ray, t_player *player)
 
 	ray->h_i.y = is_north(ray->a) ? player->tile->min.y : player->tile->max.y;
 	ray->h_i.x = player->pos.x;
+	xi = 0;
 	if (fabs(ray->a) != M_PI_2 && fabs(ray->a) != (M_PI + M_PI_2))
 	{
-		ray->h_i.x += fabs((player->pos.y - ray->h_i.y) / tan(ray->a));
+		ray->h_i.x += (player->pos.y - ray->h_i.y) / tan(ray->a);
 		xi = fabs(WALL_SIZE / tan(ray->a));
 	}
 	while ((ray->h_i.w = fabs((player->pos.y - ray->h_i.y) / sin(ray->a))) <
@@ -56,9 +57,10 @@ t_ray			*vert_intersec(t_ray *ray, t_player *player)
 
 	ray->v_i.x = is_east(ray->a) ? player->tile->max.x : player->tile->min.x;
 	ray->v_i.y = player->pos.y;
+	yi = 0;
 	if (ray->a && fabs(ray->a) != M_PI)
 	{
-		ray->v_i.y += fabs((player->pos.x - ray->v_i.x) * tan(ray->a));
+		ray->v_i.y += (player->pos.x - ray->v_i.x) * tan(ray->a);
 		yi = fabs(WALL_SIZE * tan(ray->a));
 	}
 	while ((ray->v_i.w = fabs((ray->v_i.x - player->pos.x) / cos(ray->a))) <

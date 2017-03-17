@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/16 22:30:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/17 17:18:58 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ int		exit_loop()
 int		r_left(t_player *player)
 {
 	player->cam->angle++;
-	if (player->cam->angle > 360)
-		player->cam->angle = 0;
+	if (player->cam->angle > 180)
+		player->cam->angle = -180;
 	scan_environment(player);
 	return (1);
 }
 int		r_right(t_player *player)
 {
 	player->cam->angle--;
-	if (player->cam->angle < -360)
-		player->cam->angle = 0;
+	if (player->cam->angle < -180)
+		player->cam->angle = 180;
 	scan_environment(player);
 	return (1);
 }
