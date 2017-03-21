@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/17 17:18:58 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/17 18:50:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,19 @@ int		exit_loop()
 
 int		r_left(t_player *player)
 {
-	player->cam->angle++;
-	if (player->cam->angle > 180)
-		player->cam->angle = -180;
+	if (player->cam->angle + 2 > 180)
+		player->cam->angle = ((player->cam->angle + 2) - 180) - 180;
+	else
+		player->cam->angle += 2;
 	scan_environment(player);
 	return (1);
 }
 int		r_right(t_player *player)
 {
-	player->cam->angle--;
-	if (player->cam->angle < -180)
-		player->cam->angle = 180;
+	if (player->cam->angle - 2 < -180)
+		player->cam->angle = ((player->cam->angle - 2) + 180) + 180;
+	else
+		player->cam->angle -= 2;
 	scan_environment(player);
 	return (1);
 }
@@ -74,7 +76,7 @@ int		main(int ac, char **av)
 	SDL_GetCore();
 
 	map = read_file(open("test", O_RDONLY));
-	player = create_player(create_camera(70, 120), 40, 40, map);
+	player = create_player(create_camera(70, 0), 40, 40, map);
 
 	list_evts = NULL;
 	init_list_evts(&list_evts, player);

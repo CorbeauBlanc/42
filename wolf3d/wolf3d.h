@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/16 20:42:08 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/17 19:05:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define TITLE			"Wolf3D"
 # define HEIGHT 		700
 # define WIDTH 			700
+# define SPEED			5
 # define WALL_SIZE		16
 # define BUFF_SIZE		1024
 

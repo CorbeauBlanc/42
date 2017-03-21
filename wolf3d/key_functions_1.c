@@ -6,52 +6,49 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/02 13:24:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/17 19:18:06 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "wolf3d.h"
+#include <math.h>
 
-void	translate_left(t_camera *cam, t_map *map)
+void	move_left(t_player *player)
 {
-	t_matrix	*tmp;
+	double	angle;
 
-	(void)cam;
-	tmp = create_identity(4);
-	translation(&tmp, cam->r / SCALE_XY, 0, 0);
-	transform_map(map, tmp);
-	delete_matrix(tmp);
+	angle = ft_to_rad(player->cam->angle);
+	player->pos.x -= cos(-M_PI_2 + angle) * SPEED;
+	player->pos.y -= cos(-M_PI_2 + angle) * SPEED;
+	goto_tile(&player->pos, player->tile);
 }
 
-void	translate_right(t_camera *cam, t_map *map)
+void	move_right(t_player *player)
 {
-	t_matrix	*tmp;
+	double	angle;
 
-	(void)cam;
-	tmp = create_identity(4);
-	translation(&tmp, -cam->r / SCALE_XY, 0, 0);
-	transform_map(map, tmp);
-	delete_matrix(tmp);
+	angle = ft_to_rad(player->cam->angle);
+	player->pos.x += cos(-M_PI_2 + angle) * SPEED;
+	player->pos.y += cos(-M_PI_2 + angle) * SPEED;
+	goto_tile(&player->pos, player->tile);
 }
 
-void	translate_up(t_camera *cam, t_map *map)
+void	move_up(t_player *player)
 {
-	t_matrix	*tmp;
+	double	angle;
 
-	(void)cam;
-	tmp = create_identity(4);
-	translation(&tmp, 0, cam->r / SCALE_XY, 0);
-	transform_map(map, tmp);
-	delete_matrix(tmp);
+	angle = ft_to_rad(player->cam->angle);
+	player->pos.x += cos(angle) * SPEED;
+	player->pos.y -= cos(angle) * SPEED;
+	goto_tile(&player->pos, player->tile);
 }
 
-void	translate_down(t_camera *cam, t_map *map)
+void	move_down(t_player *player)
 {
-	t_matrix	*tmp;
+	double	angle;
 
-	(void)cam;
-	tmp = create_identity(4);
-	translation(&tmp, 0, -cam->r / SCALE_XY, 0);
-	transform_map(map, tmp);
-	delete_matrix(tmp);
+	angle = ft_to_rad(player->cam->angle);
+	player->pos.x -= cos(angle) * SPEED;
+	player->pos.y += cos(angle) * SPEED;
+	goto_tile(&player->pos, player->tile);
 }

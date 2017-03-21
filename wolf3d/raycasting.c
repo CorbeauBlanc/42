@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/17 17:17:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/17 17:39:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ static t_ray	*set_wall(t_ray *ray, t_map *wall)
 {
 	ray->wall = wall;
 	return (ray);
-}
-
-int	bidon()
-{
-	printf("TEST\n");
-	return (1);
 }
 
 t_ray			*horiz_intersec(t_ray *ray, t_player *player)
