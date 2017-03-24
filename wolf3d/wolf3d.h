@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/17 19:05:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/22 19:28:29 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define TITLE			"Wolf3D"
 # define HEIGHT 		700
 # define WIDTH 			700
-# define SPEED			5
+# define SPEED			2
 # define WALL_SIZE		16
 # define BUFF_SIZE		1024
 
@@ -86,14 +86,12 @@ int					key_hook(SDL_Event evt, t_event *list_evts);
 /*
 ** key_functions_*.c
 */
-void				rotate_down(void *arg);
-void				rotate_left(void *arg);
-void				rotate_right(void *arg);
-void				rotate_up(void *arg);
-void				translate_down(void *arg);
-void				translate_left(void *arg);
-void				translate_right(void *arg);
-void				translate_up(void *arg);
+int					move_down(t_player *player);
+int					move_left(t_player *player);
+int					move_right(t_player *player);
+int					move_up(t_player *player);
+int					rotate_left(t_player *player);
+int					rotate_right(t_player *player);
 
 /*
 ** main.c

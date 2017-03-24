@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/17 18:14:26 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/24 13:39:05 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void			cast_ray(t_ray *ray, t_player *player, double correction, int i)
 	if (ray->h_i.w < player->cam->f && ray->h_i.w < ray->v_i.w)
 	{
 		ray->h = (WALL_SIZE * player->cam->f) / (ray->h_i.w * cos(correction));
-		draw_vert_line(player->cam->screen, i, ray->h, get_color(255, 0, 0));
+		draw_vert_line(player->cam->screen, i, ray->h, get_color(255, 90, 90));
 		cast_floor(ray, player, i);
 	}
 	else if (ray->v_i.w < player->cam->f)
 	{
 		ray->h = (WALL_SIZE * player->cam->f) / (ray->v_i.w * cos(correction));
-		draw_vert_line(player->cam->screen, i, ray->h, get_color(0, 255, 0));
+		draw_vert_line(player->cam->screen, i, ray->h, get_color(90, 255, 90));
 		cast_floor(ray, player, i);
 	}
 }

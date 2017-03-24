@@ -6,49 +6,85 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/17 19:18:06 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/24 13:36:58 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 #include <math.h>
 
-void	move_left(t_player *player)
+int	move_left(t_player *player)
 {
-	double	angle;
+	double		angle;
+	t_map		*tmp;
+	t_vector	move;
 
-	angle = ft_to_rad(player->cam->angle);
-	player->pos.x -= cos(-M_PI_2 + angle) * SPEED;
-	player->pos.y -= cos(-M_PI_2 + angle) * SPEED;
-	goto_tile(&player->pos, player->tile);
+	angle = ft_to_rad(player->cam->angle + 90);
+	move = player->pos;
+	move.x += cos(angle) * SPEED;
+	move.y -= sin(angle) * SPEED;
+	if ((tmp = goto_tile(&move, player->tile))->type < WALL)
+	{
+		player->pos = move;
+		player->tile = tmp;
+	}
+	scan_environment(player);
+	return (1);
 }
 
-void	move_right(t_player *player)
+int	move_right(t_player *player)
 {
-	double	angle;
+	double		angle;
+	t_map		*tmp;
+	t_vector	move;
 
-	angle = ft_to_rad(player->cam->angle);
-	player->pos.x += cos(-M_PI_2 + angle) * SPEED;
-	player->pos.y += cos(-M_PI_2 + angle) * SPEED;
-	goto_tile(&player->pos, player->tile);
+	angle = ft_to_rad(player->cam->angle - 90);
+	move = player->pos;
+	move.x += cos(angle) * SPEED;
+	move.y -= sin(angle) * SPEED;
+	if ((tmp = goto_tile(&move, player->tile))->type < WALL)
+	{
+		player->pos = move;
+		player->tile = tmp;
+	}
+	scan_environment(player);
+	return (1);
 }
 
-void	move_up(t_player *player)
+int	move_up(t_player *player)
 {
-	double	angle;
+	double		angle;
+	t_map		*tmp;
+	t_vector	move;
 
 	angle = ft_to_rad(player->cam->angle);
-	player->pos.x += cos(angle) * SPEED;
-	player->pos.y -= cos(angle) * SPEED;
-	goto_tile(&player->pos, player->tile);
+	move = player->pos;
+	move.x += cos(angle) * SPEED;
+	move.y -= sin(angle) * SPEED;
+	if ((tmp = goto_tile(&move, player->tile))->type < WALL)
+	{
+		player->pos = move;
+		player->tile = tmp;
+	}
+	scan_environment(player);
+	return (1);
 }
 
-void	move_down(t_player *player)
+int	move_down(t_player *player)
 {
-	double	angle;
+	double		angle;
+	t_map		*tmp;
+	t_vector	move;
 
 	angle = ft_to_rad(player->cam->angle);
-	player->pos.x -= cos(angle) * SPEED;
-	player->pos.y += cos(angle) * SPEED;
-	goto_tile(&player->pos, player->tile);
+	move = player->pos;
+	move.x -= cos(angle) * SPEED;
+	move.y += sin(angle) * SPEED;
+	if ((tmp = goto_tile(&move, player->tile))->type < WALL)
+	{
+		player->pos = move;
+		player->tile = tmp;
+	}
+	scan_environment(player);
+	return (1);
 }

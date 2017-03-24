@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/17 18:50:00 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/24 15:49:50 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,31 +38,16 @@ int		exit_loop()
 	return (0);
 }
 
-int		r_left(t_player *player)
-{
-	if (player->cam->angle + 2 > 180)
-		player->cam->angle = ((player->cam->angle + 2) - 180) - 180;
-	else
-		player->cam->angle += 2;
-	scan_environment(player);
-	return (1);
-}
-int		r_right(t_player *player)
-{
-	if (player->cam->angle - 2 < -180)
-		player->cam->angle = ((player->cam->angle - 2) + 180) + 180;
-	else
-		player->cam->angle -= 2;
-	scan_environment(player);
-	return (1);
-}
-
 void	init_list_evts(t_event **head, t_player *player)
 {
 	new_event(head, SDL_QUIT, NULL, &exit_loop);
 	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_ESCAPE, &exit_loop, NULL), &key_hook);
-	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_LEFT, &r_left, player), &key_hook);
-	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_RIGHT, &r_right, player), &key_hook);
+	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_LEFT, &rotate_left, player), &key_hook);
+	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_RIGHT, &rotate_right, player), &key_hook);
+	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_z, &move_up, player), &key_hook);
+	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_q, &move_left, player), &key_hook);
+	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_s, &move_down, player), &key_hook);
+	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_d, &move_right, player), &key_hook);
 }
 
 int		main(int ac, char **av)
@@ -76,7 +61,7 @@ int		main(int ac, char **av)
 	SDL_GetCore();
 
 	map = read_file(open("test", O_RDONLY));
-	player = create_player(create_camera(70, 0), 40, 40, map);
+	player = create_player(create_camera(70, 45), 40, 40, map);
 
 	list_evts = NULL;
 	init_list_evts(&list_evts, player);
