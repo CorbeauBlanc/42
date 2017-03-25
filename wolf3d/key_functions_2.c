@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/22 19:10:12 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/25 21:37:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	rotate_left(t_player *player)
 		player->cam->angle = ((player->cam->angle + 2) - 180) - 180;
 	else
 		player->cam->angle += 2;
-	scan_environment(player);
 	return (1);
 }
 int	rotate_right(t_player *player)
@@ -27,6 +26,5 @@ int	rotate_right(t_player *player)
 		player->cam->angle = ((player->cam->angle - 2) + 180) + 180;
 	else
 		player->cam->angle -= 2;
-	scan_environment(player);
 	return (1);
 }

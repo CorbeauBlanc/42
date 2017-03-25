@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/24 13:36:58 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/25 21:36:58 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	move_left(t_player *player)
 		player->pos = move;
 		player->tile = tmp;
 	}
-	scan_environment(player);
 	return (1);
 }
 
@@ -47,7 +46,6 @@ int	move_right(t_player *player)
 		player->pos = move;
 		player->tile = tmp;
 	}
-	scan_environment(player);
 	return (1);
 }
 
@@ -66,7 +64,6 @@ int	move_up(t_player *player)
 		player->pos = move;
 		player->tile = tmp;
 	}
-	scan_environment(player);
 	return (1);
 }
 
@@ -85,6 +82,5 @@ int	move_down(t_player *player)
 		player->pos = move;
 		player->tile = tmp;
 	}
-	scan_environment(player);
 	return (1);
 }

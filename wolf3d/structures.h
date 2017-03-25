@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/16 13:28:02 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/25 21:37:45 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,6 @@ typedef struct		s_SDL_Core
 	int				height;
 }					t_SDL_Core;
 
-typedef struct		s_event
-{
-	SDL_EventType	type;
-	void			*data;
-	int				(*fct)();
-	struct s_event	*next;
-}					t_event;
-
 typedef struct		s_map
 {
 	t_vector		min;
@@ -97,6 +89,13 @@ typedef struct		s_player
 	t_map			*tile;
 }					t_player;
 
+typedef struct		s_event
+{
+	SDL_Scancode	key;
+	int				(*fct)();
+	struct s_event	*next;
+}					t_event;
+
 typedef struct	s_ray
 {
 	t_map		*wall;
@@ -105,12 +104,5 @@ typedef struct	s_ray
 	t_vector	h_i;
 	t_vector	v_i;
 }				t_ray;
-
-typedef struct		s_key_data
-{
-	SDL_Keycode		key;
-	t_player		*player;
-	int				(*fct)();
-}					t_key_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/24 15:49:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/25 21:43:34 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,15 @@ int		exit_loop()
 	return (0);
 }
 
-void	init_list_evts(t_event **head, t_player *player)
+void	init_list_evts(t_event **head)
 {
-	new_event(head, SDL_QUIT, NULL, &exit_loop);
-	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_ESCAPE, &exit_loop, NULL), &key_hook);
-	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_LEFT, &rotate_left, player), &key_hook);
-	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_RIGHT, &rotate_right, player), &key_hook);
-	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_z, &move_up, player), &key_hook);
-	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_q, &move_left, player), &key_hook);
-	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_s, &move_down, player), &key_hook);
-	new_event(head, SDL_KEYDOWN, new_key_data(SDLK_d, &move_right, player), &key_hook);
+	new_event(head, SDL_SCANCODE_ESCAPE, &exit_loop);
+	new_event(head, SDL_SCANCODE_LEFT, &rotate_left);
+	new_event(head, SDL_SCANCODE_RIGHT, &rotate_right);
+	new_event(head, SDL_SCANCODE_W, &move_up);
+	new_event(head, SDL_SCANCODE_S, &move_down);
+	new_event(head, SDL_SCANCODE_A, &move_left);
+	new_event(head, SDL_SCANCODE_D, &move_right);
 }
 
 int		main(int ac, char **av)
@@ -64,11 +63,11 @@ int		main(int ac, char **av)
 	player = create_player(create_camera(70, 45), 40, 40, map);
 
 	list_evts = NULL;
-	init_list_evts(&list_evts, player);
+	init_list_evts(&list_evts);
 
 	scan_environment(player);
 
-	wait_events(list_evts);
+	wait_events(list_evts, player);
 	clear_events(&list_evts);
 	exit_main();
 	return (0);
