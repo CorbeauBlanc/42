@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/14 12:58:13 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/27 23:11:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,21 @@ static t_tile	get_type(int i)
 	types[0] = FLOOR;
 	types[1] = WALL;
 	return (types[(i < 2 && i > -1) ? i : 0]);
+}
+
+SDL_Texture		*load_texture(t_tile type)
+{
+	char		*textures[NB_TEXTURES];
+	SDL_Surface	*tmp;
+	SDL_Texture	*texture;
+
+	textures[FLOOR] = "textures/floor.bmp";
+	textures[WALL] = "textures/wall.bmp";
+	if (!(tmp = SDL_LoadBMP(textures[type])))
+		exit_error((char*)SDL_GetError());
+	texture = SDL_CreateTextureFromSurface(SDL_GetCore()->renderer, tmp);
+	SDL_FreeSurface(tmp);
+	return (texture);
 }
 
 void		add_new_cells(t_map **last, t_vector *crd, char *nbs)
@@ -75,9 +90,10 @@ void		delete_map(t_map *map)
 		while (map->right)
 		{
 			map = map->right;
-			free(map->left);
+			delete_cell(map->left);
+
 		}
-		free(map);
+		delete_cell(map);
 		map = r_head;
 	}
 }

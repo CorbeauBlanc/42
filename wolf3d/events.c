@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:21:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/25 21:48:40 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/27 23:34:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	wait_events(t_event *list_evts, t_player *player)
 				flag = tmp->fct(player);
 			tmp = tmp->next;
 		}
-		if (scan)
+		if (scan && flag)
 			scan_environment(player);
 		SDL_Delay(2);
 	}

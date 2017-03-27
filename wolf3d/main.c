@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/25 21:43:34 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/27 23:34:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	exit_error(char *s)
 
 void	exit_main()
 {
-	SDL_DestroyWindow(SDL_GetCore()->window);
-	SDL_DestroyRenderer(SDL_GetCore()->renderer);
-	SDL_Quit();
+	SDL_DestroyCore();
 	garbage_collector(CLEAR, NULL, NULL);
 	exit(0);
 }

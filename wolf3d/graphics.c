@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:52:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/25 19:17:12 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/27 22:19:49 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,14 @@ t_SDL_Core	*SDL_GetCore(void)
 	core->width = WIDTH;
 	core->height = HEIGHT;
 	return (core);
+}
+
+void		SDL_DestroyCore()
+{
+	SDL_DestroyWindow(SDL_GetCore()->window);
+	SDL_DestroyRenderer(SDL_GetCore()->renderer);
+	SDL_Quit();
+	free(SDL_GetCore());
 }
 
 void		refresh_win()

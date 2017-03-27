@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 20:13:40 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/16 16:30:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/27 23:39:38 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_screen	*create_screen(int width, int height)
 	scr->width = width;
 	scr->texture = SDL_CreateTexture(SDL_GetCore()->renderer,
 								SDL_GetWindowPixelFormat(SDL_GetCore()->window),
-								SDL_TEXTUREACCESS_STREAMING, width, height);
+								SDL_TEXTUREACCESS_STATIC, width, height);
 	ft_memset(scr->pxl_tab, 0, sizeof(Uint32) * width * height);
 	scr->pitch = width * sizeof(Uint32);
 	SDL_UpdateTexture(scr->texture, NULL, scr->pxl_tab, scr->pitch);

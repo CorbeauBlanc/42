@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/25 21:37:45 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/28 00:27:54 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct		s_map
 	t_vector		min;
 	t_vector		max;
 	t_tile			type;
+	SDL_Texture		*texture;
 	struct s_map	*r_head;
 	struct s_map	*c_head;
 	struct s_map	*left;
@@ -98,7 +99,8 @@ typedef struct		s_event
 
 typedef struct	s_ray
 {
-	t_map		*wall;
+	t_map		*h_wall;
+	t_map		*v_wall;
 	double		a;
 	double		h;
 	t_vector	h_i;

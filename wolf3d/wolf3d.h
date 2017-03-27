@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/25 21:43:28 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/27 23:51:04 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 # define TITLE			"Wolf3D"
 # define HEIGHT 		700
 # define WIDTH 			700
+# define NB_TEXTURES	2
 # define SPEED			1
 # define WALL_SIZE		16
+# define TEXT_SIZE		64
 # define BUFF_SIZE		1024
 
 # ifndef __APPLE__
@@ -53,6 +55,7 @@ void				set_camera_fov(t_camera	*cam, int fov);
 */
 Uint32				get_color(int r, int g, int b);
 void				refresh_win();
+void				SDL_DestroyCore();
 t_SDL_Core			*SDL_GetCore();
 
 /*
@@ -103,6 +106,7 @@ void				exit_main();
 ** map.c
 */
 void				delete_map(t_map *map);
+SDL_Texture			*load_texture(t_tile type);
 t_map				*read_file(int fd);
 
 /*
@@ -121,22 +125,23 @@ void				delete_screen(t_screen *scr);
 void				put_pxl_screen(t_screen *scr, int x, int y, Uint32 color);
 
 /*
+** textures.c
+*/
+SDL_Texture			*create_texture(char *path);
+
+/*
 ** tiles.c
 */
+void				delete_cell(t_map *cell);
+t_map				*insert_cell(t_map *head, t_map *cell);
 int					is_empty(t_map *tile);
 t_map				*goto_tile(t_vector *crd, t_map *tile);
+t_map				*new_cell(t_vector *vect, t_tile type);
 
 /*
 ** transformations.c
 */
 void				translation();
 void				rotation();
-
-/*
-** vectors.c
-*/
-t_vector			*create_vector(double x, double y, double z);
-t_map				*insert_cell(t_map *head, t_map *cell);
-t_map				*new_cell(t_vector *vect, t_tile type);
 
 #endif

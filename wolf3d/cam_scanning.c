@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/25 17:55:31 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/28 01:21:40 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "raycasting.h"
 #include "floorcasting.h"
 
-void			cast_ray(t_ray *ray, t_player *player, double correction, int i)
+void	cast_ray(t_ray *ray, t_player *player, double correction, int i)
 {
 	if (ray->a && fabs(ray->a) != M_PI)
 		horiz_intersec(ray, player);
@@ -23,18 +23,22 @@ void			cast_ray(t_ray *ray, t_player *player, double correction, int i)
 	if (ray->h_i.w < player->cam->f && ray->h_i.w < ray->v_i.w)
 	{
 		ray->h = (WALL_SIZE * player->cam->f) / (ray->h_i.w * cos(correction));
-		draw_vert_line(player->cam->screen, i, ray->h, get_color(255, 90, 90));
-		cast_floor(ray, player, i);
+		//cast_floor(ray, player, i);
+		refresh_cam(player->cam);
+		draw_vert_line(player->cam->screen, i, ray->h, ray);
+
 	}
 	else if (ray->v_i.w < player->cam->f)
 	{
 		ray->h = (WALL_SIZE * player->cam->f) / (ray->v_i.w * cos(correction));
-		draw_vert_line(player->cam->screen, i, ray->h, get_color(90, 255, 90));
-		cast_floor(ray, player, i);
+		//cast_floor(ray, player, i);
+		refresh_cam(player->cam);
+		draw_vert_line(player->cam->screen, i, ray->h, ray);
+
 	}
 }
 
-void			scan_environment(t_player *player)
+void	scan_environment(t_player *player)
 {
 	int			i;
 	double		angle;
@@ -55,5 +59,5 @@ void			scan_environment(t_player *player)
 		cast_ray(&ray_l, player, angle, i);
 		cast_ray(&ray_r, player, angle, player->cam->screen->width - i);
 	}
-	refresh_cam(player->cam);
+	refresh_win();
 }

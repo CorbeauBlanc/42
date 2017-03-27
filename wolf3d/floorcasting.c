@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 14:06:50 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/24 16:14:02 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/27 23:47:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,4 @@ void	cast_floor(t_ray *ray, t_player *player, int i)
 		put_pxl_screen(player->cam->screen, i, bottom - 2, color);
 		put_pxl_screen(player->cam->screen, i, player->cam->screen->height - bottom, color);
 	}
-	(void)tmp;
 }

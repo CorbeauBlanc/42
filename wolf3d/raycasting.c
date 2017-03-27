@@ -6,15 +6,15 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/25 14:37:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/28 01:22:53 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static t_ray	*set_wall(t_ray *ray, t_map *wall)
+static t_ray	*set_wall(t_ray *ray, t_map **ray_wall, t_map *wall)
 {
-	ray->wall = wall;
+	*ray_wall = wall;
 	return (ray);
 }
 
@@ -33,16 +33,16 @@ t_ray			*horiz_intersec(t_ray *ray, t_player *player)
 	while ((ray->h_i.w = fabs((player->pos.y - ray->h_i.y) / sin(ray->a))) <
 			player->cam->f)
 	{
-		if (!(ray->wall = goto_tile(&ray->h_i, player->tile)))
+		if (!(ray->h_wall = goto_tile(&ray->h_i, player->tile)))
 			return (ray);
-		if (is_north(ray->a) && !is_empty(ray->wall->up))
-			return (set_wall(ray, ray->wall->up));
-		else if (is_south(ray->a) && !is_empty(ray->wall->down))
-			return (set_wall(ray, ray->wall->down));
+		if (is_north(ray->a) && !is_empty(ray->h_wall->up))
+			return (set_wall(ray, &ray->h_wall, ray->h_wall->up));
+		else if (is_south(ray->a) && !is_empty(ray->h_wall->down))
+			return (set_wall(ray, &ray->h_wall, ray->h_wall->down));
 		ray->h_i.x += is_east(ray->a) ? xi : -xi;
 		ray->h_i.y += is_north(ray->a) ? -WALL_SIZE : WALL_SIZE;
 	}
-	return (set_wall(ray, NULL));
+	return (set_wall(ray, &ray->h_wall, NULL));
 }
 
 t_ray			*vert_intersec(t_ray *ray, t_player *player)
@@ -60,26 +60,42 @@ t_ray			*vert_intersec(t_ray *ray, t_player *player)
 	while ((ray->v_i.w = fabs((ray->v_i.x - player->pos.x) / cos(ray->a))) <
 			player->cam->f)
 	{
-		if (!(ray->wall = goto_tile(&ray->v_i, player->tile)))
+		if (!(ray->v_wall = goto_tile(&ray->v_i, player->tile)))
 			return (ray);
-		if (is_east(ray->a) && !is_empty(ray->wall->right))
-			return (set_wall(ray, ray->wall->right));
-		else if (is_west(ray->a) && !is_empty(ray->wall->left))
-			return (set_wall(ray, ray->wall->left));
+		if (is_east(ray->a) && !is_empty(ray->v_wall->right))
+			return (set_wall(ray, &ray->v_wall, ray->v_wall->right));
+		else if (is_west(ray->a) && !is_empty(ray->v_wall->left))
+			return (set_wall(ray, &ray->v_wall, ray->v_wall->left));
 		ray->v_i.x += is_east(ray->a) ? WALL_SIZE : -WALL_SIZE;
 		ray->v_i.y += is_north(ray->a) ? -yi : yi;
 	}
-	return (set_wall(ray, NULL));
+	return (set_wall(ray, &ray->v_wall, NULL));
 }
 
-void			draw_vert_line(t_screen *scr, int x, double h, Uint32 color)
+void			draw_vert_line(t_screen *scr, int i, double h, t_ray *ray)
 {
-	int	y;
+	int			xt;
+	SDL_Rect	srect;
+	SDL_Rect	drect;
+	t_map		*wall;
 
-	if (h > SDL_GetCore()->height)
-		h = SDL_GetCore()->height;
-	y = (SDL_GetCore()->height - h) / 2 - 1;
-	h += y;
-	while (++y < h)
-		put_pxl_screen(scr, x, y, color);
+	drect.x = i;
+	drect.y = (scr->height - h) / 2 - 1;
+	drect.w = 1;
+	drect.h = h;
+	if (ray->h_i.w < ray->v_i.w)
+	{
+		xt = (int)(ray->h_i.x) % WALL_SIZE;
+		wall = ray->h_wall;
+	}
+	else
+	{
+		xt = (int)(ray->v_i.y) % WALL_SIZE;
+		wall = ray->v_wall;
+	}
+	srect.x = xt;
+	srect.y = 0;
+	srect.w = 1;
+	srect.h = TEXT_SIZE;
+	SDL_RenderCopy(SDL_GetCore()->renderer, wall->texture, &srect, &drect);
 }

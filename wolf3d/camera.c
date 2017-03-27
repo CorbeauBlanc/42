@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/14 12:05:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/28 01:20:37 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_camera	*create_camera(int fov, int angle)
 
 void		delete_camera(t_camera *cam)
 {
+	delete_screen(cam->screen);
 	free(cam);
 }
 
@@ -44,5 +45,4 @@ void		refresh_cam(t_camera *cam)
 	SDL_UpdateTexture(cam->screen->texture, NULL, cam->screen->pxl_tab,
 					cam->screen->pitch);
 	SDL_RenderCopy(SDL_GetCore()->renderer, cam->screen->texture, NULL, NULL);
-	refresh_win();
 }
