@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 12:56:36 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/28 00:55:47 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/30 17:59:59 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-t_map	*new_cell(t_vector *vect, t_tile type)
+t_map	*new_cell(t_vector *vect, t_tile type, t_map_data *data)
 {
 	t_map	*cell;
 
@@ -22,7 +22,9 @@ t_map	*new_cell(t_vector *vect, t_tile type)
 	cell->min.y = vect->y;
 	cell->max.x = vect->x + WALL_SIZE;
 	cell->max.y = vect->y + WALL_SIZE;
-	cell->texture = load_texture(type);
+	cell->texture = load_texture(type, &cell->text_size);
+	cell->reflect = load_reflection(type, &cell->refl_size);
+	cell->data = data;
 	cell->type = type;
 	cell->down = NULL;
 	cell->left = NULL;
@@ -35,7 +37,10 @@ t_map	*new_cell(t_vector *vect, t_tile type)
 
 void	delete_cell(t_map *cell)
 {
-	SDL_DestroyTexture(cell->texture);
+	if (cell->texture)
+		SDL_DestroyTexture(cell->texture);
+	if (cell->reflect)
+		SDL_DestroyTexture(cell->reflect);
 	free(cell);
 }
 

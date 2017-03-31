@@ -6,11 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 17:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/17 17:49:38 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/30 16:00:57 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include <math.h>
 
 t_player	*create_player(t_camera *cam, int x, int y, t_map *map)
 {
@@ -21,6 +22,7 @@ t_player	*create_player(t_camera *cam, int x, int y, t_map *map)
 	player->cam = cam;
 	player->pos.x = x;
 	player->pos.y = y;
+	map->data->bg_fact = cam->screen.w / cam->fov;
 	if (!(player->tile = goto_tile(&player->pos, map)))
 	{
 		free(player);

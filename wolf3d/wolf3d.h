@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/27 23:51:04 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/30 17:50:52 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int					is_west(double angle);
 /*
 ** camera.c
 */
-t_camera			*create_camera(int fov, int angle);
+t_camera			*create_camera(int fov, int angle, double sensibility);
 void				delete_camera(t_camera *cam);
 void				refresh_cam(t_camera *cam);
 void				set_camera_fov(t_camera	*cam, int fov);
@@ -54,23 +54,10 @@ void				set_camera_fov(t_camera	*cam, int fov);
 ** graphics.c
 */
 Uint32				get_color(int r, int g, int b);
+Uint8				get_filter_value(t_map_data *data, double dist);
 void				refresh_win();
 void				SDL_DestroyCore();
 t_SDL_Core			*SDL_GetCore();
-
-/*
-** images.c
-*/
-void				clear_image(t_image *img);
-t_image				*create_image(int width, int height, int depth);
-void				delete_image(t_image *img);
-void				display_image(t_image *img, int x, int y);
-
-/*
-** img_graphics.c
-*/
-void				mlx_draw_line_img(t_image *img, t_vector *pt1, t_vector *pt2);
-void				mlx_pixel_put_img(t_image *img, int x, int y, int color);
 
 /*
 ** events.c
@@ -106,8 +93,8 @@ void				exit_main();
 ** map.c
 */
 void				delete_map(t_map *map);
-SDL_Texture			*load_texture(t_tile type);
 t_map				*read_file(int fd);
+void				set_map_brightness(t_map *map, int percent);
 
 /*
 ** player.c
@@ -118,16 +105,20 @@ void				scan_environment(t_player *player);
 
 /*
 ** screen.c
+**
+**void				clear_screen(t_screen *scr);
+**t_screen			*create_screen(int width, int height);
+**void				delete_screen(t_screen *scr);
+**void				put_pxl_screen(t_screen *scr, int x, int y, Uint32 color);
 */
-void				clear_screen(t_screen *scr);
-t_screen			*create_screen(int width, int height);
-void				delete_screen(t_screen *scr);
-void				put_pxl_screen(t_screen *scr, int x, int y, Uint32 color);
 
 /*
 ** textures.c
 */
 SDL_Texture			*create_texture(char *path);
+SDL_Texture			*load_background(char *path, int *w);
+SDL_Texture			*load_reflection(t_tile type, int *s);
+SDL_Texture			*load_texture(t_tile type, int *s);
 
 /*
 ** tiles.c
@@ -136,7 +127,13 @@ void				delete_cell(t_map *cell);
 t_map				*insert_cell(t_map *head, t_map *cell);
 int					is_empty(t_map *tile);
 t_map				*goto_tile(t_vector *crd, t_map *tile);
-t_map				*new_cell(t_vector *vect, t_tile type);
+t_map				*new_cell(t_vector *vect, t_tile type, t_map_data *data);
+
+/*
+** tools.c
+*/
+void				set_rect_crd(SDL_Rect *rect, int x, int y);
+void				set_rect_dim(SDL_Rect *rect, int w, int h);
 
 /*
 ** transformations.c

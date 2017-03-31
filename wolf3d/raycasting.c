@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/28 01:25:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/30 18:00:17 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,15 @@ t_ray			*vert_intersec(t_ray *ray, t_player *player)
 	return (set_wall(ray, &ray->v_wall, NULL));
 }
 
-void			draw_vert_line(t_screen *scr, int i, double h, t_ray *ray)
+void			draw_tile(SDL_Rect *scr, int i, t_ray *ray)
 {
 	int			xt;
 	SDL_Rect	srect;
 	SDL_Rect	drect;
 	t_map		*wall;
 
-	drect.x = i;
-	drect.y = (scr->height - h) / 2 - 1;
-	drect.w = 1;
-	drect.h = h;
+	set_rect_crd(&drect, i, (scr->h - ray->h) / 2 - 1);
+	set_rect_dim(&drect, 1, ray->h);
 	if (ray->h_i.w < ray->v_i.w)
 	{
 		xt = (int)(ray->h_i.x) % WALL_SIZE;
@@ -93,9 +91,9 @@ void			draw_vert_line(t_screen *scr, int i, double h, t_ray *ray)
 		xt = (int)(ray->v_i.y) % WALL_SIZE;
 		wall = ray->v_wall;
 	}
-	srect.x = xt;
-	srect.y = 0;
-	srect.w = 1;
-	srect.h = TEXT_SIZE;
+	set_rect_crd(&srect, xt, 0);
+	set_rect_dim(&srect, 1, wall->text_size);
+	SDL_SetTextureColorMod(wall->texture,
+							ray->filter, ray->filter, ray->filter);
 	SDL_RenderCopy(SDL_GetCore()->renderer, wall->texture, &srect, &drect);
 }

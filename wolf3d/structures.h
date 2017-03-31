@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/28 00:27:54 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/30 17:50:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,7 @@ typedef struct		s_vector
 	double			w;
 }					t_vector;
 
-typedef struct		s_image
-{
-	int				width;
-	int				height;
-	void			*ptr;
-	char			*data;
-	int				depth;
-	int				size_line;
-	int				endian;
-}					t_image;
-
+/*
 typedef struct		s_screen
 {
 	SDL_Texture		*texture;
@@ -51,14 +41,16 @@ typedef struct		s_screen
 	int				height;
 	int				pitch;
 }					t_screen;
+*/
 
 typedef struct		s_camera
 {
+	int				angle;
 	int				fov;
 	double			half_scr;
 	double			f;
-	int				angle;
-	t_screen		*screen;
+	double			sensi;
+	SDL_Rect		screen;
 }					t_camera;
 
 typedef struct		s_SDL_Core
@@ -69,12 +61,24 @@ typedef struct		s_SDL_Core
 	int				height;
 }					t_SDL_Core;
 
+typedef struct		s_map_data
+{
+	int				brightness;
+	int				bg_w;
+	double			bg_fact;
+	SDL_Texture		*background;
+}					t_map_data;
+
 typedef struct		s_map
 {
 	t_vector		min;
 	t_vector		max;
 	t_tile			type;
 	SDL_Texture		*texture;
+	SDL_Texture		*reflect;
+	int				text_size;
+	int				refl_size;
+	t_map_data		*data;
 	struct s_map	*r_head;
 	struct s_map	*c_head;
 	struct s_map	*left;
@@ -105,6 +109,7 @@ typedef struct	s_ray
 	double		h;
 	t_vector	h_i;
 	t_vector	v_i;
+	Uint8		filter;
 }				t_ray;
 
 #endif

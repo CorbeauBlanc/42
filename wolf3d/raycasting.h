@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 12:43:44 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/27 19:58:23 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/29 19:39:29 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define RAYCASTING_H
 # include "structures.h"
 
-void	draw_vert_line(t_screen *scr, int x, double h, t_ray *ray);
+void	draw_tile(SDL_Rect *screen, int x, t_ray *ray);
 t_ray	*horiz_intersec(t_ray *ray, t_player *player);
 t_ray	*vert_intersec(t_ray *ray, t_player *player);
 

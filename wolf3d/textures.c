@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 21:55:48 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/27 23:10:45 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/30 18:07:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,47 @@ SDL_Texture	*create_texture(char *path)
 {
 	SDL_Texture	*texture;
 	SDL_Surface	*tmp;
-	void		*pixels;
-	int			pitch;
 
 	if (!(tmp = SDL_LoadBMP(path)))
 		exit_error((char*)SDL_GetError());
-	if (!(texture = SDL_CreateTexture(SDL_GetCore()->renderer,
-					SDL_GetWindowPixelFormat(SDL_GetCore()->window),
-					SDL_TEXTUREACCESS_STREAMING, WALL_SIZE, WALL_SIZE)))
+	texture = SDL_CreateTextureFromSurface(SDL_GetCore()->renderer, tmp);
+	if (!texture)
 		exit_error((char*)SDL_GetError());
-	SDL_LockTexture(texture, NULL, &pixels, &pitch);
-	ft_memcpy(pixels, tmp->pixels, tmp->pitch * tmp->h);
-	SDL_UnlockTexture(texture);
 	SDL_FreeSurface(tmp);
 	return (texture);
+}
+
+SDL_Texture		*load_texture(t_tile type, int *s)
+{
+	char				*paths[NB_TEXTURES];
+	static SDL_Texture	*textures[NB_TEXTURES] = {NULL};
+
+	paths[FLOOR] = "textures/floor.bmp";
+	paths[WALL] = "textures/wall.bmp";
+	if (!textures[type])
+		textures[type] = create_texture(paths[type]);
+	SDL_QueryTexture(textures[type], NULL, NULL, NULL, s);
+	return (textures[type]);
+}
+
+SDL_Texture		*load_reflection(t_tile type, int *s)
+{
+	char				*paths[NB_TEXTURES];
+	static SDL_Texture	*reflections[NB_TEXTURES] = {NULL};
+
+	paths[FLOOR] = "textures/floor.bmp";
+	paths[WALL] = "textures/reflection.bmp";
+	if (!reflections[type])
+		reflections[type] = create_texture(paths[type]);
+	SDL_QueryTexture(reflections[type], NULL, NULL, NULL, s);
+	return (reflections[type]);
+}
+
+SDL_Texture		*load_background(char *path, int *w)
+{
+	SDL_Texture	*background;
+
+	background = create_texture(path);
+	SDL_QueryTexture(background, NULL, NULL, w, NULL);
+	return (background);
 }

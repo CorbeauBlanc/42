@@ -6,11 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/27 23:11:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/30 17:19:07 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include <math.h>
 
 static t_tile	get_type(int i)
 {
@@ -21,22 +22,7 @@ static t_tile	get_type(int i)
 	return (types[(i < 2 && i > -1) ? i : 0]);
 }
 
-SDL_Texture		*load_texture(t_tile type)
-{
-	char		*textures[NB_TEXTURES];
-	SDL_Surface	*tmp;
-	SDL_Texture	*texture;
-
-	textures[FLOOR] = "textures/floor.bmp";
-	textures[WALL] = "textures/wall.bmp";
-	if (!(tmp = SDL_LoadBMP(textures[type])))
-		exit_error((char*)SDL_GetError());
-	texture = SDL_CreateTextureFromSurface(SDL_GetCore()->renderer, tmp);
-	SDL_FreeSurface(tmp);
-	return (texture);
-}
-
-void		add_new_cells(t_map **last, t_vector *crd, char *nbs)
+void		add_new_cells(t_map **last, t_vector *crd, char *nbs, t_map_data *d)
 {
 	while (*nbs)
 	{
@@ -52,11 +38,20 @@ void		add_new_cells(t_map **last, t_vector *crd, char *nbs)
 		}
 		if (*nbs)
 		{
-			*last = insert_cell(*last, new_cell(crd, get_type(*nbs - '0')));
+			*last = insert_cell(*last, new_cell(crd, get_type(*nbs - '0'), d));
 			crd->x += WALL_SIZE;
 			++nbs;
 		}
 	}
+}
+
+void		set_map_brightness(t_map *map, int percent)
+{
+	double	max;
+
+	percent = 100 - percent;
+	max = 255 / WALL_SIZE;
+	map->data->brightness = max * percent / 100.0;
 }
 
 t_map		*read_file(int fd)
@@ -64,6 +59,7 @@ t_map		*read_file(int fd)
 	t_vector	crds;
 	char		*nbs;
 	t_map		*last;
+	t_map_data	*data;
 
 	if (fd < 0)
 		return (NULL);
@@ -71,9 +67,12 @@ t_map		*read_file(int fd)
 	last = NULL;
 	crds.x = 0;
 	crds.y = 0;
+	if (!(data = malloc(sizeof(t_map_data))))
+		exit_error(NULL);
+	data->background = load_background("background.bmp", &data->bg_w);
 	while (read(fd, nbs, BUFF_SIZE) > 0)
 	{
-		add_new_cells(&last, &crds, nbs);
+		add_new_cells(&last, &crds, nbs, data);
 		ft_bzero(nbs, BUFF_SIZE);
 	}
 	free(nbs);
@@ -84,6 +83,8 @@ void		delete_map(t_map *map)
 {
 	t_map	*r_head;
 
+	SDL_DestroyTexture(map->data->background);
+	free(map->data);
 	while (map)
 	{
 		r_head = map->down;
@@ -91,7 +92,6 @@ void		delete_map(t_map *map)
 		{
 			map = map->right;
 			delete_cell(map->left);
-
 		}
 		delete_cell(map);
 		map = r_head;
