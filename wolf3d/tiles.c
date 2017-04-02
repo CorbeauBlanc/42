@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 12:56:36 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/30 17:59:59 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/31 15:21:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_map	*new_cell(t_vector *vect, t_tile type, t_map_data *data)
 	cell->max.y = vect->y + WALL_SIZE;
 	cell->texture = load_texture(type, &cell->text_size);
 	cell->reflect = load_reflection(type, &cell->refl_size);
+	cell->mob = NULL;
 	cell->data = data;
 	cell->type = type;
 	cell->down = NULL;

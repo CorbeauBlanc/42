@@ -6,19 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/30 18:00:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/31 18:51:38 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include "mob_casting.h"
 
-static t_ray	*set_wall(t_ray *ray, t_map **ray_wall, t_map *wall)
-{
-	*ray_wall = wall;
-	return (ray);
-}
-
-t_ray			*horiz_intersec(t_ray *ray, t_player *player)
+t_ray	*horiz_intersec(t_ray *ray, t_player *player)
 {
 	double		xi;
 
@@ -35,17 +30,18 @@ t_ray			*horiz_intersec(t_ray *ray, t_player *player)
 	{
 		if (!(ray->h_wall = goto_tile(&ray->h_i, player->tile)))
 			return (ray);
-		if (is_north(ray->a) && !is_empty(ray->h_wall->up))
-			return (set_wall(ray, &ray->h_wall, ray->h_wall->up));
-		else if (is_south(ray->a) && !is_empty(ray->h_wall->down))
-			return (set_wall(ray, &ray->h_wall, ray->h_wall->down));
+		check_h_mob(ray);
+		if (is_north(ray->a) && !is_empty(ray->h_wall = ray->h_wall->up))
+			return (ray);
+		else if (is_south(ray->a) && !is_empty(ray->h_wall = ray->h_wall->down))
+			return (ray);
 		ray->h_i.x += is_east(ray->a) ? xi : -xi;
 		ray->h_i.y += is_north(ray->a) ? -WALL_SIZE : WALL_SIZE;
 	}
 	return (set_wall(ray, &ray->h_wall, NULL));
 }
 
-t_ray			*vert_intersec(t_ray *ray, t_player *player)
+t_ray	*vert_intersec(t_ray *ray, t_player *player)
 {
 	double		yi;
 
@@ -62,17 +58,18 @@ t_ray			*vert_intersec(t_ray *ray, t_player *player)
 	{
 		if (!(ray->v_wall = goto_tile(&ray->v_i, player->tile)))
 			return (ray);
-		if (is_east(ray->a) && !is_empty(ray->v_wall->right))
-			return (set_wall(ray, &ray->v_wall, ray->v_wall->right));
-		else if (is_west(ray->a) && !is_empty(ray->v_wall->left))
-			return (set_wall(ray, &ray->v_wall, ray->v_wall->left));
+		check_v_mob(ray);
+		if (is_east(ray->a) && !is_empty(ray->v_wall = ray->v_wall->right))
+			return (ray);
+		else if (is_west(ray->a) && !is_empty(ray->v_wall = ray->v_wall->left))
+			return (ray);
 		ray->v_i.x += is_east(ray->a) ? WALL_SIZE : -WALL_SIZE;
 		ray->v_i.y += is_north(ray->a) ? -yi : yi;
 	}
 	return (set_wall(ray, &ray->v_wall, NULL));
 }
 
-void			draw_tile(SDL_Rect *scr, int i, t_ray *ray)
+void	draw_tile(SDL_Rect *scr, int i, t_ray *ray)
 {
 	int			xt;
 	SDL_Rect	srect;

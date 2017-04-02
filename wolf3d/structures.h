@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/30 17:50:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/31 19:19:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,25 @@ typedef struct		s_SDL_Core
 	int				height;
 }					t_SDL_Core;
 
+typedef struct		s_ray_data
+{
+	t_vector		i;
+	struct s_mob	*next;
+}					t_ray_data;
+
+typedef struct		s_mob
+{
+	SDL_Texture		*spt_front;
+	SDL_Texture		*spt_back;
+	SDL_Texture		*spt_left;
+	SDL_Texture		*spt_right;
+	int				width;
+	int				height;
+	int				x;
+	int				y;
+	t_ray_data		data;
+}					t_mob;
+
 typedef struct		s_map_data
 {
 	int				brightness;
@@ -78,6 +97,7 @@ typedef struct		s_map
 	SDL_Texture		*reflect;
 	int				text_size;
 	int				refl_size;
+	t_mob			*mob;
 	t_map_data		*data;
 	struct s_map	*r_head;
 	struct s_map	*c_head;
@@ -101,15 +121,18 @@ typedef struct		s_event
 	struct s_event	*next;
 }					t_event;
 
-typedef struct	s_ray
+typedef struct		s_ray
 {
-	t_map		*h_wall;
-	t_map		*v_wall;
-	double		a;
-	double		h;
-	t_vector	h_i;
-	t_vector	v_i;
-	Uint8		filter;
-}				t_ray;
+	double			a;
+	double			h;
+	double			d;
+	t_map			*h_wall;
+	t_map			*v_wall;
+	t_mob			*h_mob;
+	t_mob			*v_mob;
+	t_vector		h_i;
+	t_vector		v_i;
+	Uint8			filter;
+}					t_ray;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/30 17:50:52 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/03/31 16:19:07 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,12 @@ t_map				*read_file(int fd);
 void				set_map_brightness(t_map *map, int percent);
 
 /*
+** mob.c
+*/
+t_mob				*create_mob(SDL_Texture *front, int x, int y);
+void				delete_mob(t_mob *mob);
+
+/*
 ** player.c
 */
 t_player			*create_player(t_camera *cam, int x, int y, t_map *map);
@@ -134,6 +140,7 @@ t_map				*new_cell(t_vector *vect, t_tile type, t_map_data *data);
 */
 void				set_rect_crd(SDL_Rect *rect, int x, int y);
 void				set_rect_dim(SDL_Rect *rect, int w, int h);
+t_ray				*set_wall(t_ray *ray, t_map **ray_wall, t_map *wall);
 
 /*
 ** transformations.c

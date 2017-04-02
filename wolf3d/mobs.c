@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   mobs.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/29 18:35:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/31 16:18:51 by edescoin         ###   ########.fr       */
+/*   Created: 2017/03/31 14:41:33 by edescoin          #+#    #+#             */
+/*   Updated: 2017/03/31 19:20:12 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	set_rect_dim(SDL_Rect *rect, int w, int h)
+t_mob	*create_mob(SDL_Texture *front, int x, int y)
 {
-	rect->h = h;
-	rect->w = w;
+	t_mob	*mob;
+
+	if (!(mob = malloc(sizeof(t_mob))))
+		exit_error(NULL);
+	mob->height = WALL_SIZE / 2;
+	mob->width = WALL_SIZE / 2;
+	mob->x = x;
+	mob->y = y;
+	mob->spt_front = front;
+	return (mob);
 }
 
-void	set_rect_crd(SDL_Rect *rect, int x, int y)
+void	delete_mob(t_mob *mob)
 {
-	rect->x = x;
-	rect->y = y;
-}
-
-t_ray	*set_wall(t_ray *ray, t_map **ray_wall, t_map *wall)
-{
-	*ray_wall = wall;
-	return (ray);
+	SDL_DestroyTexture(mob->spt_front);
+	free(mob);
 }
