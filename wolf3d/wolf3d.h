@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/03 16:40:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/03 19:07:21 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,17 @@ void				refresh_cam(t_camera *cam);
 void				set_camera_fov(t_camera	*cam, int fov);
 
 /*
-** graphics.c
+** cam_angles.c
 */
-Uint32				get_color(int r, int g, int b);
-Uint8				get_filter_value(t_map_data *data, double dist);
-void				refresh_win();
-void				SDL_DestroyCore();
-t_SDL_Core			*SDL_GetCore();
+int					is_looking_down(t_camera *cam);
+int					is_looking_left(t_camera *cam);
+int					is_looking_right(t_camera *cam);
+int					is_looking_up(t_camera *cam);
+
+/*
+** cam_scanning.c
+*/
+void				scan_environment(t_player *player);
 
 /*
 ** events.c
@@ -66,6 +70,15 @@ void				clear_events(t_event **head);
 void				delete_event(t_event **head);
 void				new_event(t_event **head, SDL_Scancode key, int (*fct)());
 void				wait_events(t_event *list_evts, t_player *player);
+
+/*
+** graphics.c
+*/
+Uint32				get_color(int r, int g, int b);
+Uint8				get_filter_value(t_map_data *data, double dist);
+void				refresh_win();
+void				SDL_DestroyCore();
+t_SDL_Core			*SDL_GetCore();
 
 /*
 ** key_events.c
@@ -107,7 +120,6 @@ void				delete_mob(t_mob *mob);
 */
 t_player			*create_player(t_camera *cam, int x, int y, t_map *map);
 void				delete_player(t_player *player);
-void				scan_environment(t_player *player);
 
 /*
 ** screen.c

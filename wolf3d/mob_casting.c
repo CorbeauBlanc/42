@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 17:02:58 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/03 17:04:06 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/03 18:52:18 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	check_v_mob(t_ray *ray)
 	}
 	else if (is_west(ray->a) && ray->v_wall->left->mob &&
 	ray->v_i.y >= ray->v_wall->left->mob->y &&
-	ray->v_i.y >= (ray->v_wall->left->mob->y + ray->v_wall->left->mob->width)
+	ray->v_i.y <= (ray->v_wall->left->mob->y + ray->v_wall->left->mob->width)
 	&& !ray->v_mob)
 	{
 		ray->v_mob = ray->v_wall->left->mob;

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/03 16:20:53 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/03 19:32:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,37 @@
 #include "bg_casting.h"
 #include "mob_casting.h"
 
-void	cast_mobs(t_ray *ray, t_player *player, double correction, int i)
+int	bidon()
 {
-	(void)correction;
-	if (ray->v_mob && ray->v_mob->data.i.w < ray->d)
+	printf("TEST\n");
+	return (1);
+}
+
+static void	cast_mobs(t_ray *ray, t_player *player, double correction, int i)
+{
+	if ((is_looking_left(player->cam) || is_looking_right(player->cam)) &&
+		ray->v_mob && ray->v_mob->data.i.w < ray->d)
 	{
 		ray->h = (WALL_SIZE * player->cam->f) / (ray->v_mob->data.i.w * cos(correction));
 		ray->v_mob->data.h = (ray->v_mob->height * player->cam->f) / (ray->v_mob->data.i.w * cos(correction));
 		ray->filter = get_filter_value(player->tile->data, ray->v_mob->data.i.w);
 		draw_mob(&player->cam->screen, i, ray, ray->v_mob);
-		ray->v_mob = NULL;
 	}
-	if (ray->h_mob && ray->h_mob->data.i.w < ray->d)
+	if (ray->v_mob)
+		ray->v_mob = NULL;
+	if ((is_looking_up(player->cam) || is_looking_down(player->cam)) &&
+		ray->h_mob && ray->h_mob->data.i.w < ray->d)
 	{
 		ray->h = (WALL_SIZE * player->cam->f) / (ray->h_mob->data.i.w * cos(correction));
 		ray->h_mob->data.h = (ray->h_mob->height * player->cam->f) / (ray->h_mob->data.i.w * cos(correction));
 		ray->filter = get_filter_value(player->tile->data, ray->h_mob->data.i.w);
 		draw_mob(&player->cam->screen, i, ray, ray->h_mob);
-		ray->h_mob = NULL;
 	}
+	if (ray->h_mob)
+		ray->h_mob = NULL;
 }
 
-void	cast_ray(t_ray *ray, t_player *player, double correction, int i)
+static void	cast_ray(t_ray *ray, t_player *player, double correction, int i)
 {
 	if (ray->a && fabs(ray->a) != M_PI)
 		horiz_intersec(ray, player);
@@ -64,31 +73,23 @@ void	cast_ray(t_ray *ray, t_player *player, double correction, int i)
 		ray->d = player->cam->f;
 }
 
-void	scan_environment(t_player *player)
+void		scan_environment(t_player *player)
 {
 	int			i;
 	double		angle;
-	t_ray		ray_l;
-	t_ray		ray_r;
+	t_ray		ray;
 
 	i = -1;
-	ray_l.h_i.w = player->cam->f;
-	ray_l.v_i.w = player->cam->f;
-	ray_r.h_i.w = player->cam->f;
-	ray_r.v_i.w = player->cam->f;
-	ray_l.h_mob = NULL;
-	ray_l.v_mob = NULL;
-	ray_r.h_mob = NULL;
-	ray_r.v_mob = NULL;
-	while (++i <= player->cam->half_scr)
+	ray.h_i.w = player->cam->f;
+	ray.v_i.w = player->cam->f;
+	ray.h_mob = NULL;
+	ray.v_mob = NULL;
+	while (++i <= player->cam->screen.w)
 	{
 		angle = atan((player->cam->half_scr - i) / player->cam->f);
-		ray_l.a =  angle + ft_to_rad(player->cam->angle);
-		ray_r.a = ft_to_rad(player->cam->angle) - angle;
-		cast_ray(&ray_l, player, angle, i);
-		cast_ray(&ray_r, player, angle, player->cam->screen.w - i);
-		cast_mobs(&ray_l, player, angle, i);
-		cast_mobs(&ray_r, player, angle, player->cam->screen.w - i);
+		ray.a =  angle + ft_to_rad(player->cam->angle);
+		cast_ray(&ray, player, angle, i);
+		cast_mobs(&ray, player, angle, i);
 	}
 	refresh_win();
 }

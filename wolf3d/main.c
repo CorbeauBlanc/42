@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/03 15:50:46 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/03 18:13:50 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		main(int ac, char **av)
 
 	map = read_file(open("test", O_RDONLY));
 	set_map_brightness(map, 80);
-	player = create_player(create_camera(70, 45, 2.0), 40, 40, map);
+	player = create_player(create_camera(70, 0, 2.0), 40, 40, map);
 
 	SDL_Rect dim;
 	dim.x = 64;
