@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/30 17:19:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/03 16:31:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_map		*read_file(int fd)
 	crds.y = 0;
 	if (!(data = malloc(sizeof(t_map_data))))
 		exit_error(NULL);
-	data->background = load_background("background.bmp", &data->bg_w);
+	data->bgd = create_texture("background.bmp");
 	while (read(fd, nbs, BUFF_SIZE) > 0)
 	{
 		add_new_cells(&last, &crds, nbs, data);
@@ -83,7 +83,7 @@ void		delete_map(t_map *map)
 {
 	t_map	*r_head;
 
-	SDL_DestroyTexture(map->data->background);
+	delete_texture(map->data->bgd);
 	free(map->data);
 	while (map)
 	{

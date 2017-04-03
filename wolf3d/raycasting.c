@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/31 18:51:38 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/03 16:59:38 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,17 @@ void	draw_tile(SDL_Rect *scr, int i, t_ray *ray)
 	set_rect_dim(&drect, 1, ray->h);
 	if (ray->h_i.w < ray->v_i.w)
 	{
-		xt = (int)(ray->h_i.x) % WALL_SIZE;
 		wall = ray->h_wall;
+		xt = (int)(ray->h_i.x * wall->texture->mapping_fact) % wall->texture->w;
 	}
 	else
 	{
-		xt = (int)(ray->v_i.y) % WALL_SIZE;
 		wall = ray->v_wall;
+		xt = (int)(ray->v_i.y * wall->texture->mapping_fact) % wall->texture->w;
 	}
 	set_rect_crd(&srect, xt, 0);
-	set_rect_dim(&srect, 1, wall->text_size);
-	SDL_SetTextureColorMod(wall->texture,
+	set_rect_dim(&srect, 1, wall->texture->h);
+	SDL_SetTextureColorMod(wall->texture->text,
 							ray->filter, ray->filter, ray->filter);
-	SDL_RenderCopy(SDL_GetCore()->renderer, wall->texture, &srect, &drect);
+	SDL_RenderCopy(SDL_GetCore()->renderer, wall->texture->text, &srect, &drect);
 }

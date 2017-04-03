@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/31 19:19:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/03 16:57:28 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,24 @@ typedef struct		s_SDL_Core
 	int				height;
 }					t_SDL_Core;
 
+typedef struct		s_texture
+{
+	SDL_Texture		*text;
+	int				w;
+	int				h;
+	double			mapping_fact;
+}					t_texture;
+
 typedef struct		s_ray_data
 {
 	t_vector		i;
+	double			h;
 	struct s_mob	*next;
 }					t_ray_data;
 
 typedef struct		s_mob
 {
-	SDL_Texture		*spt_front;
+	t_texture		*spt_front;
 	SDL_Texture		*spt_back;
 	SDL_Texture		*spt_left;
 	SDL_Texture		*spt_right;
@@ -83,9 +92,8 @@ typedef struct		s_mob
 typedef struct		s_map_data
 {
 	int				brightness;
-	int				bg_w;
 	double			bg_fact;
-	SDL_Texture		*background;
+	t_texture		*bgd;
 }					t_map_data;
 
 typedef struct		s_map
@@ -93,10 +101,8 @@ typedef struct		s_map
 	t_vector		min;
 	t_vector		max;
 	t_tile			type;
-	SDL_Texture		*texture;
-	SDL_Texture		*reflect;
-	int				text_size;
-	int				refl_size;
+	t_texture		*texture;
+	t_texture		*reflect;
 	t_mob			*mob;
 	t_map_data		*data;
 	struct s_map	*r_head;

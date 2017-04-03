@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/31 16:19:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/03 16:40:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void				set_map_brightness(t_map *map, int percent);
 /*
 ** mob.c
 */
-t_mob				*create_mob(SDL_Texture *front, int x, int y);
+t_mob				*create_mob(t_texture *front, SDL_Rect *dim);
 void				delete_mob(t_mob *mob);
 
 /*
@@ -121,10 +121,10 @@ void				scan_environment(t_player *player);
 /*
 ** textures.c
 */
-SDL_Texture			*create_texture(char *path);
-SDL_Texture			*load_background(char *path, int *w);
-SDL_Texture			*load_reflection(t_tile type, int *s);
-SDL_Texture			*load_texture(t_tile type, int *s);
+t_texture			*create_texture(char *path);
+void				delete_texture(t_texture *texture);
+t_texture			*load_reflection(t_tile type);
+t_texture			*load_texture(t_tile type);
 
 /*
 ** tiles.c

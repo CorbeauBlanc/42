@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 12:56:36 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/31 15:21:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/03 16:58:37 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ t_map	*new_cell(t_vector *vect, t_tile type, t_map_data *data)
 	cell->min.y = vect->y;
 	cell->max.x = vect->x + WALL_SIZE;
 	cell->max.y = vect->y + WALL_SIZE;
-	cell->texture = load_texture(type, &cell->text_size);
-	cell->reflect = load_reflection(type, &cell->refl_size);
+	cell->texture = load_texture(type);
+	cell->reflect = load_reflection(type);
 	cell->mob = NULL;
 	cell->data = data;
 	cell->type = type;
@@ -39,9 +39,9 @@ t_map	*new_cell(t_vector *vect, t_tile type, t_map_data *data)
 void	delete_cell(t_map *cell)
 {
 	if (cell->texture)
-		SDL_DestroyTexture(cell->texture);
+		delete_texture(cell->texture);
 	if (cell->reflect)
-		SDL_DestroyTexture(cell->reflect);
+		delete_texture(cell->reflect);
 	free(cell);
 }
 
