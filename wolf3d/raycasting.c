@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/03 16:59:38 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/04 18:04:05 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,17 @@ t_ray	*horiz_intersec(t_ray *ray, t_player *player)
 	{
 		if (!(ray->h_wall = goto_tile(&ray->h_i, player->tile)))
 			return (ray);
-		check_h_mob(ray);
-		if (is_north(ray->a) && !is_empty(ray->h_wall = ray->h_wall->up))
+		if (is_north(ray->a) && !is_empty(ray->h_wall->up))
+		{
+			ray->h_wall = ray->h_wall->up;
 			return (ray);
-		else if (is_south(ray->a) && !is_empty(ray->h_wall = ray->h_wall->down))
+		}
+		else if (is_south(ray->a) && !is_empty(ray->h_wall->down))
+		{
+			ray->h_wall = ray->h_wall->down;
 			return (ray);
+		}
+		check_h_mob(ray, player);
 		ray->h_i.x += is_east(ray->a) ? xi : -xi;
 		ray->h_i.y += is_north(ray->a) ? -WALL_SIZE : WALL_SIZE;
 	}
@@ -58,11 +64,17 @@ t_ray	*vert_intersec(t_ray *ray, t_player *player)
 	{
 		if (!(ray->v_wall = goto_tile(&ray->v_i, player->tile)))
 			return (ray);
-		check_v_mob(ray);
-		if (is_east(ray->a) && !is_empty(ray->v_wall = ray->v_wall->right))
+		if (is_east(ray->a) && !is_empty(ray->v_wall->right))
+		{
+			ray->v_wall = ray->v_wall->right;
 			return (ray);
-		else if (is_west(ray->a) && !is_empty(ray->v_wall = ray->v_wall->left))
+		}
+		else if (is_west(ray->a) && !is_empty(ray->v_wall->left))
+		{
+			ray->v_wall = ray->v_wall->left;
 			return (ray);
+		}
+		check_v_mob(ray, player);
 		ray->v_i.x += is_east(ray->a) ? WALL_SIZE : -WALL_SIZE;
 		ray->v_i.y += is_north(ray->a) ? -yi : yi;
 	}

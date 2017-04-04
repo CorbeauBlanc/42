@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/03 19:07:21 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/04 11:00:20 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void				set_map_brightness(t_map *map, int percent);
 */
 t_mob				*create_mob(t_texture *front, SDL_Rect *dim);
 void				delete_mob(t_mob *mob);
+void				insert_mob(t_map *cell, char *nbs);
 
 /*
 ** player.c

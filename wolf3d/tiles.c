@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 12:56:36 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/03 16:58:37 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/04 11:01:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	delete_cell(t_map *cell)
 		delete_texture(cell->texture);
 	if (cell->reflect)
 		delete_texture(cell->reflect);
+	if (cell->mob)
+		delete_mob(cell->mob);
 	free(cell);
 }
 

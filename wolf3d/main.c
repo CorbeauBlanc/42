@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/03 18:13:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/04 12:27:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,12 @@ int		main(int ac, char **av)
 	t_event		*list_evts;
 	t_player	*player = NULL;
 	t_map		*map;
-	t_mob		*mob;
 
 	SDL_GetCore();
 
 	map = read_file(open("test", O_RDONLY));
 	set_map_brightness(map, 80);
 	player = create_player(create_camera(70, 0, 2.0), 40, 40, map);
-
-	SDL_Rect dim;
-	dim.x = 64;
-	dim.y = 32;
-	dim.h = 8;
-	dim.w = 8;
-	mob = create_mob(create_texture("textures/floor.bmp"), &dim);
-	player->tile->right->right->mob = mob;
 
 	list_evts = NULL;
 	init_list_evts(&list_evts);

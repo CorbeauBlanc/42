@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/03 16:57:28 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/04 11:26:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,6 @@ typedef struct		s_vector
 	double			z;
 	double			w;
 }					t_vector;
-
-/*
-typedef struct		s_screen
-{
-	SDL_Texture		*texture;
-	Uint32			*pxl_tab;
-	int				width;
-	int				height;
-	int				pitch;
-}					t_screen;
-*/
 
 typedef struct		s_camera
 {

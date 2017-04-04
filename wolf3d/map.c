@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/03 16:31:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/04 12:30:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void		add_new_cells(t_map **last, t_vector *crd, char *nbs, t_map_data *d)
 		if (*nbs)
 		{
 			*last = insert_cell(*last, new_cell(crd, get_type(*nbs - '0'), d));
+			insert_mob(*last, nbs);
 			crd->x += WALL_SIZE;
 			++nbs;
 		}
