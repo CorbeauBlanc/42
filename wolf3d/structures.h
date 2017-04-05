@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/04 11:26:24 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/05 19:20:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,15 @@ typedef struct		s_texture
 	double			mapping_fact;
 }					t_texture;
 
+typedef struct		s_sprite
+{
+	t_texture		*pic;
+	SDL_Rect		current;
+	int				m_w;
+	int				ms;
+	double			mapping_fact;
+}					t_sprite;
+
 typedef struct		s_ray_data
 {
 	t_vector		i;
@@ -65,13 +74,21 @@ typedef struct		s_ray_data
 	struct s_mob	*next;
 }					t_ray_data;
 
+typedef struct		s_npc_spts
+{
+	t_sprite		*spt_front;
+	t_sprite		*spt_back;
+	t_sprite		*spt_left;
+	t_sprite		*spt_right;
+}					t_npc_spts;
+
 typedef struct		s_mob
 {
-	t_texture		*spt_front;
-	SDL_Texture		*spt_back;
-	SDL_Texture		*spt_left;
-	SDL_Texture		*spt_right;
-	int				width;
+	t_sprite		*spt_north;
+	t_sprite		*spt_south;
+	t_sprite		*spt_east;
+	t_sprite		*spt_west;
+	int				view;
 	int				height;
 	int				x;
 	int				y;

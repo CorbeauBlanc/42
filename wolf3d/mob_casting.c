@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 17:02:58 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/04 18:26:34 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/05 19:31:37 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	check_h_mob(t_ray *ray, t_player *player)
 {
-	if (ray->h_wall->up && is_north(ray->a) && ray->h_wall->up->mob)
+	if (is_north(ray->a) && ray->h_wall->up && ray->h_wall->up->mob)
 	{
 		ray->h_wall->up->mob->data.i.y = ray->h_wall->up->mob->y;
 		ray->h_wall->up->mob->data.i.x = ray->h_i.x;
@@ -46,7 +46,6 @@ void	check_h_mob(t_ray *ray, t_player *player)
 
 void	check_v_mob(t_ray *ray, t_player *player)
 {
-
 	if (ray->v_wall->right && is_east(ray->a) && ray->v_wall->right->mob)
 	{
 		ray->v_wall->right->mob->data.i.x = ray->v_wall->right->mob->x;

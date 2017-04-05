@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/04 11:00:20 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/05 19:20:55 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,24 +112,21 @@ void				set_map_brightness(t_map *map, int percent);
 /*
 ** mob.c
 */
-t_mob				*create_mob(t_texture *front, SDL_Rect *dim);
+t_mob				*create_mob(t_npc_spts *spts, int w, int h, int view);
 void				delete_mob(t_mob *mob);
 void				insert_mob(t_map *cell, char *nbs);
 
 /*
 ** player.c
 */
-t_player			*create_player(t_camera *cam, int x, int y, t_map *map);
+t_player			*create_player(t_camera *cam, double x, double y, t_map *map);
 void				delete_player(t_player *player);
 
 /*
-** screen.c
-**
-**void				clear_screen(t_screen *scr);
-**t_screen			*create_screen(int width, int height);
-**void				delete_screen(t_screen *scr);
-**void				put_pxl_screen(t_screen *scr, int x, int y, Uint32 color);
+** sprites.c
 */
+t_sprite			*create_sprite(char *path, int h, int map_width, int delay);
+void				delete_sprite(t_sprite *sprite);
 
 /*
 ** textures.c

@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   sprites.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/08 17:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/05 11:54:14 by edescoin         ###   ########.fr       */
+/*   Created: 2017/04/05 17:29:31 by edescoin          #+#    #+#             */
+/*   Updated: 2017/04/05 19:21:05 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-#include <math.h>
 
-t_player	*create_player(t_camera *cam, double x, double y, t_map *map)
+t_sprite	*create_sprite(char *path, int h, int map_width, int delay)
 {
-	t_player	*player;
+	t_sprite	*sprite;
 
-	if (!(player = malloc(sizeof(t_player))))
+	if (!(sprite = malloc(sizeof(t_sprite))))
 		exit_error(NULL);
-	player->cam = cam;
-	player->pos.x = x;
-	player->pos.y = y;
-	map->data->bg_fact = cam->screen.w / cam->fov;
-	if (!(player->tile = goto_tile(&player->pos, map)))
-	{
-		free(player);
-		return (NULL);
-	}
-	return (player);
+	sprite->pic = create_texture(path);
+	sprite->m_w = map_width;
+	sprite->current.x = 0;
+	sprite->current.y = 0;
+	sprite->current.w = sprite->pic->w;
+	sprite->current.h = h;
+	sprite->ms = delay;
+	return (sprite);
 }
 
-void		delete_player(t_player *player)
+void		delete_sprite(t_sprite *sprite)
 {
-	delete_camera(player->cam);
-	free(player);
+	delete_texture(sprite->pic);
+	free(sprite);
 }
