@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/05 19:20:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/08 13:19:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct		s_sprite
 {
 	t_texture		*pic;
 	SDL_Rect		current;
-	int				m_w;
+	int				m_width;
 	int				ms;
 	double			mapping_fact;
 }					t_sprite;

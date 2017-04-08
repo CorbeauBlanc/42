@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/05 19:20:55 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/08 14:35:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void				set_map_brightness(t_map *map, int percent);
 /*
 ** mob.c
 */
-t_mob				*create_mob(t_npc_spts *spts, int w, int h, int view);
+t_mob				*create_mob(t_npc_spts *spts, int h, int view);
 void				delete_mob(t_mob *mob);
 void				insert_mob(t_map *cell, char *nbs);
 
