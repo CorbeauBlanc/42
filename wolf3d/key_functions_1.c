@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/25 21:36:58 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/09 15:52:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	move_left(t_player *player)
 	move = player->pos;
 	move.x += cos(angle) * SPEED;
 	move.y -= sin(angle) * SPEED;
-	if ((tmp = goto_tile(&move, player->tile))->type < WALL)
+	if ((tmp = goto_tile(&move, player->tile))->type < WALL && !tmp->mob)
 	{
 		player->pos = move;
 		player->tile = tmp;
@@ -41,7 +41,7 @@ int	move_right(t_player *player)
 	move = player->pos;
 	move.x += cos(angle) * SPEED;
 	move.y -= sin(angle) * SPEED;
-	if ((tmp = goto_tile(&move, player->tile))->type < WALL)
+	if ((tmp = goto_tile(&move, player->tile))->type < WALL && !tmp->mob)
 	{
 		player->pos = move;
 		player->tile = tmp;
@@ -59,7 +59,7 @@ int	move_up(t_player *player)
 	move = player->pos;
 	move.x += cos(angle) * SPEED;
 	move.y -= sin(angle) * SPEED;
-	if ((tmp = goto_tile(&move, player->tile))->type < WALL)
+	if ((tmp = goto_tile(&move, player->tile))->type < WALL && !tmp->mob)
 	{
 		player->pos = move;
 		player->tile = tmp;
@@ -77,7 +77,7 @@ int	move_down(t_player *player)
 	move = player->pos;
 	move.x -= cos(angle) * SPEED;
 	move.y += sin(angle) * SPEED;
-	if ((tmp = goto_tile(&move, player->tile))->type < WALL)
+	if ((tmp = goto_tile(&move, player->tile))->type < WALL && !tmp->mob)
 	{
 		player->pos = move;
 		player->tile = tmp;

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/08 15:07:40 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/09 21:46:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,18 @@
 #include "bg_casting.h"
 #include "mob_casting.h"
 
-int bidon(){printf("TEST\n");return (1);}
-
 static void	cast_mobs(t_ray *ray, t_player *player, double correction, int i)
 {
 	while (ray->v_mob || ray->h_mob)
 	{
-		if (ray->v_mob && ray->v_mob->data.i.w < ray->d &&
-			(is_looking_left(player->cam) || is_looking_right(player->cam)))
+		if (ray->v_mob && ray->v_mob->data.i.w < ray->d)
 		{
 			ray->h = (WALL_SIZE * player->cam->f) / (ray->v_mob->data.i.w * cos(correction));
 			ray->v_mob->data.h = (ray->v_mob->height * player->cam->f) / (ray->v_mob->data.i.w * cos(correction));
 			ray->filter = get_filter_value(player->tile->data, ray->v_mob->data.i.w);
 			draw_mob(&player->cam->screen, i, ray, ray->v_mob);
 		}
-		if (ray->h_mob && ray->h_mob->data.i.w < ray->d &&
-			(is_looking_up(player->cam) || is_looking_down(player->cam)))
+		else if (ray->h_mob && ray->h_mob->data.i.w < ray->d)
 		{
 			ray->h = (WALL_SIZE * player->cam->f) / (ray->h_mob->data.i.w * cos(correction));
 			ray->h_mob->data.h = (ray->h_mob->height * player->cam->f) / (ray->h_mob->data.i.w * cos(correction));

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 14:41:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/08 15:15:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/09 13:09:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	insert_mob(t_map *cell, char *nbs)
 
 	spts.spt_front = create_sprite("textures/floor.bmp", 64, WALL_SIZE / 2, 1000);
 	spts.spt_back = create_sprite("textures/floor.bmp", 64, WALL_SIZE / 2, 1000);
-	spts.spt_left = create_sprite("textures/floor.bmp", 64, WALL_SIZE / 2, 1000);
-	spts.spt_right = create_sprite("textures/floor.bmp", 64, WALL_SIZE / 2, 1000);
+	spts.spt_left = create_sprite("textures/test_mob.bmp", 64, WALL_SIZE / 2, 1000);
+	spts.spt_right = create_sprite("textures/test_mob.bmp", 64, WALL_SIZE / 2, 1000);
 	if (*nbs == 'M' || *nbs == 'm')
 	{
 		cell->mob = create_mob(&spts, WALL_SIZE / 2, 0);

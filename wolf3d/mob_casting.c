@@ -6,71 +6,71 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 17:02:58 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/08 15:06:22 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/09 22:10:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	check_h_mob(t_ray *ray, t_player *player)
+void	check_h_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 {
-	if (is_north(ray->a) && ray->h_wall->up && ray->h_wall->up->mob)
+	if (wall && wall->mob && is_north(ray->a) && its->y >= (wall->mob->y + wall->mob->spt_west->m_width))
 	{
-		ray->h_wall->up->mob->data.i.y = ray->h_wall->up->mob->y + ray->h_wall->up->mob->spt_west->m_width;
-		ray->h_wall->up->mob->data.i.x = ray->h_i.x;
+		wall->mob->data.i.y = wall->mob->y + wall->mob->spt_west->m_width;
+		wall->mob->data.i.x = its->x;
 		if (fabs(ray->a) != M_PI_2 && fabs(ray->a) != (M_PI + M_PI_2))
-			ray->h_wall->up->mob->data.i.x += (ray->h_wall->up->max.y - ray->h_wall->up->mob->data.i.y) / tan(ray->a);
-		if (ray->h_wall->up->mob->data.i.x >= ray->h_wall->up->mob->x &&
-			ray->h_wall->up->mob->data.i.x <= (ray->h_wall->up->mob->x + ray->h_wall->up->mob->spt_south->m_width))
+			wall->mob->data.i.x += (its->y - wall->mob->data.i.y) / tan(ray->a);
+		if (wall->mob->data.i.x >= wall->mob->x &&
+			wall->mob->data.i.x <= (wall->mob->x + wall->mob->spt_south->m_width))
 		{
-			ray->h_wall->up->mob->data.next = ray->h_mob;
-			ray->h_mob = ray->h_wall->up->mob;
+			wall->mob->data.next = ray->h_mob;
+			ray->h_mob = wall->mob;
 			ray->h_mob->data.i.w = fabs((player->pos.y - ray->h_mob->data.i.y) / sin(ray->a));
 		}
 	}
-	else if (ray->h_wall->down && is_south(ray->a) && ray->h_wall->down->mob)
+	else if (wall && wall->mob && is_south(ray->a) && its->y <= wall->mob->y)
 	{
-		ray->h_wall->down->mob->data.i.y = ray->h_wall->down->mob->y;
-		ray->h_wall->down->mob->data.i.x = ray->h_i.x;
+		wall->mob->data.i.y = wall->mob->y;
+		wall->mob->data.i.x = its->x;
 		if (fabs(ray->a) != M_PI_2 && fabs(ray->a) != (M_PI + M_PI_2))
-			ray->h_wall->down->mob->data.i.x -= (ray->h_wall->down->mob->data.i.y - ray->h_wall->down->min.y) / tan(ray->a);
-		if (ray->h_wall->down->mob->data.i.x >= ray->h_wall->down->mob->x &&
-			ray->h_wall->down->mob->data.i.x <= (ray->h_wall->down->mob->x + ray->h_wall->down->mob->spt_north->m_width))
+			wall->mob->data.i.x -= (wall->mob->data.i.y - its->y) / tan(ray->a);
+		if (wall->mob->data.i.x >= wall->mob->x &&
+			wall->mob->data.i.x <= (wall->mob->x + wall->mob->spt_north->m_width))
 		{
-			ray->h_wall->down->mob->data.next = ray->h_mob;
-			ray->h_mob = ray->h_wall->down->mob;
+			wall->mob->data.next = ray->h_mob;
+			ray->h_mob = wall->mob;
 			ray->h_mob->data.i.w = fabs((player->pos.y - ray->h_mob->data.i.y) / sin(ray->a));
 		}
 	}
 }
 
-void	check_v_mob(t_ray *ray, t_player *player)
+void	check_v_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 {
-	if (ray->v_wall->right && is_east(ray->a) && ray->v_wall->right->mob)
+	if (wall && wall->mob && is_east(ray->a) && its->x <= wall->mob->x)
 	{
-		ray->v_wall->right->mob->data.i.x = ray->v_wall->right->mob->x;
-		ray->v_wall->right->mob->data.i.y = ray->v_i.y;
+		wall->mob->data.i.x = wall->mob->x;
+		wall->mob->data.i.y = its->y;
 		if (ray->a && fabs(ray->a) != M_PI)
-			ray->v_wall->right->mob->data.i.y -= (ray->v_wall->right->mob->data.i.x - ray->v_wall->right->min.x) * tan(ray->a);
-		if (ray->v_wall->right->mob->data.i.y >= ray->v_wall->right->mob->y &&
-			ray->v_wall->right->mob->data.i.y <= (ray->v_wall->right->mob->y + ray->v_wall->right->mob->spt_west->m_width))
+			wall->mob->data.i.y -= (wall->mob->data.i.x - its->x) * tan(ray->a);
+		if (wall->mob->data.i.y >= wall->mob->y &&
+			wall->mob->data.i.y <= (wall->mob->y + wall->mob->spt_west->m_width))
 		{
-			ray->v_wall->right->mob->data.next = ray->v_mob;
-			ray->v_mob = ray->v_wall->right->mob;
+			wall->mob->data.next = ray->v_mob;
+			ray->v_mob = wall->mob;
 			ray->v_mob->data.i.w = fabs((ray->v_mob->data.i.x - player->pos.x) / cos(ray->a));
 		}
 	}
-	else if (ray->v_wall->left && is_west(ray->a) && ray->v_wall->left->mob)
+	else if (wall && wall->mob && is_west(ray->a) && its->x >= (wall->mob->x + wall->mob->spt_south->m_width))
 	{
-		ray->v_wall->left->mob->data.i.x = ray->v_wall->left->mob->x + ray->v_wall->left->mob->spt_south->m_width;
-		ray->v_wall->left->mob->data.i.y = ray->v_i.y;
+		wall->mob->data.i.x = wall->mob->x + wall->mob->spt_south->m_width;
+		wall->mob->data.i.y = its->y;
 		if (ray->a && fabs(ray->a) != M_PI)
-			ray->v_wall->left->mob->data.i.y += (ray->v_wall->left->max.x - ray->v_wall->left->mob->data.i.x) * tan(ray->a);
-		if (ray->v_wall->left->mob->data.i.y >= ray->v_wall->left->mob->y &&
-			ray->v_wall->left->mob->data.i.y <= (ray->v_wall->left->mob->y + ray->v_wall->left->mob->spt_east->m_width))
+			wall->mob->data.i.y += (its->x - wall->mob->data.i.x) * tan(ray->a);
+		if (wall->mob->data.i.y >= wall->mob->y &&
+			wall->mob->data.i.y <= (wall->mob->y + wall->mob->spt_east->m_width))
 		{
-			ray->v_wall->left->mob->data.next = ray->v_mob;
-			ray->v_mob = ray->v_wall->left->mob;
+			wall->mob->data.next = ray->v_mob;
+			ray->v_mob = wall->mob;
 			ray->v_mob->data.i.w = fabs((ray->v_mob->data.i.x - player->pos.x) / cos(ray->a));
 		}
 	}
