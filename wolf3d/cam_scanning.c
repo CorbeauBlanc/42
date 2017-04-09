@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/09 21:46:15 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/09 22:52:07 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static void	cast_mobs(t_ray *ray, t_player *player, double correction, int i)
 			draw_mob(&player->cam->screen, i, ray, ray->h_mob);
 		}
 		if (ray->v_mob)
-			ray->v_mob = ray->v_mob->data.next;
+		ray->v_mob = ray->v_mob->data.next;
 		if (ray->h_mob)
-			ray->h_mob = ray->h_mob->data.next;
+		ray->h_mob = ray->h_mob->data.next;
 	}
 }
 
