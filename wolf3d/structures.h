@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/08 13:19:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/11 22:25:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ typedef struct		s_camera
 	SDL_Rect		screen;
 }					t_camera;
 
+typedef struct		s_mutexes
+{
+	SDL_mutex		*sprites;
+	SDL_mutex		*environment;
+}					t_mutexes;
+
 typedef struct		s_SDL_Core
 {
 	SDL_Window		*window;
@@ -62,9 +68,9 @@ typedef struct		s_sprite
 {
 	t_texture		*pic;
 	SDL_Rect		current;
+	double			mapping_fact;
 	int				m_width;
 	int				ms;
-	double			mapping_fact;
 }					t_sprite;
 
 typedef struct		s_ray_data
@@ -88,6 +94,9 @@ typedef struct		s_mob
 	t_sprite		*spt_south;
 	t_sprite		*spt_east;
 	t_sprite		*spt_west;
+	SDL_Thread		*animation;
+	SDL_mutex		*spt_mutex;
+	int				visible;
 	int				view;
 	int				height;
 	int				x;

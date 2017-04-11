@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/09 22:52:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/11 22:37:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	cast_mobs(t_ray *ray, t_player *player, double correction, int i)
 	{
 		if (ray->v_mob && ray->v_mob->data.i.w < ray->d)
 		{
+			ray->v_mob->visible = 1;
 			ray->h = (WALL_SIZE * player->cam->f) / (ray->v_mob->data.i.w * cos(correction));
 			ray->v_mob->data.h = (ray->v_mob->height * player->cam->f) / (ray->v_mob->data.i.w * cos(correction));
 			ray->filter = get_filter_value(player->tile->data, ray->v_mob->data.i.w);
@@ -28,6 +29,7 @@ static void	cast_mobs(t_ray *ray, t_player *player, double correction, int i)
 		}
 		else if (ray->h_mob && ray->h_mob->data.i.w < ray->d)
 		{
+			ray->h_mob->visible = 1;
 			ray->h = (WALL_SIZE * player->cam->f) / (ray->h_mob->data.i.w * cos(correction));
 			ray->h_mob->data.h = (ray->h_mob->height * player->cam->f) / (ray->h_mob->data.i.w * cos(correction));
 			ray->filter = get_filter_value(player->tile->data, ray->h_mob->data.i.w);
@@ -79,12 +81,16 @@ void		scan_environment(t_player *player)
 	ray.v_i.w = player->cam->f;
 	ray.h_mob = NULL;
 	ray.v_mob = NULL;
-	while (++i <= player->cam->screen.w)
+	if (SDL_TryLockMutex(get_mutexes()->environment) == 0)
 	{
-		angle = atan((player->cam->half_scr - i) / player->cam->f);
-		ray.a =  angle + ft_to_rad(player->cam->angle);
-		cast_ray(&ray, player, angle, i);
-		cast_mobs(&ray, player, angle, i);
+		while (++i <= player->cam->screen.w)
+		{
+			angle = atan((player->cam->half_scr - i) / player->cam->f);
+			ray.a =  angle + ft_to_rad(player->cam->angle);
+			cast_ray(&ray, player, angle, i);
+			cast_mobs(&ray, player, angle, i);
+		}
+		refresh_win();
+		SDL_UnlockMutex(get_mutexes()->environment);
 	}
-	refresh_win();
 }

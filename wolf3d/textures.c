@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 21:55:48 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/03 17:04:18 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/11 19:41:31 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ t_texture		*load_texture(t_tile type)
 	paths[FLOOR] = "textures/floor.bmp";
 	paths[WALL] = "textures/wall.bmp";
 	if (!textures[type])
+	{
 		textures[type] = create_texture(paths[type]);
+		garbage_collector(ADD, textures[type], &delete_texture);
+	}
 	return (textures[type]);
 }
 
@@ -57,6 +60,9 @@ t_texture		*load_reflection(t_tile type)
 	paths[FLOOR] = "textures/floor.bmp";
 	paths[WALL] = "textures/reflection.bmp";
 	if (!reflections[type])
+	{
 		reflections[type] = create_texture(paths[type]);
+		garbage_collector(ADD, reflections[type], &delete_texture);
+	}
 	return (reflections[type]);
 }

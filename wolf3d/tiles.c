@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 12:56:36 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/04 11:01:23 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/11 19:16:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,6 @@ t_map	*new_cell(t_vector *vect, t_tile type, t_map_data *data)
 
 void	delete_cell(t_map *cell)
 {
-	if (cell->texture)
-		delete_texture(cell->texture);
-	if (cell->reflect)
-		delete_texture(cell->reflect);
 	if (cell->mob)
 		delete_mob(cell->mob);
 	free(cell);

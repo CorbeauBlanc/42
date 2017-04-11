@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/09 21:25:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/11 22:13:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ void	exit_error(char *s)
 
 void	exit_main()
 {
-	SDL_DestroyCore();
 	garbage_collector(CLEAR, NULL, NULL);
+	SDL_DestroyCore();
+	delete_mutexes();
+	delete_player();
 	exit(0);
 }
 
@@ -52,21 +54,18 @@ int		main(int ac, char **av)
 	(void)ac;
 	(void)av;
 	t_event		*list_evts;
-	t_player	*player = NULL;
 	t_map		*map;
-
-	SDL_GetCore();
 
 	map = read_file(open("test", O_RDONLY));
 	set_map_brightness(map, 80);
-	player = create_player(create_camera(70, -50, 2.0), 84, 70, map);
+	insert_player(map, 84, 70);
 
 	list_evts = NULL;
 	init_list_evts(&list_evts);
 
-	scan_environment(player);
+	scan_environment(get_player());
 
-	wait_events(list_evts, player);
+	wait_events(list_evts, get_player());
 	clear_events(&list_evts);
 	exit_main();
 	return (0);

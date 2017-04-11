@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/29 18:35:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/11 16:04:52 by edescoin         ###   ########.fr       */
+/*   Created: 2017/04/11 16:04:37 by edescoin          #+#    #+#             */
+/*   Updated: 2017/04/11 16:05:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		set_rect_dim(SDL_Rect *rect, int w, int h)
+t_mutexes	*get_mutexes()
 {
-	rect->h = h;
-	rect->w = w;
+	static t_mutexes	*mut = NULL;
+
+	if (!mut)
+	{
+		if (!(mut = malloc(sizeof(t_mutexes))))
+			exit_error(NULL);
+		mut->environment = SDL_CreateMutex();
+		mut->sprites = SDL_CreateMutex();
+	}
+	return (mut);
 }
 
-void		set_rect_crd(SDL_Rect *rect, int x, int y)
+void		delete_mutexes()
 {
-	rect->x = x;
-	rect->y = y;
-}
-
-t_ray		*set_wall(t_ray *ray, t_map **ray_wall, t_map *wall)
-{
-	*ray_wall = wall;
-	return (ray);
+	SDL_DestroyMutex(get_mutexes()->environment);
+	SDL_DestroyMutex(get_mutexes()->sprites);
+	free(get_mutexes());
 }

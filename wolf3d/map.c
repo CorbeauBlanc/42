@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/04 12:30:24 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/11 22:12:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,26 @@ void		set_map_brightness(t_map *map, int percent)
 	map->data->brightness = max * percent / 100.0;
 }
 
+void		delete_map(t_map *map)
+{
+	t_map	*r_head;
+	t_map	*tmp;
+
+	delete_texture(map->data->bgd);
+	free(map->data);
+	while (map)
+	{
+		r_head = map->down;
+		while (map)
+		{
+			tmp = map;
+			map = map->right;
+			delete_cell(tmp);
+		}
+		map = r_head;
+	}
+}
+
 t_map		*read_file(int fd)
 {
 	t_vector	crds;
@@ -77,24 +97,8 @@ t_map		*read_file(int fd)
 		ft_bzero(nbs, BUFF_SIZE);
 	}
 	free(nbs);
-	return (last ? last->r_head->c_head : NULL);
-}
-
-void		delete_map(t_map *map)
-{
-	t_map	*r_head;
-
-	delete_texture(map->data->bgd);
-	free(map->data);
-	while (map)
-	{
-		r_head = map->down;
-		while (map->right)
-		{
-			map = map->right;
-			delete_cell(map->left);
-		}
-		delete_cell(map);
-		map = r_head;
-	}
+	if (!last)
+		return (NULL);
+	garbage_collector(ADD, last->r_head->c_head, &delete_map);
+	return (last->r_head->c_head);
 }
