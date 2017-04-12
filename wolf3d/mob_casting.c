@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 17:02:58 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/09 23:13:31 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/12 22:45:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	draw_mob(SDL_Rect *scr, int i, t_ray *ray, t_mob *mob)
 	int			xt;
 	SDL_Rect	srect;
 	SDL_Rect	drect;
-	SDL_Texture	*text;
+	t_sprite	*spt;
 
 	set_rect_crd(&drect, i, ((scr->h + ray->h) / 2) - mob->data.h);
 	set_rect_dim(&drect, 1, mob->data.h);
@@ -89,20 +89,20 @@ void	draw_mob(SDL_Rect *scr, int i, t_ray *ray, t_mob *mob)
 	{
 		xt = (int)((mob->data.i.x - mob->x) * mob->spt_north->mapping_fact) % mob->spt_north->current.w;
 		if (is_south(ray->a))
-			text = mob->spt_north->pic->text;
+			spt = mob->spt_north;
 		else
-			text = mob->spt_south->pic->text;
+			spt = mob->spt_south;
 	}
 	else
 	{
 		xt = (int)((mob->data.i.y - mob->y) * mob->spt_north->mapping_fact) % mob->spt_north->current.w;
 		if (is_east(ray->a))
-			text = mob->spt_west->pic->text;
+			spt = mob->spt_west;
 		else
-			text = mob->spt_east->pic->text;
+			spt = mob->spt_east;
 	}
-	set_rect_crd(&srect, xt, mob->spt_north->current.y);
-	set_rect_dim(&srect, 1, mob->spt_north->current.h);
-	SDL_SetTextureColorMod(text, ray->filter, ray->filter, ray->filter);
-	SDL_RenderCopy(SDL_GetCore()->renderer, text, &srect, &drect);
+	set_rect_crd(&srect, xt, spt->current.y);
+	set_rect_dim(&srect, 1, spt->current.h);
+	SDL_SetTextureColorMod(spt->pic->text, ray->filter, ray->filter, ray->filter);
+	SDL_RenderCopy(SDL_GetCore()->renderer, spt->pic->text, &srect, &drect);
 }
