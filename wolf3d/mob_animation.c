@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 22:37:59 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/12 22:41:58 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/12 22:59:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	change_sprites(t_mob *mob)
 	spt->current.y = (spt->current.y + spt->current.h) % spt->pic->h;
 }
 
-int			mob_anim_thread(void *arg)
+int			mob_main_thread(void *arg)
 {
 	t_mob			*mob;
 	int				ms;

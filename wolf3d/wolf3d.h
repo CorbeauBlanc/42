@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/12 22:31:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/12 22:58:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ void		insert_mob(t_map *cell, char *nbs);
 /*
 ** mob_animation.c
 */
-int			mob_anim_thread(void *arg);
 int			mob_get_state(t_mob *mob);
+int			mob_main_thread(void *arg);
 void		mob_set_state(t_mob *mob, t_thread_state val);
 
 /*
