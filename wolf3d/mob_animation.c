@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 22:37:59 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/11 22:40:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/12 17:22:29 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,8 @@ static void	change_sprites(t_mob *mob)
 	spt = mob->spt_west;
 	spt->current.y = (spt->current.y + spt->current.h) % spt->pic->h;
 	SDL_UnlockMutex(mob->spt_mutex);
+	scan_environment(get_player());
 	SDL_UnlockMutex(get_mutexes()->sprites);
-	if (SDL_TryLockMutex(get_mutexes()->environment) == 0)
-	{
-		scan_environment(get_player());
-		SDL_UnlockMutex(get_mutexes()->environment);
-	}
 }
 
 int			mob_anim_thread(void *arg)
