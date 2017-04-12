@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/11 22:39:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/12 22:31:25 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define HEIGHT 		700
 # define WIDTH 			700
 # define NB_TEXTURES	2
-# define SPEED			1
+# define SPEED			0.7
 # define WALL_SIZE		16
 # define TEXT_SIZE		64
 # define BUFF_SIZE		1024
@@ -45,7 +45,7 @@ int			is_west(double angle);
 /*
 ** camera.c
 */
-t_camera	*create_camera(int fov, int angle, double sensibility);
+t_camera	*create_camera(int fov, double angle, int fps, double sensibility);
 void		delete_camera(t_camera *cam);
 void		refresh_cam(t_camera *cam);
 void		set_camera_fov(t_camera	*cam, int fov);
@@ -113,9 +113,9 @@ void		insert_mob(t_map *cell, char *nbs);
 /*
 ** mob_animation.c
 */
-void		mob_set_visible(t_mob *mob, int val);
-int			mob_is_visible(t_mob *mob);
 int			mob_anim_thread(void *arg);
+int			mob_get_state(t_mob *mob);
+void		mob_set_state(t_mob *mob, t_thread_state val);
 
 /*
 ** player.c

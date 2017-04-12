@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/11 22:13:01 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/12 22:06:54 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	exit_error(char *s)
 
 void	exit_main()
 {
+	delete_player();
+	delete_mutexes();
 	garbage_collector(CLEAR, NULL, NULL);
 	SDL_DestroyCore();
-	delete_mutexes();
-	delete_player();
 	exit(0);
 }
 
@@ -62,8 +62,6 @@ int		main(int ac, char **av)
 
 	list_evts = NULL;
 	init_list_evts(&list_evts);
-
-	scan_environment(get_player());
 
 	wait_events(list_evts, get_player());
 	clear_events(&list_evts);

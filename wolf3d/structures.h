@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/11 22:25:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/12 22:23:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ typedef enum		e_tile
 					WALL
 }					t_tile;
 
+typedef enum		e_thread_state
+{
+					RUN,
+					PAUSE,
+					STOP
+}					t_thread_state;
+
 typedef struct		s_vector
 {
 	double			x;
@@ -34,12 +41,16 @@ typedef struct		s_vector
 
 typedef struct		s_camera
 {
-	int				angle;
+	double			angle;
 	int				fov;
+	int				fps;
 	double			half_scr;
 	double			f;
 	double			sensi;
 	SDL_Rect		screen;
+	SDL_Thread		*refresh_cam;
+	t_thread_state	state;
+
 }					t_camera;
 
 typedef struct		s_mutexes
@@ -96,6 +107,7 @@ typedef struct		s_mob
 	t_sprite		*spt_west;
 	SDL_Thread		*animation;
 	SDL_mutex		*spt_mutex;
+	t_thread_state	state;
 	int				visible;
 	int				view;
 	int				height;

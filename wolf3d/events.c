@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:21:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/11 16:58:10 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/12 22:16:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,16 @@ void	wait_events(t_event *list_evts, t_player *player)
 		SDL_PumpEvents();
 		kbd_state = (Uint8*)SDL_GetKeyboardState(NULL);
 		scan = 0;
-		while (tmp && flag)
+		if (tmp && flag && SDL_TryLockMutex(get_mutexes()->environment) == 0)
 		{
-			if (kbd_state[tmp->key] && (scan = 1))
-				flag = tmp->fct(player);
-			tmp = tmp->next;
+			while (tmp && flag)
+			{
+				if (kbd_state[tmp->key] && (scan = 1))
+					flag = tmp->fct(player);
+				tmp = tmp->next;
+			}
+			SDL_UnlockMutex(get_mutexes()->environment);
 		}
-		if (scan && flag)
-			scan_environment(player);
-		SDL_Delay(2);
+		SDL_Delay(7);
 	}
 }

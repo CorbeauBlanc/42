@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/11 20:14:10 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/12 22:11:55 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-t_camera	*create_camera(int fov, int angle, double sensibility)
+t_camera	*create_camera(int fov, double angle, int fps, double sensibility)
 {
 	t_camera	*cam;
 
@@ -25,6 +25,9 @@ t_camera	*create_camera(int fov, int angle, double sensibility)
 	set_rect_dim(&cam->screen, SDL_GetCore()->width, SDL_GetCore()->height);
 	cam->half_scr = cam->screen.w / 2;
 	cam->angle = angle;
+	cam->refresh_cam = NULL;
+	cam->fps = fps;
+	cam->state = STOP;
 	return (cam);
 }
 

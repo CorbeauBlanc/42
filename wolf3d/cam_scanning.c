@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/11 22:37:10 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/12 21:11:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,12 @@ void		scan_environment(t_player *player)
 	ray.v_i.w = player->cam->f;
 	ray.h_mob = NULL;
 	ray.v_mob = NULL;
-	if (SDL_TryLockMutex(get_mutexes()->environment) == 0)
+	while (++i <= player->cam->screen.w)
 	{
-		while (++i <= player->cam->screen.w)
-		{
-			angle = atan((player->cam->half_scr - i) / player->cam->f);
-			ray.a =  angle + ft_to_rad(player->cam->angle);
-			cast_ray(&ray, player, angle, i);
-			cast_mobs(&ray, player, angle, i);
-		}
-		refresh_win();
-		SDL_UnlockMutex(get_mutexes()->environment);
+		angle = atan((player->cam->half_scr - i) / player->cam->f);
+		ray.a =  angle + ft_to_rad(player->cam->angle);
+		cast_ray(&ray, player, angle, i);
+		cast_mobs(&ray, player, angle, i);
 	}
+	refresh_win();
 }
