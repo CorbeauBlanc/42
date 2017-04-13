@@ -6,11 +6,18 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 14:41:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/12 22:59:00 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/13 22:19:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void	mob_set_visible(t_mob *mob, int val)
+{
+	SDL_LockMutex(mob->spt_mutex);
+	mob->visible = val;
+	SDL_UnlockMutex(mob->spt_mutex);
+}
 
 t_mob	*create_mob(t_npc_spts *spts, int h, int view)
 {
@@ -20,10 +27,12 @@ t_mob	*create_mob(t_npc_spts *spts, int h, int view)
 		exit_error(NULL);
 	mob->view = view;
 	mob->height = h;
+	mob->sprites = *spts;
 	mob->spt_north = spts->spt_front;
 	mob->spt_south = spts->spt_back;
 	mob->spt_west = spts->spt_left;
 	mob->spt_east = spts->spt_right;
+	mob->view = 90;
 	mob->visible = 0;
 	mob->data.next = NULL;
 	mob->spt_mutex = SDL_CreateMutex();
@@ -57,5 +66,6 @@ void	insert_mob(t_map *cell, char *nbs)
 		cell->mob = create_mob(&spts, WALL_SIZE / 2, 0);
 		cell->mob->x = cell->min.x + (WALL_SIZE - cell->mob->spt_west->m_width) / 2;
 		cell->mob->y = cell->min.y + (WALL_SIZE - cell->mob->spt_north->m_width) / 2;
+		cell->mob->tile = cell;
 	}
 }

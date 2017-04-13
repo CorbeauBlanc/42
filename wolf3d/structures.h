@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/12 22:23:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/13 21:06:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ typedef enum		e_thread_state
 					PAUSE,
 					STOP
 }					t_thread_state;
+
+typedef enum		e_mob_type
+{
+					SHOOTER,
+					SLAYER,
+}					t_mob_type;
 
 typedef struct		s_vector
 {
@@ -101,18 +107,20 @@ typedef struct		s_npc_spts
 
 typedef struct		s_mob
 {
+	t_npc_spts		sprites;
 	t_sprite		*spt_north;
 	t_sprite		*spt_south;
 	t_sprite		*spt_east;
 	t_sprite		*spt_west;
-	SDL_Thread		*animation;
 	SDL_mutex		*spt_mutex;
+	SDL_Thread		*animation;
 	t_thread_state	state;
 	int				visible;
 	int				view;
 	int				height;
 	int				x;
 	int				y;
+	struct s_map	*tile;
 	t_ray_data		data;
 }					t_mob;
 

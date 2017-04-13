@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/09 22:59:12 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/13 20:14:45 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_ray	*horiz_intersec(t_ray *ray, t_player *player)
 			return (ray);
 		else if (is_south(ray->a) && !is_empty(ray->h_wall = ray->h_wall->down))
 			return (ray);
-		if (is_looking_left(player->cam) || is_looking_right(player->cam))
+		if (is_looking_left(player->cam->angle) || is_looking_right(player->cam->angle))
 			check_v_mob(ray, ray->h_wall, &ray->h_i, player);
 		else
 			check_h_mob(ray, ray->h_wall, &ray->h_i, player);
@@ -65,7 +65,7 @@ t_ray	*vert_intersec(t_ray *ray, t_player *player)
 			return (ray);
 		else if (is_west(ray->a) && !is_empty(ray->v_wall = ray->v_wall->left))
 			return (ray);
-		if (is_looking_left(player->cam) || is_looking_right(player->cam))
+		if (is_looking_left(player->cam->angle) || is_looking_right(player->cam->angle))
 			check_v_mob(ray, ray->v_wall, &ray->v_i, player);
 		else
 			check_h_mob(ray, ray->v_wall, &ray->v_i, player);

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/12 22:58:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/13 22:06:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void		set_camera_fov(t_camera	*cam, int fov);
 /*
 ** cam_angles.c
 */
-int			is_looking_down(t_camera *cam);
-int			is_looking_left(t_camera *cam);
-int			is_looking_right(t_camera *cam);
-int			is_looking_up(t_camera *cam);
+int			is_looking_down(double angle);
+int			is_looking_left(double angle);
+int			is_looking_right(double angle);
+int			is_looking_up(double angle);
 
 /*
 ** cam_scanning.c
@@ -109,6 +109,7 @@ void		set_map_brightness(t_map *map, int percent);
 t_mob		*create_mob(t_npc_spts *spts, int h, int view);
 void		delete_mob(t_mob *mob);
 void		insert_mob(t_map *cell, char *nbs);
+void		mob_set_visible(t_mob *mob, int val);
 
 /*
 ** mob_animation.c
@@ -116,6 +117,11 @@ void		insert_mob(t_map *cell, char *nbs);
 int			mob_get_state(t_mob *mob);
 int			mob_main_thread(void *arg);
 void		mob_set_state(t_mob *mob, t_thread_state val);
+
+/*
+** mob_movements.c
+*/
+void		move_mob(t_mob *mob, int *ms_acc, t_thread_state *state);
 
 /*
 ** player.c
@@ -160,6 +166,7 @@ t_map		*new_cell(t_vector *vect, t_tile type, t_map_data *data);
 */
 void		set_rect_crd(SDL_Rect *rect, int x, int y);
 void		set_rect_dim(SDL_Rect *rect, int w, int h);
+void		set_vect_crd(t_vector *vect, double x, double y);
 t_ray		*set_wall(t_ray *ray, t_map **ray_wall, t_map *wall);
 
 /*
