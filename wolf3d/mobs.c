@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 14:41:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/13 22:19:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/16 20:05:05 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ t_mob	*create_mob(t_npc_spts *spts, int h, int view)
 	mob->view = view;
 	mob->height = h;
 	mob->sprites = *spts;
-	mob->spt_north = spts->spt_front;
-	mob->spt_south = spts->spt_back;
-	mob->spt_west = spts->spt_left;
-	mob->spt_east = spts->spt_right;
-	mob->view = 90;
+	mob->view = view;
 	mob->visible = 0;
+	mob->htb.xminymin = NULL;
+	mob->htb.xminymax = NULL;
+	mob->htb.xmaxymin = NULL;
+	mob->htb.xmaxymax = NULL;
+	set_mob_sprites(mob);
 	mob->data.next = NULL;
 	mob->spt_mutex = SDL_CreateMutex();
 	mob->state = RUN;
@@ -63,9 +64,9 @@ void	insert_mob(t_map *cell, char *nbs)
 	spts.spt_right = create_sprite("textures/test_mob.bmp", 64, WALL_SIZE / 2, 1000);
 	if (*nbs == 'M' || *nbs == 'm')
 	{
-		cell->mob = create_mob(&spts, WALL_SIZE / 2, 0);
-		cell->mob->x = cell->min.x + (WALL_SIZE - cell->mob->spt_west->m_width) / 2;
-		cell->mob->y = cell->min.y + (WALL_SIZE - cell->mob->spt_north->m_width) / 2;
-		cell->mob->tile = cell;
+		set_all_mob_tiles(create_mob(&spts, WALL_SIZE / 2, 180), cell);
+		set_mob_htb(cell->mob,
+			cell->min.x + (WALL_SIZE - cell->mob->spt_west->m_width) / 2,
+			cell->min.y + (WALL_SIZE - cell->mob->spt_north->m_width) / 2);
 	}
 }

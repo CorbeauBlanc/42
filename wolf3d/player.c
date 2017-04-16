@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 17:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/12 22:25:13 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/16 19:11:17 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_player	*create_player(t_camera *cam)
 	if (!(player = malloc(sizeof(t_player))))
 		exit_error(NULL);
 	player->cam = cam;
+	player->tile = NULL;
 	return (player);
 }
 
@@ -56,13 +57,11 @@ static int	cam_thread(void *arg)
 	SDL_UnlockMutex(get_mutexes()->environment);
 	while (state != STOP)
 	{
+		SDL_LockMutex(get_mutexes()->environment);
 		if (state == RUN)
-		{
-			SDL_LockMutex(get_mutexes()->environment);
 			scan_environment(player);
-			state = player->cam->state;
-			SDL_UnlockMutex(get_mutexes()->environment);
-		}
+		state = player->cam->state;
+		SDL_UnlockMutex(get_mutexes()->environment);
 		SDL_Delay(ms);
 	}
 	return (1);
@@ -80,7 +79,7 @@ void		insert_player(t_map *map, double x, double y)
 		if (!(player->tile = goto_tile(&player->pos, map)))
 			exit_error("error : player out of map");
 		map->data->bg_fact = player->cam->screen.w / player->cam->fov;
-		player->cam->state = RUN;
+		player->cam->state = PAUSE;
 		player->cam->refresh_cam = SDL_CreateThread(&cam_thread, "Cam thread",
 													NULL);
 	}

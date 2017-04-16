@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/12 22:06:54 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/16 19:02:39 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int		main(int ac, char **av)
 
 	map = read_file(open("test", O_RDONLY));
 	set_map_brightness(map, 80);
-	insert_player(map, 84, 70);
 
 	list_evts = NULL;
 	init_list_evts(&list_evts);

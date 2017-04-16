@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/12 21:52:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/16 19:24:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_tile	get_type(int i)
 	return (types[(i < 2 && i > -1) ? i : 0]);
 }
 
-void		add_new_cells(t_map **last, t_vector *crd, char *nbs, t_map_data *d)
+static void		add_new_cells(t_map **last, t_vector *crd, char *nbs, t_map_data *d)
 {
 	while (*nbs)
 	{
@@ -40,13 +40,16 @@ void		add_new_cells(t_map **last, t_vector *crd, char *nbs, t_map_data *d)
 		{
 			*last = insert_cell(*last, new_cell(crd, get_type(*nbs - '0'), d));
 			insert_mob(*last, nbs);
+			if (*nbs == 'p' || *nbs == 'P')
+				insert_player(*last, (*last)->min.x + WALL_SIZE / 2,
+							(*last)->min.y + WALL_SIZE / 2);
 			crd->x += WALL_SIZE;
 			++nbs;
 		}
 	}
 }
 
-void		set_map_brightness(t_map *map, int percent)
+void			set_map_brightness(t_map *map, int percent)
 {
 	double	max;
 
@@ -55,7 +58,7 @@ void		set_map_brightness(t_map *map, int percent)
 	map->data->brightness = max * percent / 100.0;
 }
 
-void		delete_map(t_map *map)
+void			delete_map(t_map *map)
 {
 	t_map	*r_head;
 	t_map	*tmp;
@@ -75,7 +78,7 @@ void		delete_map(t_map *map)
 	}
 }
 
-t_map		*read_file(int fd)
+t_map			*read_file(int fd)
 {
 	t_vector	crds;
 	char		*nbs;
@@ -86,8 +89,7 @@ t_map		*read_file(int fd)
 		return (NULL);
 	nbs = ft_strnew(BUFF_SIZE);
 	last = NULL;
-	crds.x = 0;
-	crds.y = 0;
+	set_vect_crd(&crds, 0, 0);
 	if (!(data = malloc(sizeof(t_map_data))))
 		exit_error(NULL);
 	data->bgd = create_texture("background.bmp");
@@ -99,6 +101,7 @@ t_map		*read_file(int fd)
 	free(nbs);
 	if (!last)
 		return (NULL);
+	check_player(last->r_head->c_head);
 	garbage_collector(ADD, last->r_head->c_head, &delete_map);
 	return (last->r_head->c_head);
 }

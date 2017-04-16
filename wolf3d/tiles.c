@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 12:56:36 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/12 21:44:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/15 15:04:12 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,19 @@ t_map	*goto_tile(t_vector *crd, t_map *tile)
 	return (tile);
 }
 
-int		is_empty(t_map *tile)
+t_map	*goto_tile2(double x, double y, t_map *tile)
 {
-	return (tile && tile->type <= FLOOR);
+	while (tile && (x > tile->max.x || x < tile->min.x ||
+			y > tile->max.y || y < tile->min.y))
+	{
+		if (x > tile->max.x)
+			tile = tile->right;
+		else if (x < tile->min.x)
+			tile = tile->left;
+		if (tile && y > tile->max.y)
+			tile = tile->down;
+		else if (tile && y < tile->min.y)
+			tile = tile->up;
+	}
+	return (tile);
 }

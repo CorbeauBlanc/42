@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 17:29:31 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/11 22:41:40 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/16 16:28:57 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_sprite	*create_sprite(char *path, int h, int map_width, int delay)
 	if (!(sprite = malloc(sizeof(t_sprite))))
 		exit_error(NULL);
 	sprite->pic = create_texture(path);
-	sprite->m_width = map_width;
+	sprite->m_width = map_width > WALL_SIZE ? WALL_SIZE : map_width;
 	sprite->mapping_fact = sprite->pic->w / map_width;
 	sprite->current.x = 0;
 	sprite->current.y = 0;

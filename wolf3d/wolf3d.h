@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/13 22:06:24 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/16 19:23:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # define WIDTH 			700
 # define NB_TEXTURES	2
 # define SPEED			0.7
+# define MSPEED			1
 # define WALL_SIZE		16
 # define TEXT_SIZE		64
 # define BUFF_SIZE		1024
@@ -97,8 +98,9 @@ void		exit_error(char *s);
 void		exit_main();
 
 /*
-** map.c
+** map*.c
 */
+void		check_player(t_map *map);
 void		delete_map(t_map *map);
 t_map		*read_file(int fd);
 void		set_map_brightness(t_map *map, int percent);
@@ -119,9 +121,21 @@ int			mob_main_thread(void *arg);
 void		mob_set_state(t_mob *mob, t_thread_state val);
 
 /*
+** mob_attack.c
+*/
+void		mob_fluid_move(t_mob *mob);
+
+/*
 ** mob_movements.c
 */
 void		move_mob(t_mob *mob, int *ms_acc, t_thread_state *state);
+void		set_all_mob_tiles(t_mob *mob, t_map *tile);
+void		set_mob_htb(t_mob *mob, int x, int y);
+
+/*
+** mob_sprites.c
+*/
+void		set_mob_sprites(t_mob *mob);
 
 /*
 ** player.c
@@ -156,14 +170,15 @@ t_mutexes	*get_mutexes();
 */
 void		delete_cell(t_map *cell);
 t_map		*insert_cell(t_map *head, t_map *cell);
-int			is_empty(t_map *tile);
 t_map		*goto_tile(t_vector *crd, t_map *tile);
+t_map		*goto_tile2(double x, double y, t_map *tile);
 t_map		*new_cell(t_vector *vect, t_tile type, t_map_data *data);
 
 
 /*
 ** tools.c
 */
+int			is_empty(t_map *tile);
 void		set_rect_crd(SDL_Rect *rect, int x, int y);
 void		set_rect_dim(SDL_Rect *rect, int w, int h);
 void		set_vect_crd(t_vector *vect, double x, double y);

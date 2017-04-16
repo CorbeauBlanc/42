@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/13 21:06:01 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/16 16:01:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,18 @@ typedef struct		s_npc_spts
 	t_sprite		*spt_right;
 }					t_npc_spts;
 
+typedef struct		s_hitbox
+{
+	int				x;
+	int				y;
+	int				xmax;
+	int				ymax;
+	struct s_map	*xminymin;
+	struct s_map	*xminymax;
+	struct s_map	*xmaxymin;
+	struct s_map	*xmaxymax;
+}					t_hitbox;
+
 typedef struct		s_mob
 {
 	t_npc_spts		sprites;
@@ -118,9 +130,7 @@ typedef struct		s_mob
 	int				visible;
 	int				view;
 	int				height;
-	int				x;
-	int				y;
-	struct s_map	*tile;
+	t_hitbox		htb;
 	t_ray_data		data;
 }					t_mob;
 

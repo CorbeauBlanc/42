@@ -6,75 +6,69 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 20:06:31 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/13 22:33:33 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/16 19:51:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static t_map	*get_next_tile(t_mob *mob)
+static t_map	*get_next_tile(t_mob *m)
 {
-	if (is_looking_left(mob->view) && is_empty(mob->tile->left) &&
-		!mob->tile->left->mob)
-		return (mob->tile->left);
-	else if (is_looking_right(mob->view) && is_empty(mob->tile->right) &&
-			!mob->tile->right->mob)
-		return (mob->tile->right);
-	else if (is_looking_up(mob->view) && is_empty(mob->tile->up) &&
-			!mob->tile->up->mob)
-		return (mob->tile->up);
-	else if (is_looking_down(mob->view) && is_empty(mob->tile->down) &&
-			!mob->tile->down->mob)
-		return (mob->tile->down);
+	if (is_looking_left(m->view) && is_empty(m->htb.xminymin->left) &&
+		(!m->htb.xminymin->left->mob || m->htb.xminymin->left->mob == m))
+		return (m->htb.xminymin->left);
+	else if (is_looking_right(m->view) && is_empty(m->htb.xminymin->right) &&
+			(!m->htb.xminymin->right->mob || m->htb.xminymin->right->mob == m))
+		return (m->htb.xminymin->right);
+	else if (is_looking_up(m->view) && is_empty(m->htb.xminymin->up) &&
+			(!m->htb.xminymin->up->mob || m->htb.xminymin->up->mob == m))
+		return (m->htb.xminymin->up);
+	else if (is_looking_down(m->view) && is_empty(m->htb.xminymin->down) &&
+			(!m->htb.xminymin->down->mob || m->htb.xminymin->down->mob == m))
+		return (m->htb.xminymin->down);
 	else
 		return (NULL);
 }
 
-/*
-**      Note à soi-même :
-** CORRIGER CETTE ABOMINATION !!! (p*** de norme)
-**            |
-**            V
-*/
-static void	set_mob_sprites(t_mob *m)
+static void	rotate_mob(t_mob *m)
 {
-	if (is_looking_left(m->view) && (m->spt_north = m->sprites.spt_right))
+	if (is_empty(m->htb.xminymin->up) && !m->htb.xminymin->up->mob)
+		m->view = 90;
+	else if (is_empty(m->htb.xminymin->right) && !m->htb.xminymin->right->mob)
+		m->view = 0;
+	else if (is_empty(m->htb.xminymin->down) && !m->htb.xminymin->down->mob)
+		m->view = -90;
+	else if (is_empty(m->htb.xminymin->left) && !m->htb.xminymin->left->mob)
+		m->view = 180;
+	set_mob_sprites(m);
+}
+
+void		set_all_mob_tiles(t_mob *mob, t_map *tile)
+{
+	if (tile)
 	{
-		m->spt_south = m->sprites.spt_left;
-		m->spt_east = m->sprites.spt_front;
-		m->spt_west = m->sprites.spt_back;
-	}
-	else if (is_looking_right(m->view) && (m->spt_north = m->sprites.spt_left))
-	{
-		m->spt_south = m->sprites.spt_right;
-		m->spt_east = m->sprites.spt_back;
-		m->spt_west = m->sprites.spt_front;
-	}
-	else if (is_looking_up(m->view) && (m->spt_north = m->sprites.spt_front))
-	{
-		m->spt_south = m->sprites.spt_back;
-		m->spt_east = m->sprites.spt_left;
-		m->spt_west = m->sprites.spt_right;
-	}
-	else if (is_looking_down(m->view) && (m->spt_north = m->sprites.spt_back))
-	{
-		m->spt_south = m->sprites.spt_front;
-		m->spt_east = m->sprites.spt_right;
-		m->spt_west = m->sprites.spt_left;
+		if (mob->htb.xminymin)
+			mob->htb.xminymin->mob = NULL;
+		if (mob->htb.xminymax)
+			mob->htb.xminymax->mob = NULL;
+		if (mob->htb.xmaxymin)
+			mob->htb.xmaxymin->mob = NULL;
+		if (mob->htb.xmaxymax)
+			mob->htb.xmaxymax->mob = NULL;
+		mob->htb.xminymin = tile;
+		mob->htb.xminymax = tile;
+		mob->htb.xmaxymin = tile;
+		mob->htb.xmaxymax = tile;
+		mob->htb.xminymin->mob = mob;
 	}
 }
 
-static void	rotate_mob(t_mob *mob)
+void		set_mob_htb(t_mob *mob, int x, int y)
 {
-	if (is_empty(mob->tile->up) && !mob->tile->up->mob)
-		mob->view = 90;
-	else if (is_empty(mob->tile->right) && !mob->tile->right->mob)
-		mob->view = 0;
-	else if (is_empty(mob->tile->down) && !mob->tile->down->mob)
-		mob->view = -90;
-	else if (is_empty(mob->tile->left) && !mob->tile->left->mob)
-		mob->view = 180;
-	set_mob_sprites(mob);
+	mob->htb.x = x;
+	mob->htb.y = y;
+	mob->htb.xmax = mob->htb.x + mob->spt_north->m_width;
+	mob->htb.ymax = mob->htb.y + mob->spt_west->m_width;
 }
 
 void		move_mob(t_mob *mob, int *ms_acc, t_thread_state *state)
@@ -84,20 +78,20 @@ void		move_mob(t_mob *mob, int *ms_acc, t_thread_state *state)
 	next = NULL;
 	if (*state != STOP)
 	{
-		if (!mob->visible && *ms_acc >= 1000)
+		if (mob->visible && *ms_acc >= 1000)
 		{
 			*ms_acc = 0;
 			if ((next = get_next_tile(mob)))
 			{
-				mob->tile->mob = NULL;
-				next->mob = mob;
-				mob->tile = next;
-				mob->x = next->min.x + (WALL_SIZE - next->mob->spt_west->m_width) / 2;
-				mob->y = next->min.y + (WALL_SIZE - next->mob->spt_north->m_width) / 2;
+				set_all_mob_tiles(mob, next);
+				set_mob_htb(mob,
+					next->min.x + (WALL_SIZE - mob->spt_west->m_width) / 2,
+					next->min.y + (WALL_SIZE - mob->spt_north->m_width) / 2);
 			}
 			else
 				rotate_mob(mob);
 		}
-		//else if (mob->visible)
+		/*else if (mob->visible)
+			mob_fluid_move(mob);*/
 	}
 }
