@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/16 19:23:10 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 15:44:33 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,19 +117,16 @@ void		mob_set_visible(t_mob *mob, int val);
 ** mob_animation.c
 */
 int			mob_get_state(t_mob *mob);
-int			mob_main_thread(void *arg);
+int			mob_animation_thread(void *arg);
 void		mob_set_state(t_mob *mob, t_thread_state val);
 
 /*
-** mob_attack.c
+** mob_movements*.c
 */
 void		mob_fluid_move(t_mob *mob);
-
-/*
-** mob_movements.c
-*/
 void		move_mob(t_mob *mob, int *ms_acc, t_thread_state *state);
 void		set_all_mob_tiles(t_mob *mob, t_map *tile);
+void		set_htb_tiles(t_hitbox *htb, t_mob *mob);
 void		set_mob_htb(t_mob *mob, int x, int y);
 
 /*
@@ -164,6 +161,9 @@ t_texture	*load_texture(t_tile type);
 */
 void		delete_mutexes();
 t_mutexes	*get_mutexes();
+void		init_thread(t_thread *thread, int(*fct)(void*), void *arg,
+						t_thread_state state);
+void		close_thread(t_thread *thread);
 
 /*
 ** tiles.c

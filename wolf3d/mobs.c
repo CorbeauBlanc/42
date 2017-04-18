@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 14:41:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/16 20:05:05 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 15:50:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,18 @@ t_mob	*create_mob(t_npc_spts *spts, int h, int view)
 	mob->htb.xmaxymax = NULL;
 	set_mob_sprites(mob);
 	mob->data.next = NULL;
-	mob->spt_mutex = SDL_CreateMutex();
-	mob->state = RUN;
-	mob->animation = SDL_CreateThread(&mob_main_thread, "Mob animation", mob);
+	init_thread(&mob->animation, &mob_animation_thread, mob, PAUSE);
 	return (mob);
 }
 
 void	delete_mob(t_mob *mob)
 {
-	mob_set_state(mob, STOP);
-	SDL_WaitThread(mob->animation, NULL);
-	SDL_DestroyMutex(mob->spt_mutex);
+	close_thread(&mob->animation);
 	delete_sprite(mob->spt_north);
 	delete_sprite(mob->spt_south);
 	delete_sprite(mob->spt_west);
 	delete_sprite(mob->spt_east);
+	set_htb_tiles(&mob->htb, NULL);
 	free(mob);
 }
 

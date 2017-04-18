@@ -1,17 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mob_attack.c                                       :+:      :+:    :+:   */
+/*   mob_movements2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 22:34:02 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/16 18:43:38 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 14:33:25 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 #include <math.h>
+
+void		set_htb_tiles(t_hitbox *htb, t_mob *mob)
+{
+	htb->xminymin->mob = mob;
+	htb->xmaxymin->mob = mob;
+	htb->xminymax->mob = mob;
+	htb->xmaxymax->mob = mob;
+}
 
 static int	move_mob_to_player(double x, double y, t_mob *mob)
 {
@@ -29,14 +37,12 @@ static int	move_mob_to_player(double x, double y, t_mob *mob)
 		(!tmp1->mob || tmp1->mob == mob) && (!tmp2->mob || tmp2->mob == mob) &&
 		(!tmp3->mob || tmp3->mob == mob) && (!tmp4->mob || tmp4->mob == mob))
 	{
-		mob->htb.xminymin->mob = NULL;
-		mob->htb.xmaxymin->mob = NULL;
-		mob->htb.xminymax->mob = NULL;
-		mob->htb.xmaxymax->mob = NULL;
+		set_htb_tiles(&mob->htb, NULL);
 		mob->htb.xminymin = tmp1;
 		mob->htb.xmaxymin = tmp2;
 		mob->htb.xminymax = tmp3;
 		mob->htb.xmaxymax = tmp4;
+		set_htb_tiles(&mob->htb, mob);
 		return (1);
 	}
 	return (0);

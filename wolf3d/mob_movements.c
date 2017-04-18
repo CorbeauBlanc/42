@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 20:06:31 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/16 19:51:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 13:26:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,12 @@ void		move_mob(t_mob *mob, int *ms_acc, t_thread_state *state)
 	next = NULL;
 	if (*state != STOP)
 	{
-		if (mob->visible && *ms_acc >= 1000)
+		if (mob->visible)
+		{
+			*ms_acc = 0;
+			mob_fluid_move(mob);
+		}
+		else if (*ms_acc >= 1000)
 		{
 			*ms_acc = 0;
 			if ((next = get_next_tile(mob)))
@@ -91,7 +96,5 @@ void		move_mob(t_mob *mob, int *ms_acc, t_thread_state *state)
 			else
 				rotate_mob(mob);
 		}
-		/*else if (mob->visible)
-			mob_fluid_move(mob);*/
 	}
 }

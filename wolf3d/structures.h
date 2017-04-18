@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/16 16:01:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 15:47:32 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,13 @@ typedef struct		s_sprite
 	int				ms;
 }					t_sprite;
 
+typedef struct		s_thread
+{
+	SDL_Thread		*ptr;
+	SDL_mutex		*mutex;
+	t_thread_state	state;
+}					t_thread;
+
 typedef struct		s_ray_data
 {
 	t_vector		i;
@@ -124,9 +131,8 @@ typedef struct		s_mob
 	t_sprite		*spt_south;
 	t_sprite		*spt_east;
 	t_sprite		*spt_west;
-	SDL_mutex		*spt_mutex;
-	SDL_Thread		*animation;
-	t_thread_state	state;
+	t_thread		animation;
+	t_thread		movement;
 	int				visible;
 	int				view;
 	int				height;

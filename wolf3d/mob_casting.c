@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 17:02:58 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/16 17:44:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 14:22:49 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	check_h_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 {
-	if (wall && wall->mob && is_north(ray->a) && its->y >= (wall->mob->htb.ymax))
+	if (wall && wall->mob && is_north(ray->a) && its->y >= (wall->mob->htb.ymax)
+		&& ray->h_mob != wall->mob)
 	{
 		wall->mob->data.i.y = wall->mob->htb.ymax;
 		wall->mob->data.i.x = its->x;
@@ -28,7 +29,8 @@ void	check_h_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 			ray->h_mob->data.i.w = fabs((player->pos.y - ray->h_mob->data.i.y) / sin(ray->a));
 		}
 	}
-	else if (wall && wall->mob && is_south(ray->a) && its->y <= wall->mob->htb.y)
+	else if (wall && wall->mob && is_south(ray->a) && its->y <= wall->mob->htb.y
+			&& ray->h_mob != wall->mob)
 	{
 		wall->mob->data.i.y = wall->mob->htb.y;
 		wall->mob->data.i.x = its->x;
@@ -46,7 +48,8 @@ void	check_h_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 
 void	check_v_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 {
-	if (wall && wall->mob && is_east(ray->a) && its->x <= wall->mob->htb.x)
+	if (wall && wall->mob && is_east(ray->a) && its->x <= wall->mob->htb.x &&
+		wall->mob != ray->v_mob)
 	{
 		wall->mob->data.i.x = wall->mob->htb.x;
 		wall->mob->data.i.y = its->y;
@@ -60,7 +63,8 @@ void	check_v_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 			ray->v_mob->data.i.w = fabs((ray->v_mob->data.i.x - player->pos.x) / cos(ray->a));
 		}
 	}
-	else if (wall && wall->mob && is_west(ray->a) && its->x >= (wall->mob->htb.xmax))
+	else if (wall && wall->mob && is_west(ray->a) &&
+			its->x >= (wall->mob->htb.xmax) && wall->mob != ray->v_mob)
 	{
 		wall->mob->data.i.x = wall->mob->htb.xmax;
 		wall->mob->data.i.y = its->y;
