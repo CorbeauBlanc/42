@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 14:41:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 15:50:02 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 20:05:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	mob_set_visible(t_mob *mob, int val)
 {
-	SDL_LockMutex(mob->spt_mutex);
+	SDL_LockMutex(mob->animation.mutex);
 	mob->visible = val;
-	SDL_UnlockMutex(mob->spt_mutex);
+	SDL_UnlockMutex(mob->animation.mutex);
 }
 
 t_mob	*create_mob(t_npc_spts *spts, int h, int view)
@@ -36,12 +36,14 @@ t_mob	*create_mob(t_npc_spts *spts, int h, int view)
 	mob->htb.xmaxymax = NULL;
 	set_mob_sprites(mob);
 	mob->data.next = NULL;
-	init_thread(&mob->animation, &mob_animation_thread, mob, PAUSE);
+	init_thread(&mob->animation, &mob_animation_thread, mob, RUN);
+	init_thread(&mob->movement, &mob_movement_thread, mob, RUN);
 	return (mob);
 }
 
 void	delete_mob(t_mob *mob)
 {
+	close_thread(&mob->movement);
 	close_thread(&mob->animation);
 	delete_sprite(mob->spt_north);
 	delete_sprite(mob->spt_south);

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 15:47:32 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 21:42:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ typedef struct		s_camera
 
 typedef struct		s_mutexes
 {
-	SDL_mutex		*sprites;
 	SDL_mutex		*environment;
+	SDL_mutex		*mob_mvt;
 }					t_mutexes;
 
 typedef struct		s_SDL_Core
@@ -114,10 +114,10 @@ typedef struct		s_npc_spts
 
 typedef struct		s_hitbox
 {
-	int				x;
-	int				y;
-	int				xmax;
-	int				ymax;
+	double			x;
+	double			y;
+	double			xmax;
+	double			ymax;
 	struct s_map	*xminymin;
 	struct s_map	*xminymax;
 	struct s_map	*xmaxymin;

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/16 19:24:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 21:45:29 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,13 @@ t_map			*read_file(int fd)
 	if (!(data = malloc(sizeof(t_map_data))))
 		exit_error(NULL);
 	data->bgd = create_texture("background.bmp");
+	SDL_LockMutex(get_mutexes()->mob_mvt);
 	while (read(fd, nbs, BUFF_SIZE) > 0)
 	{
 		add_new_cells(&last, &crds, nbs, data);
 		ft_bzero(nbs, BUFF_SIZE);
 	}
+	SDL_UnlockMutex(get_mutexes()->mob_mvt);
 	free(nbs);
 	if (!last)
 		return (NULL);

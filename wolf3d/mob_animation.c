@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 22:37:59 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 15:49:44 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 19:12:59 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,9 @@ int			mob_animation_thread(void *arg)
 	{
 		SDL_LockMutex(mob->animation.mutex);
 		if (state == RUN)
-		{
 			change_sprites(mob);
-			state = mob->animation.state;
-		}
 		mob->visible = 0;
+		state = mob->animation.state;
 		SDL_UnlockMutex(mob->animation.mutex);
 		SDL_Delay(ms);
 	}

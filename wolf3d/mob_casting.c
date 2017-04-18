@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 17:02:58 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 14:22:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 21:41:29 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	check_h_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 		if (wall->mob->data.i.x >= wall->mob->htb.x &&
 			wall->mob->data.i.x <= wall->mob->htb.xmax)
 		{
+			SDL_LockMutex(wall->mob->animation.mutex);
 			wall->mob->data.next = ray->h_mob;
 			ray->h_mob = wall->mob;
 			ray->h_mob->data.i.w = fabs((player->pos.y - ray->h_mob->data.i.y) / sin(ray->a));
@@ -39,6 +40,7 @@ void	check_h_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 		if (wall->mob->data.i.x >= wall->mob->htb.x &&
 			wall->mob->data.i.x <= wall->mob->htb.xmax)
 		{
+			SDL_LockMutex(wall->mob->animation.mutex);
 			wall->mob->data.next = ray->h_mob;
 			ray->h_mob = wall->mob;
 			ray->h_mob->data.i.w = fabs((player->pos.y - ray->h_mob->data.i.y) / sin(ray->a));
@@ -58,6 +60,7 @@ void	check_v_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 		if (wall->mob->data.i.y >= wall->mob->htb.y &&
 			wall->mob->data.i.y <= (wall->mob->htb.ymax))
 		{
+			SDL_LockMutex(wall->mob->animation.mutex);
 			wall->mob->data.next = ray->v_mob;
 			ray->v_mob = wall->mob;
 			ray->v_mob->data.i.w = fabs((ray->v_mob->data.i.x - player->pos.x) / cos(ray->a));
@@ -73,6 +76,7 @@ void	check_v_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 		if (wall->mob->data.i.y >= wall->mob->htb.y &&
 			wall->mob->data.i.y <= (wall->mob->htb.ymax))
 		{
+			SDL_LockMutex(wall->mob->animation.mutex);
 			wall->mob->data.next = ray->v_mob;
 			ray->v_mob = wall->mob;
 			ray->v_mob->data.i.w = fabs((ray->v_mob->data.i.x - player->pos.x) / cos(ray->a));

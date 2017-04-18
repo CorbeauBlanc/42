@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:21:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 13:30:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 19:33:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void	wait_events(t_event *list_evts, t_player *player)
 			}
 			SDL_UnlockMutex(get_mutexes()->environment);
 		}
-		SDL_Delay(7);
+		SDL_Delay(EVT_DELAY);
 	}
 }

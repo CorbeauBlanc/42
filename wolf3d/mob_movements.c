@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 20:06:31 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 13:26:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 21:45:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-static t_map	*get_next_tile(t_mob *m)
+t_map	*get_next_tile(t_mob *m)
 {
 	if (is_looking_left(m->view) && is_empty(m->htb.xminymin->left) &&
 		(!m->htb.xminymin->left->mob || m->htb.xminymin->left->mob == m))
@@ -30,7 +30,7 @@ static t_map	*get_next_tile(t_mob *m)
 		return (NULL);
 }
 
-static void	rotate_mob(t_mob *m)
+void	rotate_mob(t_mob *m)
 {
 	if (is_empty(m->htb.xminymin->up) && !m->htb.xminymin->up->mob)
 		m->view = 90;
@@ -43,7 +43,7 @@ static void	rotate_mob(t_mob *m)
 	set_mob_sprites(m);
 }
 
-void		set_all_mob_tiles(t_mob *mob, t_map *tile)
+void	set_all_mob_tiles(t_mob *mob, t_map *tile)
 {
 	if (tile)
 	{
@@ -63,7 +63,7 @@ void		set_all_mob_tiles(t_mob *mob, t_map *tile)
 	}
 }
 
-void		set_mob_htb(t_mob *mob, int x, int y)
+void	set_mob_htb(t_mob *mob, double x, double y)
 {
 	mob->htb.x = x;
 	mob->htb.y = y;
@@ -71,30 +71,30 @@ void		set_mob_htb(t_mob *mob, int x, int y)
 	mob->htb.ymax = mob->htb.y + mob->spt_west->m_width;
 }
 
-void		move_mob(t_mob *mob, int *ms_acc, t_thread_state *state)
+int		mob_movement_thread(void *arg)
 {
-	t_map	*next;
+	t_mob			*mob;
+	t_thread_state	state;
+	int				ms;
 
-	next = NULL;
-	if (*state != STOP)
+	mob = (t_mob*)arg;
+	ms = 0;
+	state = get_thread_state(&mob->movement);
+	while (state != STOP)
 	{
-		if (mob->visible)
-		{
-			*ms_acc = 0;
+		SDL_LockMutex(get_mutexes()->mob_mvt);
+		SDL_LockMutex(mob->movement.mutex);
+		if (mob->visible && state == RUN)
 			mob_fluid_move(mob);
-		}
-		else if (*ms_acc >= 1000)
+		else if (state == RUN && (ms += EVT_DELAY) >= 1000)
 		{
-			*ms_acc = 0;
-			if ((next = get_next_tile(mob)))
-			{
-				set_all_mob_tiles(mob, next);
-				set_mob_htb(mob,
-					next->min.x + (WALL_SIZE - mob->spt_west->m_width) / 2,
-					next->min.y + (WALL_SIZE - mob->spt_north->m_width) / 2);
-			}
-			else
-				rotate_mob(mob);
+			ms = 0;
+			mob_static_move(mob);
 		}
+		state = mob->movement.state;
+		SDL_UnlockMutex(mob->movement.mutex);
+		SDL_UnlockMutex(get_mutexes()->mob_mvt);
+		SDL_Delay(EVT_DELAY);
 	}
+	return (1);
 }

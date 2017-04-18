@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 22:34:02 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 14:33:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 21:05:20 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void		mob_fluid_move(t_mob *mob)
 		angle = plr->pos.y > mob->htb.y ? -90 : 90;
 	else
 		angle = atan((mob->htb.y - plr->pos.y) / (plr->pos.x - mob->htb.x)) +
-				plr->pos.x > mob->htb.x ? 0 : 180;
-	mob->view = angle;
+				(plr->pos.x > mob->htb.x ? 0 : M_PI);
+	mob->view = ft_to_deg(angle);
 	set_mob_sprites(mob);
 	if (move_mob_to_player(mob->htb.x + cos(angle) * MSPEED,
 							mob->htb.y - sin(angle) * MSPEED, mob))
@@ -71,4 +71,19 @@ void		mob_fluid_move(t_mob *mob)
 	else if (move_mob_to_player(mob->htb.x, mob->htb.y - sin(angle) * MSPEED,
 								mob))
 		set_mob_htb(mob, mob->htb.x, mob->htb.y - sin(angle) * MSPEED);
+}
+
+void		mob_static_move(t_mob *mob)
+{
+	t_map			*next;
+
+	if ((next = get_next_tile(mob)))
+	{
+		set_all_mob_tiles(mob, next);
+		set_mob_htb(mob,
+			next->min.x + (WALL_SIZE - mob->spt_west->m_width) / 2,
+			next->min.y + (WALL_SIZE - mob->spt_north->m_width) / 2);
+	}
+	else
+		rotate_mob(mob);
 }
