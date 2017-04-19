@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 22:34:02 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 21:05:20 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 22:05:18 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void		mob_fluid_move(t_mob *mob)
 		angle = atan((mob->htb.y - plr->pos.y) / (plr->pos.x - mob->htb.x)) +
 				(plr->pos.x > mob->htb.x ? 0 : M_PI);
 	mob->view = ft_to_deg(angle);
+	mob->watching = 1;
 	set_mob_sprites(mob);
 	if (move_mob_to_player(mob->htb.x + cos(angle) * MSPEED,
 							mob->htb.y - sin(angle) * MSPEED, mob))

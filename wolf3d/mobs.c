@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 14:41:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 20:05:01 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 22:16:07 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,15 @@ t_mob	*create_mob(t_npc_spts *spts, int h, int view)
 	mob->sprites = *spts;
 	mob->view = view;
 	mob->visible = 0;
+	mob->watching = 0;
 	mob->htb.xminymin = NULL;
 	mob->htb.xminymax = NULL;
 	mob->htb.xmaxymin = NULL;
 	mob->htb.xmaxymax = NULL;
 	set_mob_sprites(mob);
 	mob->data.next = NULL;
+	mob->data.h = -1;
+	mob->data.y = -1;
 	init_thread(&mob->animation, &mob_animation_thread, mob, RUN);
 	init_thread(&mob->movement, &mob_movement_thread, mob, RUN);
 	return (mob);

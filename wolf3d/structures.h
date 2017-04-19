@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 21:42:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 22:15:47 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct		s_ray_data
 {
 	t_vector		i;
 	double			h;
+	int				y;
 	struct s_mob	*next;
 }					t_ray_data;
 
@@ -134,6 +135,7 @@ typedef struct		s_mob
 	t_thread		animation;
 	t_thread		movement;
 	int				visible;
+	int				watching;
 	int				view;
 	int				height;
 	t_hitbox		htb;

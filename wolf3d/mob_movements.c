@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 20:06:31 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 21:45:02 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 22:16:18 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int		mob_movement_thread(void *arg)
 			mob_static_move(mob);
 		}
 		state = mob->movement.state;
+		mob->data.h = -1;
+		mob->data.y = -1;
 		SDL_UnlockMutex(mob->movement.mutex);
 		SDL_UnlockMutex(get_mutexes()->mob_mvt);
 		SDL_Delay(EVT_DELAY);

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 21:43:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/18 22:23:55 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static void	cast_mobs(t_ray *ray, t_player *player, double correction, int i)
 		{
 			ray->v_mob->visible = 1;
 			ray->h = (WALL_SIZE * player->cam->f) / (ray->v_mob->data.i.w * cos(correction));
-			ray->v_mob->data.h = (ray->v_mob->height * player->cam->f) / (ray->v_mob->data.i.w * cos(correction));
+			if (!ray->v_mob->watching || (ray->v_mob->watching && ray->v_mob->data.h == -1))
+				ray->v_mob->data.h = (ray->v_mob->height * player->cam->f) / (ray->v_mob->data.i.w * cos(correction));
 			ray->filter = get_filter_value(player->tile->data, ray->v_mob->data.i.w);
 			draw_mob(&player->cam->screen, i, ray, ray->v_mob);
 		}
@@ -31,7 +32,8 @@ static void	cast_mobs(t_ray *ray, t_player *player, double correction, int i)
 		{
 			ray->h_mob->visible = 1;
 			ray->h = (WALL_SIZE * player->cam->f) / (ray->h_mob->data.i.w * cos(correction));
-			ray->h_mob->data.h = (ray->h_mob->height * player->cam->f) / (ray->h_mob->data.i.w * cos(correction));
+			if (!ray->h_mob->watching || (ray->h_mob->watching && ray->h_mob->data.h == -1))
+				ray->h_mob->data.h = (ray->h_mob->height * player->cam->f) / (ray->h_mob->data.i.w * cos(correction));
 			ray->filter = get_filter_value(player->tile->data, ray->h_mob->data.i.w);
 			draw_mob(&player->cam->screen, i, ray, ray->h_mob);
 		}

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 17:02:58 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 21:41:29 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/19 16:15:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,9 @@ void	draw_mob(SDL_Rect *scr, int i, t_ray *ray, t_mob *mob)
 	SDL_Rect	drect;
 	t_sprite	*spt;
 
-	set_rect_crd(&drect, i, ((scr->h + ray->h) / 2) - mob->data.h);
+	if (!mob->watching || (mob->watching && mob->data.y == -1))
+		mob->data.y = ((scr->h + ray->h) / 2) - mob->data.h;
+	set_rect_crd(&drect, i, mob->data.y);
 	set_rect_dim(&drect, 1, mob->data.h);
 	if (mob == ray->h_mob)
 	{
