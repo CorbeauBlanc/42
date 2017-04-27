@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 22:23:55 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/20 23:41:55 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ static void	cast_ray(t_ray *ray, t_player *player, double correction, int i)
 
 void		scan_environment(t_player *player)
 {
-	int			i;
-	double		angle;
-	t_ray		ray;
+	int				i;
+	double			angle;
+	t_ray			ray;
 
 	i = -1;
 	ray.h_i.w = player->cam->f;

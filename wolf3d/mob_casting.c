@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 17:02:58 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/19 16:15:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/20 23:42:46 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	check_h_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 		wall->mob->data.i.x = its->x;
 		if (fabs(ray->a) != M_PI_2 && fabs(ray->a) != (M_PI + M_PI_2))
 			wall->mob->data.i.x += (its->y - wall->mob->data.i.y) / tan(ray->a);
-		if (wall->mob->data.i.x >= wall->mob->htb.x &&
-			wall->mob->data.i.x <= wall->mob->htb.xmax)
+		if ((wall->mob->data.i.x >= wall->mob->htb.x &&
+			wall->mob->data.i.x <= wall->mob->htb.xmax))
 		{
 			SDL_LockMutex(wall->mob->animation.mutex);
 			wall->mob->data.next = ray->h_mob;
@@ -37,8 +37,8 @@ void	check_h_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 		wall->mob->data.i.x = its->x;
 		if (fabs(ray->a) != M_PI_2 && fabs(ray->a) != (M_PI + M_PI_2))
 			wall->mob->data.i.x -= (wall->mob->data.i.y - its->y) / tan(ray->a);
-		if (wall->mob->data.i.x >= wall->mob->htb.x &&
-			wall->mob->data.i.x <= wall->mob->htb.xmax)
+		if ((wall->mob->data.i.x >= wall->mob->htb.x &&
+			wall->mob->data.i.x <= wall->mob->htb.xmax))
 		{
 			SDL_LockMutex(wall->mob->animation.mutex);
 			wall->mob->data.next = ray->h_mob;
@@ -57,8 +57,8 @@ void	check_v_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 		wall->mob->data.i.y = its->y;
 		if (ray->a && fabs(ray->a) != M_PI)
 			wall->mob->data.i.y -= (wall->mob->data.i.x - its->x) * tan(ray->a);
-		if (wall->mob->data.i.y >= wall->mob->htb.y &&
-			wall->mob->data.i.y <= (wall->mob->htb.ymax))
+		if ((wall->mob->data.i.y >= wall->mob->htb.y &&
+			wall->mob->data.i.y <= wall->mob->htb.ymax))
 		{
 			SDL_LockMutex(wall->mob->animation.mutex);
 			wall->mob->data.next = ray->v_mob;
@@ -73,8 +73,8 @@ void	check_v_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 		wall->mob->data.i.y = its->y;
 		if (ray->a && fabs(ray->a) != M_PI)
 			wall->mob->data.i.y += (its->x - wall->mob->data.i.x) * tan(ray->a);
-		if (wall->mob->data.i.y >= wall->mob->htb.y &&
-			wall->mob->data.i.y <= (wall->mob->htb.ymax))
+		if ((wall->mob->data.i.y >= wall->mob->htb.y &&
+			wall->mob->data.i.y <= wall->mob->htb.ymax))
 		{
 			SDL_LockMutex(wall->mob->animation.mutex);
 			wall->mob->data.next = ray->v_mob;

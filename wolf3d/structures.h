@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 22:15:47 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/20 23:41:40 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct		s_thread
 	SDL_Thread		*ptr;
 	SDL_mutex		*mutex;
 	t_thread_state	state;
+
 }					t_thread;
 
 typedef struct		s_ray_data
