@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/20 23:41:40 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/27 19:56:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ typedef enum		e_mob_type
 					SHOOTER,
 					SLAYER,
 }					t_mob_type;
+
+typedef struct		s_equation
+{
+	double			ax;
+	double			b;
+}					t_equation;
 
 typedef struct		s_vector
 {
@@ -103,6 +109,10 @@ typedef struct		s_ray_data
 	t_vector		i;
 	double			h;
 	int				y;
+	t_equation		n_spt_equation;
+	t_equation		s_spt_equation;
+	t_equation		w_spt_equation;
+	t_equation		e_spt_equation;
 	struct s_mob	*next;
 }					t_ray_data;
 
@@ -186,6 +196,7 @@ typedef struct		s_ray
 	double			a;
 	double			h;
 	double			d;
+	t_equation		ray_eq;
 	t_map			*h_wall;
 	t_map			*v_wall;
 	t_mob			*h_mob;

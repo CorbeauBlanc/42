@@ -6,11 +6,23 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 17:02:58 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/20 23:42:46 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/27 23:26:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+
+
+void	calc_h_mob_intersect(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
+{
+	t_vector	i;
+	
+
+
+}
+
+
 
 void	check_h_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 {

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/17 16:43:00 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/27 18:37:46 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int		main(int ac, char **av)
 {
 	(void)ac;
 	(void)av;
+
 	t_event		*list_evts;
 	t_map		*map;
 

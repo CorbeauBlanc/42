@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 21:01:43 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/27 21:38:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,13 @@ int				is_looking_up(double angle);
 ** cam_scanning.c
 */
 void			scan_environment(t_player *player);
+
+/*
+** equations.c
+*/
+void			set_equation(t_equation *eq, t_vector *a, t_vector *b);
+void			set_equation2(t_equation *eq, t_vector *v, double angle);
+void			get_int_pt(t_equation *eq1, t_equation *eq2, t_vector *i);
 
 /*
 ** events.c

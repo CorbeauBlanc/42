@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/16 16:04:55 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 15:49:28 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/27 23:26:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static void	set_spt_down(t_mob *mob)
 
 void		set_mob_sprites(t_mob *mob)
 {
+	t_vector	*tmp;
+
 	if (is_looking_left(mob->view))
 		set_spt_left(mob);
 	else if (is_looking_right(mob->view))
@@ -54,4 +56,7 @@ void		set_mob_sprites(t_mob *mob)
 		set_spt_up(mob);
 	else if (is_looking_down(mob->view))
 		set_spt_down(mob);
+	set_vect_crd(&tmp, mob->htb.x, mob->htb.y);
+	set_equation2(&mob->data.n_spt_equation, &tmp, mob->view);
+
 }

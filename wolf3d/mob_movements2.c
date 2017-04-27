@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 22:34:02 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/19 16:32:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/04/27 16:53:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void		mob_fluid_move(t_mob *mob)
 				(plr->pos.x > mob->htb.x ? 0 : M_PI);
 	mob->view = ft_to_deg(angle);
 	mob->watching = 1;
-	set_mob_sprites(mob);
 	if (move_mob_to_player(mob->htb.x + cos(angle) * MSPEED,
 							mob->htb.y - sin(angle) * MSPEED, mob))
 		set_mob_htb(mob, mob->htb.x + cos(angle) * MSPEED,
@@ -72,6 +71,7 @@ void		mob_fluid_move(t_mob *mob)
 	else if (move_mob_to_player(mob->htb.x, mob->htb.y - sin(angle) * MSPEED,
 								mob))
 		set_mob_htb(mob, mob->htb.x, mob->htb.y - sin(angle) * MSPEED);
+	set_mob_sprites(mob);
 }
 
 void		mob_static_move(t_mob *mob)
