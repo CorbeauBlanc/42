@@ -6,33 +6,18 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 17:02:58 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/27 23:26:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/02 18:09:34 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-
-
-void	calc_h_mob_intersect(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
-{
-	t_vector	i;
-	
-
-
-}
-
-
 
 void	check_h_mob(t_ray *ray, t_map *wall, t_vector *its, t_player *player)
 {
 	if (wall && wall->mob && is_north(ray->a) && its->y >= (wall->mob->htb.ymax)
 		&& ray->h_mob != wall->mob)
 	{
-		wall->mob->data.i.y = wall->mob->htb.ymax;
-		wall->mob->data.i.x = its->x;
-		if (fabs(ray->a) != M_PI_2 && fabs(ray->a) != (M_PI + M_PI_2))
-			wall->mob->data.i.x += (its->y - wall->mob->data.i.y) / tan(ray->a);
+		get_int_pt(&wall->mob->data.s_spt_equation, &ray->ray_eq, &wall->mob->data.i);
 		if ((wall->mob->data.i.x >= wall->mob->htb.x &&
 			wall->mob->data.i.x <= wall->mob->htb.xmax))
 		{

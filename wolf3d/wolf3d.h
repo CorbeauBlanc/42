@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/27 21:38:16 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/04 22:31:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,11 @@ Uint8			get_filter_value(t_map_data *data, double dist);
 void			refresh_win();
 void			SDL_DestroyCore();
 t_SDL_Core		*SDL_GetCore();
+
+/*
+** mob_hitbox.c
+*/
+void			init_mob_htb(t_mob *mob);
 
 /*
 ** key_functions_*.c
@@ -202,9 +207,10 @@ void			set_vect_crd(t_vector *vect, double x, double y);
 t_ray			*set_wall(t_ray *ray, t_map **ray_wall, t_map *wall);
 
 /*
-** transformations.c
+** vectors.c
 */
-void			translation();
-void			rotation();
+t_vector		*create_vector(double x, double y);
+void			rotate_vector(t_vector *dst, t_vector *vect, t_vector *ctr, int a);
+
 
 #endif

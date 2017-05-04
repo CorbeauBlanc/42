@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 20:06:31 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/20 23:41:15 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/04 20:10:49 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,34 +41,6 @@ void	rotate_mob(t_mob *m)
 	else if (is_empty(m->htb.xminymin->left) && !m->htb.xminymin->left->mob)
 		m->view = 180;
 	set_mob_sprites(m);
-}
-
-void	set_all_mob_tiles(t_mob *mob, t_map *tile)
-{
-	if (tile)
-	{
-		if (mob->htb.xminymin)
-			mob->htb.xminymin->mob = NULL;
-		if (mob->htb.xminymax)
-			mob->htb.xminymax->mob = NULL;
-		if (mob->htb.xmaxymin)
-			mob->htb.xmaxymin->mob = NULL;
-		if (mob->htb.xmaxymax)
-			mob->htb.xmaxymax->mob = NULL;
-		mob->htb.xminymin = tile;
-		mob->htb.xminymax = tile;
-		mob->htb.xmaxymin = tile;
-		mob->htb.xmaxymax = tile;
-		mob->htb.xminymin->mob = mob;
-	}
-}
-
-void	set_mob_htb(t_mob *mob, double x, double y)
-{
-	mob->htb.x = x;
-	mob->htb.y = y;
-	mob->htb.xmax = mob->htb.x + mob->spt_north->m_width;
-	mob->htb.ymax = mob->htb.y + mob->spt_west->m_width;
 }
 
 int		mob_movement_thread(void *arg)

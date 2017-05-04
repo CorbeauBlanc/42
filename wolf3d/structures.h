@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/27 19:56:16 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/04 22:38:45 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,14 +126,19 @@ typedef struct		s_npc_spts
 
 typedef struct		s_hitbox
 {
-	double			x;
-	double			y;
-	double			xmax;
-	double			ymax;
-	struct s_map	*xminymin;
-	struct s_map	*xminymax;
-	struct s_map	*xmaxymin;
-	struct s_map	*xmaxymax;
+	t_vector		orig_ul;
+	t_vector		orig_ur;
+	t_vector		orig_dl;
+	t_vector		orig_dr;
+	t_vector		center;
+	t_vector		*upleft;
+	t_vector		*upright;
+	t_vector		*downleft;
+	t_vector		*downright;
+	struct s_map	*ul_tile;
+	struct s_map	*ur_tile;
+	struct s_map	*dl_tile;
+	struct s_map	*dr_tile;
 }					t_hitbox;
 
 typedef struct		s_mob

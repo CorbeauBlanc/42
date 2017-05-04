@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 14:41:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 22:16:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/04 22:05:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ t_mob	*create_mob(t_npc_spts *spts, int h, int view)
 	mob->view = view;
 	mob->visible = 0;
 	mob->watching = 0;
-	mob->htb.xminymin = NULL;
-	mob->htb.xminymax = NULL;
-	mob->htb.xmaxymin = NULL;
-	mob->htb.xmaxymax = NULL;
+
 	set_mob_sprites(mob);
 	mob->data.next = NULL;
 	mob->data.h = -1;
@@ -53,6 +50,7 @@ void	delete_mob(t_mob *mob)
 	delete_sprite(mob->spt_west);
 	delete_sprite(mob->spt_east);
 	set_htb_tiles(&mob->htb, NULL);
+	
 	free(mob);
 }
 
@@ -60,12 +58,12 @@ void	insert_mob(t_map *cell, char *nbs)
 {
 	t_npc_spts	spts;
 
-	spts.spt_front = create_sprite("textures/floor2.bmp", 64, WALL_SIZE / 2, 1000);
-	spts.spt_back = create_sprite("textures/floor2.bmp", 64, WALL_SIZE / 2, 1000);
-	spts.spt_left = create_sprite("textures/test_mob.bmp", 64, WALL_SIZE / 2, 1000);
-	spts.spt_right = create_sprite("textures/test_mob.bmp", 64, WALL_SIZE / 2, 1000);
 	if (*nbs == 'M' || *nbs == 'm')
 	{
+		spts.spt_front = create_sprite("textures/floor2.bmp", 64, WALL_SIZE / 2, 1000);
+		spts.spt_back = create_sprite("textures/floor2.bmp", 64, WALL_SIZE / 2, 1000);
+		spts.spt_left = create_sprite("textures/test_mob.bmp", 64, WALL_SIZE / 2, 1000);
+		spts.spt_right = create_sprite("textures/test_mob.bmp", 64, WALL_SIZE / 2, 1000);
 		set_all_mob_tiles(create_mob(&spts, WALL_SIZE / 2, 180), cell);
 		set_mob_htb(cell->mob,
 			cell->min.x + (WALL_SIZE - cell->mob->spt_west->m_width) / 2,

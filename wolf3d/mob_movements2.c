@@ -6,20 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 22:34:02 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/27 16:53:23 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/04 20:11:13 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 #include <math.h>
-
-void		set_htb_tiles(t_hitbox *htb, t_mob *mob)
-{
-	htb->xminymin->mob = mob;
-	htb->xmaxymin->mob = mob;
-	htb->xminymax->mob = mob;
-	htb->xmaxymax->mob = mob;
-}
 
 static int	move_mob_to_player(double x, double y, t_mob *mob)
 {
