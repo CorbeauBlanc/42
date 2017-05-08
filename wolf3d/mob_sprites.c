@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/16 16:04:55 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/02 17:55:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/07 19:28:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ static void	set_spt_down(t_mob *mob)
 
 void		set_mob_sprites(t_mob *mob)
 {
-	t_vector	tmp;
-
 	if (is_looking_left(mob->view))
 		set_spt_left(mob);
 	else if (is_looking_right(mob->view))
@@ -56,12 +54,12 @@ void		set_mob_sprites(t_mob *mob)
 		set_spt_up(mob);
 	else if (is_looking_down(mob->view))
 		set_spt_down(mob);
-	set_vect_crd(&tmp, mob->htb.x, mob->htb.y);
-	set_equation2(&mob->data.n_spt_equation, &tmp, mob->view);
-	set_vect_crd(&tmp, mob->htb.xmax, mob->htb.y);
-	set_equation2(&mob->data.e_spt_equation, &tmp, mob->view - 90);
-	set_vect_crd(&tmp, mob->htb.xmax, mob->htb.ymax);
-	set_equation2(&mob->data.n_spt_equation, &tmp, mob->view);
-	set_vect_crd(&tmp, mob->htb.x, mob->htb.ymax);
-	set_equation2(&mob->data.e_spt_equation, &tmp, mob->view - 90);
+	set_equation(&mob->data.n_spt_equation, mob->htb.upleft,
+											mob->htb.upright);
+	set_equation(&mob->data.s_spt_equation, mob->htb.downleft,
+											mob->htb.downright);
+	set_equation(&mob->data.w_spt_equation, mob->htb.upleft,
+											mob->htb.downleft);
+	set_equation(&mob->data.e_spt_equation, mob->htb.upright,
+											mob->htb.downright);
 }

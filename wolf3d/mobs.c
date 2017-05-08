@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 14:41:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/04 22:05:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/07 19:27:47 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	delete_mob(t_mob *mob)
 	delete_sprite(mob->spt_west);
 	delete_sprite(mob->spt_east);
 	set_htb_tiles(&mob->htb, NULL);
-	
+
 	free(mob);
 }
 

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/04 22:38:45 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/08 17:53:54 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,13 +124,20 @@ typedef struct		s_npc_spts
 	t_sprite		*spt_right;
 }					t_npc_spts;
 
+typedef struct		s_simple_htb
+{
+		t_vector	ul;
+		t_vector	ur;
+		t_vector	dl;
+		t_vector	dr;
+}					t_simple_htb;
+
 typedef struct		s_hitbox
 {
-	t_vector		orig_ul;
-	t_vector		orig_ur;
-	t_vector		orig_dl;
-	t_vector		orig_dr;
+	t_simple_htb	orig;
+	t_simple_htb	rot;
 	t_vector		center;
+
 	t_vector		*upleft;
 	t_vector		*upright;
 	t_vector		*downleft;
