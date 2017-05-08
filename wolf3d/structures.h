@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 22:15:47 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/08 18:25:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ typedef struct		s_map_data
 	int				brightness;
 	double			bg_fact;
 	t_texture		*bgd;
+	SDL_Color		floor;
 }					t_map_data;
 
 typedef struct		s_map
