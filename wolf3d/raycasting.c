@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/16 19:36:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/09 16:18:33 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,14 @@ t_ray	*vert_intersec(t_ray *ray, t_player *player)
 	return (set_wall(ray, &ray->v_wall, NULL));
 }
 
-int		draw_tile(SDL_Rect *scr, int i, t_ray *ray)
+int		draw_tile(t_player *plr, int i, t_ray *ray)
 {
 	int			xt;
 	SDL_Rect	srect;
 	SDL_Rect	drect;
 	t_map		*wall;
 
-	set_rect_crd(&drect, i, (scr->h - ray->h) / 2 - 1);
+	set_rect_crd(&drect, i, plr->cam->half_scr - ray->h / 2 - 1);
 	set_rect_dim(&drect, 1, ray->h);
 	if (ray->h_i.w < ray->v_i.w && (wall = ray->h_wall))
 		xt = (int)(ray->h_i.x * wall->texture->mapping_fact) % wall->texture->w;

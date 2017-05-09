@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 21:01:43 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/09 18:43:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define HEIGHT 		700
 # define WIDTH 			700
 # define NB_TEXTURES	2
+# define BOBBING		3
 # define SPEED			0.7
 # define MSPEED			0.08
 # define WALL_SIZE		16
@@ -49,8 +50,8 @@ int				is_west(double angle);
 */
 t_camera		*create_camera(int fov, double angle, int fps, double sensibility);
 void			delete_camera(t_camera *cam);
-void			refresh_cam(t_camera *cam);
 void			set_camera_fov(t_camera	*cam, int fov);
+void			set_camera_mvt(t_camera *cam);
 
 /*
 ** cam_angles.c
@@ -85,10 +86,10 @@ t_SDL_Core		*SDL_GetCore();
 /*
 ** key_functions_*.c
 */
-int				move_down(t_player *player);
-int				move_left(t_player *player);
-int				move_right(t_player *player);
-int				move_up(t_player *player);
+int				move_down(t_player *player, int mvt_nb);
+int				move_left(t_player *player, int mvt_nb);
+int				move_right(t_player *player, int mvt_nb);
+int				move_up(t_player *player, int mvt_nb);
 int				rotate_left(t_player *player);
 int				rotate_right(t_player *player);
 

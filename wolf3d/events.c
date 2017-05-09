@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:21:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 19:33:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/09 18:43:40 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	new_event(t_event **head, SDL_Scancode key, int (*fct)())
+void		new_event(t_event **head, SDL_Scancode key, int (*fct)())
 {
 	t_event	*event;
 
@@ -25,7 +25,7 @@ void	new_event(t_event **head, SDL_Scancode key, int (*fct)())
 	}
 }
 
-void	delete_event(t_event **head)
+void		delete_event(t_event **head)
 {
 	t_event	*tmp;
 
@@ -34,13 +34,18 @@ void	delete_event(t_event **head)
 	free(tmp);
 }
 
-void	clear_events(t_event **head)
+void		clear_events(t_event **head)
 {
 	while (*head)
 		delete_event(head);
 }
 
-void	wait_events(t_event *list_evts, t_player *player)
+static int	event_management(t_event *evt, t_player *player, int flag)
+{
+	return (evt->fct(player, flag) ? flag : 0);
+}
+
+void		wait_events(t_event *list_evts, t_player *player)
 {
 	t_event		*tmp;
 	int			flag;
@@ -48,7 +53,7 @@ void	wait_events(t_event *list_evts, t_player *player)
 	SDL_Event	evt;
 
 	flag = 1;
-	while (flag)
+	while (flag && ++flag)
 	{
 		tmp = list_evts;
 		SDL_PollEvent(&evt);
@@ -60,7 +65,7 @@ void	wait_events(t_event *list_evts, t_player *player)
 			while (tmp && flag)
 			{
 				if (kbd_state[tmp->key])
-					flag = tmp->fct(player);
+					flag = event_management(tmp, player, flag);
 				tmp = tmp->next;
 			}
 			SDL_UnlockMutex(get_mutexes()->environment);

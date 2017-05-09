@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 21:45:29 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/09 12:15:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,12 @@ void			set_map_brightness(t_map *map, int percent)
 {
 	double	max;
 
-	percent = 100 - percent;
+	if (percent < 0)
+		percent = 0;
+	else if (percent > 100)
+		percent = 100;
+	else
+		percent = 100 - percent;
 	max = 255 / WALL_SIZE;
 	map->data->brightness = max * percent / 100.0;
 }
@@ -93,6 +98,10 @@ t_map			*read_file(int fd)
 	if (!(data = malloc(sizeof(t_map_data))))
 		exit_error(NULL);
 	data->bgd = create_texture("background.bmp");
+	data->floor.r = 0;
+	data->floor.g = 255;
+	data->floor.b = 0;
+	data->floor.a = 255;
 	SDL_LockMutex(get_mutexes()->mob_mvt);
 	while (read(fd, nbs, BUFF_SIZE) > 0)
 	{

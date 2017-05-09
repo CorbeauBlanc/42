@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/08 18:25:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/09 18:44:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ typedef struct		s_camera
 	double			half_scr;
 	double			f;
 	double			sensi;
+	double			min_cam_mvt;
+	double			max_cam_mvt;
 	SDL_Rect		screen;
 	SDL_Thread		*refresh_cam;
 	t_thread_state	state;
@@ -172,6 +174,7 @@ typedef struct		s_player
 	t_camera		*cam;
 	t_vector		pos;
 	t_map			*tile;
+	int				last_mvt_nb;
 }					t_player;
 
 typedef struct		s_event

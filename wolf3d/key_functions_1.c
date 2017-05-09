@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/16 19:49:00 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/09 18:46:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,16 @@ static int	move_player_to_crd(t_player *player, t_vector *crd)
 	return (0);
 }
 
-int			move_left(t_player *player)
+int			move_left(t_player *player, int mvt_nb)
 {
 	double		angle;
 	t_vector	move;
 
+	if (player->last_mvt_nb != mvt_nb)
+	{
+		set_camera_mvt(player->cam);
+		player->last_mvt_nb = mvt_nb;
+	}
 	angle = ft_to_rad(player->cam->angle + 90);
 	set_vect_crd(&move, player->pos.x + cos(angle) * SPEED,
 				player->pos.y - sin(angle) * SPEED);
@@ -45,11 +50,16 @@ int			move_left(t_player *player)
 	return (1);
 }
 
-int			move_right(t_player *player)
+int			move_right(t_player *player, int mvt_nb)
 {
 	double		angle;
 	t_vector	move;
 
+	if (player->last_mvt_nb != mvt_nb)
+	{
+		set_camera_mvt(player->cam);
+		player->last_mvt_nb = mvt_nb;
+	}
 	angle = ft_to_rad(player->cam->angle - 90);
 	set_vect_crd(&move, player->pos.x + cos(angle) * SPEED,
 				player->pos.y - sin(angle) * SPEED);
@@ -63,11 +73,16 @@ int			move_right(t_player *player)
 	return (1);
 }
 
-int			move_up(t_player *player)
+int			move_up(t_player *player, int mvt_nb)
 {
 	double		angle;
 	t_vector	move;
 
+	if (player->last_mvt_nb != mvt_nb)
+	{
+		set_camera_mvt(player->cam);
+		player->last_mvt_nb = mvt_nb;
+	}
 	angle = ft_to_rad(player->cam->angle);
 	set_vect_crd(&move, player->pos.x + cos(angle) * SPEED,
 				player->pos.y - sin(angle) * SPEED);
@@ -81,11 +96,16 @@ int			move_up(t_player *player)
 	return (1);
 }
 
-int			move_down(t_player *player)
+int			move_down(t_player *player, int mvt_nb)
 {
 	double		angle;
 	t_vector	move;
 
+	if (player->last_mvt_nb != mvt_nb)
+	{
+		set_camera_mvt(player->cam);
+		player->last_mvt_nb = mvt_nb;
+	}
 	angle = ft_to_rad(player->cam->angle);
 	set_vect_crd(&move, player->pos.x - cos(angle) * SPEED,
 				player->pos.y + sin(angle) * SPEED);
