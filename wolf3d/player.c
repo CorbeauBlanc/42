@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 17:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/09 18:44:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/12 21:32:34 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void		insert_player(t_map *map, double x, double y)
 		player->pos.y = y;
 		if (!(player->tile = goto_tile(&player->pos, map)))
 			exit_error("error : player out of map");
-		map->data->bg_fact = player->cam->screen.w / player->cam->fov;
+		if (map->data && map->data->bgd)
+			map->data->bg_fact = player->cam->screen.w / player->cam->fov;
 		player->cam->state = PAUSE;
 		player->cam->refresh_cam = SDL_CreateThread(&cam_thread, "Cam thread",
 													NULL);

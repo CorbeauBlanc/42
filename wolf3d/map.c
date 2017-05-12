@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/10 19:30:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/12 22:54:53 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void		add_new_cells(t_map **last, t_vector *crd, char *nbs, t_map_data *d
 	}
 }
 
-void			set_map_brightness(t_map *map, int percent)
+void			set_map_brightness(t_map_data *data, int percent)
 {
 	double	max;
 
@@ -60,7 +60,7 @@ void			set_map_brightness(t_map *map, int percent)
 	else
 		percent = 100 - percent;
 	max = 255 / WALL_SIZE;
-	map->data->brightness = max * percent / 100.0;
+	data->brightness = max * percent / 100.0;
 }
 
 void			delete_map(t_map *map)
@@ -68,7 +68,8 @@ void			delete_map(t_map *map)
 	t_map	*r_head;
 	t_map	*tmp;
 
-	delete_texture(map->data->bgd);
+	if (map->data->bgd)
+		delete_texture(map->data->bgd);
 	free(map->data);
 	while (map)
 	{
@@ -88,12 +89,14 @@ t_map			*read_file(int fd)
 	t_vector	crds;
 	char		*nbs;
 	t_map		*last;
+	t_map_data	*data;
 
 	if (fd < 0)
 		return (NULL);
 	nbs = ft_strnew(BUFF_SIZE);
 	last = NULL;
 	set_vect_crd(&crds, 0, 0);
+	data = get_map_data(fd);
 	SDL_LockMutex(get_mutexes()->mob_mvt);
 	while (read(fd, nbs, BUFF_SIZE) > 0)
 	{

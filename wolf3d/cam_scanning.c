@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/09 17:02:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/12 22:54:11 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ static void	cast_ray(t_ray *ray, t_player *player, double correction, int i)
 		ray->d = ray->h_i.w;
 		ray->h = (WALL_SIZE * player->cam->f) / (ray->h_i.w * cos(correction));
 		ray->filter = get_filter_value(player->tile->data, ray->h_i.w);
-		cast_background(ray, i, player);
+		if (player->tile->data->bgd)
+			cast_background(ray, i, player);
 		draw_tile(player, i, ray);
-		if (player->tile->data->floor.a != 255)
+		if (player->tile->data->reflection)
 			cast_reflection(ray, i, player);
 	}
 	else if (ray->v_i.w < player->cam->f)
@@ -65,9 +66,10 @@ static void	cast_ray(t_ray *ray, t_player *player, double correction, int i)
 		ray->d = ray->v_i.w;
 		ray->h = (WALL_SIZE * player->cam->f) / (ray->v_i.w * cos(correction));
 		ray->filter = get_filter_value(player->tile->data, ray->v_i.w);
-		cast_background(ray, i, player);
+		if (player->tile->data->bgd)
+			cast_background(ray, i, player);
 		draw_tile(player, i, ray);
-		if (player->tile->data->floor.a != 255)
+		if (player->tile->data->reflection)
 			cast_reflection(ray, i, player);
 	}
 	else
@@ -87,7 +89,7 @@ void		scan_environment(t_player *player)
 	ray.h_mob = NULL;
 	ray.v_mob = NULL;
 	half_scr = SDL_GetCore()->height / 2;
-	if (player->tile->data->floor.a > 0)
+	if (player->tile->data->floor.a)
 		cast_floor(player);
 	while (++i <= player->cam->screen.w)
 	{

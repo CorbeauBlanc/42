@@ -1,3 +1,7 @@
+brightness: 85
+background: background.bmp
+reflections: true
+floor: none
 1111111111111
 1           1
 1           1

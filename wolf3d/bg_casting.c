@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 22:16:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/09 17:06:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/12 22:34:39 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ void	cast_background(t_ray *ray, int i, t_player *player)
 	SDL_RenderCopy(SDL_GetCore()->renderer, player->tile->data->bgd->text, &srect, &drect);
 }
 
-int		cast_reflection(t_ray *ray, int i, t_player *player)
+int		cast_reflection(t_ray *ray, int i, t_player *plr)
 {
 	int			xt;
 	SDL_Rect	srect;
 	SDL_Rect	drect;
 	t_map		*wall;
 
-	set_rect_crd(&drect, i, (player->cam->screen.h - ray->h) / 2 + ray->h - 2);
+	set_rect_crd(&drect, i, plr->cam->half_scr - ray->h / 2 + ray->h - 2);
 	set_rect_dim(&drect, 1, ray->h);
 	if (ray->h_i.w < ray->v_i.w && (wall = ray->h_wall))
 		xt = (int)(ray->h_i.x * wall->texture->mapping_fact) % wall->texture->w;
@@ -49,7 +49,7 @@ int		cast_reflection(t_ray *ray, int i, t_player *player)
 	return (0);
 }
 
-static void	draw_bg_strip(int i, SDL_Texture *t)
+static void	draw_floor_strip(int i, SDL_Texture *t)
 {
 	SDL_Rect	src;
 	SDL_Rect	dst;
@@ -80,7 +80,7 @@ void	cast_floor(t_player *player)
 		filter = get_filter_value(get_player()->tile->data,
 			((WALL_SIZE / 2) * player->cam->f) / (i - player->cam->half_scr));
 		SDL_SetTextureColorMod(txt, filter, filter, filter);
-		draw_bg_strip(i - 1, txt);
+		draw_floor_strip(i - 1, txt);
 	}
 	SDL_FreeSurface(tmp);
 	SDL_DestroyTexture(txt);
