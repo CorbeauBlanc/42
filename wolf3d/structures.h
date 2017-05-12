@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/09 18:44:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/10 12:29:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ typedef struct		s_mob
 typedef struct		s_map_data
 {
 	int				brightness;
+	int				reflection;
 	double			bg_fact;
 	t_texture		*bgd;
 	SDL_Color		floor;

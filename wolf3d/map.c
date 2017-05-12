@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/09 12:15:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/10 19:30:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,20 +88,12 @@ t_map			*read_file(int fd)
 	t_vector	crds;
 	char		*nbs;
 	t_map		*last;
-	t_map_data	*data;
 
 	if (fd < 0)
 		return (NULL);
 	nbs = ft_strnew(BUFF_SIZE);
 	last = NULL;
 	set_vect_crd(&crds, 0, 0);
-	if (!(data = malloc(sizeof(t_map_data))))
-		exit_error(NULL);
-	data->bgd = create_texture("background.bmp");
-	data->floor.r = 0;
-	data->floor.g = 255;
-	data->floor.b = 0;
-	data->floor.a = 255;
 	SDL_LockMutex(get_mutexes()->mob_mvt);
 	while (read(fd, nbs, BUFF_SIZE) > 0)
 	{

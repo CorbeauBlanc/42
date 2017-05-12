@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/09 18:43:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/10 11:24:59 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 
 # include <stdlib.h>
 # include <stdio.h>
+# include <unistd.h>
 # include "libft.h"
 # include "structures.h"
 
