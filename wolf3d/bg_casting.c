@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 22:16:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/12 22:34:39 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/14 00:26:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,15 @@ static void	draw_floor_strip(int i, SDL_Texture *t)
 {
 	SDL_Rect	src;
 	SDL_Rect	dst;
+	Uint8		filter;
+	t_player	*plr;
 
+	plr = get_player();
+	filter = get_filter_value(plr->tile->data, ((WALL_SIZE / 2) * plr->cam->f) /
+												fabs((i - plr->cam->half_scr)));
+	SDL_SetTextureColorMod(t, filter, filter, filter);
+	SDL_SetTextureBlendMode(t, SDL_BLENDMODE_BLEND);
+	SDL_SetTextureAlphaMod(t, 100);
 	set_rect_crd(&src, 0, 0);
 	set_rect_dim(&src, SDL_GetCore()->width, 1);
 	set_rect_crd(&dst, 0, i);
@@ -67,21 +75,23 @@ void	cast_floor(t_player *player)
 	SDL_Texture	*txt;
 	SDL_Rect	dim;
 	int			i;
-	Uint8		filter;
 
 	set_rect_crd(&dim, 0, 0);
 	set_rect_dim(&dim, SDL_GetCore()->width, 1);
 	tmp = SDL_CreateRGBSurface(0, SDL_GetCore()->width, 1, 32, 0, 0, 0, 0);
-	SDL_FillRect(tmp, &dim, get_color(0, 255, 0));
+	SDL_FillRect(tmp, &dim, SDL_MapRGBA(tmp->format,
+										player->tile->data->floor.r,
+										player->tile->data->floor.g,
+										player->tile->data->floor.b,
+										player->tile->data->floor.a));
 	txt = SDL_CreateTextureFromSurface(SDL_GetCore()->renderer, tmp);
 	i = player->cam->half_scr;
 	while (++i <= SDL_GetCore()->height)
-	{
-		filter = get_filter_value(get_player()->tile->data,
-			((WALL_SIZE / 2) * player->cam->f) / (i - player->cam->half_scr));
-		SDL_SetTextureColorMod(txt, filter, filter, filter);
 		draw_floor_strip(i - 1, txt);
-	}
+	i = player->cam->half_scr;
+	if (!(player->tile->data->bgd))
+		while (--i)
+			draw_floor_strip(i, txt);
 	SDL_FreeSurface(tmp);
 	SDL_DestroyTexture(txt);
 }

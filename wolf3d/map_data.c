@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 12:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/12 23:04:10 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/13 22:29:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			get_map_brightness(t_map_data *data, int fd, char *buff)
 	char	*tmp;
 
 	if ((tmp = get_data("brightness", buff, fd)))
-		set_map_brightness(data, ft_atoi(tmp));
+		set_map_brightness(data, ft_atoi(tmp) % 256);
 	else
 		set_map_brightness(data, 100);
 	return (tmp != NULL);
@@ -76,25 +76,22 @@ int			get_map_floor(t_map_data *data, int fd, char *buff)
 
 	if (!(tmp = get_data("floor", buff, fd)) || ft_strequ(tmp, "none"))
 	{
-		if (data->bgd)
-			data->floor.a = 0;
-		else
-		{
 			data->floor.r = 0;
 			data->floor.g = 0;
 			data->floor.b = 0;
-			data->floor.a = 255;
-		}
+			data->floor.a = data->bgd ? 0 : 255;
 	}
 	else
 	{
 		data->floor.r = ft_atoi(tmp);
 		tmp = ft_strchr(tmp, ',');
-		data->floor.g = tmp ? ft_atoi(++tmp) : 0;
+		data->floor.g = tmp ? ft_atoi(++tmp) % 256 : 0;
 		tmp = ft_strchr(tmp, ',');
-		data->floor.b = tmp ? ft_atoi(++tmp) : 0;
+		data->floor.b = tmp ? ft_atoi(++tmp) % 256 : 0;
 		tmp = ft_strchr(tmp, ',');
-		data->floor.a = tmp ? ft_atoi(++tmp) : 0;
+		data->floor.a = tmp ? ft_atoi(++tmp) % 256 : 0;
+		if (!data->bgd)
+			data->floor.a = 255;
 	}
 	return (tmp != NULL);
 }
