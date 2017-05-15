@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 12:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/13 22:29:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/16 00:16:46 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ int			get_map_background(t_map_data *data, int fd, char *buff)
 	if (!(tmp = get_data("background", buff, fd)) || ft_strequ(tmp, "none"))
 		data->bgd = NULL;
 	else
+	{
 		data->bgd = create_texture(tmp);
+		if (data->reflection)
+			SDL_SetTextureBlendMode(data->bgd->text, SDL_BLENDMODE_BLEND);
+	}
 	return (tmp != NULL);
 }
 
@@ -63,10 +67,13 @@ int			get_map_reflection(t_map_data *data, int fd, char *buff)
 	char	*tmp;
 
 	if (!(tmp = get_data("reflections", buff, fd)) ||
-		!ft_strequ(tmp, "true"))
+		!(tmp = ft_strstr(tmp, "true")))
 		data->reflection = 0;
 	else
-		data->reflection = 1;
+	{
+		tmp = ft_strchr(tmp, ',');
+		data->reflection = tmp ? (ft_atoi(tmp + 1) % 256) : 255;
+	}
 	return (tmp != NULL);
 }
 
@@ -88,10 +95,7 @@ int			get_map_floor(t_map_data *data, int fd, char *buff)
 		data->floor.g = tmp ? ft_atoi(++tmp) % 256 : 0;
 		tmp = ft_strchr(tmp, ',');
 		data->floor.b = tmp ? ft_atoi(++tmp) % 256 : 0;
-		tmp = ft_strchr(tmp, ',');
-		data->floor.a = tmp ? ft_atoi(++tmp) % 256 : 0;
-		if (!data->bgd)
-			data->floor.a = 255;
+		data->floor.a = 255;
 	}
 	return (tmp != NULL);
 }

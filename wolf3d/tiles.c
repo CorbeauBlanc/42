@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 12:56:36 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/15 15:04:12 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/15 23:47:11 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_map	*new_cell(t_vector *vect, t_tile type, t_map_data *data)
 	cell->max.y = vect->y + WALL_SIZE;
 	cell->texture = load_texture(type);
 	cell->reflect = load_reflection(type);
+	SDL_SetTextureAlphaMod(cell->reflect->text, data->reflection);
+	SDL_SetTextureBlendMode(cell->reflect->text, SDL_BLENDMODE_BLEND);
 	cell->mob = NULL;
 	cell->data = data;
 	cell->type = type;

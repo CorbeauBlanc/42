@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/12 22:54:11 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/15 22:38:09 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,6 @@ void		scan_environment(t_player *player)
 		cast_mobs(&ray, player, angle, i);
 		SDL_UnlockMutex(get_mutexes()->mob_mvt);
 	}
+
 	refresh_win();
 }

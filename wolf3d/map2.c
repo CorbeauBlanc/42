@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/16 19:14:17 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/12 22:27:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/16 00:15:46 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ t_map_data	*get_map_data(int fd)
 		exit_error(NULL);
 	data->bgd = NULL;
 	nb_data = 1;
-	nb_data += get_map_background(data, fd, buff);
 	nb_data += get_map_brightness(data, fd, buff);
 	nb_data += get_map_reflection(data, fd, buff);
+	nb_data += get_map_background(data, fd, buff);
 	nb_data += get_map_floor(data, fd, buff);
 	cur_pos = 0;
 	while (--nb_data)
