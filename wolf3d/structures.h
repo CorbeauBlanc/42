@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/15 23:17:53 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/16 20:56:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ typedef struct		s_map_data
 	double			reflection;
 	double			bg_fact;
 	t_texture		*bgd;
+	SDL_Texture		*tmp_floor;
 	SDL_Color		floor;
 }					t_map_data;
 

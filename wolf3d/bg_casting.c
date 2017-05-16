@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 22:16:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/16 15:27:58 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/16 22:47:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,35 +55,53 @@ int		cast_reflection(t_ray *ray, int i, t_player *plr)
 		return (1);
 	set_rect_crd(&srect, xt, 0);
 	set_rect_dim(&srect, 1, wall->reflect->h);
-	SDL_SetTextureColorMod(wall->reflect->text,
-							(plr->tile->data->floor.r / plr->tile->data->floor.a) * 255,
-							(plr->tile->data->floor.g / plr->tile->data->floor.a) * 255,
-							(plr->tile->data->floor.b / plr->tile->data->floor.a) * 255);
-	SDL_SetTextureColorMod(wall->reflect->text,
-							ray->filter, ray->filter, ray->filter);
+	if (ray->filter > wall->data->reflection)
+		SDL_SetTextureAlphaMod(wall->reflect->text, wall->data->reflection);
+	else
+		SDL_SetTextureAlphaMod(wall->reflect->text, ray->filter);
+	SDL_SetTextureColorMod(wall->reflect->text, ray->filter, ray->filter, ray->filter);
+	SDL_RenderCopy(SDL_GetCore()->renderer, wall->data->tmp_floor, &drect, &drect);
 	SDL_RenderCopy(SDL_GetCore()->renderer, wall->reflect->text, &srect, &drect);
 	return (0);
 }
 
-static void	draw_floor_strip(int i, SDL_Texture *t)
+static void	draw_floor_strip(int i, SDL_Surface *tmp)
 {
-	SDL_Rect	src;
-	SDL_Rect	dst;
+	SDL_Rect	dim;
 	Uint8		filter;
 	t_player	*plr;
 
 	plr = get_player();
+	set_rect_crd(&dim, 0, i);
+	set_rect_dim(&dim, SDL_GetCore()->width, 1);
 	filter = get_filter_value(plr->tile->data, ((WALL_SIZE / 2) * plr->cam->f) /
 												fabs((i - plr->cam->half_scr)));
-	SDL_SetTextureColorMod(t, filter, filter, filter);
-	set_rect_crd(&src, 0, 0);
-	set_rect_dim(&src, SDL_GetCore()->width, 1);
-	set_rect_crd(&dst, 0, i);
-	set_rect_dim(&dst, SDL_GetCore()->width, 1);
-	SDL_RenderCopy(SDL_GetCore()->renderer, t, &src, &dst);
+	SDL_FillRect(tmp, &dim, get_color(plr->tile->data->floor.r * (filter / 255.0),
+									plr->tile->data->floor.g * (filter / 255.0),
+									plr->tile->data->floor.b * (filter / 255.0)));
 }
 
-void	cast_floor(t_player *player)
+void	cast_floor(t_player *plr)
+{
+	SDL_Surface	*tmp;
+	int			i;
+
+	tmp = SDL_CreateRGBSurface(0, SDL_GetCore()->width, SDL_GetCore()->height,
+								32, 0, 0, 0, 0);
+	i = plr->cam->half_scr;
+	while (++i <= SDL_GetCore()->height)
+		draw_floor_strip(i - 1, tmp);
+	i = plr->cam->half_scr;
+	if (!(plr->tile->data->bgd))
+		while (--i)
+			draw_floor_strip(i, tmp);
+	SDL_DestroyTexture(plr->tile->data->tmp_floor);
+	plr->tile->data->tmp_floor = SDL_CreateTextureFromSurface(SDL_GetCore()->renderer, tmp);
+	SDL_RenderCopy(SDL_GetCore()->renderer, plr->tile->data->tmp_floor, NULL, NULL);
+	SDL_FreeSurface(tmp);
+}
+
+/*void	cast_floor(t_player *player)
 {
 	SDL_Surface	*tmp;
 	SDL_Texture	*txt;
@@ -106,4 +124,4 @@ void	cast_floor(t_player *player)
 			draw_floor_strip(i, txt);
 	SDL_FreeSurface(tmp);
 	SDL_DestroyTexture(txt);
-}
+}*/

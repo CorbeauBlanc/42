@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 12:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/16 14:54:02 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/16 20:57:12 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,14 @@ int			get_map_reflection(t_map_data *data, int fd, char *buff)
 
 int			get_map_floor(t_map_data *data, int fd, char *buff)
 {
-	char	*tmp;
+	char		*tmp;
 
 	if (!(tmp = get_data("floor", buff, fd)) || ft_strequ(tmp, "none"))
 	{
-			data->floor.r = 0;
-			data->floor.g = 0;
-			data->floor.b = 0;
-			data->floor.a = data->bgd ? 0 : 255;
+		data->floor.r = 0;
+		data->floor.g = 0;
+		data->floor.b = 0;
+		data->floor.a = data->bgd ? 0 : 255;
 	}
 	else
 	{
