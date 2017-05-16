@@ -1,5 +1,5 @@
 brightness: 85
-background: background.bmp
+background: none
 reflections: true, 100
 floor: 0, 255, 0
 1111111111111

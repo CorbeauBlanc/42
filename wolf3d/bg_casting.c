@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 22:16:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/16 00:54:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/16 15:27:58 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,25 @@
 
 void	cast_background(t_ray *ray, int i, t_player *plr)
 {
-	SDL_Rect srect;
-	SDL_Rect drect;
+	SDL_Rect	srect;
+	SDL_Rect	drect;
+	t_map_data	*data;
 
-	set_rect_crd(&srect, (int)(plr->tile->data->bg_fact * ft_to_deg(ray->a) + plr->tile->data->bgd->w) % plr->tile->data->bgd->w, 0);
+	data = plr->tile->data;
+	set_rect_crd(&srect, (int)(data->bg_fact * ft_to_deg(ray->a) + data->bgd->w) % data->bgd->w, 0);
 	set_rect_dim(&srect, 1, plr->cam->half_scr);
 	set_rect_crd(&drect, i, 0);
 	set_rect_dim(&drect, 1, plr->cam->half_scr);
-	SDL_RenderCopy(SDL_GetCore()->renderer, plr->tile->data->bgd->text, &srect, &drect);
-	if (plr->tile->data->floor.a)
+	SDL_RenderCopy(SDL_GetCore()->renderer, data->bgd->text, &srect, &drect);
+	if (data->floor.a)
 	{
-		if (plr->tile->data->reflection)
+		if (data->reflection)
 		{
-
-			//Faire un ColorMod au lieu d'un AlphaMod
-
-			srect.y = plr->cam->half_scr - ray->h / 2 + 2 * ray->h - 2;
+			srect.y = plr->cam->half_scr;
 			drect.y = srect.y;
-			srect.h = plr->cam->half_scr;
-			drect.h = srect.h;
-			SDL_SetTextureAlphaMod(plr->tile->data->bgd->text, plr->tile->data->reflection);
-			SDL_RenderCopy(SDL_GetCore()->renderer, plr->tile->data->bgd->text, &srect, &drect);
-			SDL_SetTextureAlphaMod(plr->tile->data->bgd->text, 255);
+			SDL_SetTextureAlphaMod(data->bgd->text, data->reflection);
+			SDL_RenderCopy(SDL_GetCore()->renderer, data->bgd->text, &srect, &drect);
+			SDL_SetTextureAlphaMod(data->bgd->text, 255);
 		}
 	}
 }
@@ -59,9 +56,11 @@ int		cast_reflection(t_ray *ray, int i, t_player *plr)
 	set_rect_crd(&srect, xt, 0);
 	set_rect_dim(&srect, 1, wall->reflect->h);
 	SDL_SetTextureColorMod(wall->reflect->text,
+							(plr->tile->data->floor.r / plr->tile->data->floor.a) * 255,
+							(plr->tile->data->floor.g / plr->tile->data->floor.a) * 255,
+							(plr->tile->data->floor.b / plr->tile->data->floor.a) * 255);
+	SDL_SetTextureColorMod(wall->reflect->text,
 							ray->filter, ray->filter, ray->filter);
-	SDL_SetTextureAlphaMod(wall->reflect->text, wall->data->reflection);
-	SDL_SetTextureBlendMode(wall->reflect->text, SDL_BLENDMODE_BLEND);
 	SDL_RenderCopy(SDL_GetCore()->renderer, wall->reflect->text, &srect, &drect);
 	return (0);
 }
