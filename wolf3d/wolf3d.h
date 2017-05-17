@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/16 20:31:57 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/18 00:09:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void			exit_main();
 */
 void			check_player(t_map *map);
 void			delete_map(t_map *map);
+char			*get_data(const char *str, char *buff, int fd);
 t_map_data		*get_map_data(int fd);
 t_map			*read_file(int fd);
 void			set_map_brightness(t_map_data *data, int percent);
@@ -112,10 +113,11 @@ void			set_map_brightness(t_map_data *data, int percent);
 /*
 ** map_data.c
 */
-int				get_map_brightness(t_map_data *data, int fd, char *buff);
 int				get_map_background(t_map_data *data, int fd, char *buff);
-int				get_map_reflection(t_map_data *data, int fd, char *buff);
+int				get_map_brightness(t_map_data *data, int fd, char *buff);
+int				get_map_ceiling(t_map_data *data, int fd, char *buff);
 int				get_map_floor(t_map_data *data, int fd, char *buff);
+int				get_map_reflection(t_map_data *data, int fd, char *buff);
 
 /*
 ** mob.c

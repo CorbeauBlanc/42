@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/16 19:14:17 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/16 20:57:28 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/18 00:09:54 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,33 @@ t_map_data	*get_map_data(int fd)
 	nb_data += get_map_reflection(data, fd, buff);
 	nb_data += get_map_background(data, fd, buff);
 	nb_data += get_map_floor(data, fd, buff);
+	nb_data += get_map_ceiling(data, fd, buff);
 	cur_pos = 0;
 	while (--nb_data)
 		cur_pos += ft_strclen(&buff[cur_pos], '\n') + 1;
 	lseek(fd, cur_pos, SEEK_SET);
 	return (data);
+}
+
+char	*get_data(const char *str, char *buff, int fd)
+{
+	char	*n;
+	int		nb;
+
+	if ((nb = read(fd, buff, 1024)) > 0)
+	{
+		lseek(fd, 0, SEEK_SET);
+		buff[1023] = '\0';
+		if (!(buff = ft_strstr(buff, str)))
+			return (NULL);
+		buff += ft_strlen(str) + 1;
+		while (*buff && (*buff == ':' || ft_isspace(*buff)))
+			++buff;
+		if ((n = ft_strchr(buff, '\n')))
+		 	*n = '\0';
+		return (buff);
+	}
+	else if (nb < 0)
+		exit_error(NULL);
+	return (NULL);
 }

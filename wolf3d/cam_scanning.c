@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/15 22:38:09 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/17 23:56:59 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void		scan_environment(t_player *player)
 	ray.v_mob = NULL;
 	half_scr = SDL_GetCore()->height / 2;
 	if (player->tile->data->floor.a)
-		cast_floor(player);
+		cast_floor_ceiling(player);
 	while (++i <= player->cam->screen.w)
 	{
 		angle = atan((half_scr - i) / player->cam->f);
