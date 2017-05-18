@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 12:56:36 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/15 23:47:11 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/18 20:06:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 t_map	*new_cell(t_vector *vect, t_tile type, t_map_data *data)
 {
-	t_map	*cell;
+	t_map			*cell;
 
 	if (!(cell = malloc(sizeof(t_map))))
 		return (NULL);
-	cell->min.x = vect->x;
-	cell->min.y = vect->y;
-	cell->max.x = vect->x + WALL_SIZE;
-	cell->max.y = vect->y + WALL_SIZE;
-	cell->texture = load_texture(type);
-	cell->reflect = load_reflection(type);
-	SDL_SetTextureAlphaMod(cell->reflect->text, data->reflection);
-	SDL_SetTextureBlendMode(cell->reflect->text, SDL_BLENDMODE_BLEND);
+	set_vect_crd(&cell->min, vect->x, vect->y);
+	set_vect_crd(&cell->max, vect->x + WALL_SIZE, vect->y + WALL_SIZE);
+	cell->textures[NORTH] = load_texture(type, NORTH);
+	cell->textures[SOUTH] = load_texture(type, SOUTH);
+	cell->textures[WEST] = load_texture(type, WEST);
+	cell->textures[EAST] = load_texture(type, EAST);
+	cell->reflections[NORTH] = load_reflection(type, NORTH, data->reflection);
+	cell->reflections[SOUTH] = load_reflection(type, SOUTH, data->reflection);
+	cell->reflections[WEST] = load_reflection(type, WEST, data->reflection);
+	cell->reflections[EAST] = load_reflection(type, EAST, data->reflection);
 	cell->mob = NULL;
 	cell->data = data;
 	cell->type = type;

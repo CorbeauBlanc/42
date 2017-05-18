@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/18 00:09:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/18 19:38:05 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,12 @@ void			delete_mutexes();
 t_mutexes		*get_mutexes();
 
 /*
+** orientations.c
+*/
+t_orientation	get_horiz_side(double angle);
+t_orientation	get_vert_side(double angle);
+
+/*
 ** player.c
 */
 t_player		*create_player(t_camera *cam);
@@ -175,9 +181,10 @@ void			delete_sprite(t_sprite *sprite);
 ** textures.c
 */
 t_texture		*create_texture(char *path);
+t_texture		*create_texture_rect(char *path, SDL_Rect *dim);
 void			delete_texture(t_texture *texture);
-t_texture		*load_reflection(t_tile type);
-t_texture		*load_texture(t_tile type);
+t_texture		*load_reflection(t_tile type, t_orientation side, int alpha);
+t_texture		*load_texture(t_tile type, t_orientation side);
 
 /*
 ** threads.c

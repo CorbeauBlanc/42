@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/17 23:47:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/18 19:43:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ typedef enum		e_mob_type
 					SHOOTER,
 					SLAYER,
 }					t_mob_type;
+
+typedef enum		e_orientation
+{
+					NORTH,
+					SOUTH,
+					WEST,
+					EAST
+}					t_orientation;
 
 typedef struct		s_vector
 {
@@ -147,7 +155,7 @@ typedef struct		s_mob
 typedef struct		s_map_data
 {
 	int				brightness;
-	double			reflection;
+	int				reflection;
 	double			bg_fact;
 	t_texture		*bgd;
 	SDL_Texture		*floor_ceiling_txt;
@@ -160,8 +168,8 @@ typedef struct		s_map
 	t_vector		min;
 	t_vector		max;
 	t_tile			type;
-	t_texture		*texture;
-	t_texture		*reflect;
+	t_texture		*textures[4];
+	t_texture		*reflections[4];
 	t_mob			*mob;
 	t_map_data		*data;
 	struct s_map	*r_head;
@@ -192,6 +200,7 @@ typedef struct		s_ray
 	double			a;
 	double			h;
 	double			d;
+	t_orientation	side;
 	t_map			*h_wall;
 	t_map			*v_wall;
 	t_mob			*h_mob;

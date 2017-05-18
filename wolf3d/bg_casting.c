@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 22:16:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/18 00:05:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/18 19:49:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,20 @@ int		cast_reflection(t_ray *ray, int i, t_player *plr)
 	set_rect_crd(&drect, i, plr->cam->half_scr - ray->h / 2 + ray->h - 2);
 	set_rect_dim(&drect, 1, ray->h);
 	if (ray->h_i.w < ray->v_i.w && (wall = ray->h_wall))
-		xt = (int)(ray->h_i.x * wall->texture->mapping_fact) % wall->texture->w;
+		xt = (int)(ray->h_i.x * wall->reflections[ray->side]->mapping_fact) % wall->reflections[ray->side]->w;
 	else if ((wall = ray->v_wall))
-		xt = (int)(ray->v_i.y * wall->texture->mapping_fact) % wall->texture->w;
+		xt = (int)(ray->v_i.y * wall->reflections[ray->side]->mapping_fact) % wall->reflections[ray->side]->w;
 	else
 		return (1);
 	set_rect_crd(&srect, xt, 0);
-	set_rect_dim(&srect, 1, wall->reflect->h);
+	set_rect_dim(&srect, 1, wall->reflections[ray->side]->h);
 	if (!wall->data->bgd && ray->filter > wall->data->reflection)
-		SDL_SetTextureAlphaMod(wall->reflect->text, wall->data->reflection);
+		SDL_SetTextureAlphaMod(wall->reflections[ray->side]->text, wall->data->reflection);
 	else if (!wall->data->bgd)
-		SDL_SetTextureAlphaMod(wall->reflect->text, ray->filter);
-	SDL_SetTextureColorMod(wall->reflect->text, ray->filter, ray->filter, ray->filter);
+		SDL_SetTextureAlphaMod(wall->reflections[ray->side]->text, ray->filter);
+	SDL_SetTextureColorMod(wall->reflections[ray->side]->text, ray->filter, ray->filter, ray->filter);
 	SDL_RenderCopy(SDL_GetCore()->renderer, wall->data->floor_ceiling_txt, &drect, &drect);
-	SDL_RenderCopy(SDL_GetCore()->renderer, wall->reflect->text, &srect, &drect);
+	SDL_RenderCopy(SDL_GetCore()->renderer, wall->reflections[ray->side]->text, &srect, &drect);
 	return (0);
 }
 

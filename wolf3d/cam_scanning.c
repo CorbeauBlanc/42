@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/17 23:56:59 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/18 19:55:58 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	cast_ray(t_ray *ray, t_player *player, double correction, int i)
 		vert_intersec(ray, player);
 	if (ray->h_i.w < player->cam->f && ray->h_i.w < ray->v_i.w)
 	{
+		ray->side = get_horiz_side(ray->a);
 		ray->d = ray->h_i.w;
 		ray->h = (WALL_SIZE * player->cam->f) / (ray->h_i.w * cos(correction));
 		ray->filter = get_filter_value(player->tile->data, ray->h_i.w);
@@ -63,6 +64,7 @@ static void	cast_ray(t_ray *ray, t_player *player, double correction, int i)
 	}
 	else if (ray->v_i.w < player->cam->f)
 	{
+		ray->side = get_vert_side(ray->a);
 		ray->d = ray->v_i.w;
 		ray->h = (WALL_SIZE * player->cam->f) / (ray->v_i.w * cos(correction));
 		ray->filter = get_filter_value(player->tile->data, ray->v_i.w);
@@ -100,6 +102,5 @@ void		scan_environment(t_player *player)
 		cast_mobs(&ray, player, angle, i);
 		SDL_UnlockMutex(get_mutexes()->mob_mvt);
 	}
-
 	refresh_win();
 }
