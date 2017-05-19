@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/18 19:38:05 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/19 22:18:43 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ void			check_player(t_map *map);
 void			delete_map(t_map *map);
 char			*get_data(const char *str, char *buff, int fd);
 t_map_data		*get_map_data(int fd);
-t_map			*read_file(int fd);
+int				is_empty(t_map *tile);
+t_map			*read_file(int fd, char *path);
 void			set_map_brightness(t_map_data *data, int percent);
 
 /*
@@ -183,8 +184,8 @@ void			delete_sprite(t_sprite *sprite);
 t_texture		*create_texture(char *path);
 t_texture		*create_texture_rect(char *path, SDL_Rect *dim);
 void			delete_texture(t_texture *texture);
-t_texture		*load_reflection(t_tile type, t_orientation side, int alpha);
-t_texture		*load_texture(t_tile type, t_orientation side);
+t_texture		*load_reflection(t_tile type, t_orientation side, t_map_data *data);
+t_texture		*load_texture(t_tile type, t_orientation side, t_map_data *data);
 
 /*
 ** threads.c
@@ -208,7 +209,7 @@ t_map			*new_cell(t_vector *vect, t_tile type, t_map_data *data);
 /*
 ** tools.c
 */
-int				is_empty(t_map *tile);
+char			*get_data_path(char *map_path, char *data);
 void			set_rect_crd(SDL_Rect *rect, int x, int y);
 void			set_rect_dim(SDL_Rect *rect, int w, int h);
 void			set_vect_crd(t_vector *vect, double x, double y);

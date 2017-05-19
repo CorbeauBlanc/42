@@ -6,11 +6,16 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/16 19:14:17 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/18 00:09:54 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/19 21:54:12 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+int		is_empty(t_map *tile)
+{
+	return (tile && tile->type <= FLOOR);
+}
 
 void		check_player(t_map *map)
 {
@@ -22,6 +27,20 @@ void		check_player(t_map *map)
 	SDL_LockMutex(get_mutexes()->environment);
 	get_player()->cam->state = RUN;
 	SDL_UnlockMutex(get_mutexes()->environment);
+}
+
+void			set_map_brightness(t_map_data *data, int percent)
+{
+	double	max;
+
+	if (percent < 0)
+		percent = 0;
+	else if (percent > 100)
+		percent = 100;
+	else
+		percent = 100 - percent;
+	max = 255 / WALL_SIZE;
+	data->brightness = max * percent / 100.0;
 }
 
 t_map_data	*get_map_data(int fd)

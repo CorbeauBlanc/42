@@ -6,20 +6,22 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/18 20:01:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/19 22:16:31 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+#include <fcntl.h>
 #include <math.h>
 
 static t_tile	get_type(int i)
 {
-	t_tile	types[2];
+	t_tile	types[WALL + 1];
 
-	types[0] = FLOOR;
-	types[1] = WALL;
-	return (types[(i < 2 && i > -1) ? i : 0]);
+	types[FLOOR] = FLOOR;
+	types[WOOD] = WOOD;
+	types[WALL] = WALL;
+	return (types[(i <= WALL && i > -1) ? i : 0]);
 }
 
 static void		add_new_cells(t_map **last, t_vector *crd, char *nbs, t_map_data *d)
@@ -49,20 +51,6 @@ static void		add_new_cells(t_map **last, t_vector *crd, char *nbs, t_map_data *d
 	}
 }
 
-void			set_map_brightness(t_map_data *data, int percent)
-{
-	double	max;
-
-	if (percent < 0)
-		percent = 0;
-	else if (percent > 100)
-		percent = 100;
-	else
-		percent = 100 - percent;
-	max = 255 / WALL_SIZE;
-	data->brightness = max * percent / 100.0;
-}
-
 void			delete_map(t_map *map)
 {
 	t_map	*r_head;
@@ -84,7 +72,23 @@ void			delete_map(t_map *map)
 	}
 }
 
-t_map			*read_file(int fd)
+void			open_map(char *path)
+{
+	int	fd;
+	char	*full;
+
+	if (!path)
+		return;
+	full = ft_strnew(ft_strlen(path) + 64);
+	garbage_collector(ADD, full, &free);
+	ft_strcpy(full, path);
+	if (full[ft_strlen(path) - 1] == '/')
+		full[ft_strlen(path)] = '/';
+	if ((fd = open(get_data_path(full, "map"), O_RDONLY)) >= 0)
+		read_file(fd, full);
+}
+
+t_map			*read_file(int fd, char *path)
 {
 	t_vector	crds;
 	char		*nbs;
@@ -97,6 +101,7 @@ t_map			*read_file(int fd)
 	last = NULL;
 	set_vect_crd(&crds, 0, 0);
 	data = get_map_data(fd);
+	data->path = path;
 	SDL_LockMutex(get_mutexes()->mob_mvt);
 	while (read(fd, nbs, BUFF_SIZE) > 0)
 	{

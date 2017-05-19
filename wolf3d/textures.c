@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 21:55:48 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/18 21:23:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/19 22:20:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void		delete_texture(t_texture *texture)
 	free(texture);
 }
 
-t_texture		*load_texture(t_tile type, t_orientation side)
+t_texture		*load_texture(t_tile type, t_orientation side, t_map_data *data)
 {
 	char				*paths[WALL + 1];
 	SDL_Rect			dim;
@@ -71,18 +71,19 @@ t_texture		*load_texture(t_tile type, t_orientation side)
 
 	if (type <= FLOOR)
 		return (NULL);
-	paths[WALL] = "textures/wall.bmp";
+	paths[WALL] = "wall.bmp";
+	paths[WOOD] = "wood.bmp";
 	if (!textures[type][side])
 	{
 		set_rect_crd(&dim, TEXT_SIZE * side, 0);
 		set_rect_dim(&dim, TEXT_SIZE, TEXT_SIZE);
-		textures[type][side] = create_texture_rect(paths[type], &dim);
+		textures[type][side] = create_texture_rect(get_data_path(data->path, paths[type]), &dim);
 		garbage_collector(ADD, textures[type][side], &delete_texture);
 	}
 	return (textures[type][side]);
 }
 
-t_texture		*load_reflection(t_tile type, t_orientation side, int alpha)
+t_texture		*load_reflection(t_tile type, t_orientation side, t_map_data *data)
 {
 	char				*paths[WALL + 1];
 	SDL_Rect			dim;
@@ -90,13 +91,14 @@ t_texture		*load_reflection(t_tile type, t_orientation side, int alpha)
 
 	if (type <= FLOOR)
 		return (NULL);
-	paths[WALL] = "textures/reflection.bmp";
+	paths[WALL] = "reflection.bmp";
+	paths[WOOD] = "reflection.bmp";
 	if (!reflections[type][side])
 	{
 		set_rect_crd(&dim, TEXT_SIZE * side, 0);
 		set_rect_dim(&dim, TEXT_SIZE, TEXT_SIZE);
-		reflections[type][side] = create_texture_rect(paths[type], &dim);
-		SDL_SetTextureAlphaMod(reflections[type][side]->text, alpha);
+		reflections[type][side] = create_texture_rect(get_data_path(data->path, paths[type]), &dim);
+		SDL_SetTextureAlphaMod(reflections[type][side]->text, data->reflection);
 		SDL_SetTextureBlendMode(reflections[type][side]->text,
 			SDL_BLENDMODE_BLEND);
 		garbage_collector(ADD, reflections[type][side], &delete_texture);

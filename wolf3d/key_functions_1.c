@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/09 18:46:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/19 21:24:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	move_player_to_crd(t_player *player, t_vector *crd)
 	t_map	*tmp;
 
 	tmp = goto_tile(crd, player->tile);
-	if (tmp && tmp->type < WALL && !tmp->mob)
+	if (is_empty(tmp) && !tmp->mob)
 	{
 		player->pos = *crd;
 		player->tile = tmp;

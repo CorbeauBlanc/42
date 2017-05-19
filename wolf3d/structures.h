@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/18 19:43:15 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/19 21:38:57 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef enum		e_tile
 {
 					FLOOR,
+					WOOD,
 					WALL
 }					t_tile;
 
@@ -154,6 +155,7 @@ typedef struct		s_mob
 
 typedef struct		s_map_data
 {
+	char			*path;
 	int				brightness;
 	int				reflection;
 	double			bg_fact;
