@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/05 17:29:31 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/16 16:28:57 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:12:50 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_sprite	*create_sprite(char *path, int h, int map_width, int delay)
 	t_sprite	*sprite;
 
 	if (!(sprite = malloc(sizeof(t_sprite))))
-		exit_error(NULL);
+		exit_error("wolf3d : ", "malloc");
 	sprite->pic = create_texture(path);
 	sprite->m_width = map_width > WALL_SIZE ? WALL_SIZE : map_width;
 	sprite->mapping_fact = sprite->pic->w / map_width;

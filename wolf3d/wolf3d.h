@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/19 22:18:43 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:23:18 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ int				rotate_right(t_player *player);
 /*
 ** main.c
 */
-void			exit_error(char *s);
 void			exit_main();
 
 /*
@@ -106,8 +105,9 @@ void			exit_main();
 void			check_player(t_map *map);
 void			delete_map(t_map *map);
 char			*get_data(const char *str, char *buff, int fd);
-t_map_data		*get_map_data(int fd);
+t_map_data		*get_map_data(int fd, char *path);
 int				is_empty(t_map *tile);
+void			open_map(char *path);
 t_map			*read_file(int fd, char *path);
 void			set_map_brightness(t_map_data *data, int percent);
 

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/19 22:16:31 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:23:49 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,12 @@ void			open_map(char *path)
 	full = ft_strnew(ft_strlen(path) + 64);
 	garbage_collector(ADD, full, &free);
 	ft_strcpy(full, path);
-	if (full[ft_strlen(path) - 1] == '/')
+	if (full[ft_strlen(path) - 1] != '/')
 		full[ft_strlen(path)] = '/';
 	if ((fd = open(get_data_path(full, "map"), O_RDONLY)) >= 0)
 		read_file(fd, full);
+	else
+		exit_error("wolf3d : ", full);
 }
 
 t_map			*read_file(int fd, char *path)
@@ -100,7 +102,7 @@ t_map			*read_file(int fd, char *path)
 	nbs = ft_strnew(BUFF_SIZE);
 	last = NULL;
 	set_vect_crd(&crds, 0, 0);
-	data = get_map_data(fd);
+	data = get_map_data(fd, path);
 	data->path = path;
 	SDL_LockMutex(get_mutexes()->mob_mvt);
 	while (read(fd, nbs, BUFF_SIZE) > 0)

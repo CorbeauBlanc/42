@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 21:55:48 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/19 22:20:15 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:14:05 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ t_texture	*create_texture(char *path)
 	t_texture	*texture;
 
 	if (!(tmp = SDL_LoadBMP(path)))
-		exit_error((char*)SDL_GetError());
+		exit_custom_error("wolf3d : ", (char*)SDL_GetError());
 	if (!(texture = malloc(sizeof(t_texture))))
-		exit_error(NULL);
+		exit_error("wolf3d : ", "malloc");
 	texture->text = SDL_CreateTextureFromSurface(SDL_GetCore()->renderer, tmp);
 	if (!texture->text)
-		exit_error((char*)SDL_GetError());
+		exit_custom_error("wolf3d : ", (char*)SDL_GetError());
 	texture->h = tmp->h;
 	texture->w = tmp->w;
 	texture->mapping_fact = texture->w / WALL_SIZE;
@@ -40,15 +40,15 @@ t_texture	*create_texture_rect(char *path, SDL_Rect *dim)
 	if (!dim)
 		return (create_texture(path));
 	if (!(tmp = SDL_LoadBMP(path)))
-		exit_error((char*)SDL_GetError());
+		exit_custom_error("wolf3d : ", (char*)SDL_GetError());
 	if (!(texture = malloc(sizeof(t_texture))))
-		exit_error(NULL);
+		exit_error("wolf3d : ", "malloc");
 	dim->x = dim->x % tmp->w;
 	surf = SDL_CreateRGBSurface(0, dim->w, dim->h, 32, 0, 0, 0, 0);
 	SDL_BlitSurface(tmp, dim, surf, NULL);
 	texture->text = SDL_CreateTextureFromSurface(SDL_GetCore()->renderer, surf);
 	if (!texture->text)
-		exit_error((char*)SDL_GetError());
+		exit_custom_error("wolf3d : ", (char*)SDL_GetError());
 	texture->h = dim->h;
 	texture->w = dim->w;
 	texture->mapping_fact = texture->w / WALL_SIZE;

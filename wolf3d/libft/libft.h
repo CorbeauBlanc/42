@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:10:30 by edescoin          #+#    #+#             */
-/*   Updated: 2017/03/01 16:42:47 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:06:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct			s_garbage
 	struct s_garbage	*prev;
 }						t_garbage;
 
+void				exit_error(char *prog, char *err);
+void				exit_custom_error(char *prog, char *err);
 int					ft_atoi(const char *nptr);
 int					ft_atoi_base(const char *nptr, int base);
 void				ft_bzero(void *s, size_t n);

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/16 19:14:17 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/19 21:54:12 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:23:33 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			set_map_brightness(t_map_data *data, int percent)
 	data->brightness = max * percent / 100.0;
 }
 
-t_map_data	*get_map_data(int fd)
+t_map_data	*get_map_data(int fd, char *path)
 {
 	t_map_data	*data;
 	char		buff[1024];
@@ -51,8 +51,9 @@ t_map_data	*get_map_data(int fd)
 	int			cur_pos;
 
 	if (!(data = malloc(sizeof(t_map_data))))
-		exit_error(NULL);
+		exit_error("wolf3d : ", "malloc");
 	data->bgd = NULL;
+	data->path = path;
 	nb_data = 1;
 	nb_data += get_map_brightness(data, fd, buff);
 	nb_data += get_map_reflection(data, fd, buff);
@@ -85,6 +86,6 @@ char	*get_data(const char *str, char *buff, int fd)
 		return (buff);
 	}
 	else if (nb < 0)
-		exit_error(NULL);
+		exit_error("wolf3d : ", "read");
 	return (NULL);
 }

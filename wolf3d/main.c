@@ -6,23 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/19 22:22:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:17:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 #include <fcntl.h>
-
-void	exit_error(char *s)
-{
-	if (!s)
-	{
-		perror("wolf3d");
-		exit(1);
-	}
-	ft_putstr_fd(s, 2);
-	exit(1);
-}
 
 void	exit_main()
 {
@@ -55,7 +44,7 @@ int		main(int ac, char **av)
 	(void)av;
 	t_event		*list_evts;
 
-	
+	open_map("maps/test");
 
 	list_evts = NULL;
 	init_list_evts(&list_evts);

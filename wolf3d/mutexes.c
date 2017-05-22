@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 19:35:45 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 21:43:00 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:11:21 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_mutexes	*get_mutexes()
 	if (!mut)
 	{
 		if (!(mut = malloc(sizeof(t_mutexes))))
-			exit_error(NULL);
+			exit_error("wolf3d : ", "malloc");
 		mut->environment = SDL_CreateMutex();
 		mut->mob_mvt = SDL_CreateMutex();
 	}
