@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 20:17:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/23 21:10:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,16 @@ void	init_list_evts(t_event **head)
 
 int		main(int ac, char **av)
 {
-	(void)ac;
-	(void)av;
 	t_event		*list_evts;
 
-	open_map("maps/test");
-
+	if (ac != 2)
+	{
+		ft_putstr_fd("Utilisation : wolf3d <map folder>\n\n", 2);
+		exit(1);
+	}
+	open_map(av[1]);
 	list_evts = NULL;
 	init_list_evts(&list_evts);
-
 	wait_events(list_evts, get_player());
 	clear_events(&list_evts);
 	exit_main();
