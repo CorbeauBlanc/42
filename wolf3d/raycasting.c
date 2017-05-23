@@ -6,12 +6,11 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/01 20:52:35 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 19:12:44 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/23 21:58:07 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-#include "mob_casting.h"
 
 t_ray	*horiz_intersec(t_ray *ray, t_player *player)
 {
@@ -34,10 +33,6 @@ t_ray	*horiz_intersec(t_ray *ray, t_player *player)
 			return (ray);
 		else if (is_south(ray->a) && !is_empty(ray->h_wall = ray->h_wall->down))
 			return (ray);
-		if (is_looking_left(player->cam->angle) || is_looking_right(player->cam->angle))
-			check_v_mob(ray, ray->h_wall, &ray->h_i, player);
-		else
-			check_h_mob(ray, ray->h_wall, &ray->h_i, player);
 		ray->h_i.x += is_east(ray->a) ? xi : -xi;
 		ray->h_i.y += is_north(ray->a) ? -WALL_SIZE : WALL_SIZE;
 	}
@@ -65,10 +60,6 @@ t_ray	*vert_intersec(t_ray *ray, t_player *player)
 			return (ray);
 		else if (is_west(ray->a) && !is_empty(ray->v_wall = ray->v_wall->left))
 			return (ray);
-		if (is_looking_left(player->cam->angle) || is_looking_right(player->cam->angle))
-			check_v_mob(ray, ray->v_wall, &ray->v_i, player);
-		else
-			check_h_mob(ray, ray->v_wall, &ray->v_i, player);
 		ray->v_i.x += is_east(ray->a) ? WALL_SIZE : -WALL_SIZE;
 		ray->v_i.y += is_north(ray->a) ? -yi : yi;
 	}
@@ -85,15 +76,18 @@ int		draw_tile(t_player *plr, int i, t_ray *ray)
 	set_rect_crd(&drect, i, plr->cam->half_scr - ray->h / 2 - 1);
 	set_rect_dim(&drect, 1, ray->h);
 	if (ray->h_i.w < ray->v_i.w && (wall = ray->h_wall))
-		xt = (int)(ray->h_i.x * wall->textures[ray->side]->mapping_fact) % wall->textures[ray->side]->w;
+		xt = (int)(ray->h_i.x * wall->textures[ray->side]->mapping_fact) %
+			wall->textures[ray->side]->w;
 	else if ((wall = ray->v_wall))
-		xt = (int)(ray->v_i.y * wall->textures[ray->side]->mapping_fact) % wall->textures[ray->side]->w;
+		xt = (int)(ray->v_i.y * wall->textures[ray->side]->mapping_fact) %
+			wall->textures[ray->side]->w;
 	else
 		return (1);
 	set_rect_crd(&srect, xt, 0);
 	set_rect_dim(&srect, 1, wall->textures[ray->side]->h);
 	SDL_SetTextureColorMod(wall->textures[ray->side]->text,
 							ray->filter, ray->filter, ray->filter);
-	SDL_RenderCopy(SDL_GetCore()->renderer, wall->textures[ray->side]->text, &srect, &drect);
+	SDL_RenderCopy(SDL_GetCore()->renderer, wall->textures[ray->side]->text,
+					&srect, &drect);
 	return (0);
 }

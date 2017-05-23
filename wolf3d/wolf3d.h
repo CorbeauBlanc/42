@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 17:48:59 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/23 21:43:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ int				is_west(double angle);
 /*
 ** camera.c
 */
-t_camera		*create_camera(int fov, double angle, int fps, double sensibility);
+t_camera		*create_camera(int fov, double angle, int fps,
+								double sensibility);
 void			delete_camera(t_camera *cam);
 void			set_camera_bobbing(t_camera *cam, int bobbing);
 void			set_camera_fov(t_camera	*cam, int fov);
@@ -123,38 +124,6 @@ int				get_map_floor(t_map_data *data, int fd, char *buff);
 int				get_map_reflection(t_map_data *data, int fd, char *buff);
 
 /*
-** mob.c
-*/
-t_mob			*create_mob(t_npc_spts *spts, int h, int view);
-void			delete_mob(t_mob *mob);
-void			insert_mob(t_map *cell, char *nbs);
-void			mob_set_visible(t_mob *mob, int val);
-
-/*
-** mob_animation.c
-*/
-int				mob_get_state(t_mob *mob);
-int				mob_animation_thread(void *arg);
-void			mob_set_state(t_mob *mob, t_thread_state val);
-
-/*
-** mob_movements*.c
-*/
-t_map			*get_next_tile(t_mob *m);
-void			mob_fluid_move(t_mob *mob);
-int				mob_movement_thread(void *arg);
-void			mob_static_move(t_mob *mob);
-void			rotate_mob(t_mob *m);
-void			set_all_mob_tiles(t_mob *mob, t_map *tile);
-void			set_htb_tiles(t_hitbox *htb, t_mob *mob);
-void			set_mob_htb(t_mob *mob, double x, double y);
-
-/*
-** mob_sprites.c
-*/
-void			set_mob_sprites(t_mob *mob);
-
-/*
 ** mutexes.c
 */
 void			delete_mutexes();
@@ -186,8 +155,10 @@ void			delete_sprite(t_sprite *sprite);
 t_texture		*create_texture(char *path);
 t_texture		*create_texture_rect(char *path, SDL_Rect *dim);
 void			delete_texture(t_texture *texture);
-t_texture		*load_reflection(t_tile type, t_orientation side, t_map_data *data);
-t_texture		*load_texture(t_tile type, t_orientation side, t_map_data *data);
+t_texture		*load_reflection(t_tile type, t_orientation side,
+								t_map_data *data);
+t_texture		*load_texture(t_tile type, t_orientation side,
+								t_map_data *data);
 
 /*
 ** threads.c
@@ -216,11 +187,5 @@ void			set_rect_crd(SDL_Rect *rect, int x, int y);
 void			set_rect_dim(SDL_Rect *rect, int w, int h);
 void			set_vect_crd(t_vector *vect, double x, double y);
 t_ray			*set_wall(t_ray *ray, t_map **ray_wall, t_map *wall);
-
-/*
-** transformations.c
-*/
-void			translation();
-void			rotation();
 
 #endif

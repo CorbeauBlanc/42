@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:52:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 19:31:20 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/23 21:39:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ void		refresh_win()
 
 Uint32		get_color(int r, int g, int b)
 {
-	return (SDL_MapRGB(SDL_AllocFormat(SDL_GetWindowPixelFormat(SDL_GetCore()->window)),
-			r, g, b));
+	return (SDL_MapRGB(SDL_AllocFormat(SDL_GetWindowPixelFormat(
+														SDL_GetCore()->window)),
+						r, g, b));
 }
 
 Uint8		get_filter_value(t_map_data *data, double dist)

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 19:23:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/23 21:40:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static t_tile	get_type(int i)
 	return (types[(i <= WALL && i > -1) ? i : 0]);
 }
 
-static void		add_new_cells(t_map **last, t_vector *crd, char *nbs, t_map_data *d)
+static void		add_new_cells(t_map **last, t_vector *crd, char *nbs,
+								t_map_data *d)
 {
 	while (*nbs)
 	{
@@ -41,7 +42,6 @@ static void		add_new_cells(t_map **last, t_vector *crd, char *nbs, t_map_data *d
 		if (*nbs)
 		{
 			*last = insert_cell(*last, new_cell(crd, get_type(*nbs - '0'), d));
-			insert_mob(*last, nbs);
 			if (*nbs == 'p' || *nbs == 'P')
 				insert_player(*last, (*last)->min.x + WALL_SIZE / 2,
 							(*last)->min.y + WALL_SIZE / 2);

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 21:55:48 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 19:14:05 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/23 21:42:17 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,16 @@ t_texture		*load_texture(t_tile type, t_orientation side, t_map_data *data)
 	{
 		set_rect_crd(&dim, TEXT_SIZE * side, 0);
 		set_rect_dim(&dim, TEXT_SIZE, TEXT_SIZE);
-		textures[type][side] = create_texture_rect(get_data_path(data->path, paths[type]), &dim);
+		textures[type][side] = create_texture_rect(get_data_path(data->path,
+																paths[type]),
+													&dim);
 		garbage_collector(ADD, textures[type][side], &delete_texture);
 	}
 	return (textures[type][side]);
 }
 
-t_texture		*load_reflection(t_tile type, t_orientation side, t_map_data *data)
+t_texture		*load_reflection(t_tile type, t_orientation side,
+								t_map_data *data)
 {
 	char				*paths[WALL + 1];
 	SDL_Rect			dim;
@@ -97,7 +100,9 @@ t_texture		*load_reflection(t_tile type, t_orientation side, t_map_data *data)
 	{
 		set_rect_crd(&dim, TEXT_SIZE * side, 0);
 		set_rect_dim(&dim, TEXT_SIZE, TEXT_SIZE);
-		reflections[type][side] = create_texture_rect(get_data_path(data->path, paths[type]), &dim);
+		reflections[type][side] = create_texture_rect(get_data_path(data->path,
+																paths[type]),
+														&dim);
 		SDL_SetTextureAlphaMod(reflections[type][side]->text, data->reflection);
 		SDL_SetTextureBlendMode(reflections[type][side]->text,
 			SDL_BLENDMODE_BLEND);

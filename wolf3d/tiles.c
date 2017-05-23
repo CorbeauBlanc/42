@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/14 12:56:36 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 19:14:11 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/23 21:27:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_map	*new_cell(t_vector *vect, t_tile type, t_map_data *data)
 	cell->reflections[SOUTH] = load_reflection(type, SOUTH, data);
 	cell->reflections[WEST] = load_reflection(type, WEST, data);
 	cell->reflections[EAST] = load_reflection(type, EAST, data);
-	cell->mob = NULL;
 	cell->data = data;
 	cell->type = type;
 	cell->down = NULL;
@@ -42,8 +41,6 @@ t_map	*new_cell(t_vector *vect, t_tile type, t_map_data *data)
 
 void	delete_cell(t_map *cell)
 {
-	if (cell->mob)
-		delete_mob(cell->mob);
 	free(cell);
 }
 

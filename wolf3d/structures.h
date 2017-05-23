@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 19:31:20 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/23 21:24:58 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,23 +137,6 @@ typedef struct		s_hitbox
 	struct s_map	*xmaxymax;
 }					t_hitbox;
 
-typedef struct		s_mob
-{
-	t_npc_spts		sprites;
-	t_sprite		*spt_north;
-	t_sprite		*spt_south;
-	t_sprite		*spt_east;
-	t_sprite		*spt_west;
-	t_thread		animation;
-	t_thread		movement;
-	int				visible;
-	int				watching;
-	int				view;
-	int				height;
-	t_hitbox		htb;
-	t_ray_data		data;
-}					t_mob;
-
 typedef struct		s_map_data
 {
 	char			*path;
@@ -173,7 +156,6 @@ typedef struct		s_map
 	t_tile			type;
 	t_texture		*textures[4];
 	t_texture		*reflections[4];
-	t_mob			*mob;
 	t_map_data		*data;
 	struct s_map	*r_head;
 	struct s_map	*c_head;
@@ -206,8 +188,6 @@ typedef struct		s_ray
 	t_orientation	side;
 	t_map			*h_wall;
 	t_map			*v_wall;
-	t_mob			*h_mob;
-	t_mob			*v_mob;
 	t_vector		h_i;
 	t_vector		v_i;
 	Uint8			filter;
