@@ -6,15 +6,15 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/12 21:05:16 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/23 17:48:59 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 # define TITLE			"Wolf3D"
-# define HEIGHT 		700
-# define WIDTH 			700
+# define WIDTH 			1280
+# define HEIGHT 		720
 # define NB_TEXTURES	2
 # define BOBBING		3
 # define SPEED			0.7
@@ -51,6 +51,7 @@ int				is_west(double angle);
 */
 t_camera		*create_camera(int fov, double angle, int fps, double sensibility);
 void			delete_camera(t_camera *cam);
+void			set_camera_bobbing(t_camera *cam, int bobbing);
 void			set_camera_fov(t_camera	*cam, int fov);
 void			set_camera_mvt(t_camera *cam);
 
@@ -93,11 +94,11 @@ int				move_right(t_player *player, int mvt_nb);
 int				move_up(t_player *player, int mvt_nb);
 int				rotate_left(t_player *player);
 int				rotate_right(t_player *player);
+int				toggle_fullscreen();
 
 /*
 ** main.c
 */
-void			exit_error(char *s);
 void			exit_main();
 
 /*
@@ -105,17 +106,21 @@ void			exit_main();
 */
 void			check_player(t_map *map);
 void			delete_map(t_map *map);
-t_map_data		*get_map_data(int fd);
-t_map			*read_file(int fd);
+char			*get_data(const char *str, char *buff, int fd);
+t_map_data		*get_map_data(int fd, char *path);
+int				is_empty(t_map *tile);
+void			open_map(char *path);
+t_map			*read_file(int fd, char *path);
 void			set_map_brightness(t_map_data *data, int percent);
 
 /*
 ** map_data.c
 */
-int				get_map_brightness(t_map_data *data, int fd, char *buff);
 int				get_map_background(t_map_data *data, int fd, char *buff);
-int				get_map_reflection(t_map_data *data, int fd, char *buff);
+int				get_map_brightness(t_map_data *data, int fd, char *buff);
+int				get_map_ceiling(t_map_data *data, int fd, char *buff);
 int				get_map_floor(t_map_data *data, int fd, char *buff);
+int				get_map_reflection(t_map_data *data, int fd, char *buff);
 
 /*
 ** mob.c
@@ -156,6 +161,12 @@ void			delete_mutexes();
 t_mutexes		*get_mutexes();
 
 /*
+** orientations.c
+*/
+t_orientation	get_horiz_side(double angle);
+t_orientation	get_vert_side(double angle);
+
+/*
 ** player.c
 */
 t_player		*create_player(t_camera *cam);
@@ -173,9 +184,10 @@ void			delete_sprite(t_sprite *sprite);
 ** textures.c
 */
 t_texture		*create_texture(char *path);
+t_texture		*create_texture_rect(char *path, SDL_Rect *dim);
 void			delete_texture(t_texture *texture);
-t_texture		*load_reflection(t_tile type);
-t_texture		*load_texture(t_tile type);
+t_texture		*load_reflection(t_tile type, t_orientation side, t_map_data *data);
+t_texture		*load_texture(t_tile type, t_orientation side, t_map_data *data);
 
 /*
 ** threads.c
@@ -199,7 +211,7 @@ t_map			*new_cell(t_vector *vect, t_tile type, t_map_data *data);
 /*
 ** tools.c
 */
-int				is_empty(t_map *tile);
+char			*get_data_path(char *map_path, char *data);
 void			set_rect_crd(SDL_Rect *rect, int x, int y);
 void			set_rect_dim(SDL_Rect *rect, int w, int h);
 void			set_vect_crd(t_vector *vect, double x, double y);

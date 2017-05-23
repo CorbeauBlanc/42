@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   angles.c                                           :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/16 20:22:20 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 18:59:52 by edescoin         ###   ########.fr       */
+/*   Created: 2017/05/22 18:05:52 by edescoin          #+#    #+#             */
+/*   Updated: 2017/05/22 19:19:18 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
-#include "math.h"
+#include "libft.h"
+#include <stdio.h>
 
-int	is_north(double angle)
+void	exit_error(char *prog, char *err)
 {
-	return ((angle > 0 && angle < M_PI) || angle < -M_PI);
+	ft_putstr_fd(prog, 2);
+	perror(err);
+	exit(1);
 }
 
-int	is_south(double angle)
+void	exit_custom_error(char *prog, char *err)
 {
-	return ((angle < 0 && angle > -M_PI) || angle > M_PI);
-}
-
-int	is_east(double angle)
-{
-	return (fabs(angle) < M_PI_2 || fabs(angle) > (M_PI + M_PI_2));
-}
-
-int	is_west(double angle)
-{
-	return (fabs(angle) > M_PI_2 && fabs(angle) < (M_PI + M_PI_2));
+	ft_putstr_fd(prog, 2);
+	ft_putstr_fd(err, 2);
+	write(2, "\n", 1);
+	exit(1);
 }

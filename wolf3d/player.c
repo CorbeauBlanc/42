@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 17:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/12 21:32:34 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/23 20:49:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_player	*create_player(t_camera *cam)
 	t_player	*player;
 
 	if (!(player = malloc(sizeof(t_player))))
-		exit_error(NULL);
+		exit_error("wolf3d : ", "malloc");
 	player->cam = cam;
 	player->tile = NULL;
 	player->last_mvt_nb = 0;
@@ -78,9 +78,7 @@ void		insert_player(t_map *map, double x, double y)
 		player->pos.x = x;
 		player->pos.y = y;
 		if (!(player->tile = goto_tile(&player->pos, map)))
-			exit_error("error : player out of map");
-		if (map->data && map->data->bgd)
-			map->data->bg_fact = player->cam->screen.w / player->cam->fov;
+			exit_custom_error("wolf3d : ", "error : player out of map");
 		player->cam->state = PAUSE;
 		player->cam->refresh_cam = SDL_CreateThread(&cam_thread, "Cam thread",
 													NULL);

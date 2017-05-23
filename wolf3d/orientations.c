@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   angles.c                                           :+:      :+:    :+:   */
+/*   orientations.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/16 20:22:20 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 18:59:52 by edescoin         ###   ########.fr       */
+/*   Created: 2017/05/18 19:33:36 by edescoin          #+#    #+#             */
+/*   Updated: 2017/05/22 19:12:40 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-#include "math.h"
 
-int	is_north(double angle)
+t_orientation	get_vert_side(double angle)
 {
-	return ((angle > 0 && angle < M_PI) || angle < -M_PI);
+	return (is_west(angle) ? EAST : WEST);
 }
 
-int	is_south(double angle)
+t_orientation	get_horiz_side(double angle)
 {
-	return ((angle < 0 && angle > -M_PI) || angle > M_PI);
-}
-
-int	is_east(double angle)
-{
-	return (fabs(angle) < M_PI_2 || fabs(angle) > (M_PI + M_PI_2));
-}
-
-int	is_west(double angle)
-{
-	return (fabs(angle) > M_PI_2 && fabs(angle) < (M_PI + M_PI_2));
+	return (is_north(angle) ? SOUTH : NORTH);
 }

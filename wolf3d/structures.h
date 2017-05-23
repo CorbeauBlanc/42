@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/12 22:14:57 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:31:20 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef enum		e_tile
 {
 					FLOOR,
+					WOOD,
 					WALL
 }					t_tile;
 
@@ -36,6 +37,14 @@ typedef enum		e_mob_type
 					SHOOTER,
 					SLAYER,
 }					t_mob_type;
+
+typedef enum		e_orientation
+{
+					NORTH,
+					SOUTH,
+					WEST,
+					EAST
+}					t_orientation;
 
 typedef struct		s_vector
 {
@@ -73,6 +82,7 @@ typedef struct		s_SDL_Core
 	SDL_Renderer	*renderer;
 	int				width;
 	int				height;
+	int				fullscreen;
 }					t_SDL_Core;
 
 typedef struct		s_texture
@@ -144,21 +154,16 @@ typedef struct		s_mob
 	t_ray_data		data;
 }					t_mob;
 
-typedef struct	s_color
-{
-	int	r;
-	int	g;
-	int	b;
-	int	a;
-}				t_color;
-
 typedef struct		s_map_data
 {
+	char			*path;
 	int				brightness;
 	int				reflection;
 	double			bg_fact;
 	t_texture		*bgd;
-	t_color		floor;
+	SDL_Texture		*floor_ceiling_txt;
+	SDL_Color		floor;
+	SDL_Color		ceiling;
 }					t_map_data;
 
 typedef struct		s_map
@@ -166,8 +171,8 @@ typedef struct		s_map
 	t_vector		min;
 	t_vector		max;
 	t_tile			type;
-	t_texture		*texture;
-	t_texture		*reflect;
+	t_texture		*textures[4];
+	t_texture		*reflections[4];
 	t_mob			*mob;
 	t_map_data		*data;
 	struct s_map	*r_head;
@@ -198,6 +203,7 @@ typedef struct		s_ray
 	double			a;
 	double			h;
 	double			d;
+	t_orientation	side;
 	t_map			*h_wall;
 	t_map			*v_wall;
 	t_mob			*h_mob;

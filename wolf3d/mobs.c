@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/31 14:41:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/18 22:16:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:11:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_mob	*create_mob(t_npc_spts *spts, int h, int view)
 	t_mob	*mob;
 
 	if (!(mob = malloc(sizeof(t_mob))))
-		exit_error(NULL);
+		exit_error("wolf3d : ", "malloc");
 	mob->view = view;
 	mob->height = h;
 	mob->sprites = *spts;

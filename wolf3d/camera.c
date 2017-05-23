@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/09 18:11:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 20:01:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void		set_camera_fov(t_camera *cam, int fov)
 {
 	cam->fov = fov;
 	cam->f = SDL_GetCore()->width / (2 * tan(ft_to_rad(cam->fov) / 2.0f));
+}
+
+void		set_camera_bobbing(t_camera *cam, int bobbing)
+{
+	cam->min_cam_mvt = cam->half_scr - (bobbing * cam->screen.h / 100) * SPEED;
+	cam->max_cam_mvt = cam->half_scr + (bobbing * cam->screen.h / 100) * SPEED;
 }
 
 void		set_camera_mvt(t_camera *cam)

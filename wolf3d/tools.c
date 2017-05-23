@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 18:35:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/16 19:48:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:17:12 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void		set_vect_crd(t_vector *vect, double x, double y)
 	vect->y = y;
 }
 
-int		is_empty(t_map *tile)
+char		*get_data_path(char *map_path, char *data)
 {
-	return (tile && tile->type <= FLOOR);
+	ft_strncpy(ft_strrchr(map_path, '/') + 1, data, 63);
+	return (map_path);
 }

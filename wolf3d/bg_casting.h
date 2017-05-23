@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 22:16:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/09 11:51:46 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/17 23:56:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "structures.h"
 
 void	cast_background(t_ray *ray, int i, t_player *player);
-void	cast_floor(t_player *player);
+void	cast_floor_ceiling(t_player *plr);
 int		cast_reflection(t_ray *ray, int i, t_player *player);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/12 22:54:11 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:00:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ static void	cast_ray(t_ray *ray, t_player *player, double correction, int i)
 		vert_intersec(ray, player);
 	if (ray->h_i.w < player->cam->f && ray->h_i.w < ray->v_i.w)
 	{
+		ray->side = get_horiz_side(ray->a);
 		ray->d = ray->h_i.w;
 		ray->h = (WALL_SIZE * player->cam->f) / (ray->h_i.w * cos(correction));
 		ray->filter = get_filter_value(player->tile->data, ray->h_i.w);
@@ -63,6 +64,7 @@ static void	cast_ray(t_ray *ray, t_player *player, double correction, int i)
 	}
 	else if (ray->v_i.w < player->cam->f)
 	{
+		ray->side = get_vert_side(ray->a);
 		ray->d = ray->v_i.w;
 		ray->h = (WALL_SIZE * player->cam->f) / (ray->v_i.w * cos(correction));
 		ray->filter = get_filter_value(player->tile->data, ray->v_i.w);
@@ -90,7 +92,7 @@ void		scan_environment(t_player *player)
 	ray.v_mob = NULL;
 	half_scr = SDL_GetCore()->height / 2;
 	if (player->tile->data->floor.a)
-		cast_floor(player);
+		cast_floor_ceiling(player);
 	while (++i <= player->cam->screen.w)
 	{
 		angle = atan((half_scr - i) / player->cam->f);
