@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 12:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 19:21:20 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/23 20:50:28 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			get_map_background(t_map_data *data, int fd, char *buff)
 		data->bgd = create_texture(get_data_path(data->path, tmp));
 		if (data->reflection)
 			SDL_SetTextureBlendMode(data->bgd->text, SDL_BLENDMODE_BLEND);
+		data->bg_fact = data->bgd->w / 360;
 	}
 	return (tmp != NULL);
 }

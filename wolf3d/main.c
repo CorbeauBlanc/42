@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 19:17:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 20:17:19 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_list_evts(t_event **head)
 	new_event(head, SDL_SCANCODE_S, &move_down);
 	new_event(head, SDL_SCANCODE_A, &move_left);
 	new_event(head, SDL_SCANCODE_D, &move_right);
+	new_event(head, SDL_SCANCODE_F11, &toggle_fullscreen);
 }
 
 int		main(int ac, char **av)

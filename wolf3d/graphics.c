@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:52:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 19:00:21 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:31:20 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_SDL_Core	*SDL_GetCore(void)
 	}
 	core->width = WIDTH;
 	core->height = HEIGHT;
+	core->fullscreen = 0;
 	return (core);
 }
 

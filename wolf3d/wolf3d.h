@@ -6,15 +6,15 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/22 19:23:18 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/23 17:48:59 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 # define TITLE			"Wolf3D"
-# define HEIGHT 		700
-# define WIDTH 			700
+# define WIDTH 			1280
+# define HEIGHT 		720
 # define NB_TEXTURES	2
 # define BOBBING		3
 # define SPEED			0.7
@@ -51,6 +51,7 @@ int				is_west(double angle);
 */
 t_camera		*create_camera(int fov, double angle, int fps, double sensibility);
 void			delete_camera(t_camera *cam);
+void			set_camera_bobbing(t_camera *cam, int bobbing);
 void			set_camera_fov(t_camera	*cam, int fov);
 void			set_camera_mvt(t_camera *cam);
 
@@ -93,6 +94,7 @@ int				move_right(t_player *player, int mvt_nb);
 int				move_up(t_player *player, int mvt_nb);
 int				rotate_left(t_player *player);
 int				rotate_right(t_player *player);
+int				toggle_fullscreen();
 
 /*
 ** main.c
