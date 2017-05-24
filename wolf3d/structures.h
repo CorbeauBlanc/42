@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 21:24:58 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/24 19:22:06 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,29 @@
 #  include "SDL.h"
 # endif
 
+/*
+**		FLOOR	: 0
+**		WOOD	: 1
+**		BRICK	: 2
+**		BUSH	: 3
+**		BOX		: 4
+**		BOOK	: 5
+**		WALL4	: 6
+**		WALL3	: 7
+**		WALL2	: 8
+**		WALL	: 9
+*/
 typedef enum		e_tile
 {
 					FLOOR,
 					WOOD,
+					BRICK,
+					BUSH,
+					BOX,
+					BOOK,
+					WALL4,
+					WALL3,
+					WALL2,
 					WALL
 }					t_tile;
 
@@ -140,8 +159,8 @@ typedef struct		s_hitbox
 typedef struct		s_map_data
 {
 	char			*path;
-	int				brightness;
 	int				reflection;
+	double			brightness;
 	double			bg_fact;
 	t_texture		*bgd;
 	SDL_Texture		*floor_ceiling_txt;

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 21:40:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/24 19:15:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ static t_tile	get_type(int i)
 
 	types[FLOOR] = FLOOR;
 	types[WOOD] = WOOD;
+	types[BRICK] = BRICK;
+	types[BUSH] = BUSH;
+	types[BOX] = BOX;
+	types[BOOK] = BOOK;
+	types[WALL4] = WALL4;
+	types[WALL3] = WALL3;
+	types[WALL2] = WALL2;
 	types[WALL] = WALL;
 	return (types[(i <= WALL && i > -1) ? i : 0]);
 }

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 17:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 21:26:16 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/24 19:29:39 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_player	*get_player()
 	static t_player	*player = NULL;
 
 	if (!player)
-		player = create_player(create_camera(70, -50, 60, 2.0));
+		player = create_player(create_camera(70, 0, 60, 1.5));
 	return (player);
 }
 

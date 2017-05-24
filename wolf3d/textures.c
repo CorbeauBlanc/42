@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 21:55:48 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 21:42:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/24 19:16:09 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,14 @@ t_texture		*load_texture(t_tile type, t_orientation side, t_map_data *data)
 	if (type <= FLOOR)
 		return (NULL);
 	paths[WALL] = "wall.bmp";
+	paths[WALL2] = "wall2.bmp";
+	paths[WALL3] = "wall3.bmp";
+	paths[WALL4] = "wall4.bmp";
 	paths[WOOD] = "wood.bmp";
+	paths[BRICK] = "brick.bmp";
+	paths[BOX] = "box.bmp";
+	paths[BUSH] = "bush.bmp";
+	paths[BOOK] = "bookshelf.bmp";
 	if (!textures[type][side])
 	{
 		set_rect_crd(&dim, TEXT_SIZE * side, 0);
@@ -94,8 +101,15 @@ t_texture		*load_reflection(t_tile type, t_orientation side,
 
 	if (type <= FLOOR)
 		return (NULL);
-	paths[WALL] = "reflection.bmp";
-	paths[WOOD] = "reflection.bmp";
+	paths[WALL] = "wall.bmp";
+	paths[WALL2] = "wall2.bmp";
+	paths[WALL3] = "wall3.bmp";
+	paths[WALL4] = "wall4.bmp";
+	paths[WOOD] = "wood.bmp";
+	paths[BRICK] = "brick.bmp";
+	paths[BOX] = "box.bmp";
+	paths[BUSH] = "bush.bmp";
+	paths[BOOK] = "bookshelf.bmp";
 	if (!reflections[type][side])
 	{
 		set_rect_crd(&dim, TEXT_SIZE * side, 0);
