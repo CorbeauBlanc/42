@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/28 22:16:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 21:52:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/25 20:57:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@
 static void	draw_bg_reflection(t_map_data *data, SDL_Rect *srect,
 								SDL_Rect *drect, t_player *plr)
 {
+	(void)plr;
 	if (data->floor.a)
 	{
 		if (data->reflection)
 		{
-			srect->y = plr->cam->half_scr;
-			drect->y = srect->y;
-			srect->h = SDL_GetCore()->height - srect->y;
-			drect->h = srect->h;
+			srect->y = data->bgd->h / 2;
+			srect->h = srect->y;
+			drect->y = SDL_GetCore()->height / 2;
+			drect->h = drect->y;
 			SDL_SetTextureAlphaMod(data->bgd->text, data->reflection);
 			SDL_RenderCopy(SDL_GetCore()->renderer, data->bgd->text, srect,
 							drect);
@@ -41,10 +42,9 @@ void		cast_background(t_ray *ray, int i, t_player *plr)
 	data = plr->tile->data;
 	set_rect_crd(&srect, (int)(data->bg_fact * ft_to_deg(ray->a) + data->bgd->w)
 						% data->bgd->w, 0);
-	set_rect_dim(&srect, 1, data->floor.a ? plr->cam->half_scr :
-											SDL_GetCore()->height);
+	set_rect_dim(&srect, 1, data->floor.a ? data->bgd->h / 2 : data->bgd->h);
 	set_rect_crd(&drect, i, 0);
-	set_rect_dim(&drect, 1, data->floor.a ? plr->cam->half_scr :
+	set_rect_dim(&drect, 1, data->floor.a ? SDL_GetCore()->height / 2 :
 											SDL_GetCore()->height);
 	SDL_RenderCopy(SDL_GetCore()->renderer, data->bgd->text, &srect, &drect);
 	draw_bg_reflection(data, &srect, &drect, plr);

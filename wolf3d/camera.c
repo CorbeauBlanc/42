@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 21:25:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/25 18:41:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void		set_camera_mvt(t_camera *cam)
 	static double	i = SPEED;
 	double			y;
 
-	y = (SDL_GetCore()->height / 2) - pow((x / BOBBING), 2);
+	y = (SDL_GetCore()->height / 2) - pow((x / (2 * BOBBING)), 2);
 	if (y > cam->max_cam_mvt || y < cam->min_cam_mvt)
 		i = -i;
 	else

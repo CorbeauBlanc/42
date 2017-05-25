@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/24 19:47:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/25 18:36:18 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # define TITLE			"Wolf3D"
 # define WIDTH 			1280
 # define HEIGHT 		720
-# define BOBBING		3
+# define BOBBING		2
 # define SPEED			1.5
 # define MSPEED			0.08
 # define WALL_SIZE		32
