@@ -1,19 +1,23 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror -Ofast
 MAKE=/usr/bin/make
-NAME=fdf
+NAME=wolf3d
 
-OBJ_DIR=objs
-SRC_DIR=srcs
-LIB_DIR=libs
-INCLUDE_DIR=includes
+OBJ_DIR=obj
+SRC_DIR=src
+LIB_DIR=lib
+INCLUDE_DIR=include
 
 FT_PATH=$$(pwd)/libft
 SDL_PATH=$$(pwd)/SDL2
 
-SRCS=main.c
+SRCS=angles.c bg_casting.c cam_angles.c camera.c cam_scanning.c events.c \
+floor_casting.c graphics.c key_functions_1.c key_functions_2.c main.c map2.c \
+map.c map_data.c mutexes.c orientations.c player.c raycasting.c sprites.c \
+textures.c threads.c tiles.c tools.c
 OBJS=$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
-LIBS=-lft -lm -lSDL2
+LIBS=-lft -lm
+LSDL2=`$(SDL_PATH)/SDL2/build/bin/sdl2-config --cflags --libs`
 
 .PHONY: all clean fclean re libft sdl debug-linux debug-mac
 
@@ -26,10 +30,10 @@ $(NAME): $(OBJS)
 	@echo "Objects generation : ""\x1B[38;5;40m""Done.""\x1B[0m"
 	@echo
 	@$(MAKE) libft
-	@$(MAKE) minilibx
+	@$(MAKE) sdl
 	@echo "                 Building $@..."
 	@echo "--------------------------------------------------"
-	$(CC) $(CFLAGS) $^ -o $@ -L$(LIB_DIR) $(LIBS)
+	$(CC) $(CFLAGS) $^ -o $@ $(LSDL2) -L$(LIB_DIR) $(LIBS)
 	@echo
 	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
 	@echo
@@ -39,7 +43,7 @@ $(OBJ_DIR):
 	@mkdir $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@$(CC) $(CFLAGS) $^ -o $@ -c -I$(INCLUDE_DIR) -isystem$(INCLUDE_SYS)
+	@$(CC) $(CFLAGS) $^ -o $@ -c -I$(INCLUDE_DIR)
 
 $(LIB_DIR):
 	@mkdir $@
@@ -122,8 +126,8 @@ fclean: clean
 
 re: fclean all
 
-debug-linux: $(SRCS)
-	$(CC) $(CFLAGS) $^ -L. $(LIBS)
+debug-linux: $(OBJS)
+	$(CC) $(CFLAGS) $^ -L$(LIB_DIR) $(LIBS) -lSDL2
 
 debug-mac: $(SRCS)
 	$(CC) $(CFLAGS) $^ `$(SDL_PATH)/SDL2/build/bin/sdl2-config --cflags --libs`\

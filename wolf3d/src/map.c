@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/24 19:15:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/26 18:40:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void			delete_map(t_map *map)
 
 	if (map->data->bgd)
 		delete_texture(map->data->bgd);
+	if (map->data->floor.a)
+		SDL_DestroyTexture(map->data->floor_ceiling_txt);
 	free(map->data);
 	while (map)
 	{
