@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 21:55:48 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/24 19:16:09 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/05/26 15:19:21 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,15 +101,15 @@ t_texture		*load_reflection(t_tile type, t_orientation side,
 
 	if (type <= FLOOR)
 		return (NULL);
-	paths[WALL] = "wall.bmp";
-	paths[WALL2] = "wall2.bmp";
-	paths[WALL3] = "wall3.bmp";
-	paths[WALL4] = "wall4.bmp";
-	paths[WOOD] = "wood.bmp";
-	paths[BRICK] = "brick.bmp";
-	paths[BOX] = "box.bmp";
-	paths[BUSH] = "bush.bmp";
-	paths[BOOK] = "bookshelf.bmp";
+	paths[WALL] = "reflect_wall.bmp";
+	paths[WALL2] = "reflect_wall2.bmp";
+	paths[WALL3] = "reflect_wall3.bmp";
+	paths[WALL4] = "reflect_wall4.bmp";
+	paths[WOOD] = "reflect_wood.bmp";
+	paths[BRICK] = "reflect_brick.bmp";
+	paths[BOX] = "reflect_box.bmp";
+	paths[BUSH] = "reflect_bush.bmp";
+	paths[BOOK] = "reflect_bookshelf.bmp";
 	if (!reflections[type][side])
 	{
 		set_rect_crd(&dim, TEXT_SIZE * side, 0);
