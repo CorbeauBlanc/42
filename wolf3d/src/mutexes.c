@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 19:35:45 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 21:26:13 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/03 17:04:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-t_mutexes	*get_mutexes()
+t_mutexes	*get_mutexes(void)
 {
 	static t_mutexes	*mut = NULL;
 
@@ -26,7 +26,7 @@ t_mutexes	*get_mutexes()
 	return (mut);
 }
 
-void		delete_mutexes()
+void		delete_mutexes(void)
 {
 	SDL_DestroyMutex(get_mutexes()->environment);
 	SDL_DestroyMutex(get_mutexes()->mob_mvt);

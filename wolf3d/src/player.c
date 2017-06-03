@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 17:33:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/26 18:26:40 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/03 17:59:06 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_player	*create_player(t_camera *cam)
 	return (player);
 }
 
-t_player	*get_player()
+t_player	*get_player(void)
 {
 	static t_player	*player = NULL;
 
@@ -34,7 +34,7 @@ t_player	*get_player()
 	return (player);
 }
 
-void		delete_player()
+void		delete_player(void)
 {
 	SDL_LockMutex(get_mutexes()->environment);
 	get_player()->cam->state = STOP;

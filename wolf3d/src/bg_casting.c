@@ -23,10 +23,10 @@ static void	draw_bg_reflection(t_map_data *data, SDL_Rect *srect,
 		{
 			srect->y = data->bgd->h / 2;
 			srect->h = srect->y;
-			drect->y = SDL_GetCore()->height / 2;
+			drect->y = get_sdl_core()->height / 2;
 			drect->h = drect->y;
 			SDL_SetTextureAlphaMod(data->bgd->text, data->reflection);
-			SDL_RenderCopy(SDL_GetCore()->renderer, data->bgd->text, srect,
+			SDL_RenderCopy(get_sdl_core()->renderer, data->bgd->text, srect,
 							drect);
 			SDL_SetTextureAlphaMod(data->bgd->text, 255);
 		}
@@ -44,9 +44,9 @@ void		cast_background(t_ray *ray, int i, t_player *plr)
 						% data->bgd->w, 0);
 	set_rect_dim(&srect, 1, data->floor.a ? data->bgd->h / 2 : data->bgd->h);
 	set_rect_crd(&drect, i, 0);
-	set_rect_dim(&drect, 1, data->floor.a ? SDL_GetCore()->height / 2 :
-											SDL_GetCore()->height);
-	SDL_RenderCopy(SDL_GetCore()->renderer, data->bgd->text, &srect, &drect);
+	set_rect_dim(&drect, 1, data->floor.a ? get_sdl_core()->height / 2 :
+											get_sdl_core()->height);
+	SDL_RenderCopy(get_sdl_core()->renderer, data->bgd->text, &srect, &drect);
 	draw_bg_reflection(data, &srect, &drect, plr);
 }
 
@@ -55,9 +55,9 @@ static void	draw_wall_reflection(t_map *wall, t_ray *ray, SDL_Rect *srect,
 {
 	SDL_SetTextureColorMod(wall->reflections[ray->side]->text, ray->filter,
 							ray->filter, ray->filter);
-	SDL_RenderCopy(SDL_GetCore()->renderer, wall->data->floor_ceiling_txt,
+	SDL_RenderCopy(get_sdl_core()->renderer, wall->data->floor_ceiling_txt,
 					drect, drect);
-	SDL_RenderCopy(SDL_GetCore()->renderer, wall->reflections[ray->side]->text,
+	SDL_RenderCopy(get_sdl_core()->renderer, wall->reflections[ray->side]->text,
 					srect, drect);
 }
 

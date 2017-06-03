@@ -6,23 +6,23 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 21:25:59 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/03 18:00:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 #include <fcntl.h>
 
-void	exit_main()
+void	exit_main(void)
 {
 	delete_player();
 	delete_mutexes();
 	garbage_collector(CLEAR, NULL, NULL);
-	SDL_DestroyCore();
+	delete_sdl_core();
 	exit(0);
 }
 
-int		exit_loop()
+int		exit_loop(void)
 {
 	return (0);
 }

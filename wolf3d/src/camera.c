@@ -21,9 +21,9 @@ t_camera	*create_camera(int fov, double angle, int fps, double sensibility)
 		return (NULL);
 	cam->sensi = sensibility;
 	cam->fov = fov;
-	cam->f = SDL_GetCore()->width / (2 * tan(ft_to_rad(fov) / 2.0f));
+	cam->f = get_sdl_core()->width / (2 * tan(ft_to_rad(fov) / 2.0f));
 	set_rect_crd(&cam->screen, 0, 0);
-	set_rect_dim(&cam->screen, SDL_GetCore()->width, SDL_GetCore()->height);
+	set_rect_dim(&cam->screen, get_sdl_core()->width, get_sdl_core()->height);
 	cam->half_scr = cam->screen.h / 2;
 	cam->angle = angle;
 	cam->min_cam_mvt = cam->half_scr - (BOBBING * cam->screen.h / 100) * SPEED;
@@ -42,7 +42,7 @@ void		delete_camera(t_camera *cam)
 void		set_camera_fov(t_camera *cam, int fov)
 {
 	cam->fov = fov;
-	cam->f = SDL_GetCore()->width / (2 * tan(ft_to_rad(cam->fov) / 2.0f));
+	cam->f = get_sdl_core()->width / (2 * tan(ft_to_rad(cam->fov) / 2.0f));
 }
 
 void		set_camera_bobbing(t_camera *cam, int bobbing)
@@ -57,7 +57,7 @@ void		set_camera_mvt(t_camera *cam)
 	static double	i = SPEED;
 	double			y;
 
-	y = (SDL_GetCore()->height / 2) - pow((x / (2 * BOBBING)), 2);
+	y = (get_sdl_core()->height / 2) - pow((x / (2 * BOBBING)), 2);
 	if (y > cam->max_cam_mvt || y < cam->min_cam_mvt)
 		i = -i;
 	else

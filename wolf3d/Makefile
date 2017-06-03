@@ -14,7 +14,7 @@ SDL_PATH=$$(pwd)/SDL2
 SRCS=angles.c bg_casting.c cam_angles.c camera.c cam_scanning.c events.c \
 floor_casting.c graphics.c key_functions_1.c key_functions_2.c main.c map2.c \
 map.c map_data.c mutexes.c orientations.c player.c raycasting.c sprites.c \
-textures.c threads.c tiles.c tools.c
+textures.c textures2.c threads.c tiles.c tools.c
 OBJS=$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIBS=-lft -lm
 LSDL2=`$(SDL_PATH)/SDL2/build/bin/sdl2-config --cflags --libs`
@@ -22,15 +22,13 @@ LSDL2=`$(SDL_PATH)/SDL2/build/bin/sdl2-config --cflags --libs`
 .PHONY: all clean fclean re libft sdl debug-linux debug-mac
 
 
-all: $(OBJ_DIR) $(NAME)
+all: libft sdl $(OBJ_DIR) $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "=================================================="
 	@echo
 	@echo "Objects generation : ""\x1B[38;5;40m""Done.""\x1B[0m"
 	@echo
-	@$(MAKE) libft
-	@$(MAKE) sdl
 	@echo "                 Building $@..."
 	@echo "--------------------------------------------------"
 	$(CC) $(CFLAGS) $^ -o $@ $(LSDL2) -L$(LIB_DIR) $(LIBS)

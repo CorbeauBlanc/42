@@ -6,19 +6,19 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:52:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 21:39:30 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/03 18:08:05 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-t_SDL_Core	*SDL_GetCore(void)
+t_sdl_core	*get_sdl_core(void)
 {
-	static t_SDL_Core	*core = NULL;
+	static t_sdl_core	*core = NULL;
 
 	if (core)
 		return (core);
-	if (!(core = malloc(sizeof(t_SDL_Core))))
+	if (!(core = malloc(sizeof(t_sdl_core))))
 		return (NULL);
 	if (SDL_Init(SDL_VIDEO) ||
 		!(core->window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_CENTERED,
@@ -36,23 +36,23 @@ t_SDL_Core	*SDL_GetCore(void)
 	return (core);
 }
 
-void		SDL_DestroyCore()
+void		delete_sdl_core(void)
 {
-	SDL_DestroyWindow(SDL_GetCore()->window);
-	SDL_DestroyRenderer(SDL_GetCore()->renderer);
+	SDL_DestroyWindow(get_sdl_core()->window);
+	SDL_DestroyRenderer(get_sdl_core()->renderer);
 	SDL_Quit();
-	free(SDL_GetCore());
+	free(get_sdl_core());
 }
 
-void		refresh_win()
+void		refresh_win(void)
 {
-	SDL_RenderPresent(SDL_GetCore()->renderer);
+	SDL_RenderPresent(get_sdl_core()->renderer);
 }
 
 Uint32		get_color(int r, int g, int b)
 {
 	return (SDL_MapRGB(SDL_AllocFormat(SDL_GetWindowPixelFormat(
-														SDL_GetCore()->window)),
+										get_sdl_core()->window)),
 						r, g, b));
 }
 

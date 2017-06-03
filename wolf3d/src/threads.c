@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 16:04:37 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 21:26:52 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/03 17:07:50 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void			init_thread(t_thread *thread, int(*fct)(void*), void *arg,
+void			init_thread(t_thread *thread, int (*fct)(void*), void *arg,
 						t_thread_state state)
 {
 	thread->mutex = SDL_CreateMutex();
@@ -23,6 +23,7 @@ void			init_thread(t_thread *thread, int(*fct)(void*), void *arg,
 t_thread_state	get_thread_state(t_thread *thread)
 {
 	t_thread_state	state;
+
 	SDL_LockMutex(thread->mutex);
 	state = thread->state;
 	SDL_UnlockMutex(thread->mutex);

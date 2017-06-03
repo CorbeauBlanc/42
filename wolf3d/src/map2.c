@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/16 19:14:17 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/24 19:21:45 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/03 17:24:45 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int		is_empty(t_map *tile)
+int			is_empty(t_map *tile)
 {
 	return (tile && tile->type <= FLOOR);
 }
@@ -29,7 +29,7 @@ void		check_player(t_map *map)
 	SDL_UnlockMutex(get_mutexes()->environment);
 }
 
-void			set_map_brightness(t_map_data *data, int percent)
+void		set_map_brightness(t_map_data *data, int percent)
 {
 	double	max;
 
@@ -67,7 +67,7 @@ t_map_data	*get_map_data(int fd, char *path)
 	return (data);
 }
 
-char	*get_data(const char *str, char *buff, int fd)
+char		*get_data(const char *str, char *buff, int fd)
 {
 	char	*n;
 	int		nb;
@@ -82,7 +82,7 @@ char	*get_data(const char *str, char *buff, int fd)
 		while (*buff && (*buff == ':' || ft_isspace(*buff)))
 			++buff;
 		if ((n = ft_strchr(buff, '\n')))
-		 	*n = '\0';
+			*n = '\0';
 		return (buff);
 	}
 	else if (nb < 0)

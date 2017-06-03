@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/26 18:26:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/03 17:42:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 #  include <SDL2/SDL.h>
 #  define SDL_VIDEO		SDL_VIDEO_DRIVER_X11
 # else
-#  include "SDL.h"
+#  include "SDL2/SDL.h"
 #  define SDL_VIDEO		SDL_VIDEO_DRIVER_COCOA
 # endif
 
@@ -84,8 +84,8 @@ void			wait_events(t_event *list_evts, t_player *player);
 Uint32			get_color(int r, int g, int b);
 Uint8			get_filter_value(t_map_data *data, double dist);
 void			refresh_win();
-void			SDL_DestroyCore();
-t_SDL_Core		*SDL_GetCore();
+void			delete_sdl_core();
+t_sdl_core		*get_sdl_core();
 
 /*
 ** key_functions_*.c
@@ -151,7 +151,7 @@ t_sprite		*create_sprite(char *path, int h, int map_width, int delay);
 void			delete_sprite(t_sprite *sprite);
 
 /*
-** textures.c
+** textures*.c
 */
 t_texture		*create_texture(char *path);
 t_texture		*create_texture_rect(char *path, SDL_Rect *dim);
@@ -178,7 +178,6 @@ t_map			*insert_cell(t_map *head, t_map *cell);
 t_map			*goto_tile(t_vector *crd, t_map *tile);
 t_map			*goto_tile2(double x, double y, t_map *tile);
 t_map			*new_cell(t_vector *vect, t_tile type, t_map_data *data);
-
 
 /*
 ** tools.c

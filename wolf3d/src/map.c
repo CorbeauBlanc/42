@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:27:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/26 18:40:15 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/03 18:01:58 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,21 @@ void			delete_map(t_map *map)
 
 void			open_map(char *path)
 {
-	int	fd;
+	int		fd;
 	char	*full;
 
-	if (!path)
-		return;
-	full = ft_strnew(ft_strlen(path) + 64);
-	garbage_collector(ADD, full, &free);
-	ft_strcpy(full, path);
-	if (full[ft_strlen(path) - 1] != '/')
-		full[ft_strlen(path)] = '/';
-	if ((fd = open(get_data_path(full, "map"), O_RDONLY)) >= 0)
-		read_file(fd, full);
-	else
-		exit_error("wolf3d : ", full);
+	if (path)
+	{
+		full = ft_strnew(ft_strlen(path) + 64);
+		garbage_collector(ADD, full, &free);
+		ft_strcpy(full, path);
+		if (full[ft_strlen(path) - 1] != '/')
+			full[ft_strlen(path)] = '/';
+		if ((fd = open(get_data_path(full, "map"), O_RDONLY)) >= 0)
+			read_file(fd, full);
+		else
+			exit_error("wolf3d : ", full);
+	}
 }
 
 t_map			*read_file(int fd, char *path)

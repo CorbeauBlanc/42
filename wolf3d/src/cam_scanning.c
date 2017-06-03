@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 17:49:10 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/26 17:48:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/03 17:02:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void		scan_environment(t_player *player)
 	i = -1;
 	ray.h_i.w = player->cam->f;
 	ray.v_i.w = player->cam->f;
-	half_scr = SDL_GetCore()->width / 2;
+	half_scr = get_sdl_core()->width / 2;
 	if (player->tile->data->floor.a)
 		cast_floor_ceiling(player);
 	while (++i <= player->cam->screen.w)
 	{
 		angle = atan((half_scr - i) / player->cam->f);
-		ray.a =  angle + ft_to_rad(player->cam->angle);
+		ray.a = angle + ft_to_rad(player->cam->angle);
 		SDL_LockMutex(get_mutexes()->mob_mvt);
 		cast_ray(&ray, player, angle, i);
 		SDL_UnlockMutex(get_mutexes()->mob_mvt);

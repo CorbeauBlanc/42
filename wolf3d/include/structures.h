@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/24 19:22:06 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/03 17:42:56 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # ifndef __APPLE__
 #  include <SDL2/SDL.h>
 # else
-#  include "SDL.h"
+#  include "SDL2/SDL.h"
 # endif
 
 /*
@@ -32,37 +32,37 @@
 */
 typedef enum		e_tile
 {
-					FLOOR,
-					WOOD,
-					BRICK,
-					BUSH,
-					BOX,
-					BOOK,
-					WALL4,
-					WALL3,
-					WALL2,
-					WALL
+	FLOOR,
+	WOOD,
+	BRICK,
+	BUSH,
+	BOX,
+	BOOK,
+	WALL4,
+	WALL3,
+	WALL2,
+	WALL
 }					t_tile;
 
 typedef enum		e_thread_state
 {
-					RUN,
-					PAUSE,
-					STOP
+	RUN,
+	PAUSE,
+	STOP
 }					t_thread_state;
 
 typedef enum		e_mob_type
 {
-					SHOOTER,
-					SLAYER,
+	SHOOTER,
+	SLAYER,
 }					t_mob_type;
 
 typedef enum		e_orientation
 {
-					NORTH,
-					SOUTH,
-					WEST,
-					EAST
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST
 }					t_orientation;
 
 typedef struct		s_vector
@@ -95,14 +95,14 @@ typedef struct		s_mutexes
 	SDL_mutex		*mob_mvt;
 }					t_mutexes;
 
-typedef struct		s_SDL_Core
+typedef struct		s_sdl_core
 {
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
 	int				width;
 	int				height;
 	int				fullscreen;
-}					t_SDL_Core;
+}					t_sdl_core;
 
 typedef struct		s_texture
 {

@@ -87,7 +87,7 @@ int		draw_tile(t_player *plr, int i, t_ray *ray)
 	set_rect_dim(&srect, 1, wall->textures[ray->side]->h);
 	SDL_SetTextureColorMod(wall->textures[ray->side]->text,
 							ray->filter, ray->filter, ray->filter);
-	SDL_RenderCopy(SDL_GetCore()->renderer, wall->textures[ray->side]->text,
+	SDL_RenderCopy(get_sdl_core()->renderer, wall->textures[ray->side]->text,
 					&srect, &drect);
 	return (0);
 }
