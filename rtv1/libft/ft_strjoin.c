@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 18:49:23 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/09 15:22:26 by edescoin          #+#    #+#             */
+/*   Updated: 2016/12/28 16:34:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	long	l;
-	char	c;
+	long	i;
+	long	j;
+	char	*dst;
 
-	l = (long)n;
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		l = -l;
-	}
-	if (n > 9 || n < -9)
-		ft_putnbr_fd((int)(l / 10), fd);
-	c = '0' + (l % 10);
-	write(fd, &c, 1);
+	if (!s2)
+		return (ft_strdup(s1));
+	if (!s1 || !(dst = (char*)malloc(ft_strlen(s1) + ft_strlen(s2) + 1)))
+		return (NULL);
+	i = -1;
+	j = -1;
+	while (s1[++i])
+		dst[++j] = s1[i];
+	i = -1;
+	while (s2[++i])
+		dst[++j] = s2[i];
+	dst[j + 1] = '\0';
+	return (dst);
 }

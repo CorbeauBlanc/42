@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 18:49:23 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/07 18:21:16 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/24 12:18:58 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	long	l;
-	char	c;
+	unsigned char	c1;
+	unsigned char	c2;
 
-	l = (long)n;
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		l = -l;
-	}
-	if (n > 9 || n < -9)
-		ft_putnbr_fd((int)(l / 10), fd);
-	c = '0' + (l % 10);
-	write(fd, &c, 1);
+	if (!s1 || !s2)
+		return (0);
+	c1 = *s1;
+	c2 = *s2;
+	if (c1 && c2)
+		return (c1 == c2 ? ft_strcmp(s1 + 1, s2 + 1) : c1 - c2);
+	return (c1 - c2);
 }

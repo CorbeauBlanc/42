@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 18:49:23 by edescoin         ###   ########.fr       */
+/*   Created: 2017/05/22 18:05:52 by edescoin          #+#    #+#             */
+/*   Updated: 2017/05/22 19:19:18 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-void	ft_putnbr_fd(int n, int fd)
+void	exit_error(char *prog, char *err)
 {
-	long	l;
-	char	c;
+	ft_putstr_fd(prog, 2);
+	perror(err);
+	exit(1);
+}
 
-	l = (long)n;
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		l = -l;
-	}
-	if (n > 9 || n < -9)
-		ft_putnbr_fd((int)(l / 10), fd);
-	c = '0' + (l % 10);
-	write(fd, &c, 1);
+void	exit_custom_error(char *prog, char *err)
+{
+	ft_putstr_fd(prog, 2);
+	ft_putstr_fd(err, 2);
+	write(2, "\n", 1);
+	exit(1);
 }

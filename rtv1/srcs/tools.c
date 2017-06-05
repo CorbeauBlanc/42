@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_angles.c                                        :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 11:43:59 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/26 20:00:43 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/01/30 19:41:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
-#include "libft.h"
+#include "fdf.h"
 
-double	ft_to_rad(double deg)
+int		is_in_window(t_vector *vect)
+{
+	return (vect && vect->x > 0 && vect->x < WIDTH && vect->y > 0 &&
+			vect->y < HEIGHT && vect->z < 0);
+}
+
+double	dabs(double f)
+{
+	return (f < 0 ? -f : f);
+}
+
+double	to_rad(double deg)
 {
 	return (deg * (M_PI / 180.0f));
 }
 
-double	ft_to_deg(double rad)
+double	max(double d1, double d2)
 {
-	return (rad * (180.0f / M_PI));
+	return (d1 > d2 ? d1 : d2);
+}
+
+double	min(double d1, double d2)
+{
+	return (d1 < d2 ? d1 : d2);
 }

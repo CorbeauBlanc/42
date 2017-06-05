@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 18:49:23 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/05 17:25:08 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/24 12:23:21 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	long	l;
-	char	c;
+	long	i;
+	long	j;
 
-	l = (long)n;
-	if (n < 0)
+	if (!s1)
+		return (NULL);
+	if (s2)
 	{
-		write(fd, "-", 1);
-		l = -l;
+		i = -1;
+		j = ft_strlen(s1) - 1;
+		while (s2[++i] && i < (long)n)
+			s1[++j] = s2[i];
+		s1[j + 1] = '\0';
 	}
-	if (n > 9 || n < -9)
-		ft_putnbr_fd((int)(l / 10), fd);
-	c = '0' + (l % 10);
-	write(fd, &c, 1);
+	return (s1);
 }

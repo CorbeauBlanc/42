@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 18:49:23 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/08 16:04:52 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/24 12:01:47 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_atoi(const char *nptr)
 {
-	long	l;
-	char	c;
+	long	i;
+	long	nb;
+	int		sign;
 
-	l = (long)n;
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		l = -l;
-	}
-	if (n > 9 || n < -9)
-		ft_putnbr_fd((int)(l / 10), fd);
-	c = '0' + (l % 10);
-	write(fd, &c, 1);
+	if (!nptr)
+		return (0);
+	i = 0;
+	nb = 0;
+	sign = 1;
+	while (ft_isspace(nptr[i]) && nptr[i])
+		i++;
+	if (!nptr[i])
+		return (0);
+	if (nptr[i] == '+' || nptr[i] == '-')
+		sign = (nptr[i] == '+' ? 1 : -1);
+	else
+		--i;
+	while (ft_isdigit(nptr[++i]))
+		nb = nb * 10 + (nptr[i] - '0');
+	return ((int)(sign * nb));
 }
