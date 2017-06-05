@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 18:49:23 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/08 17:55:59 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/24 12:12:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	long	l;
-	char	c;
-
-	l = (long)n;
-	if (n < 0)
+	if (!dest || !src)
+		return (NULL);
+	if (n)
 	{
-		write(fd, "-", 1);
-		l = -l;
+		ft_memcpy(dest + 1, src + 1, n - 1);
+		*(unsigned char*)dest = *(unsigned char*)src;
 	}
-	if (n > 9 || n < -9)
-		ft_putnbr_fd((int)(l / 10), fd);
-	c = '0' + (l % 10);
-	write(fd, &c, 1);
+	return (dest);
 }

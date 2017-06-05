@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gb_collector.c                                     :+:      :+:    :+:   */
+/*   gb_collection.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 14:09:03 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/11 17:21:24 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/02/06 13:12:32 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "fdf.h"
 
 static void	add_shit(t_garbage **pile, void *ptr, void (*fct)())
 {

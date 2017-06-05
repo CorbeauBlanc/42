@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 18:49:23 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/15 12:47:09 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/25 17:25:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	ft_putstr(char const *s)
 {
-	long	l;
-	char	c;
-
-	l = (long)n;
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		l = -l;
-	}
-	if (n > 9 || n < -9)
-		ft_putnbr_fd((int)(l / 10), fd);
-	c = '0' + (l % 10);
-	write(fd, &c, 1);
+	if (s && *s)
+		write(1, s, ft_strlen(s));
 }

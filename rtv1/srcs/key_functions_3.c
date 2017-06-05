@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   key_functions_3.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 18:49:23 by edescoin         ###   ########.fr       */
+/*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
+/*   Updated: 2017/01/30 16:37:50 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fdf.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void	zoom_in(t_camera *cam, t_map *map)
 {
-	long	l;
-	char	c;
+	(void)map;
+	set_camera_crd(cam, cam->phi, cam->theta, cam->r - SCALE_XY);
+}
 
-	l = (long)n;
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		l = -l;
-	}
-	if (n > 9 || n < -9)
-		ft_putnbr_fd((int)(l / 10), fd);
-	c = '0' + (l % 10);
-	write(fd, &c, 1);
+void	zoom_out(t_camera *cam, t_map *map)
+{
+	(void)map;
+	set_camera_crd(cam, cam->phi, cam->theta, cam->r + SCALE_XY);
 }

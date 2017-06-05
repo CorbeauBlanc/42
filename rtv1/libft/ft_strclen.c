@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strclen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 18:49:23 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/11 12:07:53 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/22 17:23:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+size_t	ft_strclen(const char *s, char c)
 {
-	long	l;
-	char	c;
-
-	l = (long)n;
-	if (n < 0)
-	{
-		write(fd, "-", 1);
-		l = -l;
-	}
-	if (n > 9 || n < -9)
-		ft_putnbr_fd((int)(l / 10), fd);
-	c = '0' + (l % 10);
-	write(fd, &c, 1);
+	if (s && *s && *s != c)
+		return (1 + ft_strclen(s + 1, c));
+	return (0);
 }

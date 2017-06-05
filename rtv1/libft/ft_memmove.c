@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/15 13:46:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/10 18:49:23 by edescoin         ###   ########.fr       */
+/*   Created: 2016/11/08 18:07:53 by edescoin          #+#    #+#             */
+/*   Updated: 2016/11/24 12:13:18 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+void		*ft_memmove(void *dest, const void *src, size_t n)
 {
-	long	l;
-	char	c;
+	int				i;
+	int				j;
 
-	l = (long)n;
-	if (n < 0)
+	if (!dest || !src)
+		return (NULL);
+	i = (dest < src ? 0 : n - 1);
+	j = (dest < src ? 1 : -1);
+	while (n)
 	{
-		write(fd, "-", 1);
-		l = -l;
+		((unsigned char*)dest)[i] = ((unsigned char*)src)[i];
+		i += j;
+		--n;
 	}
-	if (n > 9 || n < -9)
-		ft_putnbr_fd((int)(l / 10), fd);
-	c = '0' + (l % 10);
-	write(fd, &c, 1);
+	return (dest);
 }
