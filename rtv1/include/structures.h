@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/06 18:05:01 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/06 19:36:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef struct		s_vector
 	double			w;
 }					t_vector;
 
+
+
 typedef struct		s_map
 {
 
@@ -76,7 +78,6 @@ typedef struct		s_camera
 	double			theta;
 	double			phi;
 	double			r;
-	t_matrix		*view;
 	SDL_Rect		screen;
 	SDL_Thread		*refresh_cam;
 	t_thread_state	state;
