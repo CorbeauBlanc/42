@@ -6,11 +6,11 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 16:04:37 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/03 17:07:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/06 17:50:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "rtv1.h"
 
 void			init_thread(t_thread *thread, int (*fct)(void*), void *arg,
 						t_thread_state state)

@@ -1,6 +1,6 @@
 # sdl pkg-config source file
 
-prefix=/Users/edescoin/Desktop/wolf3d/SDL2/SDL2/bin
+prefix=/Users/edescoin/Desktop/rtv1/SDL2/SDL2/bin
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include

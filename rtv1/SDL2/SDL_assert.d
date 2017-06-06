@@ -1,7 +1,7 @@
-build/SDL_assert.lo: /Users/edescoin/Desktop/wolf3d/SDL2/src/SDL_assert.c \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/./SDL_internal.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/dynapi/SDL_dynapi.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/dynapi/SDL_dynapi_overrides.h \
+build/SDL_assert.lo: /Users/edescoin/Desktop/rtv1/SDL2/src/SDL_assert.c \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/./SDL_internal.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/dynapi/SDL_dynapi.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/dynapi/SDL_dynapi_overrides.h \
   include/SDL_config.h include/SDL_platform.h include/begin_code.h \
   include/close_code.h include/SDL.h include/SDL_main.h \
   include/SDL_stdinc.h include/SDL_assert.h include/SDL_atomic.h \
@@ -17,6 +17,6 @@ build/SDL_assert.lo: /Users/edescoin/Desktop/wolf3d/SDL2/src/SDL_assert.c \
   include/SDL_log.h include/SDL_messagebox.h include/SDL_power.h \
   include/SDL_render.h include/SDL_system.h include/SDL_timer.h \
   include/SDL_version.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/SDL_assert_c.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/SDL_sysvideo.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/SDL_assert_c.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/SDL_sysvideo.h \
   include/SDL_shape.h

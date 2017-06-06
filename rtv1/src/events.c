@@ -6,11 +6,11 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:21:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 21:25:43 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/06 17:46:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
+#include "rtv1.h"
 
 void		new_event(t_event **head, SDL_Scancode key, int (*fct)())
 {

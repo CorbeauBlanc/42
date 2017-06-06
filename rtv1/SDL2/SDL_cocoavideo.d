@@ -1,8 +1,8 @@
 build/SDL_cocoavideo.lo: \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/SDL_cocoavideo.m \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/../../SDL_internal.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/../../dynapi/SDL_dynapi.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/../../dynapi/SDL_dynapi_overrides.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/SDL_cocoavideo.m \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/../../SDL_internal.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/../../dynapi/SDL_dynapi.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/../../dynapi/SDL_dynapi_overrides.h \
   include/SDL_config.h include/SDL_platform.h include/begin_code.h \
   include/close_code.h include/SDL.h include/SDL_main.h \
   include/SDL_stdinc.h include/SDL_assert.h include/SDL_atomic.h \
@@ -18,16 +18,16 @@ build/SDL_cocoavideo.lo: \
   include/SDL_log.h include/SDL_messagebox.h include/SDL_power.h \
   include/SDL_render.h include/SDL_system.h include/SDL_timer.h \
   include/SDL_version.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/SDL_cocoavideo.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/SDL_cocoavideo.h \
   include/SDL_opengl.h include/SDL_opengl_glext.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/../SDL_sysvideo.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/../SDL_sysvideo.h \
   include/SDL_shape.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/SDL_cocoaclipboard.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/SDL_cocoaevents.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/SDL_cocoakeyboard.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/SDL_cocoamodes.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/SDL_cocoamouse.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/SDL_cocoaopengl.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/SDL_cocoawindow.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/SDL_cocoashape.h \
-  /Users/edescoin/Desktop/wolf3d/SDL2/src/video/cocoa/../SDL_shape_internals.h
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/SDL_cocoaclipboard.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/SDL_cocoaevents.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/SDL_cocoakeyboard.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/SDL_cocoamodes.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/SDL_cocoamouse.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/SDL_cocoaopengl.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/SDL_cocoawindow.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/SDL_cocoashape.h \
+  /Users/edescoin/Desktop/rtv1/SDL2/src/video/cocoa/../SDL_shape_internals.h

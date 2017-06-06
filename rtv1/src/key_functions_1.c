@@ -6,110 +6,52 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/05/23 21:25:53 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/06 17:47:31 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf3d.h"
-#include <math.h>
+#include "rtv1.h"
 
-static int	move_player_to_crd(t_player *player, t_vector *crd)
+void	translate_left(t_camera *cam, t_map *map)
 {
-	t_map	*tmp;
+	t_matrix	*tmp;
 
-	tmp = goto_tile(crd, player->tile);
-	if (is_empty(tmp))
-	{
-		player->pos = *crd;
-		player->tile = tmp;
-		return (1);
-	}
-	return (0);
+	(void)cam;
+	tmp = create_identity(4);
+	translation(&tmp, cam->r / SCALE_XY, 0, 0);
+	transform_map(map, tmp);
+	delete_matrix(tmp);
 }
 
-int			move_left(t_player *player, int mvt_nb)
+void	translate_right(t_camera *cam, t_map *map)
 {
-	double		angle;
-	t_vector	move;
+	t_matrix	*tmp;
 
-	if (player->last_mvt_nb != mvt_nb)
-	{
-		set_camera_mvt(player->cam);
-		player->last_mvt_nb = mvt_nb;
-	}
-	angle = ft_to_rad(player->cam->angle + 90);
-	set_vect_crd(&move, player->pos.x + cos(angle) * SPEED,
-				player->pos.y - sin(angle) * SPEED);
-	if (move_player_to_crd(player, &move))
-		return (1);
-	set_vect_crd(&move, player->pos.x + cos(angle) * SPEED, player->pos.y);
-	if (move_player_to_crd(player, &move))
-		return (1);
-	set_vect_crd(&move, player->pos.x, player->pos.y - sin(angle) * SPEED);
-	move_player_to_crd(player, &move);
-	return (1);
+	(void)cam;
+	tmp = create_identity(4);
+	translation(&tmp, -cam->r / SCALE_XY, 0, 0);
+	transform_map(map, tmp);
+	delete_matrix(tmp);
 }
 
-int			move_right(t_player *player, int mvt_nb)
+void	translate_up(t_camera *cam, t_map *map)
 {
-	double		angle;
-	t_vector	move;
+	t_matrix	*tmp;
 
-	if (player->last_mvt_nb != mvt_nb)
-	{
-		set_camera_mvt(player->cam);
-		player->last_mvt_nb = mvt_nb;
-	}
-	angle = ft_to_rad(player->cam->angle - 90);
-	set_vect_crd(&move, player->pos.x + cos(angle) * SPEED,
-				player->pos.y - sin(angle) * SPEED);
-	if (move_player_to_crd(player, &move))
-		return (1);
-	set_vect_crd(&move, player->pos.x + cos(angle) * SPEED, player->pos.y);
-	if (move_player_to_crd(player, &move))
-		return (1);
-	set_vect_crd(&move, player->pos.x, player->pos.y - sin(angle) * SPEED);
-	move_player_to_crd(player, &move);
-	return (1);
+	(void)cam;
+	tmp = create_identity(4);
+	translation(&tmp, 0, cam->r / SCALE_XY, 0);
+	transform_map(map, tmp);
+	delete_matrix(tmp);
 }
 
-int			move_up(t_player *player, int mvt_nb)
+void	translate_down(t_camera *cam, t_map *map)
 {
-	double		angle;
-	t_vector	move;
+	t_matrix	*tmp;
 
-	if (player->last_mvt_nb != mvt_nb)
-	{
-		set_camera_mvt(player->cam);
-		player->last_mvt_nb = mvt_nb;
-	}
-	angle = ft_to_rad(player->cam->angle);
-	set_vect_crd(&move, player->pos.x + cos(angle) * SPEED,
-				player->pos.y - sin(angle) * SPEED);
-	if (move_player_to_crd(player, &move))
-		return (1);
-	set_vect_crd(&move, player->pos.x + cos(angle) * SPEED, player->pos.y);
-	if (move_player_to_crd(player, &move))
-		return (1);
-	set_vect_crd(&move, player->pos.x, player->pos.y - sin(angle) * SPEED);
-	move_player_to_crd(player, &move);
-	return (1);
-}
-
-int			move_down(t_player *player, int mvt_nb)
-{
-	double		angle;
-	t_vector	move;
-
-	if (player->last_mvt_nb != mvt_nb)
-	{
-		set_camera_mvt(player->cam);
-		player->last_mvt_nb = mvt_nb;
-	}
-	angle = ft_to_rad(player->cam->angle);
-	set_vect_crd(&move, player->pos.x - cos(angle) * SPEED,
-				player->pos.y + sin(angle) * SPEED);
-	if (move_player_to_crd(player, &move))
-		return (1);
-	return (1);
+	(void)cam;
+	tmp = create_identity(4);
+	translation(&tmp, 0, -cam->r / SCALE_XY, 0);
+	transform_map(map, tmp);
+	delete_matrix(tmp);
 }

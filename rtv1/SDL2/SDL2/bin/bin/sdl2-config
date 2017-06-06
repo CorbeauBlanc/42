@@ -1,6 +1,6 @@
 #!/bin/sh
 
-prefix=/Users/edescoin/Desktop/wolf3d/SDL2/SDL2/bin
+prefix=/Users/edescoin/Desktop/rtv1/SDL2/SDL2/bin
 exec_prefix=${prefix}
 exec_prefix_set=no
 libdir=${exec_prefix}/lib
