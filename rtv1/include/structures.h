@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/06 17:41:59 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:05:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef struct		s_thread
 
 typedef struct		s_event
 {
-	SDL_Scancode	key;
+	SDL_EventType	type;
+	void			*data;
 	int				(*fct)();
 	struct s_event	*next;
 }					t_event;

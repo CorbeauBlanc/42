@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:10:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/06 17:23:11 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:07:39 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 */
 void	clear_events(t_event **head);
 void	delete_event(t_event **head);
-void	new_event(t_event **head, SDL_Scancode key, int (*fct)());
-void	wait_events(t_event *list_evts, t_camera *cam);
+void	new_event(t_event **head, SDL_EventType type, void *data, int (*fct)());
+void	wait_events(t_event *list_evts);
 
 /*
 ** key_functions_*.c
