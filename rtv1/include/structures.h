@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/06 19:36:02 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/07 23:02:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ typedef enum		e_thread_state
 	PAUSE,
 	STOP
 }					t_thread_state;
+
+typedef enum		e_type
+{
+	CONE,
+	SPHERE,
+	PRYRAMID
+}					t_type;
 
 typedef struct		s_sdl_core
 {
@@ -64,12 +71,30 @@ typedef struct		s_vector
 	double			w;
 }					t_vector;
 
-
-
-typedef struct		s_map
+typedef struct		s_object
 {
+	const t_type	obj_type;
+	void			(*intersect)();
+}					t_object;
 
-}					t_map;
+typedef struct		s_sphere
+{
+	const t_type	obj_type;
+	void			(*intersect)();
+	t_vector		center;
+	double			radius;
+}					t_sphere;
+
+typedef struct	s_obj_cell
+{
+	t_object	*obj;
+	struct s_obj_cell	*next;
+}				t_obj_cell;
+
+typedef struct	s_map
+{
+	t_obj_cell	*collection;
+}				t_map;
 
 typedef struct		s_camera
 {
