@@ -17,7 +17,7 @@ void		transform_map(t_map *map, t_matrix *mat)
 {
 	while (map)
 	{
-		mult_vector(map->vect, mat, map->vect);
+		mult_dot(map->vect, mat, map->vect);
 		if (map->right)
 			map = map->right;
 		else
@@ -27,17 +27,17 @@ void		transform_map(t_map *map, t_matrix *mat)
 
 static void	draw_map_tile(t_image *img, t_tile *tile, t_map *map, t_camera *cam)
 {
-	transform_vector(&tile->p1, map->vect, cam);
+	transform_dot(&tile->p1, map->vect, cam);
 	if (map->right)
-		transform_vector(&tile->p2, map->right->vect, cam);
+		transform_dot(&tile->p2, map->right->vect, cam);
 	else
 		tile->p2.z = 0;
 	if (map->right && map->right->down)
-		transform_vector(&tile->p3, map->right->down->vect, cam);
+		transform_dot(&tile->p3, map->right->down->vect, cam);
 	else
 		tile->p3.z = 0;
 	if (map->down)
-		transform_vector(&tile->p4, map->down->vect, cam);
+		transform_dot(&tile->p4, map->down->vect, cam);
 	else
 		tile->p4.z = 0;
 	if (is_in_window(&tile->p1) && is_in_window(&tile->p2))

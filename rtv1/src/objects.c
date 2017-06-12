@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/12 20:08:42 by edescoin         ###   ########.fr       */
+/*   Created: 2017/06/12 16:32:56 by edescoin          #+#    #+#             */
+/*   Updated: 2017/06/12 20:07:44 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-/*
-void	exit_main(void)
+
+t_sphere	*new_sphere(double x, double y, double z, double radius)
 {
-	garbage_collector(CLEAR, NULL, NULL);
-	delete_sdl_core();
-	exit(0);
-}
+	t_sphere	*sphere;
 
-int		exit_loop(void)
-{
-	return (0);
-}
-
-void	init_list_evts(t_event **head)
-{
-
-}
-*/
-
-int		main(int ac, char **av)
-{
-	(void)ac;
-	(void)av;
-
-
-/*	wait_events(list_evts, get_player());
-	clear_events(&list_evts);
-	exit_main();*/
-	return (0);
+	if (!(sphere = malloc(sizeof(t_sphere))))
+		exit_error("rtv1", "malloc");
+	*(t_type*)&sphere->obj_type = SPHERE;
+	sphere->intersect = NULL;
+	sphere->radius = radius;
+	set_dot(&sphere->center, x, y, z);
+	return (sphere);
 }

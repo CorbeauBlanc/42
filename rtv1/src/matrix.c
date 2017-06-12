@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 17:14:48 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/06 17:49:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/12 20:02:04 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		clear_matrix(t_matrix *mat)
 	}
 }
 
-t_matrix	*create_matrix(double **mat, int r, int c)
+t_matrix	*new_matrix(double **mat, int r, int c)
 {
 	t_matrix	*matrix;
 	int			i;
@@ -59,7 +59,7 @@ t_matrix	*create_identity(int i)
 {
 	t_matrix	*mtx;
 
-	mtx = create_matrix(NULL, i, i);
+	mtx = new_matrix(NULL, i, i);
 	i = -1;
 	while (++i < mtx->c)
 		mtx->mat[i][i] = 1;
@@ -86,7 +86,7 @@ t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2)
 
 	if (m1->c != m2->r)
 		return (NULL);
-	mult = create_matrix(NULL, m1->r, m2->c);
+	mult = new_matrix(NULL, m1->r, m2->c);
 	r = -1;
 	while (++r < mult->r)
 	{

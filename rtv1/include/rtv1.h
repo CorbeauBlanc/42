@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 16:51:08 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/06 17:44:04 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/12 20:00:32 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include "libft.h"
 
 # include "camera.h"
+# include "dots.h"
 # include "events.h"
 # include "graphics.h"
 # include "map.h"

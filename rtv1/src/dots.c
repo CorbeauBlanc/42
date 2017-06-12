@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectors.c                                          :+:      :+:    :+:   */
+/*   dots.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/06 17:50:31 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/12 19:59:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include <math.h>
 
-t_vector	*create_vector(double x, double y, double z)
+t_dot	*new_dot(double x, double y, double z)
 {
-	t_vector	*vect;
+	t_dot	*vect;
 
-	if (!(vect = malloc(sizeof(t_vector))))
+	if (!(vect = malloc(sizeof(t_dot))))
 		return (NULL);
 	vect->x = x;
 	vect->y = y;
@@ -26,18 +26,18 @@ t_vector	*create_vector(double x, double y, double z)
 	return (vect);
 }
 
-void		transform_vector(t_vector *dest, t_vector *vect, t_camera *cam)
+void	transform_dot(t_dot *dest, t_dot *vect, t_camera *cam)
 {
 	double	tmp;
 
 	tmp = vect->z;
-	mult_vector(dest, cam->view, vect);
+	mult_dot(dest, cam->view, vect);
 	dest->x = (WIDTH / 2) + (cam->f * dest->x) / dest->z;
 	dest->y = (HEIGHT / 2) + (cam->f * dest->y) / dest->z;
 	dest->w = tmp;
 }
 
-void		mult_vector(t_vector *dest, t_matrix *mtx, t_vector *vec)
+void	mult_dot(t_dot *dest, t_matrix *mtx, t_dot *vec)
 {
 	int	x;
 	int	y;
@@ -55,4 +55,11 @@ void		mult_vector(t_vector *dest, t_matrix *mtx, t_vector *vec)
 		dest->y = y;
 		dest->z = z;
 	}
+}
+
+void	set_dot(t_dot *dot, double x, double y, double z)
+{
+	dot->x = x;
+	dot->y = y;
+	dot->z = z;
 }

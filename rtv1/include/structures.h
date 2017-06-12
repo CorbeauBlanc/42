@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/07 23:24:39 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/12 19:48:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ typedef struct		s_matrix
 	int				c;
 }					t_matrix;
 
-typedef struct		s_vector
+typedef struct		s_dot
 {
 	double			x;
 	double			y;
 	double			z;
 	double			w;
-}					t_vector;
+}					t_dot;
 
 typedef struct		s_object
 {
@@ -81,7 +81,7 @@ typedef struct		s_sphere
 {
 	const t_type	obj_type;
 	void			(*intersect)();
-	t_vector		center;
+	t_dot			center;
 	double			radius;
 }					t_sphere;
 
