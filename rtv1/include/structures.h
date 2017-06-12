@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/07 23:02:10 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/07 23:24:39 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,16 +85,16 @@ typedef struct		s_sphere
 	double			radius;
 }					t_sphere;
 
-typedef struct	s_obj_cell
+typedef struct		s_cell
 {
-	t_object	*obj;
-	struct s_obj_cell	*next;
-}				t_obj_cell;
+	t_object		*obj;
+	struct s_cell	*next;
+}					t_cell;
 
-typedef struct	s_map
+typedef struct		s_map
 {
-	t_obj_cell	*collection;
-}				t_map;
+	t_cell			*collection;
+}					t_map;
 
 typedef struct		s_camera
 {

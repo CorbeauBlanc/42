@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 14:10:30 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/03 18:20:53 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/08 20:31:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,7 @@ double					ft_to_deg(double rad);
 int						ft_tolower(int c);
 double					ft_to_rad(double deg);
 int						ft_toupper(int c);
+
+void					fonction_test(int inutile);
 
 #endif
