@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/13 16:36:20 by edescoin         ###   ########.fr       */
+/*   Created: 2017/06/14 16:14:58 by edescoin          #+#    #+#             */
+/*   Updated: 2017/06/14 16:35:47 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	exit_main(void)
+t_ray	*new_ray(const t_dot *d1, const t_dot *d2)
 {
-	garbage_collector(CLEAR, NULL, NULL);
-	delete_sdl_core();
-	exit(0);
+	t_ray	*ray;
+
+	if (!(ray = malloc(sizeof(t_ray))))
+		exit_error("rtv1", "malloc");
+	init_equation(&ray->eq,
+				&(t_vector){d2->x - d1->x, d2->y - d1->y, d2->y - d1->z},
+				(t_vector*)d1);
+	return (ray);
 }
 
-int		exit_loop(void)
+void	init_ray(t_ray *ray, const t_dot *d1, const t_dot *d2)
 {
-	return (0);
-}
-/*
-void	init_list_evts(t_event **head)
-{
-
-}
-*/
-
-int		main(int ac, char **av)
-{
-	(void)ac;
-	(void)av;
-
-/*	wait_events(list_evts, get_player());
-	clear_events(&list_evts);
-	exit_main();*/
-	return (0);
+	init_equation(&ray->eq,
+				&(t_vector){d2->x - d1->x, d2->y - d1->y, d2->y - d1->z},
+				(t_vector*)d1);
 }

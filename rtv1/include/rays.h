@@ -1,42 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   rays.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/13 16:36:20 by edescoin         ###   ########.fr       */
+/*   Created: 2017/06/14 16:26:57 by edescoin          #+#    #+#             */
+/*   Updated: 2017/06/14 16:27:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#ifndef RAYS_H
+# define RAYS_H
+# include "structures.h"
 
-void	exit_main(void)
-{
-	garbage_collector(CLEAR, NULL, NULL);
-	delete_sdl_core();
-	exit(0);
-}
+t_ray	*new_ray(const t_dot *d1, const t_dot *d2);
+void	init_ray(t_ray *ray, const t_dot *d1, const t_dot *d2);
 
-int		exit_loop(void)
-{
-	return (0);
-}
-/*
-void	init_list_evts(t_event **head)
-{
-
-}
-*/
-
-int		main(int ac, char **av)
-{
-	(void)ac;
-	(void)av;
-
-/*	wait_events(list_evts, get_player());
-	clear_events(&list_evts);
-	exit_main();*/
-	return (0);
-}
+#endif /* end of include guard: RAYS_H */

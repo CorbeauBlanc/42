@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.h                                              :+:      :+:    :+:   */
+/*   objects.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/06 17:10:39 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/06 17:23:27 by edescoin         ###   ########.fr       */
+/*   Created: 2017/06/13 16:47:13 by edescoin          #+#    #+#             */
+/*   Updated: 2017/06/13 16:47:43 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAP_H
-# define MAP_H
+#ifndef OBJECTS_H
+# define OBJECTS_H
 # include "structures.h"
 
-/*
-** map_projection.c
-*/
-void	projection(t_map *map, t_camera *cam);
-void	transform_map(t_map *map, t_matrix *mat);
+t_object	*new_object(t_type type, void (*intersect)(), size_t size);
 
 #endif

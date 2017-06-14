@@ -6,14 +6,16 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/12 19:48:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/14 17:03:39 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
+# define WIDTH 		700
+# define HEIGHT 	700
 # ifndef __APPLE__
-#  include <SDL.h>
+#  include <SDL2/SDL.h>
 # else
 #  include "SDL2/SDL.h"
 # endif
@@ -63,6 +65,13 @@ typedef struct		s_matrix
 	int				c;
 }					t_matrix;
 
+typedef struct		s_vector
+{
+	double			x;
+	double			y;
+	double			z;
+}					t_vector;
+
 typedef struct		s_dot
 {
 	double			x;
@@ -70,6 +79,12 @@ typedef struct		s_dot
 	double			z;
 	double			w;
 }					t_dot;
+
+typedef struct	s_param_eq
+{
+	t_vector	vdir;
+	t_vector	vconst;
+}				t_param_eq;
 
 typedef struct		s_object
 {
@@ -85,32 +100,37 @@ typedef struct		s_sphere
 	double			radius;
 }					t_sphere;
 
+typedef struct		s_spotlight
+{
+	t_dot			crd;
+}					t_spotlight;
+
 typedef struct		s_cell
 {
 	t_object		*obj;
 	struct s_cell	*next;
 }					t_cell;
 
-typedef struct		s_map
+typedef struct		s_scene
 {
+	t_spotlight		light;
 	t_cell			*collection;
-}					t_map;
+}					t_scene;
 
 typedef struct		s_camera
 {
 	int				fov;
+	t_dot			crd;
+	t_dot			*screen[WIDTH][HEIGHT];
 	double			f;
 	double			theta;
 	double			phi;
-	double			r;
-	SDL_Rect		screen;
-	SDL_Thread		*refresh_cam;
-	t_thread_state	state;
 }					t_camera;
 
 typedef struct		s_ray
 {
-
+	t_param_eq		eq;
+	SDL_Color		color;
 }					t_ray;
 
 #endif

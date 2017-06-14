@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   scene.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/13 16:36:20 by edescoin         ###   ########.fr       */
+/*   Created: 2017/06/06 17:10:39 by edescoin          #+#    #+#             */
+/*   Updated: 2017/06/06 17:23:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#ifndef scene_H
+# define scene_H
+# include "structures.h"
 
-void	exit_main(void)
-{
-	garbage_collector(CLEAR, NULL, NULL);
-	delete_sdl_core();
-	exit(0);
-}
-
-int		exit_loop(void)
-{
-	return (0);
-}
 /*
-void	init_list_evts(t_event **head)
-{
-
-}
+** scene_projection.c
 */
+void	projection(t_scene *scene, t_camera *cam);
+void	transform_scene(t_scene *scene, t_matrix *mat);
 
-int		main(int ac, char **av)
-{
-	(void)ac;
-	(void)av;
-
-/*	wait_events(list_evts, get_player());
-	clear_events(&list_evts);
-	exit_main();*/
-	return (0);
-}
+#endif

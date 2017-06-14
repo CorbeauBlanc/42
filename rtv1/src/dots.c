@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/12 19:59:00 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/14 16:33:34 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,13 @@
 
 t_dot	*new_dot(double x, double y, double z)
 {
-	t_dot	*vect;
+	t_dot	*dot;
 
-	if (!(vect = malloc(sizeof(t_dot))))
-		return (NULL);
-	vect->x = x;
-	vect->y = y;
-	vect->z = z;
-	vect->w = 1;
-	return (vect);
+	dot = (t_dot*)new_vector(x, y, z);
+	dot->w = 1;
+	return (dot);
 }
-
+/*
 void	transform_dot(t_dot *dest, t_dot *vect, t_camera *cam)
 {
 	double	tmp;
@@ -36,8 +32,8 @@ void	transform_dot(t_dot *dest, t_dot *vect, t_camera *cam)
 	dest->y = (HEIGHT / 2) + (cam->f * dest->y) / dest->z;
 	dest->w = tmp;
 }
-
-void	mult_dot(t_dot *dest, t_matrix *mtx, t_dot *vec)
+*/
+void	mult_dot(t_dot *dest, t_matrix *mtx, t_dot *dot)
 {
 	int	x;
 	int	y;
@@ -45,12 +41,12 @@ void	mult_dot(t_dot *dest, t_matrix *mtx, t_dot *vec)
 
 	if (mtx->r >= 3 || mtx->c >= 4)
 	{
-		x = mtx->mat[0][0] * vec->x + mtx->mat[0][1] * vec->y +
-				mtx->mat[0][2] * vec->z + mtx->mat[0][3];
-		y = mtx->mat[1][0] * vec->x + mtx->mat[1][1] * vec->y +
-				mtx->mat[1][2] * vec->z + mtx->mat[1][3];
-		z = mtx->mat[2][0] * vec->x + mtx->mat[2][1] * vec->y +
-				mtx->mat[2][2] * vec->z + mtx->mat[2][3];
+		x = mtx->mat[0][0] * dot->x + mtx->mat[0][1] * dot->y +
+				mtx->mat[0][2] * dot->z + mtx->mat[0][3];
+		y = mtx->mat[1][0] * dot->x + mtx->mat[1][1] * dot->y +
+				mtx->mat[1][2] * dot->z + mtx->mat[1][3];
+		z = mtx->mat[2][0] * dot->x + mtx->mat[2][1] * dot->y +
+				mtx->mat[2][2] * dot->z + mtx->mat[2][3];
 		dest->x = x;
 		dest->y = y;
 		dest->z = z;

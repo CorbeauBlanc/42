@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vectors.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/13 16:36:20 by edescoin         ###   ########.fr       */
+/*   Created: 2017/06/14 14:45:00 by edescoin          #+#    #+#             */
+/*   Updated: 2017/06/14 14:47:29 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	exit_main(void)
+t_vector	*new_vector(double x, double y, double z)
 {
-	garbage_collector(CLEAR, NULL, NULL);
-	delete_sdl_core();
-	exit(0);
-}
+	t_vector	*vect;
 
-int		exit_loop(void)
-{
-	return (0);
-}
-/*
-void	init_list_evts(t_event **head)
-{
-
-}
-*/
-
-int		main(int ac, char **av)
-{
-	(void)ac;
-	(void)av;
-
-/*	wait_events(list_evts, get_player());
-	clear_events(&list_evts);
-	exit_main();*/
-	return (0);
+	if (!(vect = malloc(sizeof(t_dot))))
+		return (NULL);
+	vect->x = x;
+	vect->y = y;
+	vect->z = z;
+	return (vect);
 }

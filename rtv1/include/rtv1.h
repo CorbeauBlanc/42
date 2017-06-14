@@ -6,21 +6,19 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 16:51:08 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/12 20:00:32 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/14 17:04:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RTV1_H
 # define RTV1_H
-# define TITLE			"Wolf3D"
-# define WIDTH 			700
-# define HEIGHT 		700
+# define TITLE			"RTv1"
 # define FOV			60
 # define BUFF_SIZE		1024
 
 # ifndef __APPLE__
-#  include <SDL.h>
-#  define SDL_VIDEO		SDL_VIDEO_DRIVER_X11
+#  include <SDL2/SDL.h>
+#  define SDL_VIDEO		SDL_INIT_VIDEO
 # else
 #  include "SDL2/SDL.h"
 #  define SDL_VIDEO		SDL_VIDEO_DRIVER_COCOA
@@ -32,11 +30,14 @@
 # include "libft.h"
 
 # include "camera.h"
-# include "dots.h"
+# include "vectors.h"
 # include "events.h"
 # include "graphics.h"
-# include "map.h"
 # include "matrix.h"
+# include "objects.h"
+# include "parametric_equations.h"
+# include "rays.h"
+# include "scene.h"
 # include "structures.h"
 # include "threads.h"
 
