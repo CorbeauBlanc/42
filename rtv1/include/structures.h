@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/14 18:42:30 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/14 18:42:32 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/14 20:16:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,11 @@ typedef struct		s_dot
 	double			w;
 }					t_dot;
 
-<<<<<<< HEAD
-typedef struct	s_equation
-{
-	;
-}				t_equation;
-=======
 typedef struct	s_param_eq
 {
 	t_vector	vdir;
 	t_vector	vconst;
 }				t_param_eq;
->>>>>>> 76b10e2fd3dba1deccf8c90150c7cd5d8b2fe1e3
 
 typedef struct		s_object
 {

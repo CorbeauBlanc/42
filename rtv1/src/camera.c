@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/14 17:49:06 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/14 20:21:17 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,4 @@ void		set_camera_fov(t_camera *cam, int fov)
 {
 	cam->fov = fov;
 	cam->f = get_sdl_core()->width / (2 * tan(ft_to_rad(cam->fov) / 2.0f));
-}
-
-void		set_camera_crd(t_camera *cam, double h_ang, double v_ang)
-{
-	cam->theta = v_ang;
-	cam->phi = h_ang;
-	set_camera_fov(cam, cam->fov);
 }
