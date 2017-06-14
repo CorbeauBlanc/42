@@ -1,42 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parametric_equations.h                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/13 16:36:20 by edescoin         ###   ########.fr       */
+/*   Created: 2017/06/14 15:15:01 by edescoin          #+#    #+#             */
+/*   Updated: 2017/06/14 16:35:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#ifndef PARAMETRIC_EQUATIONS_H
+# define PARAMETRIC_EQUATIONS_H
+# include "structures.h"
 
-void	exit_main(void)
-{
-	garbage_collector(CLEAR, NULL, NULL);
-	delete_sdl_core();
-	exit(0);
-}
+t_dot		*equation_get_dot(t_dot *res, t_param_eq *eq, double t);
+void		init_equation(t_param_eq *eq, const t_vector *vdir,
+							const t_vector *vconst);
+t_param_eq	*new_equation(const t_vector *vdir, const t_vector *vconst);
 
-int		exit_loop(void)
-{
-	return (0);
-}
-/*
-void	init_list_evts(t_event **head)
-{
-
-}
-*/
-
-int		main(int ac, char **av)
-{
-	(void)ac;
-	(void)av;
-
-/*	wait_events(list_evts, get_player());
-	clear_events(&list_evts);
-	exit_main();*/
-	return (0);
-}
+#endif

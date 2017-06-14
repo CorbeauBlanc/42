@@ -6,26 +6,50 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/06 18:48:38 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/14 17:49:06 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include <math.h>
 
-t_camera	*create_camera(int fov, double h_ang, double v_ang, double d)
+static void	init_cam_screen(t_camera *cam)
+{
+	t_dot		tmp;
+	t_matrix	*transfo;
+	int			i;
+	int			j;
+
+	tmp.x = cam->crd.x - WIDTH / 2 - 1;
+	tmp.y = cam->crd.y - HEIGHT / 2 - 1;
+	transfo = create_identity(4);
+	x_rotation(&transfo, cam->theta);
+	y_rotation(&transfo, cam->phi);
+	i = -1;
+	while (++i < WIDTH)
+	{
+		j = -1;
+		++tmp.x;
+		while (++j < HEIGHT)
+		{
+			set_dot(cam->screen[i][j], tmp.x, ++tmp.y, cam->crd.z + cam->f);
+			mult_dot(cam->screen[i][j], transfo, cam->screen[i][j]);
+		}
+	}
+}
+
+t_camera	*new_camera(int fov, const t_dot *crd, double h_ang, double v_ang)
 {
 	t_camera	*cam;
 
 	if (!(cam = malloc(sizeof(t_camera))))
-		return (NULL);
+		exit_error("rtv1", "malloc");
 	cam->fov = fov;
+	cam->crd = *crd;
 	cam->theta = v_ang;
 	cam->phi = h_ang;
-	cam->r = d;
-	cam->f = get_sdl_core()->width / (2 * tan(ft_to_rad(fov) / 2.0f));
-	set_rect_crd(&cam->screen, 0, 0);
-	set_rect_dim(&cam->screen, get_sdl_core()->width, get_sdl_core()->height);
+	cam->f = WIDTH / (2 * tan(ft_to_rad(fov) / 2.0f));
+	init_cam_screen(cam);
 	return (cam);
 }
 
@@ -40,10 +64,9 @@ void		set_camera_fov(t_camera *cam, int fov)
 	cam->f = get_sdl_core()->width / (2 * tan(ft_to_rad(cam->fov) / 2.0f));
 }
 
-void		set_camera_crd(t_camera *cam, double h_ang, double v_ang, double d)
+void		set_camera_crd(t_camera *cam, double h_ang, double v_ang)
 {
 	cam->theta = v_ang;
 	cam->phi = h_ang;
-	cam->r = d;
 	set_camera_fov(cam, cam->fov);
 }

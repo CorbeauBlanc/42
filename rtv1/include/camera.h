@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:10:29 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/06 17:11:48 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/14 17:04:18 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** camera.c
 */
 void		delete_camera(t_camera *cam);
-t_camera	*new_camera(int fov, double h_angle, double v_angle, double dist);
+t_camera	*new_camera(int fov, const t_dot *crd, double h_ang, double v_ang);
 void		set_camera_crd(t_camera *cam, double h_ang, double v_ang, double d);
 void		set_camera_fov(t_camera	*cam, int fov);
 

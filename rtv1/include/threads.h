@@ -6,13 +6,18 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:10:45 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/06 17:20:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/13 15:55:43 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef THREADS_H
 # define THREADS_H
 # include "structures.h"
+# ifndef __APPLE__
+#  include <SDL2/SDL.h>
+# else
+#  include "SDL2/SDL.h"
+# endif
 
 /*
 ** threads.c
