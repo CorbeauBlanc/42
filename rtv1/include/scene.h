@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                              :+:      :+:    :+:   */
+/*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:10:39 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/06 17:23:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/19 15:08:40 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef scene_H
-# define scene_H
+#ifndef SCENE_H
+# define SCENE_H
 # include "structures.h"
 
-/*
-** scene_projection.c
-*/
-void	projection(t_scene *scene, t_camera *cam);
-void	transform_scene(t_scene *scene, t_matrix *mat);
+void	clear_scene(t_scene *scene);
+void	scene_add_object(t_object *obj, t_scene *scene);
 
 #endif

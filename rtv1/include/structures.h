@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/19 13:10:24 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/19 15:51:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
-# define WIDTH 		700
-# define HEIGHT 	700
+# define WIDTH 		100
+# define HEIGHT 	100
 # ifndef __APPLE__
 #  include <SDL2/SDL.h>
 # else
@@ -112,12 +112,6 @@ typedef struct		s_cell
 	struct s_cell	*next;
 }					t_cell;
 
-typedef struct		s_scene
-{
-	t_spotlight		light;
-	t_cell			*collection;
-}					t_scene;
-
 typedef struct		s_camera
 {
 	int				fov;
@@ -127,6 +121,13 @@ typedef struct		s_camera
 	double			theta;
 	double			phi;
 }					t_camera;
+
+typedef struct		s_scene
+{
+	t_spotlight		light;
+	t_camera		cam;
+	t_cell			*collection;
+}					t_scene;
 
 typedef struct		s_ray
 {

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 16:51:08 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/19 12:14:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/19 15:10:32 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,17 @@
 # include "libft.h"
 
 # include "camera.h"
-# include "vectors.h"
 # include "events.h"
 # include "graphics.h"
 # include "matrix.h"
 # include "objects.h"
 # include "parametric_equations.h"
 # include "rays.h"
+# include "raytracing.h"
 # include "scene.h"
 # include "structures.h"
 # include "threads.h"
+# include "vectors.h"
 
 /*
 ** main.c
