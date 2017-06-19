@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/14 17:03:39 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/19 12:54:18 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,16 @@ typedef struct	s_param_eq
 typedef struct		s_object
 {
 	const t_type	obj_type;
-	void			(*intersect)();
+	double			(*intersect)();
 }					t_object;
 
 typedef struct		s_sphere
 {
 	const t_type	obj_type;
-	void			(*intersect)();
+	double			(*intersect)();
 	t_dot			center;
 	double			radius;
+	double			r2;
 }					t_sphere;
 
 typedef struct		s_spotlight
