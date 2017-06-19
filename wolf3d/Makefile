@@ -2,6 +2,7 @@ CC=gcc
 CFLAGS=-Wall -Wextra -Werror -Ofast
 MAKE=/usr/bin/make
 NAME=wolf3d
+NAME_LINUX=wolf3d_linux
 
 OBJ_DIR=obj
 SRC_DIR=src
@@ -24,6 +25,8 @@ LSDL2=`$(SDL_PATH)/SDL2/build/bin/sdl2-config --cflags --libs`
 
 all: libft sdl $(OBJ_DIR) $(NAME)
 
+linux: libft $(OBJ_DIR) $(NAME_LINUX)
+
 $(NAME): $(OBJS)
 	@echo "=================================================="
 	@echo
@@ -32,6 +35,19 @@ $(NAME): $(OBJS)
 	@echo "                 Building $@..."
 	@echo "--------------------------------------------------"
 	$(CC) $(CFLAGS) $^ -o $@ $(LSDL2) -L$(LIB_DIR) $(LIBS)
+	@echo
+	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
+	@echo
+	@echo "=================================================="
+
+$(NAME_LINUX): $(OBJS)
+	@echo "=================================================="
+	@echo
+	@echo "Objects generation : ""\x1B[38;5;40m""Done.""\x1B[0m"
+	@echo
+	@echo "                 Building $@..."
+	@echo "--------------------------------------------------"
+	$(CC) $(CFLAGS) $^ -o $@ -L$(LIB_DIR) $(LIBS) -lSDL2
 	@echo
 	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
 	@echo
@@ -100,10 +116,11 @@ clean:
 
 
 fclean: clean
-	@echo "                 Removing $(NAME)..."
+	@echo "                 Removing $(NAME) and $(NAME_LINUX)..."
 	@echo "--------------------------------------------------------------------\
 ------------"
 	rm -f $(NAME)
+	rm -f $(NAME_LINUX)
 	@echo
 	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
 	@echo
