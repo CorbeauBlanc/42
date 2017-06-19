@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:52 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/03 17:42:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/14 19:37:49 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define HEIGHT 		720
 # define BOBBING		2
 # define FPS			60
-# define SENSI			1.5
+# define SENSI			1.2
 # define FOV			60
 # define SPEED			1.5
 # define WALL_SIZE		32
