@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/12 16:32:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/19 12:55:10 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/20 12:03:07 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,17 @@ static double	sphere_intersect(t_ray *ray, t_sphere *s)
 
 	vd = &ray->eq.vdir;
 	vc = &ray->eq.vconst;
-	get_quad_equation_sol(&res,
-						pow(vd->x, 2) + pow(vd->y, 2) + pow(vd->z, 2),
-						2 * (vd->x * vc->x + vd->y * vc->y + vd->z * vc->z),
-						pow(vc->x, 2) + pow(vc->y, 2) + pow(vc->z, 2) - s->r2);
-	if (res.w)
+	if (get_quad_equation_sol(&res,
+			pow(vd->x, 2) + pow(vd->y, 2) + pow(vd->z, 2),
+			2 * (vd->x * (vc->x - s->center.x) + vd->y * (vc->y - s->center.y) + vd->z * (vc->z - s->center.z)),
+			pow(vc->x - s->center.x, 2) + pow(vc->y - s->center.y, 2) + pow(vc->z - s->center.z, 2) - s->r2))
 	{
-		if (res.x > 0 && res.x <= res.y)
-			return (res.x);
-		else if (res.y > 0 && res.y <= res.x)
-			return (res.y);
+		if (res.x >= 0 && res.y >= 0)
+			return (res.x < res.y ? res.x : res.y);
+		else if (res.x < 0 && res.y < 0)
+			return (-1);
+		else
+			return (res.x >= 0 ? res.x : res.y);
 	}
 	return (-1);
 }

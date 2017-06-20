@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/19 14:40:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/20 11:16:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,21 @@ static void	init_cam_screen(t_camera *cam)
 	int			i;
 	int			j;
 
-	tmp.x = cam->crd.x - WIDTH / 2 - 1;
-	tmp.y = cam->crd.y - HEIGHT / 2 - 1;
 	transfo = create_identity(4);
 	x_rotation(&transfo, cam->theta);
 	y_rotation(&transfo, cam->phi);
+	tmp.x = cam->crd.x - WIDTH / 2 - 1;
 	i = -1;
 	while (++i < WIDTH)
 	{
-		j = -1;
 		++tmp.x;
+		tmp.y = cam->crd.y - HEIGHT / 2 - 1;
+		j = -1;
 		while (++j < HEIGHT)
 		{
-			set_dot(cam->screen[i][j], tmp.x, ++tmp.y, cam->crd.z + cam->f);
-			mult_dot(cam->screen[i][j], transfo, cam->screen[i][j]);
+			++tmp.y;
+			set_dot(&cam->screen[i][j], tmp.x, tmp.y, cam->crd.z + cam->f);
+			mult_dot(&cam->screen[i][j], transfo, &cam->screen[i][j]);
 		}
 	}
 }
@@ -61,5 +62,5 @@ void		delete_camera(t_camera *cam)
 void		set_camera_fov(t_camera *cam, int fov)
 {
 	cam->fov = fov;
-	cam->f = get_sdl_core()->width / (2 * tan(ft_to_rad(cam->fov) / 2.0f));
+	cam->f = WIDTH / (2 * tan(ft_to_rad(cam->fov) / 2.0f));
 }

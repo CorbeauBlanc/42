@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/19 15:51:10 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/19 16:54:50 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct		s_camera
 {
 	int				fov;
 	t_dot			crd;
-	t_dot			*screen[WIDTH][HEIGHT];
+	t_dot			screen[WIDTH][HEIGHT];
 	double			f;
 	double			theta;
 	double			phi;
@@ -125,7 +125,7 @@ typedef struct		s_camera
 typedef struct		s_scene
 {
 	t_spotlight		light;
-	t_camera		cam;
+	t_camera		*cam;
 	t_cell			*collection;
 }					t_scene;
 
