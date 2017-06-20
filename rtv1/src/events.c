@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 12:21:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/12 18:30:53 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/20 13:53:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ void	new_event(t_event **head, SDL_EventType type, void *data, int (*fct)())
 {
 	t_event	*event;
 
-	event = &(t_event){type, data, fct, *head};
+	if (!(event = malloc(sizeof(t_event))))
+		exit_error("rtv1", "malloc");
+	*event = (t_event){type, data, fct, *head};
 	*head = event;
 }
 
@@ -46,6 +48,6 @@ void	wait_events(t_event *list_evts)
 		while (tmp && tmp->type != evt.type)
 			tmp = tmp->next;
 		if (tmp)
-			flag = tmp->fct(evt, tmp);
+			flag = tmp->fct(&evt, tmp);
 	}
 }

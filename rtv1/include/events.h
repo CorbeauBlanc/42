@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:10:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/13 16:39:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/20 12:31:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,8 @@ void	new_event(t_event **head, SDL_EventType type, void *data, int (*fct)());
 void	wait_events(t_event *list_evts);
 
 /*
-** key_functions_*.c
+** key_functions.c
 */
-void	rotate_down(t_camera *cam, t_scene *scene);
-void	rotate_left(t_camera *cam, t_scene *scene);
-void	rotate_right(t_camera *cam, t_scene *scene);
-void	rotate_up(t_camera *cam, t_scene *scene);
-void	translate_down(t_camera *cam, t_scene *scene);
-void	translate_left(t_camera *cam, t_scene *scene);
-void	translate_right(t_camera *cam, t_scene *scene);
-void	translate_up(t_camera *cam, t_scene *scene);
-void	zoom_in(t_camera *cam, t_scene *scene);
-void	zoom_out(t_camera *cam, t_scene *scene);
+int		key_exit(SDL_Event *current, t_event *evt);
 
 #endif
