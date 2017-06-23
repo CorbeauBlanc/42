@@ -6,11 +6,12 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/12 16:32:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/20 12:03:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/23 21:54:28 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include <math.h>
 
 t_object		*new_object(t_type type, double (*intersect)(), size_t size)
 {
@@ -38,12 +39,14 @@ static double	sphere_intersect(t_ray *ray, t_sphere *s)
 			2 * (vd->x * (vc->x - s->center.x) + vd->y * (vc->y - s->center.y) + vd->z * (vc->z - s->center.z)),
 			pow(vc->x - s->center.x, 2) + pow(vc->y - s->center.y, 2) + pow(vc->z - s->center.z, 2) - s->r2))
 	{
-		if (res.x >= 0 && res.y >= 0)
-			return (res.x < res.y ? res.x : res.y);
-		else if (res.x < 0 && res.y < 0)
-			return (-1);
-		else
-			return (res.x >= 0 ? res.x : res.y);
+		if ((long)(res.x * pow(10, 13)) > 0)
+		{
+			if ((long)(res.y * pow(10, 13)) > 0)
+				return (res.x < res.y ? res.x : res.y);
+			return (res.x);
+		}
+		if ((long)(res.y * pow(10, 13)) > 0)
+			return (res.y);
 	}
 	return (-1);
 }

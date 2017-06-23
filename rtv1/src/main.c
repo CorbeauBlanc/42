@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/20 13:54:06 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/23 20:51:47 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,17 @@ int		main(int ac, char **av)
 
 	get_sdl_core();
 	init_list_evts(&events);
-	wait_events(events);
-	exit_main();
 
-	/*t_scene	test;
+	t_scene	test;
+	test.collection = NULL;
 	t_dot	dot = {0,0,0,0};
 
 	test.cam = new_camera(60, &dot, 0, 0);
-	scene_add_object((t_object*)new_sphere(0, 0, 100, 10), &test);
-	render_scene(&test);*/
+	test.light.crd = (t_dot){0, 300, 200, 0};
+	scene_add_object((t_object*)new_sphere(0, 0, 400, 100), &test);
+	render_scene(&test);
 
-
+	wait_events(events);
+	exit_main();
 	return (0);
 }

@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/19 16:54:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/23 18:59:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
-# define WIDTH 		100
-# define HEIGHT 	100
+# define WIDTH 		600
+# define HEIGHT 	600
 # ifndef __APPLE__
 #  include <SDL2/SDL.h>
 # else
