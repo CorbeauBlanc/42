@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/23 18:59:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/28 20:37:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef enum		e_type
 {
 	CONE,
 	SPHERE,
-	PRYRAMID
+	PLANE,
+	CYLINDER
 }					t_type;
 
 typedef struct		s_sdl_core
@@ -80,11 +81,11 @@ typedef struct		s_dot
 	double			w;
 }					t_dot;
 
-typedef struct	s_param_eq
+typedef struct		s_param_eq
 {
-	t_vector	vdir;
-	t_vector	vconst;
-}				t_param_eq;
+	t_vector		vdir;
+	t_vector		vconst;
+}					t_param_eq;
 
 typedef struct		s_object
 {
@@ -96,10 +97,32 @@ typedef struct		s_sphere
 {
 	const t_type	obj_type;
 	double			(*intersect)();
-	t_dot			center;
 	double			radius;
 	double			r2;
+	t_dot			center;
 }					t_sphere;
+
+typedef struct		s_cylinder
+{
+	const t_type	obj_type;
+	double			(*intersect)();
+	double			radius;
+	double			rho;
+	double			theta;
+	double			phi;
+	t_dot			center;
+}					t_cylinder;
+
+typedef struct		s_plane
+{
+	const t_type	obj_type;
+	double			(*intersect)();
+	double			a;
+	double			b;
+	double			c;
+	double			d;
+	double			z;
+}					t_plane;
 
 typedef struct		s_spotlight
 {

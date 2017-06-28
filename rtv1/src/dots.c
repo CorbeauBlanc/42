@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/14 16:33:34 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/28 15:42:21 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	transform_dot(t_dot *dest, t_dot *vect, t_camera *cam)
 */
 void	mult_dot(t_dot *dest, t_matrix *mtx, t_dot *dot)
 {
-	int	x;
-	int	y;
-	int	z;
+	double	x;
+	double	y;
+	double	z;
 
 	if (mtx->r >= 3 || mtx->c >= 4)
 	{

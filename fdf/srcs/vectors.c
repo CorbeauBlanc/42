@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/02/01 23:59:01 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/28 15:43:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ t_map		*insert_cell(t_map *head, t_map *cell)
 
 void		mult_vector(t_vector *dest, t_matrix *mtx, t_vector *vec)
 {
-	int	x;
-	int	y;
-	int	z;
+	double	x;
+	double	y;
+	double	z;
 
 	if (mtx->r >= 3 || mtx->c >= 4)
 	{

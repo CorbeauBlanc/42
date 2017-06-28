@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/23 20:51:47 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/28 18:01:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ int		main(int ac, char **av)
 	t_dot	dot = {0,0,0,0};
 
 	test.cam = new_camera(60, &dot, 0, 0);
-	test.light.crd = (t_dot){0, 300, 200, 0};
-	scene_add_object((t_object*)new_sphere(0, 0, 400, 100), &test);
+	test.light.crd = (t_dot){5, 30, 10, 0};
+	scene_add_object((t_object*)new_plane((t_dot){0, -5, 30, 0}, -10, 20), &test);
+	scene_add_object((t_object*)new_sphere(0, 5, 20, 3), &test);
+	scene_add_object((t_object*)new_sphere(0, 1, 19.5, 2), &test);
 	render_scene(&test);
 
 	wait_events(events);

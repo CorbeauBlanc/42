@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   objects.c                                          :+:      :+:    :+:   */
+/*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/12 16:32:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/28 12:34:05 by edescoin         ###   ########.fr       */
+/*   Created: 2017/06/28 19:41:43 by edescoin          #+#    #+#             */
+/*   Updated: 2017/06/28 20:44:08 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
+#include <math.h>
 
-t_object		*new_object(t_type type, double (*intersect)(), size_t size)
+static double	cylinder_intersect(t_ray *ray, t_cylinder *s)
 {
-	t_object	*obj;
+	
+}
 
-	if (!size)
-		size = sizeof(t_object);
-	if (!(obj = malloc(size)))
-		exit_error("rtv1", "malloc");
-	*(t_type*)&obj->obj_type = type;
-	obj->intersect = intersect;
-	return (obj);
+t_cylinder		*new_cylinder(t_dot pos, double x_angle, double z_angle, double radius)
+{
+	t_cylinder	*cylinder;
+
+	cylinder = (t_cylinder*)new_object(SPHERE, &cylinder_intersect, sizeof(t_cylinder));
+	cylinder->radius = radius;
+	cylinder->center = pos;
+	cylinder->phi = x_angle;
+	cylinder->theta = z_angle;
+	cylinder->rho = 1;
+	return (cylinder);
 }

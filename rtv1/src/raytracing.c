@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/23 21:55:47 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/28 18:24:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,17 @@ static int	check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 	t_dot	res;
 	t_vector	vd;
 	t_cell		*tmp;
-	static long i = 0;
-i += !(light);
 
 	tmp = scene->collection;
-	SDL_SetRenderDrawColor(get_sdl_core()->renderer, 255, 255, 255, 255);
 	while (tmp)
 	{
 		if ((t = tmp->obj->intersect(ray, tmp->obj)) > -1)
 		{
-			equation_get_dot(&res, &ray->eq, t);
 			if (!light)
 			{
+				equation_get_dot(&res, &ray->eq, t);
 				set_vector(&vd, scene->light.crd.x - res.x,
-								res.y - scene->light.crd.y,
+								scene->light.crd.y - res.y,
 								scene->light.crd.z - res.z);
 				init_equation(&ray->eq, &vd, (t_vector*)&res);
 				return (check_objs_intersect(scene, ray, 1));
@@ -62,7 +59,8 @@ void		render_scene(t_scene *scene)
 			init_equation(&ray.eq, &vd, (t_vector*)&scene->cam->crd);
 			if (check_objs_intersect(scene, &ray, 0))
 			{
-				SDL_RenderDrawPoint(get_sdl_core()->renderer, i, j);
+				SDL_RenderDrawPoint(get_sdl_core()->renderer, i, HEIGHT - j);
+				SDL_SetRenderDrawColor(get_sdl_core()->renderer, 255, 255, 255, 255);
 			}
 		}
 	}
