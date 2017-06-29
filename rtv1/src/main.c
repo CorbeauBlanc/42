@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/28 18:01:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/29 17:02:17 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ int		main(int ac, char **av)
 	t_dot	dot = {0,0,0,0};
 
 	test.cam = new_camera(60, &dot, 0, 0);
-	test.light.crd = (t_dot){5, 30, 10, 0};
-	scene_add_object((t_object*)new_plane((t_dot){0, -5, 30, 0}, -10, 20), &test);
+	test.light.crd = (t_dot){20, 30, 10, 0};
+	scene_add_object((t_object*)new_plane((t_dot){0, -6, 30, 0}, -10, 20), &test);
+	scene_add_object((t_object*)new_cylinder((t_dot){-2, 0, 30, 0}, 50, -50, 3), &test);
 	scene_add_object((t_object*)new_sphere(0, 5, 20, 3), &test);
 	scene_add_object((t_object*)new_sphere(0, 1, 19.5, 2), &test);
 	render_scene(&test);
@@ -54,3 +55,8 @@ int		main(int ac, char **av)
 	exit_main();
 	return (0);
 }
+
+/*
+** l'équation simplifiée du cylindre T_T
+** t²((cos(theta) * dy - sin(theta) * dx)² + (cos(phi)(sin(theta) * dy + dz) - cos(theta)sin(phi) * dx)²) + t * 2((cos(theta) * dy - sin(theta) * dx) * (cos(theta) * cy - sin(theta) * cx) + (cos(phi)(sin(theta) * dy + dz) - cos(theta)sin(phi) * dx) * (cos(phi)(sin(theta) * cy + cz) - cos(theta)sin(phi) * cx)) + (cos(theta) * cy - sin(theta) * cx)² + (cos(phi)(sin(theta) * cy + cz) - cos(theta)sin(phi) * cx)² - R² = 0
+*/

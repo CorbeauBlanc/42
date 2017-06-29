@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/28 15:42:21 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/29 16:37:56 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,10 @@ void	set_dot(t_dot *dot, double x, double y, double z)
 	dot->x = x;
 	dot->y = y;
 	dot->z = z;
+}
+
+double	get_dot_dist(t_dot *d1, t_dot *d2)
+{
+	return (sqrt(pow(d2->x - d1->x, 2) + pow(d2->y - d1->y, 2) +
+				pow(d2->z - d1->z, 2)));
 }

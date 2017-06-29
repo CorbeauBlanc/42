@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/28 20:37:00 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/06/29 16:39:12 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct		s_cylinder
 	const t_type	obj_type;
 	double			(*intersect)();
 	double			radius;
+	double			r2;
 	double			rho;
 	double			theta;
 	double			phi;
@@ -152,10 +153,18 @@ typedef struct		s_scene
 	t_cell			*collection;
 }					t_scene;
 
+typedef struct	s_intersect
+{
+	double		dist;
+	t_dot		dot;
+	t_object	*obj;
+}				t_intersect;
+
 typedef struct		s_ray
 {
 	t_param_eq		eq;
 	SDL_Color		color;
+	t_intersect		i;
 }					t_ray;
 
 #endif
