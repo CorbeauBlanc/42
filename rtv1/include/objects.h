@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:47:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/29 12:49:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/01 16:36:11 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ t_cylinder	*new_cylinder(t_dot pos, double x_angle, double z_angle, double radiu
 /*
 ** objects.c
 */
-t_object	*new_object(t_type type, double (*intersect)(), size_t size);
+t_object	*new_object(t_type type, double (*intersect)(),
+						const t_vector *(*get_normal)(),
+						size_t size);
 
 /*
 ** plane.c

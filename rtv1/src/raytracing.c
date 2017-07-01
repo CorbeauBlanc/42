@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/29 17:00:28 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/01 17:40:01 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static int	check_objs_intersect(t_scene *scene, t_ray *ray, int light)
+static int		check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 {
 	t_dot		res;
 	t_cell		*tmp;
@@ -26,9 +26,9 @@ static int	check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 			if (light)
 				return (0);
 			equation_get_dot(&res, &ray->eq, t);
-			t = get_vect_norm((t_vector*)&res);
+			t = get_vect_len((t_vector*)&res);
 			if (t < ray->i.dist || !ray->i.dist)
-				ray->i = (t_intersect){t, res, tmp->obj};
+				ray->i = (t_intersect){t, 0, res, tmp->obj};
 		}
 		tmp = tmp->next;
 	}
@@ -37,15 +37,25 @@ static int	check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 	init_equation(&ray->eq, &(t_vector){scene->light.crd.x - ray->i.dot.x,
 					scene->light.crd.y - ray->i.dot.y,
 					scene->light.crd.z - ray->i.dot.z}, (t_vector*)&ray->i.dot);
+	ray->i.ldist = get_vect_len(&ray->eq.vdir);
 	return (check_objs_intersect(scene, ray, 1));
 }
 
-void		render_scene(t_scene *scene)
+static double	get_shade_fact(const t_vector *light, const t_vector *normal)
+{
+	double	f;
+
+	return ((f = vect_dot_product(light, normal) /
+			(get_vect_len(light) * get_vect_len(normal))) < 0 ? 0 : f);
+}
+
+void			render_scene(t_scene *scene)
 {
 	int	i;
 	int	j;
 	t_ray	ray;
 	t_vector vd;
+	double	col;
 
 	i = -1;
 	while (++i < WIDTH)
@@ -59,7 +69,11 @@ void		render_scene(t_scene *scene)
 						scene->cam->screen[i][j].z - scene->cam->crd.z);
 			init_equation(&ray.eq, &vd, (t_vector*)&scene->cam->crd);
 			if (check_objs_intersect(scene, &ray, 0))
-				SDL_SetRenderDrawColor(get_sdl_core()->renderer, 255, 255, 255, 255);
+			{
+				col = 255 * get_shade_fact(&ray.eq.vdir,
+							ray.i.obj->get_normal(&ray.i.dot, ray.i.obj));
+				SDL_SetRenderDrawColor(get_sdl_core()->renderer, col, col, col, 255);
+			}
 			else
 				SDL_SetRenderDrawColor(get_sdl_core()->renderer, 0, 0, 0, 255);
 			SDL_RenderDrawPoint(get_sdl_core()->renderer, i, HEIGHT - j);

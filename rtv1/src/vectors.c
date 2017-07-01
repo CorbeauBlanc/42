@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/14 14:45:00 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/29 16:46:32 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/01 14:00:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,12 @@ void	set_vector(t_vector *vect, double x, double y, double z)
 	vect->z = z;
 }
 
-double	get_vect_norm(t_vector *vect)
+double	get_vect_len(const t_vector *vect)
 {
 	return (sqrt(pow(vect->x, 2) + pow(vect->y, 2) + pow(vect->z, 2)));
+}
+
+double	vect_dot_product(const t_vector *v1, const t_vector *v2)
+{
+	return (v1->x * v2->x + v1->y * v2->y + v1->z * v2->z);
 }

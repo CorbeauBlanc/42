@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/29 16:39:12 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/01 16:49:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,15 @@ typedef struct		s_object
 {
 	const t_type	obj_type;
 	double			(*intersect)();
+	const t_vector	*(*get_normal)();
 }					t_object;
 
 typedef struct		s_sphere
 {
 	const t_type	obj_type;
 	double			(*intersect)();
+	const t_vector	*(*get_normal)();
+	t_vector		normal;
 	double			radius;
 	double			r2;
 	t_dot			center;
@@ -106,6 +109,9 @@ typedef struct		s_cylinder
 {
 	const t_type	obj_type;
 	double			(*intersect)();
+	const t_vector	*(*get_normal)();
+	t_vector		normal;
+	t_vector		grad;
 	double			radius;
 	double			r2;
 	double			rho;
@@ -118,6 +124,8 @@ typedef struct		s_plane
 {
 	const t_type	obj_type;
 	double			(*intersect)();
+	const t_vector	*(*get_normal)();
+	t_vector		normal;
 	double			a;
 	double			b;
 	double			c;
@@ -153,12 +161,13 @@ typedef struct		s_scene
 	t_cell			*collection;
 }					t_scene;
 
-typedef struct	s_intersect
+typedef struct		s_intersect
 {
-	double		dist;
-	t_dot		dot;
-	t_object	*obj;
-}				t_intersect;
+	double			dist;
+	double			ldist;
+	t_dot			dot;
+	t_object		*obj;
+}					t_intersect;
 
 typedef struct		s_ray
 {

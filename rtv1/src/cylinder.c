@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 19:41:43 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/29 13:56:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/01 17:30:21 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include <math.h>
 
-static double	cylinder_intersect(t_ray *ray, t_cylinder *s)
+static double			cylinder_intersect(t_ray *ray, t_cylinder *s)
 {
 	t_dot		res;
 	t_vector	*vd;
@@ -44,16 +44,34 @@ static double	cylinder_intersect(t_ray *ray, t_cylinder *s)
 	return (-1);
 }
 
-t_cylinder		*new_cylinder(t_dot pos, double x_angle, double z_angle, double radius)
+static const t_vector	*get_cylinder_normal(t_dot *d, t_cylinder *c)
 {
-	t_cylinder	*cylinder;
+	c->normal = (t_vector){d->x * c->grad.x, d->y * c->grad.y,
+				d->z * c->grad.z};
+	return (&c->normal);
+}
 
-	cylinder = (t_cylinder*)new_object(SPHERE, &cylinder_intersect, sizeof(t_cylinder));
-	cylinder->radius = radius;
-	cylinder->r2 = pow(radius, 2);
-	cylinder->center = pos;
-	cylinder->phi = ft_to_rad(x_angle);
-	cylinder->theta = ft_to_rad(z_angle);
-	cylinder->rho = 1;
-	return (cylinder);
+t_cylinder				*new_cylinder(t_dot pos, double x_angle, double z_angle,
+									double radius)
+{
+	t_cylinder	*c;
+
+	c = (t_cylinder*)new_object(CYLINDER, &cylinder_intersect,
+								&get_cylinder_normal, sizeof(t_cylinder));
+	c->radius = radius;
+	c->r2 = pow(radius, 2);
+	c->center = pos;
+	c->phi = ft_to_rad(x_angle);
+	c->theta = ft_to_rad(z_angle - x_angle);
+	c->rho = 1;
+	c->grad.x = 2 * (pow(sin(c->theta), 2) +
+		pow(cos(c->theta), 2) * pow(sin(c->phi), 2) +
+		sin(c->theta) * cos(c->theta) * (1 - sin(c->phi) * cos(c->phi)) +
+		cos(c->theta) * sin(c->phi) * cos(c->phi));
+	c->grad.y = 2 * (pow(cos(c->theta), 2) +
+		sin(c->theta) * pow(cos(c->phi), 2) * (1 + sin(c->theta)) +
+		sin(c->theta) * cos(c->theta) * (1 - sin(c->phi) * cos(c->phi)));
+	c->grad.z = 2 * cos(c->phi) * (cos(c->phi) * (1 + sin(c->theta)) +
+		cos(c->theta) * sin(c->phi));
+	return (c);
 }
