@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/12 16:16:02 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/12 16:16:04 by edescoin         ###   ########.fr       */
+/*   Created: 2017/06/08 18:41:11 by edescoin          #+#    #+#             */
+/*   Updated: 2017/07/04 22:37:54 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -34,6 +35,9 @@ typedef struct			s_garbage
 
 void					exit_error(char *prog, char *err);
 void					exit_custom_error(char *prog, char *err);
+int						forint(int *i, int reset, int cond);
+int						fordbl(double *d, double reset, int cond);
+int						forptr(void **p, void *reset, int cond);
 int						ft_atoi(const char *nptr);
 int						ft_atoi_base(const char *nptr, int base);
 void					ft_bzero(void *s, size_t n);
@@ -104,7 +108,5 @@ double					ft_to_deg(double rad);
 int						ft_tolower(int c);
 double					ft_to_rad(double deg);
 int						ft_toupper(int c);
-
-void					fonction_test(int inutile);
 
 #endif

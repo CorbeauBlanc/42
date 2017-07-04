@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/29 16:37:56 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/04 16:49:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,7 @@ t_dot	*new_dot(double x, double y, double z)
 	dot->w = 1;
 	return (dot);
 }
-/*
-void	transform_dot(t_dot *dest, t_dot *vect, t_camera *cam)
-{
-	double	tmp;
 
-	tmp = vect->z;
-	mult_dot(dest, cam->view, vect);
-	dest->x = (WIDTH / 2) + (cam->f * dest->x) / dest->z;
-	dest->y = (HEIGHT / 2) + (cam->f * dest->y) / dest->z;
-	dest->w = tmp;
-}
-*/
 void	mult_dot(t_dot *dest, t_matrix *mtx, t_dot *dot)
 {
 	double	x;

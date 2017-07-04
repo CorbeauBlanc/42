@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:10:42 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/12 20:00:01 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/04 22:58:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@ t_matrix	*create_identity(int i);
 t_matrix	*new_matrix(double **mat, int r, int c);
 void		delete_matrix(t_matrix *matrix);
 t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2);
+
+/*
+** matrix_ops.c
+*/
+double		get_det_3x3mat(t_matrix *m);
+t_matrix	*get_inv_3x3mat(t_matrix *res, t_matrix *m);
 
 /*
 ** transformations.c
