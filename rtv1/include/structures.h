@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/10 17:28:33 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/10 21:26:59 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ typedef struct		s_cylinder
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
 	t_vector		normal;
-	t_vector		grad;
 	double			radius;
 	double			r2;
 	double			rho;
@@ -184,6 +183,7 @@ typedef struct		s_intersect
 	double			ldist;
 	t_dot			dot;
 	t_object		*obj;
+	t_vector		normal;
 }					t_intersect;
 
 typedef struct		s_ray

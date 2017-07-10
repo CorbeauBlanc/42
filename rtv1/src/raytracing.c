@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/10 18:08:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/10 21:35:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int		check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 	t_dot		res;
 	t_cell		*tmp;
 	double		t;
+	t_vector	n;
 
 	tmp = scene->collection;
 	while (tmp)
@@ -29,11 +30,12 @@ static int		check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 			if (light)
 				return (0);
 			equation_get_dot(&res, &ray->eq_obj, t);
+			mult_vect(&n, tmp->obj->rot, tmp->obj->get_normal(&res, tmp->obj));
 			mult_vect((t_vector*)&res, tmp->obj->rot, (t_vector*)&res);
 			mult_vect((t_vector*)&ray->i.dot, tmp->obj->trans, (t_vector*)&res);
 			t = get_dot_dist(&scene->cam->crd, &ray->i.dot);
 			if (t < ray->i.dist || !ray->i.dist)
-				ray->i = (t_intersect){t, 0, ray->i.dot, tmp->obj};
+				ray->i = (t_intersect){t, 0, ray->i.dot, tmp->obj, n};
 		}
 		tmp = tmp->next;
 	}
@@ -76,8 +78,7 @@ void			render_scene(t_scene *scene)
 			init_equation(&ray.eq, &vd, (t_vector*)&scene->cam->crd);
 			if (check_objs_intersect(scene, &ray, 0))
 			{
-				col = 255 * get_shade_fact(&ray.eq.vdir,
-							ray.i.obj->get_normal(&ray.i.dot, ray.i.obj));
+				col = 255 * get_shade_fact(&ray.eq.vdir, &ray.i.normal);
 				SDL_SetRenderDrawColor(get_sdl_core()->renderer, col, col, col, 255);
 			}
 			else
