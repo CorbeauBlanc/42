@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 12:35:04 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/01 16:35:52 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/05 17:43:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_plane					*new_plane(t_dot pos, double x_angle, double z_angle)
 	trans = create_identity(4);
 	x_rotation(&trans, x_angle);
 	z_rotation(&trans, z_angle);
-	mult_dot(&norm, trans, &norm);
+	mult_vect((t_vector*)&norm, trans, (t_vector*)&norm);
 	plane->normal = (t_vector){norm.x, norm.y, norm.z};
 	plane->a = norm.x;
 	plane->b = norm.y;

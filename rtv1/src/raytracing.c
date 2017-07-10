@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/01 17:40:01 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/06 18:46:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int		check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 {
-	t_dot		res;
+	//t_dot		res;
 	t_cell		*tmp;
 	double		t;
 
@@ -25,10 +25,11 @@ static int		check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 		{
 			if (light)
 				return (0);
-			equation_get_dot(&res, &ray->eq, t);
-			t = get_vect_len((t_vector*)&res);
+			//equation_get_dot(&res, &ray->eq, t);
+			//mult_vect((t_vector*)&res, tmp->obj->trans, (t_vector*)&ray->i.dot);
+			t = get_vect_len((t_vector*)&ray->i.dot);
 			if (t < ray->i.dist || !ray->i.dist)
-				ray->i = (t_intersect){t, 0, res, tmp->obj};
+				ray->i = (t_intersect){t, 0, ray->i.dot, tmp->obj};
 		}
 		tmp = tmp->next;
 	}
@@ -38,6 +39,7 @@ static int		check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 					scene->light.crd.y - ray->i.dot.y,
 					scene->light.crd.z - ray->i.dot.z}, (t_vector*)&ray->i.dot);
 	ray->i.ldist = get_vect_len(&ray->eq.vdir);
+	return (1);
 	return (check_objs_intersect(scene, ray, 1));
 }
 

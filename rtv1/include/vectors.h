@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/12 19:57:05 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/01 14:00:15 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/05 17:17:33 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 ** dots.c
 */
 double		get_dot_dist(t_dot *d1, t_dot *d2);
-void		mult_dot(t_dot *dest, t_matrix *mtx, t_dot *dot);
 t_dot		*new_dot(double x, double y, double z);
 void		set_dot(t_dot *dot, double x, double y, double z);
 

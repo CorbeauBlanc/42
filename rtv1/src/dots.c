@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/04 16:49:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/05 17:17:40 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,6 @@ t_dot	*new_dot(double x, double y, double z)
 	dot = (t_dot*)new_vector(x, y, z);
 	dot->w = 1;
 	return (dot);
-}
-
-void	mult_dot(t_dot *dest, t_matrix *mtx, t_dot *dot)
-{
-	double	x;
-	double	y;
-	double	z;
-
-	if (mtx->r >= 3 || mtx->c >= 4)
-	{
-		x = mtx->mat[0][0] * dot->x + mtx->mat[0][1] * dot->y +
-				mtx->mat[0][2] * dot->z + mtx->mat[0][3];
-		y = mtx->mat[1][0] * dot->x + mtx->mat[1][1] * dot->y +
-				mtx->mat[1][2] * dot->z + mtx->mat[1][3];
-		z = mtx->mat[2][0] * dot->x + mtx->mat[2][1] * dot->y +
-				mtx->mat[2][2] * dot->z + mtx->mat[2][3];
-		dest->x = x;
-		dest->y = y;
-		dest->z = z;
-	}
 }
 
 void	set_dot(t_dot *dot, double x, double y, double z)

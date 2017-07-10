@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/30 18:46:31 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/05 17:42:04 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static void	init_cam_screen(t_camera *cam)
 		{
 			++tmp.y;
 			set_dot(&cam->screen[i][j], tmp.x, tmp.y, cam->crd.z + cam->f);
-			mult_dot(&cam->screen[i][j], transfo, &cam->screen[i][j]);
+			mult_vect((t_vector*)&cam->screen[i][j], transfo,
+						(t_vector*)&cam->screen[i][j]);
 		}
 	}
 }
