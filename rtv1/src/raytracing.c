@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/06 18:46:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/10 18:08:07 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 
 static int		check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 {
-	//t_dot		res;
+	t_dot		res;
 	t_cell		*tmp;
 	double		t;
 
 	tmp = scene->collection;
 	while (tmp)
 	{
+		mult_vect(&ray->eq_obj.vconst, tmp->obj->trans_inv, &ray->eq.vconst);
+		mult_vect(&ray->eq_obj.vconst, tmp->obj->rot_inv, &ray->eq_obj.vconst);
+		mult_vect(&ray->eq_obj.vdir, tmp->obj->rot_inv, &ray->eq.vdir);
 		if ((t = tmp->obj->intersect(ray, tmp->obj)) > -1)
 		{
 			if (light)
 				return (0);
-			//equation_get_dot(&res, &ray->eq, t);
-			//mult_vect((t_vector*)&res, tmp->obj->trans, (t_vector*)&ray->i.dot);
-			t = get_vect_len((t_vector*)&ray->i.dot);
+			equation_get_dot(&res, &ray->eq_obj, t);
+			mult_vect((t_vector*)&res, tmp->obj->rot, (t_vector*)&res);
+			mult_vect((t_vector*)&ray->i.dot, tmp->obj->trans, (t_vector*)&res);
+			t = get_dot_dist(&scene->cam->crd, &ray->i.dot);
 			if (t < ray->i.dist || !ray->i.dist)
 				ray->i = (t_intersect){t, 0, ray->i.dot, tmp->obj};
 		}
@@ -39,7 +43,7 @@ static int		check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 					scene->light.crd.y - ray->i.dot.y,
 					scene->light.crd.z - ray->i.dot.z}, (t_vector*)&ray->i.dot);
 	ray->i.ldist = get_vect_len(&ray->eq.vdir);
-	return (1);
+	//return (1);
 	return (check_objs_intersect(scene, ray, 1));
 }
 

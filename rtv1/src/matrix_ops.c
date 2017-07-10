@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/04 16:30:54 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/05 17:17:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/10 18:00:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_matrix	*get_inv_3x3mat(t_matrix *res, t_matrix *m)
 	return (res);
 }
 
-void	mult_vect(t_vector *dest, t_matrix *mtx, t_vector *dot)
+void	mult_vect(t_vector *dest, t_matrix *mtx, t_vector *vect)
 {
 	double	x;
 	double	y;
@@ -61,12 +61,12 @@ void	mult_vect(t_vector *dest, t_matrix *mtx, t_vector *dot)
 
 	if (mtx->r >= 3 || mtx->c >= 4)
 	{
-		x = mtx->mat[0][0] * dot->x + mtx->mat[0][1] * dot->y +
-				mtx->mat[0][2] * dot->z + mtx->mat[0][3];
-		y = mtx->mat[1][0] * dot->x + mtx->mat[1][1] * dot->y +
-				mtx->mat[1][2] * dot->z + mtx->mat[1][3];
-		z = mtx->mat[2][0] * dot->x + mtx->mat[2][1] * dot->y +
-				mtx->mat[2][2] * dot->z + mtx->mat[2][3];
+		x = mtx->mat[0][0] * vect->x + mtx->mat[0][1] * vect->y +
+				mtx->mat[0][2] * vect->z + mtx->mat[0][3];
+		y = mtx->mat[1][0] * vect->x + mtx->mat[1][1] * vect->y +
+				mtx->mat[1][2] * vect->z + mtx->mat[1][3];
+		z = mtx->mat[2][0] * vect->x + mtx->mat[2][1] * vect->y +
+				mtx->mat[2][2] * vect->z + mtx->mat[2][3];
 		dest->x = x;
 		dest->y = y;
 		dest->z = z;

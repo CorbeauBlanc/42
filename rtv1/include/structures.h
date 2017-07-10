@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/05 17:30:37 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/10 17:28:33 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ typedef struct		s_object
 	const t_type	obj_type;
 	double			(*intersect)();
 	const t_vector	*(*get_normal)();
+	t_matrix		*rot;
+	t_matrix		*rot_inv;
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
 }					t_object;
@@ -101,6 +103,8 @@ typedef struct		s_sphere
 	const t_type	obj_type;
 	double			(*intersect)();
 	const t_vector	*(*get_normal)();
+	t_matrix		*rot;
+	t_matrix		*rot_inv;
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
 	t_vector		normal;
@@ -115,6 +119,8 @@ typedef struct		s_cylinder
 	const t_type	obj_type;
 	double			(*intersect)();
 	const t_vector	*(*get_normal)();
+	t_matrix		*rot;
+	t_matrix		*rot_inv;
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
 	t_vector		normal;
@@ -132,6 +138,8 @@ typedef struct		s_plane
 	const t_type	obj_type;
 	double			(*intersect)();
 	const t_vector	*(*get_normal)();
+	t_matrix		*rot;
+	t_matrix		*rot_inv;
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
 	t_vector		normal;
@@ -181,6 +189,7 @@ typedef struct		s_intersect
 typedef struct		s_ray
 {
 	t_param_eq		eq;
+	t_param_eq		eq_obj;
 	SDL_Color		color;
 	t_intersect		i;
 }					t_ray;

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/12 16:32:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/05 17:31:26 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/10 17:16:55 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,18 @@ t_object	*new_object(t_type type, double (*intersect)(),
 	*(t_type*)&obj->obj_type = type;
 	obj->intersect = intersect;
 	obj->get_normal = get_normal;
+	obj->rot = create_identity(4);
+	obj->rot_inv = create_identity(4);
 	obj->trans = create_identity(4);
 	obj->trans_inv = create_identity(4);
 	return (obj);
+}
+
+void		delete_object(t_object *obj)
+{
+	delete_matrix(obj->rot);
+	delete_matrix(obj->rot_inv);
+	delete_matrix(obj->trans);
+	delete_matrix(obj->trans_inv);
+	free(obj);
 }
