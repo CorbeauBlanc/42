@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 19:41:43 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/11 18:01:11 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/11 18:09:57 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int				in_cyl_boundary(t_ray *ray, t_cylinder *c, double t)
 {
 	t_dot		dot;
 
+	if (c->height < 0)
+		return (1);
 	equation_get_dot(&dot, &ray->eq_obj, t);
 	return (dot.y >= 0 && dot.y <= c->height);
 }

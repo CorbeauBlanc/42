@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/11 18:04:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/11 19:46:26 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,19 @@ int		main(int ac, char **av)
 	init_list_evts(&events);
 
 	t_scene	test;
-	t_cylinder	*c;
+	//t_cylinder	*c;
+	t_cone		*c2;
 	test.collection = NULL;
 
 	test.cam = new_camera(60, &(t_dot){10,10,-5,0}, -20, 20);
+//	test.cam = new_camera(60, &(t_dot){0,0,0,0}, 0, 0);
 	test.light.crd = (t_dot){20, 15, 10, 0};
 	scene_add_object((t_object*)new_plane((t_dot){0, -6, 30, 0}, -10, 0), &test);
-	scene_add_object((t_object*)new_sphere(0, 5, 20, 3), &test);
-	scene_add_object((t_object*)new_sphere(0, 1, 19.5, 2), &test);
-	c = new_cylinder((t_dot){-2, 3, 20, 0}, 3, 10);
-	rotate_object((t_object*)c, 20, 0, 10);
-	scene_add_object((t_object*)c, &test);
+	/*scene_add_object((t_object*)new_sphere(0, 5, 20, 3), &test);
+	scene_add_object((t_object*)new_sphere(0, 1, 19.5, 2), &test);*/
+	c2 = new_cone((t_dot){-2, 3, 20, 0}, 20, 5, -1);
+	rotate_object((t_object*)c2, 0, 0, 180);
+	scene_add_object((t_object*)c2, &test);
 
 	render_scene(&test);
 

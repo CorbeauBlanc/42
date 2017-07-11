@@ -6,13 +6,18 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:47:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/11 18:02:54 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/11 19:27:17 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECTS_H
 # define OBJECTS_H
 # include "structures.h"
+
+/*
+** cone.c
+*/
+t_cone		*new_cone(t_dot pos, double angle, double radius, double height);
 
 /*
 ** cylinder.c

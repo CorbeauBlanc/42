@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/11 17:21:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/11 18:48:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct		s_object
 	t_matrix		*rot_inv;
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
+	t_vector		normal;
 }					t_object;
 
 typedef struct		s_sphere
@@ -129,6 +130,23 @@ typedef struct		s_cylinder
 	double			height;
 	t_dot			center;
 }					t_cylinder;
+
+typedef struct		s_cone
+{
+	const t_type	obj_type;
+	double			(*intersect)();
+	const t_vector	*(*get_normal)();
+	t_matrix		*rot;
+	t_matrix		*rot_inv;
+	t_matrix		*trans;
+	t_matrix		*trans_inv;
+	t_vector		normal;
+	double			height;
+	double			angle;
+	double			tanalpha;
+	double			tanalpha2;
+	t_dot			center;
+}					t_cone;
 
 typedef struct		s_plane
 {
