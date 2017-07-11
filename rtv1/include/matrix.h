@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:10:42 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/10 21:29:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/11 17:02:12 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2);
 */
 double		get_det_3x3mat(t_matrix *m);
 t_matrix	*get_inv_3x3mat(t_matrix *res, t_matrix *m);
-void		mult_vect(t_vector *dest, t_matrix *mtx, const t_vector *vect);
+void		mult_vect(t_vector *dest, const t_matrix *mtx, const t_vector *vect);
 
 /*
 ** transformations.c

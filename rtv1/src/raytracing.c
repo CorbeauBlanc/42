@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/10 21:35:24 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/11 17:13:43 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ static int		check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 			equation_get_dot(&res, &ray->eq_obj, t);
 			mult_vect(&n, tmp->obj->rot, tmp->obj->get_normal(&res, tmp->obj));
 			mult_vect((t_vector*)&res, tmp->obj->rot, (t_vector*)&res);
-			mult_vect((t_vector*)&ray->i.dot, tmp->obj->trans, (t_vector*)&res);
-			t = get_dot_dist(&scene->cam->crd, &ray->i.dot);
+			mult_vect((t_vector*)&res, tmp->obj->trans, (t_vector*)&res);
+			t = get_dot_dist(&scene->cam->crd, &res);
 			if (t < ray->i.dist || !ray->i.dist)
-				ray->i = (t_intersect){t, 0, ray->i.dot, tmp->obj, n};
+				ray->i = (t_intersect){t, 0, res, tmp->obj, n};
 		}
 		tmp = tmp->next;
 	}
@@ -72,6 +72,7 @@ void			render_scene(t_scene *scene)
 		while (++j < HEIGHT)
 		{
 			ray.i.dist = 0;
+			ray.i.obj = NULL;
 			set_vector(&vd, scene->cam->screen[i][j].x - scene->cam->crd.x,
 						scene->cam->screen[i][j].y - scene->cam->crd.y,
 						scene->cam->screen[i][j].z - scene->cam->crd.z);
