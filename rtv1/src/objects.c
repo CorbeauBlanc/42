@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/12 16:32:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/10 17:16:55 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/11 18:02:33 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,12 @@ void		delete_object(t_object *obj)
 	delete_matrix(obj->trans);
 	delete_matrix(obj->trans_inv);
 	free(obj);
+}
+
+void		rotate_object(t_object *obj, double x_angle, double y_angle, double z_angle)
+{
+	x_rotation(&obj->rot, x_angle);
+	y_rotation(&obj->rot, y_angle);
+	z_rotation(&obj->rot, z_angle);
+	get_inv_3x3mat(obj->rot_inv, obj->rot);
 }

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 19:41:43 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/11 17:47:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/11 18:01:11 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,7 @@ static const t_vector	*get_cylinder_normal(t_dot *d, t_cylinder *c)
 	return (&c->normal);
 }
 
-t_cylinder				*new_cylinder(t_dot pos, double x_angle, double z_angle,
-									double radius, double height)
+t_cylinder				*new_cylinder(t_dot pos, double radius, double height)
 {
 	t_cylinder	*c;
 
@@ -63,9 +62,6 @@ t_cylinder				*new_cylinder(t_dot pos, double x_angle, double z_angle,
 								&get_cylinder_normal, sizeof(t_cylinder));
 	translation(&c->trans, pos.x, pos.y, pos.z);
 	translation(&c->trans_inv, -pos.x, -pos.y, -pos.z);
-	x_rotation(&c->rot, x_angle);
-	z_rotation(&c->rot, z_angle);
-	get_inv_3x3mat(c->rot_inv, c->rot);
 	c->radius = radius;
 	c->r2 = pow(radius, 2);
 	c->center = pos;

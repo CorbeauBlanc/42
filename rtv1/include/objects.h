@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:47:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/11 17:20:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/11 18:02:54 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,16 @@
 /*
 ** cylinder.c
 */
-t_cylinder	*new_cylinder(t_dot pos, double x_angle, double z_angle, double radius, double height);
+t_cylinder	*new_cylinder(t_dot pos, double radius, double height);
 
 /*
 ** objects.c
 */
+void		delete_object(t_object *obj);
 t_object	*new_object(t_type type, double (*intersect)(),
 						const t_vector *(*get_normal)(),
 						size_t size);
-void		delete_object(t_object *obj);
+void		rotate_object(t_object *obj, double x_angle, double y_angle, double z_angle);
 
 /*
 ** plane.c

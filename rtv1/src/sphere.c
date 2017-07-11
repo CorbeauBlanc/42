@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 12:33:37 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/11 16:29:55 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/11 17:58:39 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ t_sphere				*new_sphere(double x, double y, double z, double radius)
 	set_dot(&sphere->center, x, y, z);
 	translation(&sphere->trans, x, y, z);
 	translation(&sphere->trans_inv, -x, -y, -z);
-	x_rotation(&sphere->rot, 50);
-	get_inv_3x3mat(sphere->rot_inv, sphere->rot);
 	return (sphere);
 }
 
