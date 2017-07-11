@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:47:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/10 17:18:34 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/11 17:20:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /*
 ** cylinder.c
 */
-t_cylinder	*new_cylinder(t_dot pos, double x_angle, double z_angle, double radius);
+t_cylinder	*new_cylinder(t_dot pos, double x_angle, double z_angle, double radius, double height);
 
 /*
 ** objects.c

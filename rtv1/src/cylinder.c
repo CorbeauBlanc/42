@@ -6,14 +6,22 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 19:41:43 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/10 21:48:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/11 17:47:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include <math.h>
 
-static double			cylinder_intersect(t_ray *ray, t_cylinder *s)
+static int				in_cyl_boundary(t_ray *ray, t_cylinder *c, double t)
+{
+	t_dot		dot;
+
+	equation_get_dot(&dot, &ray->eq_obj, t);
+	return (dot.y >= 0 && dot.y <= c->height);
+}
+
+static double			cylinder_intersect(t_ray *ray, t_cylinder *c)
 {
 	t_dot		res;
 	t_vector	*vd;
@@ -25,15 +33,15 @@ static double			cylinder_intersect(t_ray *ray, t_cylinder *s)
 	vd = &ray->eq_obj.vdir;
 	if (get_quad_equation_sol(&res, pow(vd->x, 2) + pow(vd->z, 2),
 							2 * (vd->x * vc->x + vd->z * vc->z),
-							pow(vc->x, 2) + pow(vc->z, 2) - s->r2))
+							pow(vc->x, 2) + pow(vc->z, 2) - c->r2))
 	{
-		if ((long)(res.x * pow(10, 13)) > 0)
+		if ((long)(res.x * pow(10, 13)) > 0 && in_cyl_boundary(ray, c, res.x))
 		{
-			if ((long)(res.y * pow(10, 13)) > 0)
+			if ((long)(res.y * pow(10, 13)) > 0 && in_cyl_boundary(ray, c, res.y))
 				t = (res.x < res.y ? res.x : res.y);
 			else
 				t = (res.x);
-		} else if ((long)(res.y * pow(10, 13)) > 0)
+		} else if ((long)(res.y * pow(10, 13)) > 0 && in_cyl_boundary(ray, c, res.y))
 			t = (res.y);
 	}
 	return (t);
@@ -47,7 +55,7 @@ static const t_vector	*get_cylinder_normal(t_dot *d, t_cylinder *c)
 }
 
 t_cylinder				*new_cylinder(t_dot pos, double x_angle, double z_angle,
-									double radius)
+									double radius, double height)
 {
 	t_cylinder	*c;
 
@@ -61,8 +69,6 @@ t_cylinder				*new_cylinder(t_dot pos, double x_angle, double z_angle,
 	c->radius = radius;
 	c->r2 = pow(radius, 2);
 	c->center = pos;
-	c->phi = ft_to_rad(x_angle);
-	c->theta = ft_to_rad(z_angle);
-	c->rho = 1;
+	c->height = height;
 	return (c);
 }
