@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:47:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/11 19:27:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/12 17:07:56 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_object	*new_object(t_type type, double (*intersect)(),
 						const t_vector *(*get_normal)(),
 						size_t size);
 void		rotate_object(t_object *obj, double x_angle, double y_angle, double z_angle);
+void		set_object_color(t_object *obj, int r, int g, int b);
 
 /*
 ** plane.c
@@ -42,6 +43,5 @@ t_plane		*new_plane(t_dot pos, double x_angle, double z_angle);
 ** sphere.c
 */
 t_sphere	*new_sphere(double x, double y, double z, double radius);
-void		delete_sphere(t_sphere *s);
 
 #endif

@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/11 18:48:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/12 19:41:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
-# define WIDTH 		600
-# define HEIGHT 	600
+# define WIDTH 		1200
+# define HEIGHT 	650
 # ifndef __APPLE__
 #  include <SDL2/SDL.h>
 # else
@@ -39,6 +39,7 @@ typedef struct		s_sdl_core
 {
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
+	SDL_mutex		*mutex;
 	int				width;
 	int				height;
 	int				fullscreen;
@@ -97,6 +98,7 @@ typedef struct		s_object
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
 	t_vector		normal;
+	SDL_Color		color;
 }					t_object;
 
 typedef struct		s_sphere
@@ -109,6 +111,7 @@ typedef struct		s_sphere
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
 	t_vector		normal;
+	SDL_Color		color;
 	double			radius;
 	double			r2;
 	t_dot			center;
@@ -125,6 +128,7 @@ typedef struct		s_cylinder
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
 	t_vector		normal;
+	SDL_Color		color;
 	double			radius;
 	double			r2;
 	double			height;
@@ -141,9 +145,9 @@ typedef struct		s_cone
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
 	t_vector		normal;
+	SDL_Color		color;
 	double			height;
 	double			angle;
-	double			tanalpha;
 	double			tanalpha2;
 	t_dot			center;
 }					t_cone;
@@ -158,6 +162,7 @@ typedef struct		s_plane
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
 	t_vector		normal;
+	SDL_Color		color;
 	double			a;
 	double			b;
 	double			c;
@@ -168,6 +173,7 @@ typedef struct		s_plane
 typedef struct		s_spotlight
 {
 	t_dot			crd;
+	double			power;
 }					t_spotlight;
 
 typedef struct		s_cell
@@ -188,10 +194,19 @@ typedef struct		s_camera
 
 typedef struct		s_scene
 {
-	t_spotlight		light;
+	t_spotlight		*light;
 	t_camera		*cam;
 	t_cell			*collection;
+	double			brightness;
+	SDL_Color		bgcolor;
 }					t_scene;
+
+typedef struct	s_thread_args
+{
+	int			i;
+	int			j;
+	t_scene		*scene;
+}				t_thread_args;
 
 typedef struct		s_intersect
 {

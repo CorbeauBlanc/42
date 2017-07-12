@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/11 19:38:17 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/12 20:06:08 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static int		check_objs_intersect(t_scene *scene, t_ray *ray, int light)
+static int	check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 {
 	t_dot		res;
 	t_cell		*tmp;
@@ -34,58 +34,105 @@ static int		check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 			mult_vect((t_vector*)&res, tmp->obj->rot, (t_vector*)&res);
 			mult_vect((t_vector*)&res, tmp->obj->trans, (t_vector*)&res);
 			t = get_dot_dist(&scene->cam->crd, &res);
-			if (t < ray->i.dist || !ray->i.dist)
+			if (!ray->i.obj || t < ray->i.dist)
 				ray->i = (t_intersect){t, 0, res, tmp->obj, n};
 		}
 		tmp = tmp->next;
 	}
-	if (!ray->i.dist || light)
+	if (!ray->i.obj || light)
 		return (light);
-	init_equation(&ray->eq, &(t_vector){scene->light.crd.x - ray->i.dot.x,
-					scene->light.crd.y - ray->i.dot.y,
-					scene->light.crd.z - ray->i.dot.z}, (t_vector*)&ray->i.dot);
+	init_equation(&ray->eq, &(t_vector){scene->light->crd.x - ray->i.dot.x,
+					scene->light->crd.y - ray->i.dot.y,
+					scene->light->crd.z - ray->i.dot.z}, (t_vector*)&ray->i.dot);
 	ray->i.ldist = get_vect_len(&ray->eq.vdir);
-	//return (1);
 	return (check_objs_intersect(scene, ray, 1));
 }
 
-static double	get_shade_fact(const t_vector *light, const t_vector *normal)
+static void	get_shade_color(SDL_Color *dest, const t_ray *ray, const t_scene *scene)
 {
-	double	f;
+	double		coef;
+	SDL_Color	*col;
+	t_vector	tmp;
 
-	return ((f = vect_dot_product(light, normal) /
-			(get_vect_len(light) * get_vect_len(normal))) < 0 ? 0 : f);
+	col = &ray->i.obj->color;
+	coef = (vect_dot_product(&ray->eq.vdir, &ray->i.normal) /
+		(get_vect_len(&ray->eq.vdir) * get_vect_len(&ray->i.normal))) *
+		scene->light->power;
+	if (coef < 0)
+		coef = 0;
+	tmp.x = col->r * (scene->brightness + coef);
+	tmp.y = col->g * (scene->brightness + coef);
+	tmp.z = col->b * (scene->brightness + coef);
+	*dest = (SDL_Color){tmp.x > 255 ? 255 : tmp.x,
+						tmp.y > 255 ? 255 : tmp.y,
+						tmp.z > 255 ? 255 : tmp.z, 255};
 }
 
-void			render_scene(t_scene *scene)
+static void	get_shadow_color(SDL_Color *dest, const t_ray *ray, const t_scene *scene)
 {
-	int	i;
-	int	j;
-	t_ray	ray;
-	t_vector vd;
-	double	col;
+	if (!ray->i.obj)
+		*dest = (SDL_Color){scene->bgcolor.r, scene->bgcolor.g,
+							scene->bgcolor.b, 255};
+	else
+	{
+		dest->r = ray->i.obj->color.r * scene->brightness;
+		dest->g = ray->i.obj->color.g * scene->brightness;
+		dest->b = ray->i.obj->color.b * scene->brightness;
+		dest->a = 255;
+	}
+}
+
+static int	trace_ray(void *arguments)
+{
+	t_thread_args	*args;
+	t_ray			ray;
+	t_vector		vd;
+
+	args = (t_thread_args*)arguments;
+	ray.i.obj = NULL;
+	set_vector(&vd,
+		args->scene->cam->screen[args->i][args->j].x - args->scene->cam->crd.x,
+		args->scene->cam->screen[args->i][args->j].y - args->scene->cam->crd.y,
+		args->scene->cam->screen[args->i][args->j].z - args->scene->cam->crd.z);
+	init_equation(&ray.eq, &vd, (t_vector*)&args->scene->cam->crd);
+	if (check_objs_intersect(args->scene, &ray, 0))
+		get_shade_color(&ray.color, &ray, args->scene);
+	else
+		get_shadow_color(&ray.color, &ray, args->scene);
+	SDL_LockMutex(get_sdl_core()->mutex);
+	SDL_SetRenderDrawColor(get_sdl_core()->renderer,
+						ray.color.r, ray.color.g, ray.color.b, 255);
+	SDL_RenderDrawPoint(get_sdl_core()->renderer, args->i, HEIGHT - args->j);
+	SDL_UnlockMutex(get_sdl_core()->mutex);
+	return (1);
+}
+
+void		render_scene(t_scene *scene)
+{
+	int			i;
+	int			j;
+	int			t;
+	SDL_Thread	*threads[MAX_THREADS];
 
 	i = -1;
+	for (t = 0; t < MAX_THREADS; t++) {
+		threads[t] = NULL;
+	}
+	t = -1;
 	while (++i < WIDTH)
 	{
 		j = -1;
 		while (++j < HEIGHT)
 		{
-			ray.i.dist = 0;
-			ray.i.obj = NULL;
-			set_vector(&vd, scene->cam->screen[i][j].x - scene->cam->crd.x,
-						scene->cam->screen[i][j].y - scene->cam->crd.y,
-						scene->cam->screen[i][j].z - scene->cam->crd.z);
-			init_equation(&ray.eq, &vd, (t_vector*)&scene->cam->crd);
-			if (check_objs_intersect(scene, &ray, 0))
-			{
-				col = 255 * get_shade_fact(&ray.eq.vdir, &ray.i.normal);
-				SDL_SetRenderDrawColor(get_sdl_core()->renderer, col, col, col, 255);
-			}
-			else
-				SDL_SetRenderDrawColor(get_sdl_core()->renderer, 0, 0, 0, 255);
-			SDL_RenderDrawPoint(get_sdl_core()->renderer, i, HEIGHT - j);
+			t = (t + 1) % MAX_THREADS;
+			SDL_WaitThread(threads[t], NULL);
+			if (!(threads[t] = SDL_CreateThread(trace_ray, "rt",
+											&(t_thread_args){i, j, scene})))
+				exit_custom_error("rtv1 : SDL2 : ", (char*)SDL_GetError());
 		}
 	}
+	t = -1;
+	while (++t < MAX_THREADS)
+		SDL_WaitThread(threads[t], NULL);
 	refresh_win();
 }

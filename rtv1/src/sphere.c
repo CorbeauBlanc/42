@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 12:33:37 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/11 17:58:39 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/12 18:33:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,4 @@ t_sphere				*new_sphere(double x, double y, double z, double radius)
 	translation(&sphere->trans, x, y, z);
 	translation(&sphere->trans_inv, -x, -y, -z);
 	return (sphere);
-}
-
-void					delete_sphere(t_sphere *s)
-{
-	delete_object((t_object*)s);
 }

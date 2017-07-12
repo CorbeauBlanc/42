@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/11 19:46:26 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/12 19:37:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,31 @@ int		main(int ac, char **av)
 	get_sdl_core();
 	init_list_evts(&events);
 
-	t_scene	test;
-	//t_cylinder	*c;
+	t_scene	*test;
+	t_cylinder	*c;
 	t_cone		*c2;
-	test.collection = NULL;
 
-	test.cam = new_camera(60, &(t_dot){10,10,-5,0}, -20, 20);
-//	test.cam = new_camera(60, &(t_dot){0,0,0,0}, 0, 0);
-	test.light.crd = (t_dot){20, 15, 10, 0};
-	scene_add_object((t_object*)new_plane((t_dot){0, -6, 30, 0}, -10, 0), &test);
-	/*scene_add_object((t_object*)new_sphere(0, 5, 20, 3), &test);
-	scene_add_object((t_object*)new_sphere(0, 1, 19.5, 2), &test);*/
+	test = new_scene(new_spotlight((t_dot){20, 15, 10, 0}, 1),
+					//new_camera(FOV, &(t_dot){0,0,0,0}, 0, 0),
+					new_camera(60, &(t_dot){10,30,-20,0}, -20, 30),
+					5, (SDL_Color){0,0,0,0});
+	garbage_collector(ADD, test, delete_scene);
+
+	scene_add_object((t_object*)new_plane((t_dot){-50, 10, 30, 0}, -20, -10), test);
+	scene_add_object((t_object*)new_sphere(0, 5, 20, 3), test);
+	scene_add_object((t_object*)new_sphere(0, 1, 19.5, 2), test);
+	c = new_cylinder((t_dot){-5, 5, 15, 0}, 3, 20);
+	set_object_color((t_object*)c, 255, 0, 0);
+	rotate_object((t_object*)c, 30, 0, 15);
 	c2 = new_cone((t_dot){-2, 3, 20, 0}, 20, 5, -1);
-	rotate_object((t_object*)c2, 0, 0, 180);
-	scene_add_object((t_object*)c2, &test);
+	set_object_color((t_object*)c2, 0, 0, 255);
+	rotate_object((t_object*)c2, 30, 0, 180);
+	scene_add_object((t_object*)c, test);
+	scene_add_object((t_object*)c2, test);
 
-	render_scene(&test);
+	render_scene(test);
 
 	wait_events(events);
 	exit_main();
 	return (0);
 }
-
-/*
-** l'équation simplifiée du cylindre T_T
-** t²((cos(theta) * dy - sin(theta) * dx)² + (cos(phi)(sin(theta) * dy + dz) - cos(theta)sin(phi) * dx)²) + t * 2((cos(theta) * dy - sin(theta) * dx) * (cos(theta) * cy - sin(theta) * cx) + (cos(phi)(sin(theta) * dy + dz) - cos(theta)sin(phi) * dx) * (cos(phi)(sin(theta) * cy + cz) - cos(theta)sin(phi) * cx)) + (cos(theta) * cy - sin(theta) * cx)² + (cos(phi)(sin(theta) * cy + cz) - cos(theta)sin(phi) * cx)² - R² = 0
-*/

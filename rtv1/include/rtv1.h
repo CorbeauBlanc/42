@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 16:51:08 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/23 17:03:56 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/12 20:10:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define TITLE			"RTv1"
 # define FOV			60
 # define BUFF_SIZE		1024
+# define MAX_THREADS	300
 
 # ifndef __APPLE__
 #  include <SDL2/SDL.h>

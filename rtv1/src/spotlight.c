@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   spotlight.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/06 17:10:39 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/12 17:52:42 by edescoin         ###   ########.fr       */
+/*   Created: 2017/07/12 17:28:47 by edescoin          #+#    #+#             */
+/*   Updated: 2017/07/12 17:38:06 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
-# include "structures.h"
+#include "rtv1.h"
 
-/*
-** scene.c
-*/
-void		delete_scene(t_scene *scene);
-t_scene		*new_scene(t_spotlight *light, t_camera *cam, double brightness, SDL_Color bgcolor);
-void		scene_add_object(t_object *obj, t_scene *scene);
+t_spotlight	*new_spotlight(t_dot crd, double power)
+{
+	t_spotlight	*spot;
 
-/*
-** spotlight.c
-*/
-void		delete_spotlight(t_spotlight *spot);
-t_spotlight	*new_spotlight(t_dot crd, double power);
+	if (!(spot = malloc(sizeof(t_spotlight))))
+		exit_error("rtv1", "mallo");
+	spot->crd = crd;
+	spot->power = power < 0 ? 0 : power;
+	return (spot);
+}
 
-#endif
+void		delete_spotlight(t_spotlight *spot)
+{
+	free(spot);
+}
