@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/12 19:41:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/12 20:30:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct		s_sdl_core
 {
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
-	SDL_mutex		*mutex;
 	int				width;
 	int				height;
 	int				fullscreen;
@@ -200,13 +199,6 @@ typedef struct		s_scene
 	double			brightness;
 	SDL_Color		bgcolor;
 }					t_scene;
-
-typedef struct	s_thread_args
-{
-	int			i;
-	int			j;
-	t_scene		*scene;
-}				t_thread_args;
 
 typedef struct		s_intersect
 {

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/12 20:06:08 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/07/12 20:31:03 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,57 +82,37 @@ static void	get_shadow_color(SDL_Color *dest, const t_ray *ray, const t_scene *s
 	}
 }
 
-static int	trace_ray(void *arguments)
+static void	trace_ray(int i, int j, t_scene *scene)
 {
-	t_thread_args	*args;
 	t_ray			ray;
 	t_vector		vd;
 
-	args = (t_thread_args*)arguments;
 	ray.i.obj = NULL;
 	set_vector(&vd,
-		args->scene->cam->screen[args->i][args->j].x - args->scene->cam->crd.x,
-		args->scene->cam->screen[args->i][args->j].y - args->scene->cam->crd.y,
-		args->scene->cam->screen[args->i][args->j].z - args->scene->cam->crd.z);
-	init_equation(&ray.eq, &vd, (t_vector*)&args->scene->cam->crd);
-	if (check_objs_intersect(args->scene, &ray, 0))
-		get_shade_color(&ray.color, &ray, args->scene);
+		scene->cam->screen[i][j].x - scene->cam->crd.x,
+		scene->cam->screen[i][j].y - scene->cam->crd.y,
+		scene->cam->screen[i][j].z - scene->cam->crd.z);
+	init_equation(&ray.eq, &vd, (t_vector*)&scene->cam->crd);
+	if (check_objs_intersect(scene, &ray, 0))
+		get_shade_color(&ray.color, &ray, scene);
 	else
-		get_shadow_color(&ray.color, &ray, args->scene);
-	SDL_LockMutex(get_sdl_core()->mutex);
+		get_shadow_color(&ray.color, &ray, scene);
 	SDL_SetRenderDrawColor(get_sdl_core()->renderer,
 						ray.color.r, ray.color.g, ray.color.b, 255);
-	SDL_RenderDrawPoint(get_sdl_core()->renderer, args->i, HEIGHT - args->j);
-	SDL_UnlockMutex(get_sdl_core()->mutex);
-	return (1);
+	SDL_RenderDrawPoint(get_sdl_core()->renderer, i, HEIGHT - j);
 }
 
 void		render_scene(t_scene *scene)
 {
-	int			i;
-	int			j;
-	int			t;
-	SDL_Thread	*threads[MAX_THREADS];
+	int	i;
+	int	j;
 
 	i = -1;
-	for (t = 0; t < MAX_THREADS; t++) {
-		threads[t] = NULL;
-	}
-	t = -1;
 	while (++i < WIDTH)
 	{
 		j = -1;
 		while (++j < HEIGHT)
-		{
-			t = (t + 1) % MAX_THREADS;
-			SDL_WaitThread(threads[t], NULL);
-			if (!(threads[t] = SDL_CreateThread(trace_ray, "rt",
-											&(t_thread_args){i, j, scene})))
-				exit_custom_error("rtv1 : SDL2 : ", (char*)SDL_GetError());
-		}
+			trace_ray(i, j, scene);
 	}
-	t = -1;
-	while (++t < MAX_THREADS)
-		SDL_WaitThread(threads[t], NULL);
 	refresh_win();
 }

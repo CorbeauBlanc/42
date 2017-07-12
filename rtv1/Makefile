@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror
+CFLAGS=-Wall -Wextra -Werror -Ofast
 MAKE=/usr/bin/make
 NAME=wolf3d
 
