@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/12 20:30:23 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/02 17:35:57 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # else
 #  include "SDL2/SDL.h"
 # endif
+
+typedef struct	s_buffer
+{
+	char		*str;
+	int			fd;
+	int			eof;
+}				t_buffer;
 
 typedef enum		e_thread_state
 {
@@ -34,6 +41,17 @@ typedef enum		e_type
 	PLANE,
 	CYLINDER
 }					t_type;
+
+typedef enum		e_sc_data
+{
+					VOID,
+					COORDS,
+					ENVIRONMENT,
+					BACKGROUND,
+					BRIGHTNESS,
+					LIGHT,
+					POWER,
+}					t_sc_data;
 
 typedef struct		s_sdl_core
 {

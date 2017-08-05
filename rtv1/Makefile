@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -Werror -Ofast
+CFLAGS= -no-pie -Wall -Wextra -Werror -Ofast
 MAKE=/usr/bin/make
 NAME=wolf3d
 
@@ -12,7 +12,8 @@ FT_PATH=$$(pwd)/libft
 SDL_PATH=$$(pwd)/SDL2
 
 SRCS=angles.c bg_casting.c cam_angles.c camera.c cam_scanning.c events.c \
-floor_casting.c graphics.c key_functions_1.c key_functions_2.c main.c map2.c \
+get_next_line.c floor_casting.c graphics.c key_functions_1.c key_functions_2.c \
+main.c map2.c \
 map.c map_data.c mutexes.c orientations.c player.c raycasting.c sprites.c \
 textures.c textures2.c threads.c tiles.c tools.c
 OBJS=$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))

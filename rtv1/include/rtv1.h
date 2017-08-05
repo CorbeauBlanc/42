@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 16:51:08 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/12 20:31:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/02 15:12:06 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@
 
 # include "camera.h"
 # include "events.h"
+# include "get_next_line.h"
 # include "graphics.h"
 # include "matrix.h"
 # include "objects.h"
 # include "parametric_equations.h"
+# include "parser.h"
 # include "rays.h"
 # include "raytracing.h"
 # include "scene.h"

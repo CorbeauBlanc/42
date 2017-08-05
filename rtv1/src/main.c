@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/12 19:37:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 13:11:48 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,16 @@ int		main(int ac, char **av)
 	t_cylinder	*c;
 	t_cone		*c2;
 
+/*
 	test = new_scene(new_spotlight((t_dot){20, 15, 10, 0}, 1),
 					//new_camera(FOV, &(t_dot){0,0,0,0}, 0, 0),
 					new_camera(60, &(t_dot){10,30,-20,0}, -20, 30),
 					5, (SDL_Color){0,0,0,0});
+*/
+	test = get_scene("scene.sc");
+	delete_camera(test->cam);
+	test->cam = new_camera(60, &(t_dot){10,30,-20,0}, -20, 30);
+
 	garbage_collector(ADD, test, delete_scene);
 
 	scene_add_object((t_object*)new_plane((t_dot){-50, 10, 30, 0}, -20, -10), test);
