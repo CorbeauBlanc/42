@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 14:52:32 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 16:48:08 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,9 @@ int		main(int ac, char **av)
 
 	scene_add_object((t_object*)new_plane((t_dot){-50, 10, 30, 0}, -20, -10), test);
 	scene_add_object((t_object*)new_sphere(0, 5, 20, 3), test);
-	scene_add_object((t_object*)new_sphere(0, 1, 19.5, 2), test);
+	t_sphere *s = new_sphere(0, 1, 19.5, 2);
+	scene_add_object((t_object*)s, test);
+	scale_object((t_object*)s, 1.5, 1, 1);
 	c = new_cylinder((t_dot){-5, 5, 15, 0}, 3, 20);
 	set_object_color((t_object*)c, 255, 0, 0);
 	rotate_object((t_object*)c, 30, 0, 15);

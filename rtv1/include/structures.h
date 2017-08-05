@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 14:25:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 15:07:09 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ typedef struct		s_object
 	t_matrix		*rot_inv;
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
+	t_matrix		*scale;
+	t_matrix		*scale_inv;
 	t_vector		normal;
 	SDL_Color		color;
 }					t_object;
@@ -126,6 +128,8 @@ typedef struct		s_sphere
 	t_matrix		*rot_inv;
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
+	t_matrix		*scale;
+	t_matrix		*scale_inv;
 	t_vector		normal;
 	SDL_Color		color;
 	double			radius;
@@ -143,6 +147,8 @@ typedef struct		s_cylinder
 	t_matrix		*rot_inv;
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
+	t_matrix		*scale;
+	t_matrix		*scale_inv;
 	t_vector		normal;
 	SDL_Color		color;
 	double			radius;
@@ -160,6 +166,8 @@ typedef struct		s_cone
 	t_matrix		*rot_inv;
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
+	t_matrix		*scale;
+	t_matrix		*scale_inv;
 	t_vector		normal;
 	SDL_Color		color;
 	double			height;
@@ -177,6 +185,8 @@ typedef struct		s_plane
 	t_matrix		*rot_inv;
 	t_matrix		*trans;
 	t_matrix		*trans_inv;
+	t_matrix		*scale;
+	t_matrix		*scale_inv;
 	t_vector		normal;
 	SDL_Color		color;
 	double			a;

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/12 20:31:03 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 16:31:59 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,17 @@ static int	check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 	{
 		mult_vect(&ray->eq_obj.vconst, tmp->obj->trans_inv, &ray->eq.vconst);
 		mult_vect(&ray->eq_obj.vconst, tmp->obj->rot_inv, &ray->eq_obj.vconst);
+		mult_vect(&ray->eq_obj.vconst, tmp->obj->scale_inv, &ray->eq_obj.vconst);
 		mult_vect(&ray->eq_obj.vdir, tmp->obj->rot_inv, &ray->eq.vdir);
+		mult_vect(&ray->eq_obj.vdir, tmp->obj->scale_inv, &ray->eq_obj.vdir);
 		if ((t = tmp->obj->intersect(ray, tmp->obj)) > -1)
 		{
 			if (light)
 				return (0);
 			equation_get_dot(&res, &ray->eq_obj, t);
-			mult_vect(&n, tmp->obj->rot, tmp->obj->get_normal(&res, tmp->obj));
+			mult_vect(&n, tmp->obj->scale_inv, tmp->obj->get_normal(&res, tmp->obj));
+			mult_vect(&n, tmp->obj->rot, &n);
+			mult_vect((t_vector*)&res, tmp->obj->scale, (t_vector*)&res);
 			mult_vect((t_vector*)&res, tmp->obj->rot, (t_vector*)&res);
 			mult_vect((t_vector*)&res, tmp->obj->trans, (t_vector*)&res);
 			t = get_dot_dist(&scene->cam->crd, &res);

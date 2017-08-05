@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/12 16:32:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/12 18:30:32 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 15:27:49 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ t_object	*new_object(t_type type, double (*intersect)(),
 	obj->rot_inv = create_identity(4);
 	obj->trans = create_identity(4);
 	obj->trans_inv = create_identity(4);
+	obj->scale = create_identity(4);
+	obj->scale_inv = create_identity(4);
 	obj->color = (SDL_Color){255, 255, 255, 255};
 	return (obj);
 }
@@ -39,20 +41,7 @@ void		delete_object(t_object *obj)
 	delete_matrix(obj->rot_inv);
 	delete_matrix(obj->trans);
 	delete_matrix(obj->trans_inv);
+	delete_matrix(obj->scale);
+	delete_matrix(obj->scale_inv);
 	free(obj);
-}
-
-void		rotate_object(t_object *obj, double x_angle, double y_angle, double z_angle)
-{
-	x_rotation(&obj->rot, x_angle);
-	y_rotation(&obj->rot, y_angle);
-	z_rotation(&obj->rot, z_angle);
-	get_inv_3x3mat(obj->rot_inv, obj->rot);
-}
-
-void		set_object_color(t_object *obj, int r, int g, int b)
-{
-	obj->color.r = r;
-	obj->color.g = g;
-	obj->color.b = b;
 }
