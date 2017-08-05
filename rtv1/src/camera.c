@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/05 17:42:04 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 14:49:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include <math.h>
 
-static void	init_cam_screen(t_camera *cam)
+void		init_cam_screen(t_camera *cam)
 {
 	t_dot		tmp;
 	t_matrix	*transfo;
@@ -40,14 +40,14 @@ static void	init_cam_screen(t_camera *cam)
 	}
 }
 
-t_camera	*new_camera(int fov, const t_dot *crd, double h_ang, double v_ang)
+t_camera	*new_camera(int fov, const t_dot crd, double h_ang, double v_ang)
 {
 	t_camera	*cam;
 
 	if (!(cam = malloc(sizeof(t_camera))))
 		exit_error("rtv1", "malloc");
 	cam->fov = fov;
-	cam->crd = *crd;
+	cam->crd = crd;
 	cam->theta = h_ang;
 	cam->phi = v_ang;
 	cam->f = WIDTH / (2 * tan(ft_to_rad(fov) / 2.0f));

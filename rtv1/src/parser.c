@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 12:26:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 13:48:45 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 14:51:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,30 @@ t_scene	*get_scene(char *path)
 	if ((fd = open(path, O_RDONLY)) < 0)
 		exit_error("rtv1", "open");
 	scene = new_scene(new_spotlight((t_dot){0, 0, 0, 0}, 1),
-					new_camera(FOV, &(t_dot){0, 0, 0, 0}, 0, 0), 0,
+					new_camera(FOV, (t_dot){0, 0, 0, 0}, 0, 0), 0,
 					(SDL_Color){0, 0, 0, 255});
 	data = NULL;
 	object = VOID;
 	while (get_next_data(fd, &data))
 	{
-		printf("%s\n", data);
 		if (object == ENVIRONMENT)
 			object = add_env_data(scene, data);
 		else if (object == LIGHT)
 			object = add_light_data(scene, data);
+		else if (object == CAMERA)
+			object = add_camera_data(scene, data);
 		if (!object)
 		{
 			if (data == ft_strstr(data, "scene:"))
 				object = ENVIRONMENT;
 			else if (data == ft_strstr(data, "spotlight:"))
 				object = LIGHT;
+			else if (data == ft_strstr(data, "camera:"))
+				object = CAMERA;
 		}
 		free(data);
 	}
+	init_cam_screen(scene->cam);
 	close(fd);
 	return (scene);
 }

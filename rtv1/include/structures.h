@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/02 17:35:57 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 14:25:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@ typedef enum		e_sc_data
 					COORDS,
 					ENVIRONMENT,
 					BACKGROUND,
-					BRIGHTNESS,
 					LIGHT,
-					POWER,
+					CAMERA
 }					t_sc_data;
 
 typedef struct		s_sdl_core
