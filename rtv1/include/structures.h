@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 15:07:09 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 18:40:20 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ typedef enum		e_type
 	CONE,
 	SPHERE,
 	PLANE,
-	CYLINDER
+	CYLINDER,
+	BOX
 }					t_type;
 
 typedef enum		e_sc_data
@@ -195,6 +196,37 @@ typedef struct		s_plane
 	double			d;
 	double			z;
 }					t_plane;
+
+typedef struct		s_box
+{
+	const t_type	obj_type;
+	double			(*intersect)();
+	const t_vector	*(*get_normal)();
+	t_matrix		*rot;
+	t_matrix		*rot_inv;
+	t_matrix		*trans;
+	t_matrix		*trans_inv;
+	t_matrix		*scale;
+	t_matrix		*scale_inv;
+	t_vector		normal;
+	SDL_Color		color;
+	t_dot			fbl_corner;
+	t_dot			btr_corner;
+	t_plane			*front;
+	t_plane			*back;
+	t_plane			*top;
+	t_plane			*bottom;
+	t_plane			*left;
+	t_plane			*right;
+}					t_box;
+
+typedef struct		s_box_intersect
+{
+	t_dot			*crn1;
+	t_dot			*crn2;
+	double			dist;
+	double			t;
+}					t_box_intersect;
 
 typedef struct		s_spotlight
 {

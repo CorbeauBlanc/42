@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:47:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 15:17:31 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 17:44:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void		translate_object(t_object *obj, double x, double y, double z);
 /*
 ** plane.c
 */
+int			is_in_plane(t_dot *d, t_plane *p);
 t_plane		*new_plane(t_dot pos, double x_angle, double z_angle);
 
 /*

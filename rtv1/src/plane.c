@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 12:35:04 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 16:04:23 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 17:43:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ static const t_vector	*get_plane_normal(t_dot *d, t_plane *p)
 {
 	(void)d;
 	return (&p->normal);
+}
+
+int						is_in_plane(t_dot *d, t_plane *p)
+{
+	return (!(p->a * d->x + p->b * d->y + p->c * d->z + p->d));
 }
 
 t_plane					*new_plane(t_dot pos, double x_angle, double z_angle)
