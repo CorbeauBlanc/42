@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 13:28:50 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/02 17:52:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 13:50:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void		data_get_color(SDL_Color *col, char *data)
 t_sc_data	get_scene_bg(t_scene *scene, char *data)
 {
 	if (*data != '\t')
-		return (0);
+		return (VOID);
 	data_get_color(&scene->bgcolor, data + 1);
 	return (BACKGROUND);
 }
 
 void		get_scene_bts(t_scene *scene, char *data)
 {
-	int	bts;
+	double	bts;
 
 	bts = ft_atoi(ft_strchr(data, ':') + 1);
 	if (bts < 0)
@@ -45,14 +45,14 @@ t_sc_data	add_env_data(t_scene *scene, char *data)
 	static t_sc_data	type = VOID;
 
 	if (*data != '\t')
-		return (0);
+		return (VOID);
 	if (type == BACKGROUND)
 		type = get_scene_bg(scene, data + 1);
 	if (!type)
 	{
 		if (data == ft_strstr(data, "\tbackground:"))
 			type = BACKGROUND;
-		if (data == ft_strstr(data, "\tbrightness:"))
+		else if (data == ft_strstr(data, "\tbrightness:"))
 			get_scene_bts(scene, data);
 	}
 	return (ENVIRONMENT);

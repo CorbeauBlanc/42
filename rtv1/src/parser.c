@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 12:26:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/02 17:55:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/05 13:48:45 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,16 @@ t_scene	*get_scene(char *path)
 	object = VOID;
 	while (get_next_data(fd, &data))
 	{
+		printf("%s\n", data);
 		if (object == ENVIRONMENT)
 			object = add_env_data(scene, data);
-		if (object == LIGHT)
+		else if (object == LIGHT)
 			object = add_light_data(scene, data);
 		if (!object)
 		{
 			if (data == ft_strstr(data, "scene:"))
 				object = ENVIRONMENT;
-			if (data == ft_strstr(data, "spotlight:"))
+			else if (data == ft_strstr(data, "spotlight:"))
 				object = LIGHT;
 		}
 		free(data);
