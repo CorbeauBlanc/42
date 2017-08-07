@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 13:28:50 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 13:50:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/07 22:30:38 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void		data_get_color(SDL_Color *col, char *data)
+t_sc_data	data_get_color(SDL_Color *col, char *data)
 {
 	if (data == ft_strstr(data, "r:"))
 		col->r = ft_atoi(ft_strchr(data, ':') + 1);
@@ -20,6 +20,9 @@ void		data_get_color(SDL_Color *col, char *data)
 		col->g = ft_atoi(ft_strchr(data, ':') + 1);
 	else if (data == ft_strstr(data, "b:"))
 		col->b = ft_atoi(ft_strchr(data, ':') + 1);
+	else
+		return (VOID);
+	return (COLOR);
 }
 
 t_sc_data	get_scene_bg(t_scene *scene, char *data)

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/07 18:27:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/07 22:15:55 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,27 @@ typedef enum		e_thread_state
 
 typedef enum		e_type
 {
+	NONE,
+	BOX,
 	CONE,
-	SPHERE,
-	PLANE,
 	CYLINDER,
-	BOX
+	PLANE,
+	SPHERE
 }					t_type;
 
 typedef enum		e_sc_data
 {
 					VOID,
+					COLOR,
 					COORDS,
 					ENVIRONMENT,
 					BACKGROUND,
 					LIGHT,
-					CAMERA
+					CAMERA,
+					OBJECT,
+					ROTATION,
+					TRANSLATION,
+					SCALE
 }					t_sc_data;
 
 typedef struct		s_sdl_core
@@ -173,6 +179,7 @@ typedef struct		s_cone
 	SDL_Color		color;
 	double			height;
 	double			angle;
+	double			radius;
 	double			tanalpha2;
 	t_dot			center;
 }					t_cone;
