@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 16:48:08 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/07 18:37:56 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,15 @@ int		main(int ac, char **av)
 	t_cylinder	*c;
 	t_cone		*c2;
 
-/*
-	test = new_scene(new_spotlight((t_dot){20, 15, 10, 0}, 1),
-					//new_camera(FOV, &(t_dot){0,0,0,0}, 0, 0),
-					new_camera(60, (t_dot){10,30,-20,0}, -20, 30),
-					5, (SDL_Color){0,0,0,0});
-*/
 	test = get_scene("scene.sc");
 
 	garbage_collector(ADD, test, delete_scene);
 
-	scene_add_object((t_object*)new_plane((t_dot){-50, 10, 30, 0}, -20, -10), test);
+	scene_add_object((t_object*)new_plane((t_dot){-50, 10, 30, 0}, 20, 10), test);
 	scene_add_object((t_object*)new_sphere(0, 5, 20, 3), test);
 	t_sphere *s = new_sphere(0, 1, 19.5, 2);
-	scene_add_object((t_object*)s, test);
 	scale_object((t_object*)s, 1.5, 1, 1);
+	scene_add_object((t_object*)s, test);
 	c = new_cylinder((t_dot){-5, 5, 15, 0}, 3, 20);
 	set_object_color((t_object*)c, 255, 0, 0);
 	rotate_object((t_object*)c, 30, 0, 15);
@@ -66,6 +60,7 @@ int		main(int ac, char **av)
 	rotate_object((t_object*)c2, 30, 0, 180);
 	scene_add_object((t_object*)c, test);
 	scene_add_object((t_object*)c2, test);
+	scene_add_object((t_object*)new_box((t_dot){5, 5, 10, 0}, 5, 5, 5), test);
 
 	render_scene(test);
 

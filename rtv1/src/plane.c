@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 12:35:04 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 17:43:23 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/07 17:39:05 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ static const t_vector	*get_plane_normal(t_dot *d, t_plane *p)
 
 int						is_in_plane(t_dot *d, t_plane *p)
 {
-	return (!(p->a * d->x + p->b * d->y + p->c * d->z + p->d));
+	double	res;
+
+	res = p->a * d->x + p->b * d->y + p->c * d->z + p->d;
+	res *= pow(10, 13);
+	return (!((long)res > 0 || (long)res < 0));
 }
 
 t_plane					*new_plane(t_dot pos, double x_angle, double z_angle)
@@ -52,8 +56,8 @@ t_plane					*new_plane(t_dot pos, double x_angle, double z_angle)
 								sizeof(t_plane));
 	set_dot(&norm, 0, 1, 0);
 	tmp = create_identity(4);
-	x_rotation(&tmp, x_angle);
-	z_rotation(&tmp, z_angle);
+	x_rotation(&tmp, -x_angle);
+	z_rotation(&tmp, -z_angle);
 	mult_vect((t_vector*)&norm, tmp, (t_vector*)&norm);
 	delete_matrix(tmp);
 	plane->normal = (t_vector){norm.x, norm.y, norm.z};

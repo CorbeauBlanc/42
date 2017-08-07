@@ -7,6 +7,9 @@ scene:
 
 spotlight:
 	coordinates:
+#		x: 0
+#		y: 0
+#		z: 0
 		x: 20
 		y: 15
 		z: 10
@@ -15,6 +18,11 @@ spotlight:
 camera:
 	fov: 60
 	coordinates:
+#		x: 0
+#		y: 0
+#		z: 0
+#	horizontal angle: 0
+#	vertical angle: 0
 		x: 10
 		y: 30
 		z: -20

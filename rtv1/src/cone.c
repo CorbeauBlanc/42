@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/11 18:05:50 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 16:30:33 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/07 18:36:10 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ static double			cone_intersection(t_ray *ray, t_cone *c)
 			2 * (vd->x * vc->x + vd->z * vc->z - vd->y * vc->y * c->tanalpha2),
 			pow(vc->x, 2) + pow(vc->z, 2) - pow(vc->y, 2) * c->tanalpha2))
 	{
-		if ((long)(res.x * pow(10, 13)) > 0 && in_cone_boundary(ray, c, res.x))
+		if ((long)(res.x * pow(10, 12)) > 0 && in_cone_boundary(ray, c, res.x))
 		{
-			if ((long)(res.y * pow(10, 13)) > 0 && in_cone_boundary(ray, c, res.y))
+			if ((long)(res.y * pow(10, 12)) > 0 && in_cone_boundary(ray, c, res.y))
 				t = (res.x < res.y ? res.x : res.y);
 			else
 				t = (res.x);
-		} else if ((long)(res.y * pow(10, 13)) > 0 && in_cone_boundary(ray, c, res.y))
+		} else if ((long)(res.y * pow(10, 12)) > 0 && in_cone_boundary(ray, c, res.y))
 			t = (res.y);
 	}
 	return (t);

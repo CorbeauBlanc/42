@@ -6,12 +6,26 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 17:09:17 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 18:49:28 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/07 18:31:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include <math.h>
+
+static int				is_in_box(t_plane *p, t_box *b, t_dot *d)
+{
+	if (p == b->front || p == b->back)
+		return (d->x <= b->btr_corner.x && d->x >= b->fbl_corner.x &&
+				d->y <= b->btr_corner.y && d->y >= b->fbl_corner.y);
+	else if (p == b->top || p == b->bottom)
+		return (d->x <= b->btr_corner.x && d->x >= b->fbl_corner.x &&
+				d->z <= b->btr_corner.z && d->z >= b->fbl_corner.z);
+	else if (p == b->left || p == b->right)
+		return (d->y <= b->btr_corner.y && d->y >= b->fbl_corner.y &&
+				d->z <= b->btr_corner.z && d->z >= b->fbl_corner.z);
+	return (0);
+}
 
 static void				box_plane_intersect(t_ray *ray, t_plane *p,
 											t_box_intersect	*its)
@@ -24,8 +38,7 @@ static void				box_plane_intersect(t_ray *ray, t_plane *p,
 	{
 		equation_get_dot(&res, &ray->eq_obj, t);
 		dist = get_dot_dist((t_dot*)&ray->eq_obj.vconst, &res);
-		if ((dist < its->dist || dist < 0) &&
-			is_dot_between(its->crn1, &res, its->crn2))
+		if ((dist < its->dist || its->dist < 0) && is_in_box(p, its->box, &res))
 		{
 			its->dist = dist;
 			its->t = t;
@@ -39,8 +52,7 @@ static double			box_intersect(t_ray *ray, t_box *b)
 
 	its.dist = -1;
 	its.t = -1;
-	its.crn1 = &b->fbl_corner;
-	its.crn2 = &b->btr_corner;
+	its.box = b;
 	box_plane_intersect(ray, b->front, &its);
 	box_plane_intersect(ray, b->back, &its);
 	box_plane_intersect(ray, b->bottom, &its);

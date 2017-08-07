@@ -6,13 +6,19 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:47:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 17:44:00 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/07 15:45:25 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef OBJECTS_H
 # define OBJECTS_H
 # include "structures.h"
+
+/*
+** box.c
+*/
+t_box		*new_box(t_dot fbl_corner, double x_width, double y_width,
+					double z_width);
 
 /*
 ** cone.c

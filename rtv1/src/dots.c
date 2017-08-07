@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 17:54:06 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 18:46:19 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/07 18:12:08 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ double	get_dot_dist(t_dot *d1, t_dot *d2)
 
 int		is_dot_between(t_dot *min, t_dot *dot, t_dot *max)
 {
-	return (dot->x >= min->x && dot->x <= max->x &&
-			dot->y >= min->y && dot->y <= max->y &&
-			dot->z >= min->z && dot->z <= max->z);
+	return ((long)(dot->x * pow(10, 13)) > (long)(min->x * pow(10, 13)) &&
+			(long)(dot->x * pow(10, 13)) < (long)(max->x * pow(10, 13)) &&
+			(long)(dot->y * pow(10, 13)) > (long)(min->y * pow(10, 13)) &&
+			(long)(dot->y * pow(10, 13)) < (long)(max->y * pow(10, 13)) &&
+			(long)(dot->z * pow(10, 13)) > (long)(min->z * pow(10, 13)) &&
+			(long)(dot->z * pow(10, 13)) < (long)(max->z * pow(10, 13)));
 }
