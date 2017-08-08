@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 18:41:11 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/04 22:37:54 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/08 16:00:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int						forptr(void **p, void *reset, int cond);
 int						ft_atoi(const char *nptr);
 int						ft_atoi_base(const char *nptr, int base);
 void					ft_bzero(void *s, size_t n);
-void					garbage_collector(t_gbc_action action, void *ptr,
-										void (*delete_fct)());
+void					*garbage_collector(t_gbc_action action, void *ptr,
+											void (*fct)());
 int						ft_intlen(int n);
 int						ft_isalnum(int c);
 int						ft_isalpha(int c);

@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 14:41:24 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/12 17:52:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/08 16:49:14 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,14 @@ void			scene_add_object(t_object *obj, t_scene *scene)
 
 void			delete_scene(t_scene *scene)
 {
-	while (scene->collection)
-		delete_cell(&scene->collection);
-	delete_camera(scene->cam);
-	delete_spotlight(scene->light);
-	free(scene);
+	if (scene)
+	{
+		while (scene->collection)
+			delete_cell(&scene->collection);
+		delete_camera(scene->cam);
+		delete_spotlight(scene->light);
+		free(scene);
+	}
 }
 
 t_scene			*new_scene(t_spotlight *light, t_camera *cam, double brightness, SDL_Color bgcolor)

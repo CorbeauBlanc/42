@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/12 16:32:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 15:27:49 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/08 16:47:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,26 @@ t_object	*new_object(t_type type, double (*intersect)(),
 
 void		delete_object(t_object *obj)
 {
-	delete_matrix(obj->rot);
-	delete_matrix(obj->rot_inv);
-	delete_matrix(obj->trans);
-	delete_matrix(obj->trans_inv);
-	delete_matrix(obj->scale);
-	delete_matrix(obj->scale_inv);
-	free(obj);
+	t_box	*tmp;
+
+	if (obj)
+	{
+		delete_matrix(obj->rot);
+		delete_matrix(obj->rot_inv);
+		delete_matrix(obj->trans);
+		delete_matrix(obj->trans_inv);
+		delete_matrix(obj->scale);
+		delete_matrix(obj->scale_inv);
+		if (obj->obj_type == BOX)
+		{
+			tmp = (t_box*)obj;
+			delete_object((t_object*)tmp->front);
+			delete_object((t_object*)tmp->back);
+			delete_object((t_object*)tmp->top);
+			delete_object((t_object*)tmp->bottom);
+			delete_object((t_object*)tmp->left);
+			delete_object((t_object*)tmp->right);
+		}
+		free(obj);
+	}
 }

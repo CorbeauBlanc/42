@@ -103,7 +103,7 @@ static void	trace_ray(int i, int j, t_scene *scene)
 		get_shadow_color(&ray.color, &ray, scene);
 	SDL_SetRenderDrawColor(get_sdl_core()->renderer,
 						ray.color.r, ray.color.g, ray.color.b, 255);
-	SDL_RenderDrawPoint(get_sdl_core()->renderer, i, HEIGHT - j);
+	SDL_RenderDrawPoint(get_sdl_core()->renderer, i, WIN_HEIGHT - j);
 }
 
 void		render_scene(t_scene *scene)
@@ -112,10 +112,10 @@ void		render_scene(t_scene *scene)
 	int	j;
 
 	i = -1;
-	while (++i < WIDTH)
+	while (++i < WIN_WIDTH)
 	{
 		j = -1;
-		while (++j < HEIGHT)
+		while (++j < WIN_HEIGHT)
 			trace_ray(i, j, scene);
 	}
 	refresh_win();

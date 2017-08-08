@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 14:09:03 by edescoin          #+#    #+#             */
-/*   Updated: 2017/04/11 17:21:24 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/08 16:00:38 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	clear_all(t_garbage **pile)
 	}
 }
 
-void		garbage_collector(t_gbc_action action, void *ptr, void (*fct)())
+void		*garbage_collector(t_gbc_action action, void *ptr, void (*fct)())
 {
 	static t_garbage	*pile_of_shit = NULL;
 
@@ -77,4 +77,5 @@ void		garbage_collector(t_gbc_action action, void *ptr, void (*fct)())
 		remove_shit(&pile_of_shit, ptr);
 	else if (action == CLEAR && pile_of_shit)
 		clear_all(&pile_of_shit);
+	return (ptr);
 }

@@ -23,14 +23,14 @@ void		init_cam_screen(t_camera *cam)
 	transfo = create_identity(4);
 	x_rotation(&transfo, cam->phi);
 	y_rotation(&transfo, cam->theta);
-	tmp.x = cam->crd.x - WIDTH / 2 - 1;
+	tmp.x = cam->crd.x - WIN_WIDTH / 2 - 1;
 	i = -1;
-	while (++i < WIDTH)
+	while (++i < WIN_WIDTH)
 	{
 		++tmp.x;
-		tmp.y = cam->crd.y - HEIGHT / 2 - 1;
+		tmp.y = cam->crd.y - WIN_HEIGHT / 2 - 1;
 		j = -1;
-		while (++j < HEIGHT)
+		while (++j < WIN_HEIGHT)
 		{
 			++tmp.y;
 			set_dot(&cam->screen[i][j], tmp.x, tmp.y, cam->crd.z + cam->f);
@@ -50,7 +50,7 @@ t_camera	*new_camera(int fov, const t_dot crd, double h_ang, double v_ang)
 	cam->crd = crd;
 	cam->theta = h_ang;
 	cam->phi = v_ang;
-	cam->f = WIDTH / (2 * tan(ft_to_rad(fov) / 2.0f));
+	cam->f = WIN_WIDTH / (2 * tan(ft_to_rad(fov) / 2.0f));
 	init_cam_screen(cam);
 	return (cam);
 }
@@ -63,5 +63,5 @@ void		delete_camera(t_camera *cam)
 void		set_camera_fov(t_camera *cam, int fov)
 {
 	cam->fov = fov;
-	cam->f = WIDTH / (2 * tan(ft_to_rad(cam->fov) / 2.0f));
+	cam->f = WIN_WIDTH / (2 * tan(ft_to_rad(cam->fov) / 2.0f));
 }

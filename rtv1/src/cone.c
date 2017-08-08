@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/11 18:05:50 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/07 18:36:10 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/08 15:51:27 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ t_cone					*new_cone(t_dot pos, double angle, double radius, double height)
 	c->angle = angle;
 	c->center = pos;
 	c->height = height;
+	c->radius = radius;
 	c->tanalpha2 = pow(tan(ft_to_rad(angle)), 2);
 	if (height <= 0 && radius > 0 && c->tanalpha2)
 		c->height = radius / tan(ft_to_rad(angle));

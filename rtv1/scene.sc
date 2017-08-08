@@ -1,8 +1,8 @@
 scene:
 	background:
-		r: 0
-		g: 0
-		b: 0
+		r: 10
+		g: 10
+		b: 10
 	brightness: 5
 
 spotlight:
@@ -28,3 +28,37 @@ camera:
 		z: -20
 	horizontal angle: -20
 	vertical angle: 30
+
+cone:
+	coordinates:
+		x: -2
+		y: 3
+		z: 20
+	angle: 20
+	radius: 5
+	color:
+		b: 255
+	rotation:
+		x: 30
+		z: 180
+
+box:
+	coordinates:
+		x: 5
+		y: 5
+		z: 10
+	width: 5
+	height: 5
+	depth: 5
+	color:
+		g: 255
+
+
+
+
+
+
+
+
+
+

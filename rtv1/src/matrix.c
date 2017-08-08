@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 17:14:48 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/12 20:02:04 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/08 16:46:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,14 @@ void		delete_matrix(t_matrix *matrix)
 {
 	int	r;
 
-	r = -1;
-	while (++r < matrix->r)
-		free(matrix->mat[r]);
-	free(matrix->mat);
-	free(matrix);
+	if (matrix)
+	{
+		r = -1;
+		while (++r < matrix->r)
+			free(matrix->mat[r]);
+		free(matrix->mat);
+		free(matrix);
+	}
 }
 
 t_matrix	*mult_matrix(t_matrix *m1, t_matrix *m2)

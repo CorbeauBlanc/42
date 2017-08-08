@@ -20,10 +20,10 @@ t_sdl_core	*get_sdl_core(void)
 		return (core);
 	if (!(core = malloc(sizeof(t_sdl_core))))
 		exit_error("rtv1", "malloc");
-	*core = (t_sdl_core){NULL, NULL, WIDTH, HEIGHT, 0};
+	*core = (t_sdl_core){NULL, NULL, WIN_WIDTH, WIN_HEIGHT, 0};
 	if (SDL_Init(SDL_VIDEO) ||
 		!(core->window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_CENTERED,
-										SDL_WINDOWPOS_CENTERED, WIDTH, HEIGHT,
+										SDL_WINDOWPOS_CENTERED, WIN_WIDTH, WIN_HEIGHT,
 										SDL_WINDOW_SHOWN)) ||
 		!(core->renderer = SDL_CreateRenderer(core->window, -1,
 											SDL_RENDERER_ACCELERATED)))

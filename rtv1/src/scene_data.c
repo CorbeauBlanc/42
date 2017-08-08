@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 13:28:50 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/07 22:30:38 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/08 18:48:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 t_sc_data	data_get_color(SDL_Color *col, char *data)
 {
-	if (data == ft_strstr(data, "r:"))
+	if (data == ft_strstr(data, "\tr:"))
 		col->r = ft_atoi(ft_strchr(data, ':') + 1);
-	else if (data == ft_strstr(data, "g:"))
+	else if (data == ft_strstr(data, "\tg:"))
 		col->g = ft_atoi(ft_strchr(data, ':') + 1);
-	else if (data == ft_strstr(data, "b:"))
+	else if (data == ft_strstr(data, "\tb:"))
 		col->b = ft_atoi(ft_strchr(data, ':') + 1);
 	else
 		return (VOID);
@@ -29,7 +29,7 @@ t_sc_data	get_scene_bg(t_scene *scene, char *data)
 {
 	if (*data != '\t')
 		return (VOID);
-	data_get_color(&scene->bgcolor, data + 1);
+	data_get_color(&scene->bgcolor, data);
 	return (BACKGROUND);
 }
 
