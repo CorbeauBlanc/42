@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 12:33:37 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/07 18:36:53 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/08 19:46:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static const t_vector	*get_sphere_normal(t_dot *d, t_sphere *s)
 	return (&s->normal);
 }
 
-t_sphere				*new_sphere(double x, double y, double z, double radius)
+t_sphere				*new_sphere(t_dot center, double radius)
 {
 	t_sphere	*sphere;
 
@@ -55,8 +55,8 @@ t_sphere				*new_sphere(double x, double y, double z, double radius)
 									&get_sphere_normal, sizeof(t_sphere));
 	sphere->radius = radius;
 	sphere->r2 = pow(radius, 2);
-	set_dot(&sphere->center, x, y, z);
-	translation(&sphere->trans, x, y, z);
-	translation(&sphere->trans_inv, -x, -y, -z);
+	sphere->center = center;
+	translation(&sphere->trans, center.x, center.y, center.z);
+	translation(&sphere->trans_inv, -center.x, -center.y, -center.z);
 	return (sphere);
 }

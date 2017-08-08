@@ -53,8 +53,42 @@ box:
 	color:
 		g: 255
 
+cylinder:
+	coordinates:
+		x: -5
+		y: 5
+		z: 15
+	radius: 3
+	height: 20
+	rotation:
+		x: 30
+		z: 15
+	color:
+		r: 255
 
+plane:
+	coordinates:
+		x: -50
+		y: 10
+		z: 30
+	front angle: 20
+	side angle: 10
 
+sphere:
+	coordinates:
+		x: 0
+		y: 5
+		z: 20
+	radius: 3
+
+sphere:
+	coordinates:
+		x: 0
+		y: 1
+		z: 19.5
+	radius: 2
+	scale:
+		x: 1.5
 
 
 

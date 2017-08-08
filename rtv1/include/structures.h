@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/08 17:05:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/08 19:39:21 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ typedef struct		s_plane
 	t_matrix		*scale_inv;
 	t_vector		normal;
 	SDL_Color		color;
+	t_dot			pos;
 	double			a;
 	double			b;
 	double			c;
