@@ -7,9 +7,6 @@ scene:
 
 spotlight:
 	coordinates:
-#		x: 0
-#		y: 0
-#		z: 0
 		x: 20
 		y: 15
 		z: 10
@@ -18,11 +15,6 @@ spotlight:
 camera:
 	fov: 60
 	coordinates:
-#		x: 0
-#		y: 0
-#		z: 0
-#	horizontal angle: 0
-#	vertical angle: 0
 		x: 10
 		y: 30
 		z: -20
@@ -41,6 +33,10 @@ cone:
 	rotation:
 		x: 30
 		z: 180
+	translation:
+		y: 2
+	scale:
+		z: 1.2
 
 box:
 	coordinates:
@@ -52,6 +48,13 @@ box:
 	depth: 5
 	color:
 		g: 255
+	rotation:
+		z: 12
+		y: 3
+	translation:
+		x:-5
+	scale:
+		y: 1.5
 
 cylinder:
 	coordinates:
@@ -65,6 +68,11 @@ cylinder:
 		z: 15
 	color:
 		r: 255
+	translation:
+		x: 3
+		y: -5
+	scale:
+		x: 0.5
 
 plane:
 	coordinates:
@@ -73,13 +81,17 @@ plane:
 		z: 30
 	front angle: 20
 	side angle: 10
-
-sphere:
-	coordinates:
-		x: 0
-		y: 5
-		z: 20
-	radius: 3
+	translation:
+		x: 1
+		y: 1
+		z: 1
+	rotation:
+		y: -5
+	scale:
+		y: 1.4
+	color:
+		g: 255
+		r: 255
 
 sphere:
 	coordinates:
@@ -89,6 +101,10 @@ sphere:
 	radius: 2
 	scale:
 		x: 1.5
+	translation:
+		y: -3
+	rotation:
+		z: 12
 
 
 
