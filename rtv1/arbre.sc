@@ -16,8 +16,8 @@ camera:
 	fov: 60
 	coordinates:
 		x: 0
-		y: 200
-		z: -400
+		y: 180
+		z: -450
 	horizontal angle: 0
 	vertical angle: 20
 
@@ -25,15 +25,15 @@ cone:
 	coordinates:
 		z: 100
 	angle: 120
-	height: 40
+	height: 55
 	rotation:
 		z: 180
 
 cylinder:
 	coordinates:
-		y: 10
+		y: 5
 		z: 100
-	radius: 30
+	radius: 60
 	height: 80
 	rotation:
 		z: -5

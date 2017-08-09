@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 12:26:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/08 17:57:37 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/09 17:25:42 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@
 int		get_next_data(int fd, char **data)
 {
 	static int		n = 1;
+	static int		fd_buff = 0;
 
+	if (fd != fd_buff)
+	{
+		fd_buff = fd;
+		n = 1;
+	}
 	if (!n)
 		return (0);
 	if (!(n = get_next_line(fd, data)))

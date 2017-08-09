@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:10:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/20 12:31:23 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/09 17:06:02 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ void	wait_events(t_event *list_evts);
 /*
 ** key_functions.c
 */
-int		key_exit(SDL_Event *current, t_event *evt);
+int		key_management(SDL_Event *current, t_event *evt);
 
 #endif

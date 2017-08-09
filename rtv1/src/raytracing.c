@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 16:31:59 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/09 17:09:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ void		render_scene(t_scene *scene)
 	int	j;
 
 	i = -1;
+	SDL_RenderClear(get_sdl_core()->renderer);
 	while (++i < WIN_WIDTH)
 	{
 		j = -1;
