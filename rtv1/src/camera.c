@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/21 13:12:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 14:49:36 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/09 18:39:36 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,20 @@ void		init_cam_screen(t_camera *cam)
 	int			j;
 
 	transfo = create_identity(4);
-	x_rotation(&transfo, cam->phi);
+	translation(&transfo, cam->crd.x, cam->crd.y, cam->crd.z);
 	y_rotation(&transfo, cam->theta);
-	tmp.x = cam->crd.x - WIN_WIDTH / 2 - 1;
+	x_rotation(&transfo, cam->phi);
+	tmp.x = -WIN_WIDTH / 2 - 1;
 	i = -1;
 	while (++i < WIN_WIDTH)
 	{
 		++tmp.x;
-		tmp.y = cam->crd.y - WIN_HEIGHT / 2 - 1;
+		tmp.y = -WIN_HEIGHT / 2 - 1;
 		j = -1;
 		while (++j < WIN_HEIGHT)
 		{
 			++tmp.y;
-			set_dot(&cam->screen[i][j], tmp.x, tmp.y, cam->crd.z + cam->f);
+			set_dot(&cam->screen[i][j], tmp.x, tmp.y, cam->f);
 			mult_vect((t_vector*)&cam->screen[i][j], transfo,
 						(t_vector*)&cam->screen[i][j]);
 		}
