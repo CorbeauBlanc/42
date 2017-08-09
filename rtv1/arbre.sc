@@ -31,7 +31,7 @@ cone:
 
 cylinder:
 	coordinates:
-		y: 5
+		y: -3
 		z: 100
 	radius: 60
 	height: 80

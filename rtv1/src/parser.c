@@ -6,23 +6,19 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 12:26:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/09 17:25:42 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/09 17:34:39 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include <fcntl.h>
 
-int		get_next_data(int fd, char **data)
+int		get_next_data(int fd, char **data, int new_file)
 {
 	static int		n = 1;
-	static int		fd_buff = 0;
 
-	if (fd != fd_buff)
-	{
-		fd_buff = fd;
+	if (new_file)
 		n = 1;
-	}
 	if (!n)
 		return (0);
 	if (!(n = get_next_line(fd, data)))
@@ -53,7 +49,7 @@ t_scene	*get_scene(char *path)
 					(SDL_Color){0, 0, 0, 255});
 	data = NULL;
 	object = VOID;
-	while (get_next_data(fd, &data))
+	while (get_next_data(fd, &data, data == NULL))
 	{
 		if (object == ENVIRONMENT)
 			object = add_env_data(scene, data);
