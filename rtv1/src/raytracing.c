@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/09 17:09:51 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/11 16:16:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ static void	trace_ray(int i, int j, t_scene *scene)
 		get_shadow_color(&ray.color, &ray, scene);
 	SDL_SetRenderDrawColor(get_sdl_core()->renderer,
 						ray.color.r, ray.color.g, ray.color.b, 255);
-	SDL_RenderDrawPoint(get_sdl_core()->renderer, i, WIN_HEIGHT - j);
+	SDL_RenderDrawPoint(get_sdl_core()->renderer, i, WIN_HEIGHT - j - 1);
 }
 
 void		render_scene(t_scene *scene)
@@ -111,12 +111,12 @@ void		render_scene(t_scene *scene)
 	int	i;
 	int	j;
 
-	i = -1;
+	i = 0;
 	SDL_RenderClear(get_sdl_core()->renderer);
-	while (++i < WIN_WIDTH)
+	while ((i += scene->cam->resolution) < WIN_WIDTH)
 	{
-		j = -1;
-		while (++j < WIN_HEIGHT)
+		j = 0;
+		while ((j += scene->cam->resolution) < WIN_HEIGHT)
 			trace_ray(i, j, scene);
 	}
 	refresh_win();

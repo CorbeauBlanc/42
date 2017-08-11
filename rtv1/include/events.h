@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:10:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/09 17:06:02 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/11 15:30:25 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,11 @@ void	wait_events(t_event *list_evts);
 ** key_functions.c
 */
 int		key_management(SDL_Event *current, t_event *evt);
+
+/*
+** mouse_functions.c
+*/
+int		button_management(SDL_Event *current, t_event *evt);
+int		motion_management(SDL_Event *current, t_event *evt);
 
 #endif

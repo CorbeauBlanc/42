@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 16:51:08 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/09 17:23:28 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/11 16:39:46 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 # define TITLE			"RTv1"
 # define FOV			60
 # define BUFF_SIZE		1024
+# define MOUSE_XSPEED	2
+# define MOUSE_YSPEED	2
+# define MOUSE_ASPEED	0.1
+# define DEFAULT_LR		4
 
 # ifndef __APPLE__
 #  include <SDL2/SDL.h>

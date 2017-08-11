@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/08 19:39:21 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/11 15:43:57 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,28 @@ typedef enum		e_sc_data
 					SCALE
 }					t_sc_data;
 
+typedef struct		s_matrix
+{
+	double			**mat;
+	int				r;
+	int				c;
+}					t_matrix;
+
+typedef struct		s_vector
+{
+	double			x;
+	double			y;
+	double			z;
+}					t_vector;
+
+typedef struct		s_dot
+{
+	double			x;
+	double			y;
+	double			z;
+	double			w;
+}					t_dot;
+
 typedef struct		s_sdl_core
 {
 	SDL_Window		*window;
@@ -83,27 +105,15 @@ typedef struct		s_event
 	struct s_event	*next;
 }					t_event;
 
-typedef struct		s_matrix
+typedef struct		s_evt_data
 {
-	double			**mat;
-	int				r;
-	int				c;
-}					t_matrix;
-
-typedef struct		s_vector
-{
-	double			x;
-	double			y;
-	double			z;
-}					t_vector;
-
-typedef struct		s_dot
-{
-	double			x;
-	double			y;
-	double			z;
-	double			w;
-}					t_dot;
+	char			*path;
+	struct s_scene	*scene;
+	Uint8			mouse_clic;
+//	int				mx;
+//	int				my;
+//	t_dot			cam_crd;
+}					t_evt_data;
 
 typedef struct		s_param_eq
 {
@@ -250,6 +260,8 @@ typedef struct		s_cell
 typedef struct		s_camera
 {
 	int				fov;
+	int				resolution;
+	int				low_resolution;
 	t_dot			crd;
 	t_dot			screen[WIN_WIDTH][WIN_HEIGHT];
 	double			f;
