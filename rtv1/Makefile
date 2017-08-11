@@ -127,6 +127,7 @@ re: fclean all
 
 debug-linux: $(OBJS)
 	$(CC) $(CFLAGS) $^ -L$(LIB_DIR) $(LIBS) -lSDL2
+	$(MAKE) clean
 
 debug-mac: $(SRCS)
 	$(CC) $(CFLAGS) $^ `$(SDL_PATH)/SDL2/build/bin/sdl2-config --cflags --libs`\
