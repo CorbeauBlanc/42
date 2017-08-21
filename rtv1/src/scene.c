@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 14:41:24 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/08 16:49:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 17:53:00 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void			delete_scene(t_scene *scene)
 	}
 }
 
-t_scene			*new_scene(t_spotlight *light, t_camera *cam, double brightness, SDL_Color bgcolor)
+t_scene			*new_scene(t_spotlight *light, t_camera *cam, double brightness,
+							SDL_Color bgcolor)
 {
 	t_scene	*scene;
 

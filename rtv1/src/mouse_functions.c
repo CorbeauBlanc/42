@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/11 16:50:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 17:15:57 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	button_management(SDL_Event *current, t_event *evt)
 	{
 		data->mouse_clic = current->button.button;
 		data->scene->cam->resolution = data->scene->cam->low_resolution;
-//		data->cam_crd = data->scene->cam->crd;
 	}
 	return (1);
 }

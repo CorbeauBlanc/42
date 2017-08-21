@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 12:26:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/09 17:34:39 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 17:39:32 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,10 @@ int		get_next_data(int fd, char **data, int new_file)
 	return (n);
 }
 
-t_scene	*get_scene(char *path)
+static void	get_all_data(int fd, t_scene *scene, char *data)
 {
-	int			fd;
-	t_scene		*scene;
-	char		*data;
 	t_sc_data	object;
 
-	if ((fd = open(path, O_RDONLY)) < 0)
-		exit_error("rtv1: ", "open");
-	scene = new_scene(new_spotlight((t_dot){0, 0, 0, 0}, 1),
-					new_camera(FOV, (t_dot){0, 0, 0, 0}, 0, 0), 0,
-					(SDL_Color){0, 0, 0, 255});
-	data = NULL;
-	object = VOID;
 	while (get_next_data(fd, &data, data == NULL))
 	{
 		if (object == ENVIRONMENT)
@@ -72,6 +62,21 @@ t_scene	*get_scene(char *path)
 		}
 		free(data);
 	}
+}
+
+t_scene	*get_scene(char *path)
+{
+	int			fd;
+	t_scene		*scene;
+	char		*data;
+
+	if ((fd = open(path, O_RDONLY)) < 0)
+		exit_error("rtv1: ", "open");
+	scene = new_scene(new_spotlight((t_dot){0, 0, 0, 0}, 1),
+					new_camera(FOV, (t_dot){0, 0, 0, 0}, 0, 0), 0,
+					(SDL_Color){0, 0, 0, 255});
+	data = NULL;
+	get_all_data(fd, scene, data);
 	init_cam_screen(scene->cam);
 	close(fd);
 	return (scene);
