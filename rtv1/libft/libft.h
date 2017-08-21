@@ -6,10 +6,9 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 18:41:11 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/08 16:00:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:32:51 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LIBFT_H
 # define LIBFT_H

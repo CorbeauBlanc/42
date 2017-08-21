@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 16:47:13 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/08 19:46:21 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:35:16 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void		delete_object(t_object *obj);
 t_object	*new_object(t_type type, double (*intersect)(),
 						const t_vector *(*get_normal)(),
 						size_t size);
-void		rotate_object(t_object *obj, double x_angle, double y_angle, double z_angle);
+void		rotate_object(t_object *obj, double x_angle, double y_angle,
+						double z_angle);
 void		scale_object(t_object *obj, double x, double y, double z);
 void		set_object_color(t_object *obj, int r, int g, int b);
 void		translate_object(t_object *obj, double x, double y, double z);
