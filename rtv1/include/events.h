@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:10:33 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/11 15:30:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/11 17:43:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ int		key_management(SDL_Event *current, t_event *evt);
 */
 int		button_management(SDL_Event *current, t_event *evt);
 int		motion_management(SDL_Event *current, t_event *evt);
+int		wheel_management(SDL_Event *current, t_event *evt);
 
 #endif

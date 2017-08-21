@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 12:26:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/21 18:13:40 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 19:14:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,8 @@ int			get_next_data(int fd, char **data, int new_file)
 	return (n);
 }
 
-static void	get_all_data(int fd, t_scene *scene, char *data)
+static void	get_all_data(int fd, t_scene *scene, char *data, t_sc_data object)
 {
-	t_sc_data	object;
-
 	while (get_next_data(fd, &data, data == NULL))
 	{
 		if (object == ENVIRONMENT)
@@ -76,7 +74,7 @@ t_scene		*get_scene(char *path)
 					new_camera(FOV, (t_dot){0, 0, 0, 0}, 0, 0), 0,
 					(SDL_Color){0, 0, 0, 255});
 	data = NULL;
-	get_all_data(fd, scene, data);
+	get_all_data(fd, scene, data, VOID);
 	init_cam_screen(scene->cam);
 	close(fd);
 	return (scene);
