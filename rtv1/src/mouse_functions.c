@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/11 16:50:07 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/11 21:37:50 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,25 @@ int	motion_management(SDL_Event *current, t_event *evt)
 		init_cam_screen(data->scene->cam);
 		render_scene(data->scene);
 	}
+	return (1);
+}
+
+int	wheel_management(SDL_Event *current, t_event *evt)
+{
+	t_evt_data*	data = evt->data;
+
+	if (data->mouse_clic)
+		return (1);
+	data->scene->cam->resolution = data->scene->cam->low_resolution;
+	data->scene->cam->crd.x += current->wheel.y * MOUSE_ZSPEED *
+								sin(ft_to_rad(90 + data->scene->cam->theta)) *
+								cos(ft_to_rad(90 + data->scene->cam->phi));
+	data->scene->cam->crd.z += current->wheel.y * MOUSE_ZSPEED *
+								sin(ft_to_rad(90 + data->scene->cam->theta)) *
+								sin(ft_to_rad(90 + data->scene->cam->phi));
+	data->scene->cam->crd.y += current->wheel.y * MOUSE_ZSPEED *
+								cos(ft_to_rad(90 + data->scene->cam->phi));
+	init_cam_screen(data->scene->cam);
+	render_scene(data->scene);
 	return (1);
 }

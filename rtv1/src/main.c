@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:11:38 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/11 16:19:29 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/11 17:44:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	init_list_evts(t_event **head, t_evt_data *data)
 	new_event(head, SDL_MOUSEMOTION, data, &motion_management);
 	new_event(head, SDL_MOUSEBUTTONDOWN, data, &button_management);
 	new_event(head, SDL_MOUSEBUTTONUP, data, &button_management);
+	new_event(head, SDL_MOUSEWHEEL, data, &wheel_management);
 	new_event(head, SDL_QUIT, NULL, &force_exit);
 }
 
