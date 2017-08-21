@@ -1,7 +1,7 @@
 CC=gcc
-CFLAGS= -no-pie -Wall -Wextra -Werror -Ofast
+CFLAGS= -Wall -Wextra -Werror -Ofast
 MAKE=/usr/bin/make
-NAME=wolf3d
+NAME=rtv1
 
 OBJ_DIR=obj
 SRC_DIR=src
@@ -11,11 +11,12 @@ INCLUDE_DIR=include
 FT_PATH=$$(pwd)/libft
 SDL_PATH=$$(pwd)/SDL2
 
-SRCS=angles.c bg_casting.c cam_angles.c camera.c cam_scanning.c events.c \
-get_next_line.c floor_casting.c graphics.c key_functions_1.c key_functions_2.c \
-main.c map2.c \
-map.c map_data.c mutexes.c orientations.c player.c raycasting.c sprites.c \
-textures.c textures2.c threads.c tiles.c tools.c
+SRCS=box.c camera.c camera_data.c cone.c cylinder.c dots.c events.c \
+get_next_line.c graphics.c key_functions.c light_data.c main.c matrix.c \
+matrix_ops.c mouse_functions.c objects.c objects2.c objects_data.c \
+objects_transformations_data.c objects_types_data.c parametric_equations.c \
+parser.c plane.c rays.c raytracing.c raytracing2.c scene.c scene_data.c \
+sphere.c spotlight.c threads.c tools.c transformations.c vectors.c
 OBJS=$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIBS=-lft -lm
 LSDL2=`$(SDL_PATH)/SDL2/build/bin/sdl2-config --cflags --libs`
