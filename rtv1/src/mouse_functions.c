@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/21 19:07:39 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 19:52:18 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ int	motion_management(SDL_Event *current, t_event *evt)
 
 int	wheel_management(SDL_Event *current, t_event *evt)
 {
-	t_evt_data*	data = evt->data;
+	t_evt_data	*data;
 
+	data = evt->data;
 	if (data->mouse_clic)
 		return (1);
 	data->scene->cam->resolution = data->scene->cam->low_resolution;

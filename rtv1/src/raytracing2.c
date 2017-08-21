@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/21 18:52:38 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 19:49:43 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	transformation_cam(t_ray *ray, t_cell *c)
 
 static void	transformation_cam_inv(t_cell *c, t_dot *res, t_vector *n)
 {
-	mult_vect(n, c->obj->scale_inv, c->obj->get_normal(*res, c->obj));
+	mult_vect(n, c->obj->scale_inv, c->obj->get_normal(res, c->obj));
 	mult_vect(n, c->obj->rot, n);
 	mult_vect((t_vector*)res, c->obj->scale, (t_vector*)res);
 	mult_vect((t_vector*)res, c->obj->rot, (t_vector*)res);
@@ -45,7 +45,7 @@ int			check_objs_intersect(t_scene *scene, t_ray *ray, int light)
 	double		t;
 	t_vector	n;
 
-	c = scene->collection;
+	c = &(t_cell){NULL, scene->collection};
 	while ((c = c->next))
 	{
 		transformation_cam(ray, c);

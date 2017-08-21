@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/21 19:36:25 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 19:52:37 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ static void	get_shadow_color(SDL_Color *dest, const t_ray *ray,
 	}
 }
 
-int	bidon(){printf("TEST\n");return (1);}
-
 static void	trace_ray(int i, int j, t_scene *scene)
 {
 	t_ray		ray;
@@ -57,10 +55,10 @@ static void	trace_ray(int i, int j, t_scene *scene)
 
 	ray.i.obj = NULL;
 	set_vector(&vd, scene->cam->screen[i][j].x - scene->cam->crd.x,
-					scene->cam->screen[i][j].y - scene->cam->crd.y,
-					scene->cam->screen[i][j].z - scene->cam->crd.z);
+				scene->cam->screen[i][j].y - scene->cam->crd.y,
+				scene->cam->screen[i][j].z - scene->cam->crd.z);
 	init_equation(&ray.eq, &vd, (t_vector*)&scene->cam->crd);
-	if (check_objs_intersect(scene, &ray, 0) && bidon())
+	if (check_objs_intersect(scene, &ray, 0))
 		get_shade_color(&ray.color, &ray, scene);
 	else
 		get_shadow_color(&ray.color, &ray, scene);

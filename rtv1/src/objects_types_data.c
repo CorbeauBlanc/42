@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 18:46:45 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/21 19:12:38 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 19:53:45 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_type	data_new_cone(t_scene *scene, char *data)
 		return (data_obj_return((t_object*)new_cone(tmp->center, tmp->angle,
 													tmp->radius, tmp->height),
 								scene, (t_object**)&tmp));
-	if (type == COORDS)
+		if (type == COORDS)
 		type = data_get_crd(&tmp->center, data + 1);
 	set_object_data((t_object*)tmp, data, &type);
 	if (!type)
@@ -52,7 +52,7 @@ t_type	data_new_box(t_scene *scene, char *data)
 		return (data_obj_return((t_object*)new_box(tmp->fbl_corner,
 					tmp->btr_corner.x, tmp->btr_corner.y, tmp->btr_corner.z),
 								scene, (t_object**)&tmp));
-	if (type == COORDS)
+		if (type == COORDS)
 		type = data_get_crd(&tmp->fbl_corner, data + 1);
 	set_object_data((t_object*)tmp, data, &type);
 	if (!type)
@@ -79,7 +79,7 @@ t_type	data_new_plane(t_scene *scene, char *data)
 	if (*data != '\t')
 		return (data_obj_return((t_object*)new_plane(tmp->pos, tmp->a, tmp->b),
 								scene, (t_object**)&tmp));
-	if (type == COORDS)
+		if (type == COORDS)
 		type = data_get_crd(&tmp->pos, data + 1);
 	set_object_data((t_object*)tmp, data, &type);
 	if (!type)
@@ -105,7 +105,7 @@ t_type	data_new_cylinder(t_scene *scene, char *data)
 		return (data_obj_return((t_object*)new_cylinder(tmp->center,
 													tmp->radius, tmp->height),
 								scene, (t_object**)&tmp));
-	if (type == COORDS)
+		if (type == COORDS)
 		type = data_get_crd(&tmp->center, data + 1);
 	set_object_data((t_object*)tmp, data, &type);
 	if (!type)
@@ -130,7 +130,7 @@ t_type	data_new_sphere(t_scene *scene, char *data)
 	if (*data != '\t')
 		return (data_obj_return((t_object*)new_sphere(tmp->center, tmp->radius),
 								scene, (t_object**)&tmp));
-	if (type == COORDS)
+		if (type == COORDS)
 		type = data_get_crd(&tmp->center, data + 1);
 	set_object_data((t_object*)tmp, data, &type);
 	if (!type)
