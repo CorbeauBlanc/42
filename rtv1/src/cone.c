@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/11 18:05:50 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/08 15:51:27 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:18:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include <math.h>
 
-static int				in_cone_boundary(t_ray *ray, t_cone *c, double t)
+static int				in_boundary(t_ray *ray, t_cone *c, double t)
 {
 	t_dot		dot;
 
@@ -38,13 +38,14 @@ static double			cone_intersection(t_ray *ray, t_cone *c)
 			2 * (vd->x * vc->x + vd->z * vc->z - vd->y * vc->y * c->tanalpha2),
 			pow(vc->x, 2) + pow(vc->z, 2) - pow(vc->y, 2) * c->tanalpha2))
 	{
-		if ((long)(res.x * pow(10, 12)) > 0 && in_cone_boundary(ray, c, res.x))
+		if ((long)(res.x * pow(10, 12)) > 0 && in_boundary(ray, c, res.x))
 		{
-			if ((long)(res.y * pow(10, 12)) > 0 && in_cone_boundary(ray, c, res.y))
+			if ((long)(res.y * pow(10, 12)) > 0 && in_boundary(ray, c, res.y))
 				t = (res.x < res.y ? res.x : res.y);
 			else
 				t = (res.x);
-		} else if ((long)(res.y * pow(10, 12)) > 0 && in_cone_boundary(ray, c, res.y))
+		}
+		else if ((long)(res.y * pow(10, 12)) > 0 && in_boundary(ray, c, res.y))
 			t = (res.y);
 	}
 	return (t);
@@ -56,7 +57,8 @@ static const t_vector	*get_cone_normal(t_dot *d, t_cone *c)
 	return (&c->normal);
 }
 
-t_cone					*new_cone(t_dot pos, double angle, double radius, double height)
+t_cone					*new_cone(t_dot pos, double angle, double radius,
+								double height)
 {
 	t_cone	*c;
 

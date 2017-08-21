@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/07 18:46:45 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/21 17:31:26 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:12:45 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "objects_data.h"
 
-void	set_object_data(t_object *tmp, char *data, t_sc_data *type)
+void		set_object_data(t_object *tmp, char *data, t_sc_data *type)
 {
 	if (*type == COLOR)
 		*type = data_get_color(&tmp->color, data + 1);

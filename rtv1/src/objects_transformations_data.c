@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 17:17:48 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/21 17:31:26 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:12:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include "objects_data.h"
 
-void		data_rotate_obj(t_object *tmp, char *data)
+void	data_rotate_obj(t_object *tmp, char *data)
 {
 	if (data == ft_strstr(data, "x:"))
 		rotate_object(tmp, data_get_val(data), 0, 0);
@@ -23,7 +23,7 @@ void		data_rotate_obj(t_object *tmp, char *data)
 		rotate_object(tmp, 0, 0, data_get_val(data));
 }
 
-void		data_translate_obj(t_object *tmp, char *data)
+void	data_translate_obj(t_object *tmp, char *data)
 {
 	if (data == ft_strstr(data, "x:"))
 		translate_object(tmp, data_get_val(data), 0, 0);
@@ -33,7 +33,7 @@ void		data_translate_obj(t_object *tmp, char *data)
 		translate_object(tmp, 0, 0, data_get_val(data));
 }
 
-void		data_scale_obj(t_object *tmp, char *data)
+void	data_scale_obj(t_object *tmp, char *data)
 {
 	if (data == ft_strstr(data, "x:"))
 		scale_object(tmp, data_get_val(data), 1, 1);

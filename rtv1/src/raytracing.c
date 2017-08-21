@@ -6,13 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/21 17:51:59 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:15:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static void	get_shade_color(SDL_Color *dest, const t_ray *ray, const t_scene *scene)
+static void	get_shade_color(SDL_Color *dest, const t_ray *ray,
+							const t_scene *scene)
 {
 	double		coef;
 	SDL_Color	*col;
@@ -32,7 +33,8 @@ static void	get_shade_color(SDL_Color *dest, const t_ray *ray, const t_scene *sc
 						tmp.z > 255 ? 255 : tmp.z, 255};
 }
 
-static void	get_shadow_color(SDL_Color *dest, const t_ray *ray, const t_scene *scene)
+static void	get_shadow_color(SDL_Color *dest, const t_ray *ray,
+							const t_scene *scene)
 {
 	if (!ray->i.obj)
 		*dest = (SDL_Color){scene->bgcolor.r, scene->bgcolor.g,

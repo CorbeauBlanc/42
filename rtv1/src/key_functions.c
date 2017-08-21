@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 14:48:19 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/21 17:15:11 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:11:45 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static void	kreload(t_evt_data *data)
 {
 	garbage_collector(CLEAR, NULL, NULL);
-		data->scene = garbage_collector(ADD, get_scene(data->path),
-										delete_scene);
-		data->mouse_clic = 0;
-		render_scene(data->scene);
+	data->scene = garbage_collector(ADD, get_scene(data->path),
+									delete_scene);
+	data->mouse_clic = 0;
+	render_scene(data->scene);
 }
 
 static void	krefresh(t_evt_data *data)

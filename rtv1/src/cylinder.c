@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 19:41:43 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/09 16:51:33 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:09:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include <math.h>
 
-static int				in_cyl_boundary(t_ray *ray, t_cylinder *c, double t)
+static int				in_boundary(t_ray *ray, t_cylinder *c, double t)
 {
 	t_dot		dot;
 
@@ -37,13 +37,14 @@ static double			cylinder_intersect(t_ray *ray, t_cylinder *c)
 							2 * (vd->x * vc->x + vd->z * vc->z),
 							pow(vc->x, 2) + pow(vc->z, 2) - c->r2))
 	{
-		if ((long)(res.x * pow(10, 12)) > 0 && in_cyl_boundary(ray, c, res.x))
+		if ((long)(res.x * pow(10, 12)) > 0 && in_boundary(ray, c, res.x))
 		{
-			if ((long)(res.y * pow(10, 12)) > 0 && in_cyl_boundary(ray, c, res.y))
+			if ((long)(res.y * pow(10, 12)) > 0 && in_boundary(ray, c, res.y))
 				t = (res.x < res.y ? res.x : res.y);
 			else
 				t = (res.x);
-		} else if ((long)(res.y * pow(10, 12)) > 0 && in_cyl_boundary(ray, c, res.y))
+		}
+		else if ((long)(res.y * pow(10, 12)) > 0 && in_boundary(ray, c, res.y))
 			t = (res.y);
 	}
 	return (t);

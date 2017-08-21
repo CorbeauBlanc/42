@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/29 18:35:27 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/09 17:23:45 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:16:23 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		get_quad_equation_sol(t_dot *res, double a, double b, double c)
 		set_dot(res, -b / (2 * a), -b / (2 * a), 0);
 	return (0);
 }
+
 void	set_rect_dim(SDL_Rect *rect, int w, int h)
 {
 	rect->h = h;

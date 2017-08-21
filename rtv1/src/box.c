@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/05 17:09:17 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/07 18:31:14 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:20:37 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ static int				is_in_box(t_plane *p, t_box *b, t_dot *d)
 		return (d->x <= b->btr_corner.x && d->x >= b->fbl_corner.x &&
 				d->z <= b->btr_corner.z && d->z >= b->fbl_corner.z);
 	else if (p == b->left || p == b->right)
+	{
 		return (d->y <= b->btr_corner.y && d->y >= b->fbl_corner.y &&
 				d->z <= b->btr_corner.z && d->z >= b->fbl_corner.z);
+	}
 	return (0);
 }
 
 static void				box_plane_intersect(t_ray *ray, t_plane *p,
-											t_box_intersect	*its)
+											t_box_intersect *its)
 {
 	double		t;
 	double		dist;
@@ -78,7 +80,8 @@ static const t_vector	*get_box_normal(t_dot *d, t_box *b)
 		return (&b->right->normal);
 }
 
-t_box	*new_box(t_dot fbl_corner, double x_width, double y_width, double z_width)
+t_box					*new_box(t_dot fbl_corner, double x_width,
+								double y_width, double z_width)
 {
 	t_box	*box;
 

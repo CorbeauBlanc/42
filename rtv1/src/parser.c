@@ -6,14 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 12:26:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/21 17:39:32 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:13:40 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 #include <fcntl.h>
 
-int		get_next_data(int fd, char **data, int new_file)
+int			get_next_data(int fd, char **data, int new_file)
 {
 	static int		n = 1;
 
@@ -24,7 +24,7 @@ int		get_next_data(int fd, char **data, int new_file)
 	if (!(n = get_next_line(fd, data)))
 		return (0);
 	while ((**data == '#' || !**data) && (n = get_next_line(fd, data)) > 0)
-	;
+		;
 	if (n < 0)
 		exit_error("rtv1: ", "read");
 	if (!n)
@@ -64,7 +64,7 @@ static void	get_all_data(int fd, t_scene *scene, char *data)
 	}
 }
 
-t_scene	*get_scene(char *path)
+t_scene		*get_scene(char *path)
 {
 	int			fd;
 	t_scene		*scene;
