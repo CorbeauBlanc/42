@@ -130,6 +130,6 @@ debug-linux: $(OBJS)
 	$(CC) $(CFLAGS) $^ -L$(LIB_DIR) $(LIBS) -lSDL2
 	$(MAKE) clean
 
-debug-mac: $(SRCS)
+debug-mac: $(OBJS)
 	$(CC) $(CFLAGS) $^ `$(SDL_PATH)/SDL2/build/bin/sdl2-config --cflags --libs`\
- -L. -lft -lm
+ -L$(LIB_DIR) -lft -lm
