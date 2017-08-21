@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 12:33:37 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/08 19:46:23 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:15:35 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ static double			sphere_intersect(t_ray *ray, t_sphere *s)
 				t = (res.x < res.y ? res.x : res.y);
 			else
 				t = (res.x);
-		} else if ((long)(res.y * pow(10, 12)) > 0)
+		}
+		else if ((long)(res.y * pow(10, 12)) > 0)
 			t = (res.y);
 	}
 	return (t);

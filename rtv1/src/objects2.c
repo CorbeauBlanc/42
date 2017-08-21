@@ -6,13 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/12 16:32:56 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/05 15:15:41 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:12:11 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void		rotate_object(t_object *obj, double x_angle, double y_angle, double z_angle)
+void		rotate_object(t_object *obj, double x_angle, double y_angle,
+						double z_angle)
 {
 	x_rotation(&obj->rot, x_angle);
 	y_rotation(&obj->rot, y_angle);

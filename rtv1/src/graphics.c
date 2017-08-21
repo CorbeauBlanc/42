@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:52:28 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/12 20:30:38 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:11:17 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ t_sdl_core	*get_sdl_core(void)
 	*core = (t_sdl_core){NULL, NULL, WIN_WIDTH, WIN_HEIGHT, 0};
 	if (SDL_Init(SDL_VIDEO) ||
 		!(core->window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_CENTERED,
-										SDL_WINDOWPOS_CENTERED, WIN_WIDTH, WIN_HEIGHT,
+										SDL_WINDOWPOS_CENTERED,
+										WIN_WIDTH, WIN_HEIGHT,
 										SDL_WINDOW_SHOWN)) ||
 		!(core->renderer = SDL_CreateRenderer(core->window, -1,
 											SDL_RENDERER_ACCELERATED)))

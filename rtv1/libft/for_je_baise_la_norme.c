@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/04 21:52:11 by edescoin          #+#    #+#             */
-/*   Updated: 2017/07/04 22:32:34 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:32:30 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 ** Et sinon l'équivalent avec du ternaire c'est ça :
 ** while (((i = (i < 3 ? i : -1)) || 1) && ++i < 3)
 */
+
 int	forint(int *i, int reset, int cond)
 {
 	if (!cond)

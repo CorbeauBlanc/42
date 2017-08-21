@@ -6,13 +6,13 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 17:10:36 by edescoin          #+#    #+#             */
-/*   Updated: 2017/06/13 15:55:50 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:34:15 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GRAPHICS_H
 # define GRAPHICS_H
-#include "structures.h"
+# include "structures.h"
 # ifndef __APPLE__
 #  include <SDL2/SDL.h>
 # else

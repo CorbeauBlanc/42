@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 16:19:46 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/11 15:43:57 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:36:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 #  include "SDL2/SDL.h"
 # endif
 
-typedef struct	s_buffer
+typedef struct		s_buffer
 {
-	char		*str;
-	int			fd;
-	int			eof;
-}				t_buffer;
+	char			*str;
+	int				fd;
+	int				eof;
+}					t_buffer;
 
 typedef enum		e_thread_state
 {
@@ -46,17 +46,17 @@ typedef enum		e_type
 
 typedef enum		e_sc_data
 {
-					VOID,
-					COLOR,
-					COORDS,
-					ENVIRONMENT,
-					BACKGROUND,
-					LIGHT,
-					CAMERA,
-					OBJECT,
-					ROTATION,
-					TRANSLATION,
-					SCALE
+	VOID,
+	COLOR,
+	COORDS,
+	ENVIRONMENT,
+	BACKGROUND,
+	LIGHT,
+	CAMERA,
+	OBJECT,
+	ROTATION,
+	TRANSLATION,
+	SCALE
 }					t_sc_data;
 
 typedef struct		s_matrix
@@ -110,9 +110,6 @@ typedef struct		s_evt_data
 	char			*path;
 	struct s_scene	*scene;
 	Uint8			mouse_clic;
-//	int				mx;
-//	int				my;
-//	t_dot			cam_crd;
 }					t_evt_data;
 
 typedef struct		s_param_eq

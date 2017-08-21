@@ -6,53 +6,14 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/19 12:56:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/11 16:16:16 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/21 18:15:22 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-static int	check_objs_intersect(t_scene *scene, t_ray *ray, int light)
-{
-	t_dot		res;
-	t_cell		*tmp;
-	double		t;
-	t_vector	n;
-
-	tmp = scene->collection;
-	while (tmp)
-	{
-		mult_vect(&ray->eq_obj.vconst, tmp->obj->trans_inv, &ray->eq.vconst);
-		mult_vect(&ray->eq_obj.vconst, tmp->obj->rot_inv, &ray->eq_obj.vconst);
-		mult_vect(&ray->eq_obj.vconst, tmp->obj->scale_inv, &ray->eq_obj.vconst);
-		mult_vect(&ray->eq_obj.vdir, tmp->obj->rot_inv, &ray->eq.vdir);
-		mult_vect(&ray->eq_obj.vdir, tmp->obj->scale_inv, &ray->eq_obj.vdir);
-		if ((t = tmp->obj->intersect(ray, tmp->obj)) > -1)
-		{
-			if (light)
-				return (0);
-			equation_get_dot(&res, &ray->eq_obj, t);
-			mult_vect(&n, tmp->obj->scale_inv, tmp->obj->get_normal(&res, tmp->obj));
-			mult_vect(&n, tmp->obj->rot, &n);
-			mult_vect((t_vector*)&res, tmp->obj->scale, (t_vector*)&res);
-			mult_vect((t_vector*)&res, tmp->obj->rot, (t_vector*)&res);
-			mult_vect((t_vector*)&res, tmp->obj->trans, (t_vector*)&res);
-			t = get_dot_dist(&scene->cam->crd, &res);
-			if (!ray->i.obj || t < ray->i.dist)
-				ray->i = (t_intersect){t, 0, res, tmp->obj, n};
-		}
-		tmp = tmp->next;
-	}
-	if (!ray->i.obj || light)
-		return (light);
-	init_equation(&ray->eq, &(t_vector){scene->light->crd.x - ray->i.dot.x,
-					scene->light->crd.y - ray->i.dot.y,
-					scene->light->crd.z - ray->i.dot.z}, (t_vector*)&ray->i.dot);
-	ray->i.ldist = get_vect_len(&ray->eq.vdir);
-	return (check_objs_intersect(scene, ray, 1));
-}
-
-static void	get_shade_color(SDL_Color *dest, const t_ray *ray, const t_scene *scene)
+static void	get_shade_color(SDL_Color *dest, const t_ray *ray,
+							const t_scene *scene)
 {
 	double		coef;
 	SDL_Color	*col;
@@ -72,7 +33,8 @@ static void	get_shade_color(SDL_Color *dest, const t_ray *ray, const t_scene *sc
 						tmp.z > 255 ? 255 : tmp.z, 255};
 }
 
-static void	get_shadow_color(SDL_Color *dest, const t_ray *ray, const t_scene *scene)
+static void	get_shadow_color(SDL_Color *dest, const t_ray *ray,
+							const t_scene *scene)
 {
 	if (!ray->i.obj)
 		*dest = (SDL_Color){scene->bgcolor.r, scene->bgcolor.g,
@@ -88,8 +50,8 @@ static void	get_shadow_color(SDL_Color *dest, const t_ray *ray, const t_scene *s
 
 static void	trace_ray(int i, int j, t_scene *scene)
 {
-	t_ray			ray;
-	t_vector		vd;
+	t_ray		ray;
+	t_vector	vd;
 
 	ray.i.obj = NULL;
 	set_vector(&vd,
