@@ -8,8 +8,8 @@ scene:
 spotlight:
 	coordinates:
 		x: 100
-		y: 600
-		z: -100
+		y: 700
+		z: -300
 	power: 1
 
 camera:
@@ -254,9 +254,53 @@ cylinder:
 
 sphere:
 	coordinates:
+		x: -206
+		y: 395
+		z: 90
+	radius: 120
+	scale:
+		y: 1.2
+	rotation:
+		y: -40
+		z: 60
 
+sphere:
+	coordinates:
+		y: 440
+		z: 20
+	radius: 50
 
+sphere:
+	coordinates:
+		x: -250
+		y: 640
+		z: 90
+	radius: 145
+	scale:
+		x: 1.1
+	rotation:
+		z: -30
 
+sphere:
+	coordinates:
+		x: -80
+		y: 800
+		z: 50
+	radius: 155
+	scale:
+		y: 1.1
+	rotation:
+		z: 50
 
-
-
+sphere:
+	coordinates:
+		x: 150
+		y: 740
+		z: 50
+	radius: 142
+	scale:
+		y: 1.2
+		x: 0.9
+	rotation:
+		z: -45
+		x: 30
