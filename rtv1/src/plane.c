@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 12:35:04 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/07 17:39:05 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/24 14:43:24 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static double			plane_intersect(t_ray *ray, t_plane *p)
 	if (!denom)
 		return (-1);
 	t = -((p->a * vc->x + p->b * vc->y + p->c * vc->z + p->d) / denom);
-	if ((long)(t * pow(10, 13)) > 0)
+	if ((long)(t * pow(10, 12)) > 0)
 		return (t);
 	return (-1);
 }
@@ -42,7 +42,7 @@ int						is_in_plane(t_dot *d, t_plane *p)
 	double	res;
 
 	res = p->a * d->x + p->b * d->y + p->c * d->z + p->d;
-	res *= pow(10, 13);
+	res *= pow(10, 12);
 	return (!((long)res > 0 || (long)res < 0));
 }
 

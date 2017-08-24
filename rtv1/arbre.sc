@@ -7,19 +7,28 @@ scene:
 
 spotlight:
 	coordinates:
-		x: 100
-		y: 700
-		z: -300
+		x: -30
+		y: 1800
+		z: -1400
 	power: 1
 
 camera:
 	fov: 60
 	coordinates:
 		x: 0
-		z: -1500
-		y: 650
+		z: -2000
+		y: 300
 	horizontal angle: 0
-	vertical angle: 0
+	vertical angle: -3
+
+#camera:
+#	fov: 60
+#	coordinates:
+#		x: 1200
+#		z: -1400
+#		y: 800
+#	horizontal angle: -40
+#	vertical angle: 12
 
 cone:
 	coordinates:
@@ -263,12 +272,21 @@ sphere:
 	rotation:
 		y: -40
 		z: 60
+	color:
+		r: 55
+		g: 128
 
 sphere:
 	coordinates:
-		y: 440
-		z: 20
-	radius: 50
+		x: -8
+		y: 450
+		z: 47
+	radius: 45
+	scale:
+		z: 1.1
+	color:
+		r: 55
+		g: 128
 
 sphere:
 	coordinates:
@@ -280,6 +298,9 @@ sphere:
 		x: 1.1
 	rotation:
 		z: -30
+	color:
+		r: 55
+		g: 128
 
 sphere:
 	coordinates:
@@ -291,6 +312,9 @@ sphere:
 		y: 1.1
 	rotation:
 		z: 50
+	color:
+		r: 55
+		g: 128
 
 sphere:
 	coordinates:
@@ -304,6 +328,9 @@ sphere:
 	rotation:
 		z: -45
 		x: 30
+	color:
+		r: 55
+		g: 128
 
 sphere:
 	coordinates:
@@ -311,6 +338,9 @@ sphere:
 		y: 607
 		z: 120
 	radius: 80
+	color:
+		r: 55
+		g: 128
 
 sphere:
 	coordinates:
@@ -324,20 +354,149 @@ sphere:
 	rotation:
 		x: 25
 		z: -30
+	color:
+		r: 55
+		g: 128
 
+sphere:
+	coordinates:
+		x: 155
+		y: 445
+		z: 160
+	radius: 70
+	scale:
+		x: 1.3
+	rotation:
+		y: -30
+	color:
+		r: 55
+		g: 128
 
+sphere:
+	coordinates:
+		x: 120
+		y: 640
+		z: 200
+	radius: 120
+	scale:
+		y: 1.1
+	rotation:
+		z: -20
+	color:
+		r: 55
+		g: 128
 
+sphere:
+	coordinates:
+		x: -90
+		y: 650
+		z: 200
+	radius: 130
+	scale:
+		y: 1.2
+	rotation:
+		z: 15
+	color:
+		r: 55
+		g: 128
 
+sphere:
+	coordinates:
+		x: 30
+		y: 500
+		z: 230
+	radius: 80
+	color:
+		r: 55
+		g: 128
 
+sphere:
+	coordinates:
+		x: 50
+		y: 810
+		z: 200
+	radius: 100
+	scale:
+		y: 1.1
+	rotation:
+		x: 20
+	color:
+		r: 55
+		g: 128
 
+sphere:
+	coordinates:
+		x: -40
+		y: 380
+		z: 140
+	radius: 60
+	color:
+		r: 55
+		g: 128
 
+sphere:
+	coordinates:
+		x: -80
+		y: 570
+		z: 20
+	radius: 55
+	scale:
+		x: 1.1
+		y: 0.8
+	rotation:
+		y: 10
+		z: 10
+	color:
+		r: 55
+		g: 128
 
+sphere:
+	coordinates:
+		x: 30
+		y: 690
+		z: 70
+	radius: 70
+	scale:
+		y: 1.1
+	color:
+		r: 55
+		g: 128
 
+sphere:
+	coordinates:
+		x: -170
+		y: 680
+		z: 10
+	radius: 80
+	scale:
+		y: 1.3
+	rotation:
+		x: -70
+		z: 30
+	color:
+		r: 55
+		g: 128
 
+sphere:
+	coordinates:
+		x: 165
+		y: 610
+		z: 45
+	radius: 50
+	color:
+		r: 55
+		g: 128
 
+#sol
 
-
-
-
-
-	
+box:
+	coordinates:
+		x: -300
+		y: -37
+		z: -120
+	width: 1200
+	height: 20
+	depth: 900
+	color:
+		r: 67
+		g: 148
