@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 12:26:49 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/21 19:14:35 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/24 12:16:53 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ int			get_next_data(int fd, char **data, int new_file)
 		n = 1;
 	if (!n)
 		return (0);
-	if (!(n = get_next_line(fd, data)))
-		return (0);
-	while ((**data == '#' || !**data) && (n = get_next_line(fd, data)) > 0)
-		;
+	if ((n = get_next_line(fd, data)))
+		while ((**data == '#' || !**data) && (n = get_next_line(fd, data)) > 0)
+			;
 	if (n < 0)
 		exit_error("rtv1: ", "read");
 	if (!n)
