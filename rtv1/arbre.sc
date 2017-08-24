@@ -304,3 +304,40 @@ sphere:
 	rotation:
 		z: -45
 		x: 30
+
+sphere:
+	coordinates:
+		x: 165
+		y: 607
+		z: 120
+	radius: 80
+
+sphere:
+	coordinates:
+		x: 306
+		y: 610
+		z: 95
+	radius: 125
+	scale:
+		y: 1.2
+		x: 0.95
+	rotation:
+		x: 25
+		z: -30
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

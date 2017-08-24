@@ -6,7 +6,7 @@
 /*   By: edescoin <edescoin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/02 17:33:26 by edescoin          #+#    #+#             */
-/*   Updated: 2017/08/08 20:06:01 by edescoin         ###   ########.fr       */
+/*   Updated: 2017/08/24 12:46:41 by edescoin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ double		data_get_val(char *data)
 		val_floor = ft_atoi(tmp + 1);
 	else
 		val_floor = 0;
-	return (val + val_floor / (10 * ft_intlen(val_floor)));
+	return (val + val_floor / pow(10, ft_intlen(val_floor)));
 }
 
 t_sc_data	data_get_crd(t_dot *crd, char *data)
