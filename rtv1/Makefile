@@ -19,7 +19,7 @@ parser.c plane.c rays.c raytracing.c raytracing2.c scene.c scene_data.c \
 sphere.c spotlight.c threads.c tools.c transformations.c vectors.c
 OBJS=$(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
 LIBS=-lft -lm
-LSDL2=`$(SDL_PATH)/SDL2/build/bin/sdl2-config --cflags --libs`
+LSDL2=`$(SDL_PATH)/SDL2/bin/bin/sdl2-config --cflags --libs`
 
 .PHONY: all clean fclean re libft sdl debug-linux debug-mac
 
@@ -77,8 +77,8 @@ sdl: $(LIB_DIR)
 	@echo "               Creating symlinks..."
 	@echo "--------------------------------------------------------------------\
 ------------"
-	ln -fs $(SDL_PATH)/SDL2/build/lib/libSDL2.a $(LIB_DIR)
-	ln -fs $(SDL_PATH)/SDL2/build/include/SDL2 $(INCLUDE_DIR)
+	ln -fs $(SDL_PATH)/SDL2/bin/lib/libSDL2.a $(LIB_DIR)
+	ln -fs $(SDL_PATH)/SDL2/bin/include/SDL2 $(INCLUDE_DIR)
 	@echo
 	@echo "\x1B[38;5;40m""Done.""\x1B[0m"
 	@echo

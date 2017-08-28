@@ -30,8 +30,8 @@ Kernel configured for up to 4 processors.
 Processor type: i486 (Intel 80486)
 Processors active: 0 1 2 3
 Primary memory available: 8.00 gigabytes
-Default processor set: 353 tasks, 1710 threads, 4 processors
-Load average: 3.57, Mach factor: 1.22
+Default processor set: 358 tasks, 1802 threads, 4 processors
+Load average: 5.14, Mach factor: 0.72
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -1062,7 +1062,7 @@ configure:16618: checking for _strrev
 configure:16618: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include   -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  >&5
 Undefined symbols for architecture i386:
   "__strrev", referenced from:
-      _main in conftest-0b39f7.o
+      _main in conftest-3f22a9.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16618: $? = 1
@@ -1170,7 +1170,7 @@ configure:16618: checking for _strupr
 configure:16618: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include   -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  >&5
 Undefined symbols for architecture i386:
   "__strupr", referenced from:
-      _main in conftest-42dc10.o
+      _main in conftest-f8a865.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16618: $? = 1
@@ -1278,7 +1278,7 @@ configure:16618: checking for _strlwr
 configure:16618: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include   -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  >&5
 Undefined symbols for architecture i386:
   "__strlwr", referenced from:
-      _main in conftest-a73b2f.o
+      _main in conftest-f5b72d.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16618: $? = 1
@@ -1428,7 +1428,7 @@ configure:16618: checking for itoa
 configure:16618: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include   -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  >&5
 Undefined symbols for architecture i386:
   "_itoa", referenced from:
-      _main in conftest-a6df03.o
+      _main in conftest-95d3f9.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16618: $? = 1
@@ -1539,7 +1539,7 @@ configure:16618: checking for _ltoa
 configure:16618: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include   -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  >&5
 Undefined symbols for architecture i386:
   "__ltoa", referenced from:
-      _main in conftest-c410cf.o
+      _main in conftest-e777f8.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16618: $? = 1
@@ -1650,7 +1650,7 @@ configure:16618: checking for _uitoa
 configure:16618: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include   -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  >&5
 Undefined symbols for architecture i386:
   "__uitoa", referenced from:
-      _main in conftest-d1db28.o
+      _main in conftest-e958b6.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16618: $? = 1
@@ -1761,7 +1761,7 @@ configure:16618: checking for _ultoa
 configure:16618: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include   -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  >&5
 Undefined symbols for architecture i386:
   "__ultoa", referenced from:
-      _main in conftest-08c232.o
+      _main in conftest-e2928f.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16618: $? = 1
@@ -1880,7 +1880,7 @@ configure:16618: checking for _i64toa
 configure:16618: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include   -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  >&5
 Undefined symbols for architecture i386:
   "__i64toa", referenced from:
-      _main in conftest-95ecf2.o
+      _main in conftest-7c8c36.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16618: $? = 1
@@ -1993,7 +1993,7 @@ configure:16618: checking for _ui64toa
 configure:16618: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include   -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  >&5
 Undefined symbols for architecture i386:
   "__ui64toa", referenced from:
-      _main in conftest-4f3e56.o
+      _main in conftest-d56f93.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16618: $? = 1
@@ -2150,7 +2150,7 @@ configure:16618: checking for _stricmp
 configure:16618: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include   -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  >&5
 Undefined symbols for architecture i386:
   "__stricmp", referenced from:
-      _main in conftest-3d5b93.o
+      _main in conftest-920d2e.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16618: $? = 1
@@ -2283,7 +2283,7 @@ configure:16618: checking for _strnicmp
 configure:16618: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include   -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  >&5
 Undefined symbols for architecture i386:
   "__strnicmp", referenced from:
-      _main in conftest-73da95.o
+      _main in conftest-ebc11a.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16618: $? = 1
@@ -2449,7 +2449,7 @@ configure:16618: checking for fseeko64
 configure:16618: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include   -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  >&5
 Undefined symbols for architecture i386:
   "_fseeko64", referenced from:
-      _main in conftest-fadf7f.o
+      _main in conftest-7471de.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:16618: $? = 1
@@ -3826,7 +3826,7 @@ conftest.c:124:19: warning: implicit declaration of function 'sem_timedwait' is 
 1 warning generated.
 Undefined symbols for architecture i386:
   "_sem_timedwait", referenced from:
-      _main in conftest-8de245.o
+      _main in conftest-a076df.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:22147: $? = 1
@@ -4095,7 +4095,7 @@ configure:22213: checking for pthread_set_name_np
 configure:22233: ./build-scripts/gcc-fat.sh -o conftest -g -O2 -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include  -D_THREAD_SAFE  -Iinclude -I/Users/edescoin/Desktop/rtv1/SDL2/include    conftest.c  -lm -liconv  >&5
 Undefined symbols for architecture i386:
   "_pthread_set_name_np", referenced from:
-      _main in conftest-9e9aee.o
+      _main in conftest-7345b3.o
 ld: symbol(s) not found for architecture i386
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:22233: $? = 1
