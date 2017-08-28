@@ -105,10 +105,3 @@ sphere:
 		y: -3
 	rotation:
 		z: 12
-
-
-
-
-
-
-
