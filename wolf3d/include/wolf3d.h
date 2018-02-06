@@ -14,7 +14,7 @@
 # define WOLF3D_H
 # define TITLE			"Wolf3D"
 # define WIDTH 			1280
-# define HEIGHT 		720
+# define HEIGHT 		700
 # define BOBBING		2
 # define FPS			60
 # define SENSI			1.2
