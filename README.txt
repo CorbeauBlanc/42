@@ -1,1 +1,1 @@
-Désolé mec, ne pas laisser son login et mdr sur l’écran de login des macs. Et la tige c’est pas nous ! Sorry mec, bisous, bon courage
+
